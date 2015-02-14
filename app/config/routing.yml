@@ -1,0 +1,4 @@
+anar_super_panel:
+    resource: "@AnarSuperPanelBundle/Resources/config/routing.yml"
+    prefix:   /superpanel
+

@@ -1,0 +1,30 @@
+anar_super_panel_blog_index:
+    path:     /
+    defaults: { _controller: "AnarSuperPanelBundle:Blog:index" }
+
+anar_super_panel_blog_show:
+    path:     /{id}/show
+    defaults: { _controller: "AnarSuperPanelBundle:Blog:show" }
+
+anar_super_panel_blog_new:
+    path:     /new
+    defaults: { _controller: "AnarSuperPanelBundle:Blog:new" }
+
+anar_super_panel_blog_create:
+    path:     /create
+    defaults: { _controller: "AnarSuperPanelBundle:Blog:create" }
+    methods:  POST
+
+anar_super_panel_blog_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AnarSuperPanelBundle:Blog:edit" }
+
+anar_super_panel_blog_update:
+    path:     /{id}/update
+    defaults: { _controller: "AnarSuperPanelBundle:Blog:update" }
+    methods:  [POST, PUT]
+
+anar_super_panel_blog_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AnarSuperPanelBundle:Blog:delete" }
+    methods:  [POST, DELETE]

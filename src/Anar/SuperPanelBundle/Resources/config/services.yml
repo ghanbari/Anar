@@ -1,0 +1,4 @@
+services:
+#    anar_super_panel.example:
+#        class: Anar\SuperPanelBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

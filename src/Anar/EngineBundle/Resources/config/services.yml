@@ -1,0 +1,4 @@
+services:
+#    anar_engine.example:
+#        class: Anar\EngineBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

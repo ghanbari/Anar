@@ -1,0 +1,25 @@
+Anar\EngineBundle\Entity\Blog:
+    type: entity
+    table: blog
+    repositoryClass: Anar\EngineBundle\Entity\BlogRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title: ~
+        name:
+            unique: true
+            length: 50
+        theme:
+            length: 100
+            options:
+                default: Public
+        onTree:
+            type: boolean
+            options:
+                default: 1
+
+    lifecycleCallbacks: {  }

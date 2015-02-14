@@ -1,0 +1,7 @@
+anar_super_panel_blog:
+    resource: "@AnarSuperPanelBundle/Resources/config/routing/blog.yml"
+    prefix:   /blog
+
+anar_super_panel_home:
+    path: /
+    defaults: { _controller: AnarSuperPanelBundle:Desktop:home }
