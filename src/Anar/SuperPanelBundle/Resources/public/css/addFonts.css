@@ -1,0 +1,45 @@
+@charset "utf-8";
+/* CSS Document */
+
+@font-face {
+    font-family: 'roya';
+    src:
+		url('../fonts/BRoya.eot?#') format('eot'),    
+        url('../fonts/BRoya.woff') format('woff'),
+        url('../fonts/BRoya.ttf') format('truetype'); 
+}
+
+@font-face {
+    font-family: 'yekan';
+    src:
+		url('../fonts/BYekan.eot?#') format('eot'),    
+        url('../fonts/BYekan.woff') format('woff'),
+        url('../fonts/BYekan.ttf') format('truetype'); 
+}
+
+@font-face {
+    font-family: 'homa';
+    src:
+		url('../fonts/BHoma.eot?#') format('eot'),    
+        url('../fonts/BHoma.woff') format('woff'),
+        url('../fonts/BBHoma.ttf') format('truetype'); 
+}
+
+
+@font-face {
+    font-family: 'yagut';
+    src:
+        url('../fonts/BYagut.eot?#') format('eot'),    
+        url('../fonts/BYagut.woff') format('woff'),
+        url('../fonts/BYagut.ttf') format('truetype'); 
+}
+
+
+
+
+/* cyrillic-ext */
+@font-face {
+  font-family: 'OpenSans';
+  font-style: normal;
+  src: url('../fonts/openSans.woff') format('woff');
+}

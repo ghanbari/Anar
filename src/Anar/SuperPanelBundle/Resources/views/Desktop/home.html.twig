@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>سوپر پنل</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {#----------------------commonStyles----------------------#}
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/css/addFonts.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/css/icons.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/css/commonStyles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('static/bootstrap/dist/css/bootstrap.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('static/bootstrap/dist/css/bootstrap-theme.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/css/bootstrapPersianNormailze.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/jstreeV3-0-4/themes/default/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/tinyNotice/FlatTheme.css') }}">
+    {#----------------------/commonStyles----------------------#}
+    {#----------------------PrivateStyles----------------------#}
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/css/privateStyle.css') }}">
+    {#----------------------/PrivateStyles----------------------#}
+
+    {% block csses %}
+    {% endblock csses %}
+</head>
+
+<body>
+{% block top_fixed_superpanel_box %}
+<div id="sp-topBar">
+    <span>آخرین ورود : <time dir="ltr"></time></span>
+    <a class="btn btn-xs btn-danger" href="">خروج</a>
+</div>
+<!-----------------wrap----------------->
+<div id="sp-headerWrap">
+    <div id="sp-logo"></div>
+</div>
+<!-----------------wrap----------------->
+<div id="sp-tabBar">
+    <div id="sp-label">
+        <h1>Super Panel</h1>
+        <h2>Pomegranate notification system</h2>
+    </div>
+    <span id="sp-firstSpan"></span>
+    <span data-URL="ajaxUrlRoles"><i class="fa fa-sitemap"></i><br>نقش ها</span>
+    <span data-URL="ajaxUrlUsers"><i class="fa fa-users"></i><br>کاربران</span>
+    <span data-URL="ajaxUrlPermations"><i class="fa fa-paperclip"></i><br>دسترسی</span>
+    <span data-URL="ajaxUrlsetttings"><i class="fa fa-gears"></i><br>تنظیمات</span>
+    <span id="sp-lastSpan"></span>
+</div>
+
+{% endblock top_fixed_superpanel_box %}
+
+{% block container %}
+<!-----------------wrap----------------->
+<div id="sp-boxWrap">
+    <div id="sp-contentWrap">
+        <i class="fa fa-times" id="sp-contencClose"></i>
+        <div id="sp-contentContainer"></div>
+    </div>
+    <!-----------------wrap----------------->
+    <div id="sp-desktopWrap">
+        <div id="sp-clockWrap">
+            <time></time>
+            <hr>
+            <i class="fa fa-calendar"></i>
+            <span></span>
+        </div>
+        <div class="sp-shower">
+            <i class="sp-iconLabel fa fa-file"><span></span></i>
+            <span class="sp-showerTitr">تعداد نقش های سیستم</span>
+            <span class="sp-showerNumber" id="desktop_NumOfRoles"></span>
+        </div>
+        <div class="sp-shower">
+            <i class="sp-iconLabel fa fa-copy"><span></span></i>
+            <span class="sp-showerTitr">تعداد کاربران سیستم</span>
+            <span class="sp-showerNumber" id="desktop_NumOfUser"></span>
+        </div>
+    </div>
+</div>
+{% endblock container %}
+
+{#----------------------commonScripts----------------------#}
+<script src="{{ asset('static/jquery/dist/jquery.min.js') }}"></script>
+<script src="{{ asset('static/jquery-ui/jquery-ui.min.js') }}"></script>
+<script src="{{ asset('static/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('static/jstree/dist/jstree.min.js') }}"></script>
+<script src="{{ asset('plugins/nicescroll/jquery.nicescroll.min.js') }}"></script>
+<script src="{{ asset('plugins/tinyNotice/tinyNotice.js') }}"></script>
+<script src="{{ asset('scripts/commonActions.js') }}"></script>
+{#----------------------/commonScripts----------------------#}
+{#----------------------PrivateScripts----------------------#}
+
+<script src="{{ asset('bundles/anarsuperpanel/js/privateActions.js') }}"></script>
+{#----------------------/PrivateScripts----------------------#}
+
+{% block scripts %}
+{% endblock scripts %}
+</body>
+</html>

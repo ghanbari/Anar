@@ -1,0 +1,101 @@
+@charset "utf-8";
+
+.com-notification{
+	width:100%;
+	border-style:dotted;
+	border-width:1px;
+	padding:5px;
+	margin-bottom:20px;
+	display:none;
+	position:relative;
+}
+.com-notification i.com-close{
+	position:absolute;
+	top:4px;
+	left:6px;
+	font-size:13px;
+	opacity:0.5;
+	cursor:pointer;
+}
+.com-notification i.com-close:hover{
+	opacity:1;
+}
+
+.com-noteError{
+	background:#ffd1d1;
+	border-color:#8a1d1d;
+	color:#46201f;
+}
+.com-noteWarning{
+	background:#feffd1;
+	border-color:#8a861d;
+	color:#46461f;
+}
+.com-noteSuccess{
+	background:#f1ffd1;
+	border-color:#628a1d;
+	color:#24461f;
+}
+
+
+
+.btn{
+	font-family:tahoma;
+}
+
+
+
+
+
+hr.com-lineDashed{
+	border-top:1px dashed #eee !important;
+}
+
+
+
+
+.btn-primary-costum{
+	box-sizing:border-box;
+	height:34px;
+	line-height:32px;
+	padding:0 20px;
+	margin-bottom:10px;
+	background-color:#198fff;
+	color:#fff;
+	-webkit-box-shadow : 0 3px #063a93;
+	box-shadow : 0 3px #063a93;
+	border-radius:3px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+	font-size:14px;
+	font-family:tahoma;
+	border:2px solid transparent;	
+}
+.btn-primary-costum:hover{
+	background-color:#0071D7;
+	-webkit-box-shadow : 0 3px #042966;
+	box-shadow : 0 3px #042966;		
+}
+.btn-primary-costum:focus{
+	outline:none;	
+}
+.btn-primary-costum:active{
+	background-color:#063a93;
+}
+
+
+
+.com-loading{
+	width:50px;
+	height:50px;
+	padding:0px;
+	border:none;
+	position:fixed;
+	display:none;
+	top:50%;
+	left:50%;
+	z-index:1000000000;
+	background-image:url(../images/loadingBar.png);
+	background-repeat:no-repeat;
+	background-position:left center;
+}
