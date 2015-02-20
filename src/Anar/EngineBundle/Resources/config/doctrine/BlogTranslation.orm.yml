@@ -1,0 +1,33 @@
+Anar\EngineBundle\Entity\BlogTranslation:
+    type: entity
+    table: blog_translations
+    extends: Translatable
+    uniqueConstraints:
+        blog_translations_unique_idx:
+            columns: [locale, object_id, field]
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        createdAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        updatedAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: update
+    manyToOne:
+        object:
+            targetEntity: Blog
+            inversedBy: translations
+            joinColumn:
+                name: object_id
+                referencedColumnName: id
+                onDelete: cascade
+    lifecycleCallbacks: {  }
