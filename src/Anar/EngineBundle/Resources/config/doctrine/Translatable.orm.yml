@@ -1,0 +1,12 @@
+Anar\EngineBundle\Entity\Translatable:
+    type: mappedSuperclass
+    fields:
+        locale:
+            type: string
+            length: 8
+        field:
+            type: string
+            length: 32
+        content:
+            type: text
+            nullable: true

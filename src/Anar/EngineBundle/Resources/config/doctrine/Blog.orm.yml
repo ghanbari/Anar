@@ -2,6 +2,12 @@ Anar\EngineBundle\Entity\Blog:
     type: entity
     table: blog
     repositoryClass: Anar\EngineBundle\Entity\BlogRepository
+    gedmo:
+        tree:
+            type: nested
+        translation:
+            locale: currentLocale
+            entity: BlogTranslation
     id:
         id:
             type: integer
@@ -9,10 +15,16 @@ Anar\EngineBundle\Entity\Blog:
             generator:
                 strategy: AUTO
     fields:
-        title: ~
+        title:
+            gedmo:
+                - translatable
+        description:
+            length: 500
+            gedmo:
+                - translatable
         name:
             unique: true
-            length: 50
+            length: 100
         theme:
             length: 100
             options:
@@ -20,6 +32,69 @@ Anar\EngineBundle\Entity\Blog:
         onTree:
             type: boolean
             options:
-                default: 1
-
-    lifecycleCallbacks: {  }
+                default: true
+        active:
+            type: boolean
+            options:
+                default: true
+        lft:
+            type: integer
+            gedmo:
+                - treeLeft
+        rgt:
+            type: integer
+            gedmo:
+                - treeRight
+        root:
+            type: integer
+            nullable: true
+            gedmo:
+                - treeRoot
+        lvl:
+            type: integer
+            gedmo:
+                - treeLevel
+        createdAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        updatedAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: update
+    manyToOne:
+        parent:
+            targetEntity: Blog
+            inversedBy: children
+            joinColumn:
+                name: parent_id
+                referencedColumnName: id
+                onDelete: restrict
+            gedmo:
+                - treeParent
+    oneToMany:
+        children:
+            targetEntity: Blog
+            mappedBy: parent
+            orderBy:
+                lft: ASC
+        translations:
+            targetEntity: BlogTranslation
+            mappedBy: object
+            cascade: ["persist"]
+    manyToMany:
+        apps:
+            targetEntity: App
+            inversedBy: blogs
+            joinTable:
+                name: blogs_apps
+                joinColumns:
+                    blog_id:
+                        referencedColumnName: id
+                        onDelete: cascade
+                inverseJoinColumns:
+                    app_id:
+                        referencedColumnName: id
+                        onDelete: CASCADE

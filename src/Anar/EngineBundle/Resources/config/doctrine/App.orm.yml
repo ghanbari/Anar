@@ -1,0 +1,21 @@
+Anar\EngineBundle\Entity\App:
+    type: entity
+    table: app
+    repositoryClass: Anar\EngineBundle\Entity\AppRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name: ~
+        title: ~
+        type: ~
+
+    manyToMany:
+        blogs:
+            targetEntity: Blog
+            mappedBy: apps
+
+    lifecycleCallbacks: {  }
