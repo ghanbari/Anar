@@ -1,0 +1,16 @@
+Anar\EngineBundle\Entity\Language:
+    type: entity
+    table: language
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            length: 20
+        code:
+            length: 20
+        icon: ~
+    lifecycleCallbacks: {  }

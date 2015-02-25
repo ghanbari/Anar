@@ -1,3 +1,7 @@
+anar_content:
+    resource: "@AnarContentBundle/Resources/config/routing.yml"
+    prefix:   /
+
 anar_super_panel:
     resource: "@AnarSuperPanelBundle/Resources/config/routing.yml"
     prefix:   /superpanel

@@ -18,6 +18,8 @@ class AppKernel extends Kernel
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Anar\SuperPanelBundle\AnarSuperPanelBundle(),
             new Anar\EngineBundle\AnarEngineBundle(),
+            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
+            new Anar\ContentBundle\AnarContentBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

@@ -20,6 +20,7 @@ Anar\EngineBundle\Entity\Blog:
                 - translatable
         description:
             length: 500
+            nullable: true
             gedmo:
                 - translatable
         name:

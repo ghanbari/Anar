@@ -15,10 +15,24 @@ class BlogType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
-            ->add('name')
-            ->add('theme')
-            ->add('onTree')
+            ->add('title', 'text')
+            ->add('description', 'text')
+            ->add('name', 'text')
+            ->add('theme', 'entity', array(
+                'class' => 'AnarEngineBundle:Theme',
+                'property' => 'name',
+            ))
+            ->add('onTree', 'checkbox')
+            ->add('active', 'checkbox')
+            ->add('parent', 'entity', array(
+                'class' => 'AnarEngineBundle:Blog',
+                'property' => 'title',
+            ))
+            ->add('apps', 'entity', array(
+                'class' => 'AnarEngineBundle:App',
+                'property' => 'title',
+                'multiple' => true
+            ))
         ;
     }
     
@@ -28,7 +42,7 @@ class BlogType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Anar\SuperPanelBundle\Entity\Blog'
+            'data_class' => 'Anar\EngineBundle\Entity\Blog'
         ));
     }
 
@@ -37,6 +51,6 @@ class BlogType extends AbstractType
      */
     public function getName()
     {
-        return 'anar_superpanelbundle_blog';
+        return 'anar_enginebundle_blog';
     }
 }

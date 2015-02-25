@@ -1,0 +1,38 @@
+Anar\EngineBundle\Entity\Blog:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: name
+
+    properties:
+        title:
+            - NotBlank: ~
+            - Length:
+                min: 4
+                max: 255
+        description:
+            - Length:
+                max: 500
+        name:
+            - NotBlank: ~
+            - Type:
+                type: string
+            - Regex:
+                pattern: '/^[a-z]{4,100}$/'
+                message: 'You Must Enter 4-255 Lowercase Letter!'
+        parent:
+            - NotNull: ~
+            - Type:
+                type: 'Anar\EngineBundle\Entity\Blog'
+        theme:
+            - NotBlank: ~
+            - Type:
+                type: 'Anar\EngineBundle\Entity\Theme'
+        onTree:
+            - Type:
+                type: boolean
+        active:
+            - Type:
+                type: boolean
+        apps:
+            - NotNull: ~
+            - Count:
+                min: 1

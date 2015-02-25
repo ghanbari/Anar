@@ -12,4 +12,60 @@ use Gedmo\Tree\Entity\Repository\NestedTreeRepository;
  */
 class BlogRepository extends NestedTreeRepository
 {
+    /**
+     * @param int|null $parent parent id
+     * @param boolean|null $active blog status
+     * @param boolean|null $onTree whether show blog on tree
+     * @return array
+     */
+    public function getTreeForJstree($parent = null, $active=null, $onTree=null, $locale='fa')
+    {
+        $qb = $this->createQueryBuilder('b')->select('b');
+
+        if (!is_null($parent)) {
+            $qb->where($qb->expr()->eq('b.parent', ':parent'));
+            $qb->setParameter('parent', $parent);
+        } else {
+            $qb->where($qb->expr()->isNull('b.parent'));
+        }
+
+        if (!is_null($active)) {
+            $qb = $qb->andWhere($qb->expr()->eq('b.active', ':active'))
+                ->setParameter('active', $active);
+        }
+
+        if (!is_null($onTree)) {
+            $qb->andWhere($qb->expr()->eq('b.onTree', ':onTree'))
+                ->setParameter('onTree', $onTree);
+        }
+        $query = $qb->getQuery();
+
+        $query->setHint(
+            \Doctrine\ORM\Query::HINT_CUSTOM_OUTPUT_WALKER,
+            'Gedmo\\Translatable\\Query\\TreeWalker\\TranslationWalker'
+        );
+
+        $query->setHint(
+            \Gedmo\Translatable\TranslatableListener::HINT_TRANSLATABLE_LOCALE,
+            $locale
+        );
+
+        $blogs = $query->getResult();
+
+        $tree = array();
+        foreach ($blogs as $blog) {
+            if ($blog->getParent() == $parent) {
+                $parent = '#';
+            } else {
+                $parent = $blog->getParent()->getId();
+            }
+
+            $tree[] = array(
+                'id' => (string) $blog->getId(), 'parent' => $parent, 'text' => $blog->getTitle(), 'state' => array('selected' => false)
+            );
+        }
+
+        return $tree;
+    }
+
 }

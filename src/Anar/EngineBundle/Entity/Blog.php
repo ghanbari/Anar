@@ -108,6 +108,9 @@ class Blog
         $this->children = new ArrayCollection();
         $this->translations = new ArrayCollection();
         $this->apps = new ArrayCollection();
+        $this->theme = 'Public';
+        $this->active = True;
+        $this->onTree = True;
     }
 
     /**
@@ -253,7 +256,7 @@ class Blog
      *
      * @return boolean 
      */
-    public function getActive()
+    public function isActive()
     {
         return $this->active;
     }
@@ -507,6 +510,22 @@ class Blog
     public function getApps()
     {
         return $this->apps;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCurrentLocale()
+    {
+        return $this->currentLocale;
+    }
+
+    /**
+     * @param string $currentLocale
+     */
+    public function setCurrentLocale($currentLocale)
+    {
+        $this->currentLocale = $currentLocale;
     }
 
     /**

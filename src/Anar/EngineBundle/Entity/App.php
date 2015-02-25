@@ -2,6 +2,7 @@
 
 namespace Anar\EngineBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -35,11 +36,16 @@ class App
     private $blogs;
 
     /**
-     * Constructor
+     * @param string $name Bundle name.
+     * @param string $title Application name.
+     * @param string $type Application type.
      */
-    public function __construct()
+    public function __construct($name, $title, $type)
     {
-        $this->blogs = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->blogs = new ArrayCollection();
+        $this->name = $name;
+        $this->title = $title;
+        $this->type = $type;
     }
 
     /**
@@ -152,5 +158,10 @@ class App
     public function getBlogs()
     {
         return $this->blogs;
+    }
+
+    public function __toString()
+    {
+        return $this->title;
     }
 }

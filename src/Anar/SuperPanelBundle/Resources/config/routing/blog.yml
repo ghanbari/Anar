@@ -2,10 +2,6 @@ anar_super_panel_blog_index:
     path:     /
     defaults: { _controller: "AnarSuperPanelBundle:Blog:index" }
 
-anar_super_panel_blog_show:
-    path:     /{id}/show
-    defaults: { _controller: "AnarSuperPanelBundle:Blog:show" }
-
 anar_super_panel_blog_new:
     path:     /new
     defaults: { _controller: "AnarSuperPanelBundle:Blog:new" }
@@ -28,3 +24,7 @@ anar_super_panel_blog_delete:
     path:     /{id}/delete
     defaults: { _controller: "AnarSuperPanelBundle:Blog:delete" }
     methods:  [POST, DELETE]
+
+anar_super_panel_blog_check_name:
+    path:     /check/{name}
+    defaults: { _controller: AnarSuperPanelBundle:Blog:checkName }

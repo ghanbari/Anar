@@ -2,6 +2,8 @@
 
 namespace Anar\SuperPanelBundle\Controller;
 
+use Anar\EngineBundle\Entity\BlogRepository;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -14,6 +16,13 @@ use Anar\SuperPanelBundle\Form\BlogType;
  */
 class BlogController extends Controller
 {
+    /**
+     * @return BlogRepository
+     */
+    private function getRepository()
+    {
+        return $this->getDoctrine()->getManager()->getRepository('AnarEngineBundle:Blog');
+    }
 
     /**
      * Lists all Blog entities.
@@ -21,34 +30,53 @@ class BlogController extends Controller
      */
     public function indexAction()
     {
-        $em = $this->getDoctrine()->getManager();
+        $repo = $this->getRepository();
 
-        $entities = $em->getRepository('AnarEngineBundle:Blog')->findAll();
+        return $this->render(
+            'AnarSuperPanelBundle:Blog:index.html.twig',
+            array(
+                'tree' => json_encode($repo->getTreeForJstree()),
+                'token' => $this->get('form.csrf_provider')->generateCsrfToken('blog_delete')
+            )
+        );
+    }
 
-        return $this->render('AnarSuperPanelBundle:Blog:index.html.twig', array(
-            'entities' => $entities,
+    /**
+     * Displays a form to create a new Blog entity.
+     *
+     */
+    public function newAction()
+    {
+        $blog = new Blog();
+        $form = $this->createCreateForm($blog);
+
+        return $this->render('AnarSuperPanelBundle:Blog:new.html.twig', array(
+            'blog' => $blog,
+            'form' => $form->createView(),
         ));
     }
+
     /**
      * Creates a new Blog entity.
      *
      */
     public function createAction(Request $request)
     {
-        $entity = new Blog();
-        $form = $this->createCreateForm($entity);
+        $blog = new Blog();
+        $form = $this->createCreateForm($blog);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
+            $em->persist($blog);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('anar_super_panel_blog_show', array('id' => $entity->getId())));
+            $request->getSession()->getFlashBag()->add('info', 'Blog was created, click on link');
+            return $this->redirect($this->generateUrl('anar_super_panel_blog_index'));
         }
 
         return $this->render('AnarSuperPanelBundle:Blog:new.html.twig', array(
-            'entity' => $entity,
+            'blog' => $blog,
             'form'   => $form->createView(),
         ));
     }
@@ -67,46 +95,9 @@ class BlogController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit');
 
         return $form;
-    }
-
-    /**
-     * Displays a form to create a new Blog entity.
-     *
-     */
-    public function newAction()
-    {
-        $entity = new Blog();
-        $form   = $this->createCreateForm($entity);
-
-        return $this->render('AnarSuperPanelBundle:Blog:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        ));
-    }
-
-    /**
-     * Finds and displays a Blog entity.
-     *
-     */
-    public function showAction($id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $entity = $em->getRepository('AnarEngineBundle:Blog')->find($id);
-
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Blog entity.');
-        }
-
-        $deleteForm = $this->createDeleteForm($id);
-
-        return $this->render('AnarSuperPanelBundle:Blog:show.html.twig', array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
-        ));
     }
 
     /**
@@ -117,19 +108,17 @@ class BlogController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AnarEngineBundle:Blog')->find($id);
+        $blog = $em->getRepository('AnarEngineBundle:Blog')->find($id);
 
-        if (!$entity) {
+        if (!$blog) {
             throw $this->createNotFoundException('Unable to find Blog entity.');
         }
 
-        $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
+        $editForm = $this->createEditForm($blog);
 
-        return $this->render('AnarSuperPanelBundle:Blog:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+        return $this->render('AnarSuperPanelBundle:Blog:new.html.twig', array(
+            'blog'      => $blog,
+            'form'   => $editForm->createView(),
         ));
     }
 
@@ -159,66 +148,77 @@ class BlogController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('AnarEngineBundle:Blog')->find($id);
+        $blog = $em->getRepository('AnarEngineBundle:Blog')->find($id);
 
-        if (!$entity) {
+        if (!$blog) {
             throw $this->createNotFoundException('Unable to find Blog entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createEditForm($entity);
+        $editForm = $this->createEditForm($blog);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('anar_super_panel_blog_edit', array('id' => $id)));
+            $request->getSession()->getFlashBag()->add('info', 'Blog Is Edited');
+            return $this->redirect($this->generateUrl('anar_super_panel_blog_index'));
         }
 
-        return $this->render('AnarSuperPanelBundle:Blog:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+        return $this->render('AnarSuperPanelBundle:Blog:new.html.twig', array(
+            'blog'      => $blog,
+            'form'   => $editForm->createView(),
         ));
     }
+
     /**
      * Deletes a Blog entity.
      *
      */
     public function deleteAction(Request $request, $id)
     {
-        $form = $this->createDeleteForm($id);
-        $form->handleRequest($request);
+        if ($this->get('form.csrf_provider')->isCsrfTokenValid('blog_delete', $request->request->get('token'))) {
+            $form = $this->createDeleteForm($id);
+            $form->handleRequest($request);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('AnarEngineBundle:Blog')->find($id);
+            if ($form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $entity = $em->getRepository('AnarEngineBundle:Blog')->find($id);
 
-            if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Blog entity.');
+                if (!$entity) {
+                    throw $this->createNotFoundException('Unable to find Blog entity.');
+                }
+
+                $em->remove($entity);
+                $em->flush();
             }
-
-            $em->remove($entity);
-            $em->flush();
+            $status = 'success';
+            $statusText = '';
+        } else {
+            $status = 'unsuccess';
+            $statusText = 'token_is_not_valid';
         }
-
-        return $this->redirect($this->generateUrl('blog'));
+        return new JsonResponse(array('status' => $status, 'statusText' => $statusText));
     }
 
     /**
-     * Creates a form to delete a Blog entity by id.
-     *
-     * @param mixed $id The entity id
-     *
-     * @return \Symfony\Component\Form\Form The form
+     * @param $name
+     * @return JsonResponse
      */
-    private function createDeleteForm($id)
+    public function checkNameAction($name)
     {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('anar_super_panel_blog_delete', array('id' => $id)))
-            ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
-            ->getForm()
-        ;
+        if ($this->getRepository()->findOneByName($name)) {
+            $status = 'unsuccess';
+            $statusText = 'This Address Is Exists.';
+        } else {
+            if (is_string($name) and preg_match('/^[a-z]{4,100}$/', $name)) {
+                $status = 'success';
+                $statusText = 'success';
+            } else {
+                $status = 'unsuccess';
+                $statusText = 'This Name Is Invalid!';
+            }
+        }
+
+        return new JsonResponse(array('status'=> $status, 'statusText' => $statusText));
     }
 }
