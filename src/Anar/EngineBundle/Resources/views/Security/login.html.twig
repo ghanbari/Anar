@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="fa"> <![endif]-->
+<!--[if IE 7]> <html class="lt-ie9 lt-ie8" lang="fa"> <![endif]-->
+<!--[if IE 8]> <html class="lt-ie9" lang="fa"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="fa"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+
+    <title>درگاه ورود به پنل</title>
+    {#----------------------commonStyles----------------------#}
+        <link rel="stylesheet" type="text/css" href="{{ asset('styles/addFonts.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('styles/icons.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('styles/commonStyles.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('plugins/tinyNotice/FlatTheme.css') }}">
+    {#----------------------/commonStyles----------------------#}
+    {#----------------------PrivateStyles----------------------#}
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/ghanbarisecurity/css/privateStyle.css') }}">
+    {#----------------------/PrivateStyles----------------------#}
+</head>
+
+<body>
+<div id="formWrap">
+<form name="login-form" action="{{ path(app.request.attributes.get('_route')~'_check')  }}" method="post" class="login" role="form"  autocomplete="off">
+    <p>
+      <label for="_username"></label>
+      <input name="_username" type="text" id="login" value="{{ last_username }}" onfocus="this.value=''" autocomplete="off" placeholder="username">
+    </p>
+
+    <p>
+      <label for="_password"></label>
+      <input name="_password" type="password" id="password"  onfocus="this.value=''" autocomplete="off" placeholder="password">
+    </p>
+    
+    <p class="login-submit">
+      <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+      <button type="submit" class="login-button">Login</button>
+    </p>
+    
+    <label class="remeber ">
+        <input type="checkbox" id="remember_me" name="_remember_me" value="on"> Remember me
+    </label>
+  </form> 
+ </div>       
+  <section class="about">
+      <img src="{{ asset('bundles/ghanbarisecurity/images/logo.png') }}" alt="Pomegranate Notification system" style="margin: 5px auto;"><br>
+    <p class="about-author">
+      &copy; 2014&ndash;2015 <br>  <a href="#" target="_blank">Pomegranate Notification system</a>
+  </section>
+
+
+    {#----------------------commonScripts----------------------#}
+    
+        <script src="{{ asset('scripts/jquery-1.11.1.min.js') }}"></script>
+        <script src="{{ asset('scripts/jquery-ui-1.11.1.full.min.js') }}"></script>
+        <script src="{{ asset('plugins/tinyNotice/tinyNotice.js') }}"></script>
+        <script src="{{ asset('scripts/commonActions.js') }}"></script>
+    {#----------------------/commonScripts----------------------#}
+    {#----------------------PrivateScripts----------------------#}
+    <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    {% if error is defined and error is not empty%}
+        <script type="text/javascript">
+            $(document).ready(function() {       
+$.tinyNotice("server error","نام کاربری یا رمز عبور اشتباه است ! <br> message : {{ error }}","error",6000); 
+            });
+        </script>           
+    {% endif %}
+    {#----------------------/PrivateScripts----------------------#}
+</body>
+</html>

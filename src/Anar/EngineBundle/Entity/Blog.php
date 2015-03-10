@@ -101,6 +101,11 @@ class Blog
     private $currentLocale;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $groups;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -108,6 +113,7 @@ class Blog
         $this->children = new ArrayCollection();
         $this->translations = new ArrayCollection();
         $this->apps = new ArrayCollection();
+        $this->groups = new ArrayCollection();
         $this->theme = 'Public';
         $this->active = True;
         $this->onTree = True;
@@ -423,7 +429,7 @@ class Blog
     /**
      * Add translations
      *
-     * @param \Anar\EngineBundle\Entity\BlogTranslation $translations
+     * @param BlogTranslation $translation
      * @return Blog
      */
     public function addTranslation(BlogTranslation $translation)
@@ -526,6 +532,49 @@ class Blog
     public function setCurrentLocale($currentLocale)
     {
         $this->currentLocale = $currentLocale;
+    }
+
+    /**
+     * Get active
+     *
+     * @return boolean 
+     */
+    public function getActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * Add groups
+     *
+     * @param Group $groups
+     * @return Blog
+     */
+    public function addGroup(Group $groups)
+    {
+        $this->groups[] = $groups;
+
+        return $this;
+    }
+
+    /**
+     * Remove groups
+     *
+     * @param Group $groups
+     */
+    public function removeGroup(Group $groups)
+    {
+        $this->groups->removeElement($groups);
+    }
+
+    /**
+     * Get groups
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGroups()
+    {
+        return $this->groups;
     }
 
     /**

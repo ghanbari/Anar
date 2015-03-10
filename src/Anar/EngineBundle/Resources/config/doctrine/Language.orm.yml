@@ -1,6 +1,6 @@
 Anar\EngineBundle\Entity\Language:
     type: entity
-    table: language
+    table: sys_language
     id:
         id:
             type: integer

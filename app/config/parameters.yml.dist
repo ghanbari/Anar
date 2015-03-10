@@ -18,4 +18,7 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
+    # anar configuration
     master_blog: main
+    admin_username: admin
+    admin_password: admin

@@ -10,7 +10,7 @@ use Gedmo\Translatable\Entity\MappedSuperclass\AbstractPersonalTranslation;
  *
  * @ORM\MappedSuperclass
  */
-abstract class Translatable extends AbstractPersonalTranslation
+abstract class Translation extends AbstractPersonalTranslation
 {
     /**
      * @var integer $id

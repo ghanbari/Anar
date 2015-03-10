@@ -1,9 +1,9 @@
-Anar\EngineBundle\Entity\BlogTranslation:
+Anar\EngineBundle\Entity\AppTranslation:
     type: entity
-    table: blog_translations
+    table: sys_app_translations
     extends: Translation
     uniqueConstraints:
-        blog_translations_unique_idx:
+        app_translations_unique_idx:
             columns: [locale, object_id, field]
     id:
         id:
@@ -11,20 +11,9 @@ Anar\EngineBundle\Entity\BlogTranslation:
             id: true
             generator:
                 strategy: AUTO
-    fields:
-        createdAt:
-            type: datetime
-            gedmo:
-                timestampable:
-                    on: create
-        updatedAt:
-            type: datetime
-            gedmo:
-                timestampable:
-                    on: update
     manyToOne:
         object:
-            targetEntity: Blog
+            targetEntity: App
             inversedBy: translations
             joinColumn:
                 name: object_id

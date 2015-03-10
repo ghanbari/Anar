@@ -1,0 +1,17 @@
+anar_engine_bundle_login:
+    path: /login
+    defaults: { _controller: AnarEngineBundle:Security:loginForm }
+
+anar_engine_bundle_login_check:
+    path: /login_checkLoginController.phpLoginController.php
+
+anar_engine_bundle_logout:
+    path: /logout
+
+#role_panel_login:
+#    path: /rolepanel/login
+#    defaults: { _controller: AnarEngineBundle:Security:loginForm }
+#
+#role_panel_login_check:
+#    path: /rolepanel/login_check
+

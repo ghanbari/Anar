@@ -1,0 +1,22 @@
+Anar\EngineBundle\Entity\Role:
+    type: entity
+    table: sys_roles
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        name: ~
+        role: ~
+    manyToOne:
+        app:
+            targetEntity: App
+            joinColumn:
+                name: app_id
+                referencedColumnName: id
+                onDelete: cascade
+    manyToMany:
+        groups:
+            targetEntity: Group
+            mappedBy: roles

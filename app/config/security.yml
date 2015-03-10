@@ -1,12 +1,53 @@
 security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: sha512
+
     providers:
-        in_memory:
-            memory: ~
+        fos_userbundle:
+            id: fos_user.user_provider.username
+        admin_provider:
+            entity:
+                class: Anar\EngineBundle\Entity\Admin
+                property: username
 
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-
-        default:
+        super_panel_login:
+            pattern: ^/superpanel/login$
             anonymous: ~
+        super_panel:
+            pattern: ^/superpanel
+            form_login:
+                provider: admin_provider
+                csrf_provider: form.csrf_provider
+                login_path: anar_super_panel_login
+                check_path: anar_super_panel_login_check
+            logout: ~
+        role_panel_login:
+            pattern: ^/rolepanel/login$
+            anonymous: ~
+        role_panel:
+            pattern: ^/rolepanel
+            form_login:
+                provider: fos_userbundle
+                csrf_provider: form.csrf_provider
+                login_path: anar_role_panel_login
+                check_path: anar_role_panel_login_check
+            logout: ~
+        main:
+            pattern: ^/
+            form_login:
+                provider: fos_userbundle
+                csrf_provider: form.csrf_provider
+                login_path: anar_engine_bundle_login
+                check_path: anar_engine_bundle_login_check
+            logout: ~
+            anonymous: ~
+
+    access_control:
+        - { path: ^/rolepanel/login$,  role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/superpanel/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/rolepanel,  role: ROLE_ADMIN }
+        - { path: ^/superpanel, role: ROLE_SUPER_ADMIN }

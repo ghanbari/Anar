@@ -1,0 +1,8 @@
+Anar\EngineBundle\Entity\Admin:
+    type: entity
+    table: sys_admin
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO

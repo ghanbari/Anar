@@ -36,6 +36,21 @@ class App
     private $blogs;
 
     /**
+     * @var \DateTime
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     */
+    private $updatedAt;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $translations;
+
+    /**
      * @param string $name Bundle name.
      * @param string $title Application name.
      * @param string $type Application type.
@@ -130,10 +145,10 @@ class App
     /**
      * Add blogs
      *
-     * @param \Anar\EngineBundle\Entity\Blog $blogs
+     * @param Blog $blogs
      * @return App
      */
-    public function addBlog(\Anar\EngineBundle\Entity\Blog $blogs)
+    public function addBlog(Blog $blogs)
     {
         $this->blogs[] = $blogs;
 
@@ -143,9 +158,9 @@ class App
     /**
      * Remove blogs
      *
-     * @param \Anar\EngineBundle\Entity\Blog $blogs
+     * @param Blog $blogs
      */
-    public function removeBlog(\Anar\EngineBundle\Entity\Blog $blogs)
+    public function removeBlog(Blog $blogs)
     {
         $this->blogs->removeElement($blogs);
     }
@@ -160,6 +175,88 @@ class App
         return $this->blogs;
     }
 
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     * @return App
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
+     * @return App
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime 
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Add translations
+     *
+     * @param AppTranslation $translations
+     * @return App
+     */
+    public function addTranslation(AppTranslation $translations)
+    {
+        $this->translations[] = $translations;
+
+        return $this;
+    }
+
+    /**
+     * Remove translations
+     *
+     * @param AppTranslation $translations
+     */
+    public function removeTranslation(AppTranslation $translations)
+    {
+        $this->translations->removeElement($translations);
+    }
+
+    /**
+     * Get translations
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTranslations()
+    {
+        return $this->translations;
+    }
+
+    /**
+     * @return string
+     */
     public function __toString()
     {
         return $this->title;

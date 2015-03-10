@@ -1,0 +1,2 @@
+anar_engine_bundle_security:
+    resource: "@AnarEngineBundle/Resources/config/routing/security.yml"

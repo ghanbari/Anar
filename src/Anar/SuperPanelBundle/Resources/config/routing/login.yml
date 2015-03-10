@@ -1,0 +1,6 @@
+anar_super_panel_login:
+    path: /login
+    defaults: { _controller: AnarEngineBundle:Security:loginForm }
+
+anar_super_panel_login_check:
+    path: /login_check

@@ -1,4 +1,4 @@
-Anar\EngineBundle\Entity\Translatable:
+Anar\EngineBundle\Entity\Translation:
     type: mappedSuperclass
     fields:
         locale:

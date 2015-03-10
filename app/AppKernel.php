@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new Anar\EngineBundle\AnarEngineBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Anar\ContentBundle\AnarContentBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

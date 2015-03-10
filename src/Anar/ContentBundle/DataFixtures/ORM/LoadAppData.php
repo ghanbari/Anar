@@ -4,11 +4,10 @@ namespace Anar\EngineBundle\DataFixtures\ORM;
 
 use Anar\EngineBundle\Entity\App;
 use Doctrine\Common\DataFixtures\Doctrine;
-use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
-class LoadAppData extends AbstractFixture implements OrderedFixtureInterface
+class LoadAppData implements FixtureInterface
 {
 
     /**
@@ -23,15 +22,5 @@ class LoadAppData extends AbstractFixture implements OrderedFixtureInterface
         $manager->flush();
 
         $this->addReference('content_application', $app);
-    }
-
-    /**
-     * Get the order of this fixture
-     *
-     * @return integer
-     */
-    function getOrder()
-    {
-        return 2;
     }
 }

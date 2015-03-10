@@ -1,7 +1,11 @@
 Anar\EngineBundle\Entity\App:
     type: entity
-    table: app
+    table: sys_app
     repositoryClass: Anar\EngineBundle\Entity\AppRepository
+    gedmo:
+        translation:
+#            locale: currentLocale
+            entity: AppTranslation
     id:
         id:
             type: integer
@@ -10,12 +14,28 @@ Anar\EngineBundle\Entity\App:
                 strategy: AUTO
     fields:
         name: ~
-        title: ~
+        title:
+            gedmo:
+                - translatable
         type: ~
+        createdAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        updatedAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: update
 
     manyToMany:
         blogs:
             targetEntity: Blog
             mappedBy: apps
+    oneToMany:
+        translations:
+            targetEntity: AppTranslation
+            mappedBy: object
 
     lifecycleCallbacks: {  }

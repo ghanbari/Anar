@@ -3,11 +3,12 @@
 namespace Anar\EngineBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation\Translatable;
 
 /**
- * BlogTranslation
+ * GroupTranslation
  */
-class BlogTranslation extends Translation
+class GroupTranslation extends Translation
 {
     /**
      * @var integer
@@ -25,7 +26,7 @@ class BlogTranslation extends Translation
     private $updatedAt;
 
     /**
-     * @var \Anar\EngineBundle\Entity\Blog
+     * @var \Anar\EngineBundle\Entity\Group
      */
     protected $object;
 
@@ -57,7 +58,7 @@ class BlogTranslation extends Translation
      * Set createdAt
      *
      * @param \DateTime $createdAt
-     * @return BlogTranslation
+     * @return GroupTranslation
      */
     public function setCreatedAt($createdAt)
     {
@@ -80,7 +81,7 @@ class BlogTranslation extends Translation
      * Set updatedAt
      *
      * @param \DateTime $updatedAt
-     * @return BlogTranslation
+     * @return GroupTranslation
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -102,10 +103,10 @@ class BlogTranslation extends Translation
     /**
      * Set object
      *
-     * @param \Anar\EngineBundle\Entity\Blog $object
-     * @return BlogTranslation
+     * @param \Anar\EngineBundle\Entity\Group $object
+     * @return GroupTranslation
      */
-    public function setObject($object = null)
+    public function setObject($object)
     {
         $this->object = $object;
 
@@ -115,7 +116,7 @@ class BlogTranslation extends Translation
     /**
      * Get object
      *
-     * @return \Anar\EngineBundle\Entity\Blog 
+     * @return \Anar\EngineBundle\Entity\Group
      */
     public function getObject()
     {

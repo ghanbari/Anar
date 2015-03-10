@@ -1,0 +1,36 @@
+Anar\EngineBundle\Entity\User:
+    table: users
+    type: entity
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        fname: ~
+        lname: ~
+        faname:
+            nullable: true
+        staffCode:
+            type: integer
+            column: staff_code
+            unique: true
+    manyToMany:
+        groups:
+            targetEntity: Group
+            joinTable:
+                name: user_group
+                joinColumns:
+                    user_id:
+                        referencedColumnName: id
+                        onDelete: cascade
+                inverseJoinColumns:
+                    group_id:
+                        referencedColumnName: id
+                        onDelete: cascade
+#    manyToOne:
+#        grade:
+#            targetEntity: \Ghanbari\SuperPanelBundle\Entity\Grade
+#            joinColumn:
+#                name: grade_id
+#                referencedColumnName: id

@@ -1,9 +1,9 @@
-Anar\EngineBundle\Entity\BlogTranslation:
+Anar\EngineBundle\Entity\GroupTranslation:
     type: entity
-    table: blog_translations
+    table: groups_translations
     extends: Translation
     uniqueConstraints:
-        blog_translations_unique_idx:
+        group_translations_unique_idx:
             columns: [locale, object_id, field]
     id:
         id:
@@ -24,7 +24,7 @@ Anar\EngineBundle\Entity\BlogTranslation:
                     on: update
     manyToOne:
         object:
-            targetEntity: Blog
+            targetEntity: Group
             inversedBy: translations
             joinColumn:
                 name: object_id

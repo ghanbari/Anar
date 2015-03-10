@@ -1,3 +1,6 @@
+anar_super_panel_security:
+    resource: "@AnarSuperPanelBundle/Resources/config/routing/login.yml"
+
 anar_super_panel_blog:
     resource: "@AnarSuperPanelBundle/Resources/config/routing/blog.yml"
     prefix:   /blog

@@ -1,43 +1,27 @@
-Anar\EngineBundle\Entity\Blog:
+Anar\EngineBundle\Entity\Group:
+    table: groups
     type: entity
-    table: blog
-    repositoryClass: Anar\EngineBundle\Entity\BlogRepository
     gedmo:
-        tree:
-            type: nested
         translation:
             locale: currentLocale
-            entity: BlogTranslation
+            entity: GroupTranslation
+        tree:
+            type: nested
     id:
         id:
             type: integer
-            id: true
             generator:
                 strategy: AUTO
     fields:
-        title:
-            gedmo:
-                - translatable
-        description:
-            length: 500
-            nullable: true
-            gedmo:
-                - translatable
+        default:
+            column: is_default
+            type: boolean
+            options:
+                default: false
         name:
-            unique: true
-            length: 100
-        theme:
-            length: 100
-            options:
-                default: Public
-        onTree:
-            type: boolean
-            options:
-                default: true
-        active:
-            type: boolean
-            options:
-                default: true
+            type: string
+            gedmo:
+                - translatable
         lft:
             type: integer
             gedmo:
@@ -66,8 +50,15 @@ Anar\EngineBundle\Entity\Blog:
                 timestampable:
                     on: update
     manyToOne:
-        parent:
+        blog:
             targetEntity: Blog
+            inversedBy: groups
+            joinColumn:
+                name: blog_id
+                referencedColumnName: id
+                onDelete: cascade
+        parent:
+            targetEntity: Group
             inversedBy: children
             joinColumn:
                 name: parent_id
@@ -77,28 +68,25 @@ Anar\EngineBundle\Entity\Blog:
                 - treeParent
     oneToMany:
         children:
-            targetEntity: Blog
+            targetEntity: Group
             mappedBy: parent
             orderBy:
                 lft: ASC
         translations:
-            targetEntity: BlogTranslation
+            targetEntity: GroupTranslation
             mappedBy: object
             cascade: ["persist"]
-        groups:
-            targetEntity: Group
-            mappedBy: blog
     manyToMany:
-        apps:
-            targetEntity: App
-            inversedBy: blogs
+        roles:
+            targetEntity: Role
+            inversedBy: groups
             joinTable:
-                name: blogs_apps
+                name: groups_roles
                 joinColumns:
-                    blog_id:
+                    group_id:
                         referencedColumnName: id
                         onDelete: cascade
                 inverseJoinColumns:
-                    app_id:
+                    role_id:
                         referencedColumnName: id
-                        onDelete: CASCADE
+                        onDelete: cascade

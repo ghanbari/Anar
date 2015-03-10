@@ -22,7 +22,7 @@ class LoadBlogData extends AbstractFixture implements OrderedFixtureInterface, C
     public function load(ObjectManager $manager)
     {
         $blog = new Blog();
-        $name = $this->container->hasParameter('masterBlog') ? $this->container->getParameter('master_blog') : 'main';
+        $name = $this->container->hasParameter('master_blog') ? $this->container->getParameter('master_blog') : 'main';
         $title = $this->container->hasParameter('title') ? $this->container->getParameter('title') : 'Anar Notification System';
         $blog->setName($name)->setTitle($title)->setCurrentLocale($this->container->getParameter('locale'));
         $manager->persist($blog);
