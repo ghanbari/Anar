@@ -40,8 +40,9 @@ class Role implements RoleInterface
      * Constructor.
      *
      * @param string $role The role name
+     * @param App $app
      */
-    public function __construct($name, $role, $app)
+    public function __construct($name, $role, $app=null)
     {
         $this->name = $name;
         $this->role = strtoupper($role);

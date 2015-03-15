@@ -8,10 +8,12 @@ Anar\EngineBundle\Entity\Role:
                 strategy: AUTO
     fields:
         name: ~
-        role: ~
+        role:
+            unique: true
     manyToOne:
         app:
             targetEntity: App
+            nullable: true
             joinColumn:
                 name: app_id
                 referencedColumnName: id

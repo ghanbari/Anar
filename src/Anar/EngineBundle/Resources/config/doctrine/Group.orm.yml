@@ -5,8 +5,6 @@ Anar\EngineBundle\Entity\Group:
         translation:
             locale: currentLocale
             entity: GroupTranslation
-        tree:
-            type: nested
     id:
         id:
             type: integer
@@ -22,23 +20,6 @@ Anar\EngineBundle\Entity\Group:
             type: string
             gedmo:
                 - translatable
-        lft:
-            type: integer
-            gedmo:
-                - treeLeft
-        rgt:
-            type: integer
-            gedmo:
-                - treeRight
-        root:
-            type: integer
-            nullable: true
-            gedmo:
-                - treeRoot
-        lvl:
-            type: integer
-            gedmo:
-                - treeLevel
         createdAt:
             type: datetime
             gedmo:
@@ -57,21 +38,7 @@ Anar\EngineBundle\Entity\Group:
                 name: blog_id
                 referencedColumnName: id
                 onDelete: cascade
-        parent:
-            targetEntity: Group
-            inversedBy: children
-            joinColumn:
-                name: parent_id
-                referencedColumnName: id
-                onDelete: restrict
-            gedmo:
-                - treeParent
     oneToMany:
-        children:
-            targetEntity: Group
-            mappedBy: parent
-            orderBy:
-                lft: ASC
         translations:
             targetEntity: GroupTranslation
             mappedBy: object

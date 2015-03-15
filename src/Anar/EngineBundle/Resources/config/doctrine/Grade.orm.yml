@@ -1,0 +1,15 @@
+Anar\EngineBundle\Entity\Grade:
+    type: entity
+    table: sys_grade
+    gedmo:
+        translation:
+            locale: currentLocale
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: auto
+    fields:
+        name:
+            gedmo:
+                - translatable

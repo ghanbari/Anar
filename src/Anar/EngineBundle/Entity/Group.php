@@ -32,26 +32,6 @@ class Group implements GroupInterface
     private $default;
 
     /**
-     * @var integer
-     */
-    private $lft;
-
-    /**
-     * @var integer
-     */
-    private $rgt;
-
-    /**
-     * @var integer
-     */
-    private $root;
-
-    /**
-     * @var integer
-     */
-    private $lvl;
-
-    /**
      * @var \DateTime
      */
     private $createdAt;
@@ -64,17 +44,7 @@ class Group implements GroupInterface
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $children;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
     private $translations;
-
-    /**
-     * @var \Anar\EngineBundle\Entity\Group
-     */
-    private $parent;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -82,16 +52,22 @@ class Group implements GroupInterface
     private $roles;
 
     /**
+     * @var string
+     */
+    private $currentLocale;
+
+    /**
      * @param $name
      * @param array $roles
+     * @param boolean $default
      */
-    public function __construct($name, $roles = array())
+    public function __construct($name, $roles=array(), $default=false)
     {
         $this->name = $name;
-        $this->roles = $roles;
-        $this->children = new ArrayCollection();
+        $this->default = $default;
         $this->translations = new ArrayCollection();
-        $this->default = false;
+        $this->roles = new ArrayCollection();
+        $this->setRoles($roles);
     }
 
     /**
@@ -151,104 +127,12 @@ class Group implements GroupInterface
     }
 
     /**
-     * Set lft
-     *
-     * @param integer $lft
-     * @return Group
-     */
-    public function setLft($lft)
-    {
-        $this->lft = $lft;
-
-        return $this;
-    }
-
-    /**
-     * Get lft
-     *
-     * @return integer 
-     */
-    public function getLft()
-    {
-        return $this->lft;
-    }
-
-    /**
-     * Set rgt
-     *
-     * @param integer $rgt
-     * @return Group
-     */
-    public function setRgt($rgt)
-    {
-        $this->rgt = $rgt;
-
-        return $this;
-    }
-
-    /**
-     * Get rgt
-     *
-     * @return integer 
-     */
-    public function getRgt()
-    {
-        return $this->rgt;
-    }
-
-    /**
-     * Set root
-     *
-     * @param integer $root
-     * @return Group
-     */
-    public function setRoot($root)
-    {
-        $this->root = $root;
-
-        return $this;
-    }
-
-    /**
-     * Get root
-     *
-     * @return integer 
-     */
-    public function getRoot()
-    {
-        return $this->root;
-    }
-
-    /**
-     * Set lvl
-     *
-     * @param integer $lvl
-     * @return Group
-     */
-    public function setLvl($lvl)
-    {
-        $this->lvl = $lvl;
-
-        return $this;
-    }
-
-    /**
-     * Get lvl
-     *
-     * @return integer 
-     */
-    public function getLvl()
-    {
-        return $this->lvl;
-    }
-
-    /**
      * Set createdAt
      *
      * @param \DateTime $createdAt
      * @return Group
      */
-    public function setCreatedAt($createdAt)
+    public function setCreatedAt(\DateTime $createdAt)
     {
         $this->createdAt = $createdAt;
 
@@ -258,7 +142,7 @@ class Group implements GroupInterface
     /**
      * Get createdAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -271,7 +155,7 @@ class Group implements GroupInterface
      * @param \DateTime $updatedAt
      * @return Group
      */
-    public function setUpdatedAt($updatedAt)
+    public function setUpdatedAt(\DateTime $updatedAt)
     {
         $this->updatedAt = $updatedAt;
 
@@ -281,44 +165,11 @@ class Group implements GroupInterface
     /**
      * Get updatedAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdatedAt()
     {
         return $this->updatedAt;
-    }
-
-    /**
-     * Add children
-     *
-     * @param Group $children
-     * @return Group
-     */
-    public function addChild(Group $children)
-    {
-        $this->children[] = $children;
-
-        return $this;
-    }
-
-    /**
-     * Remove children
-     *
-     * @param Group $children
-     */
-    public function removeChild(Group $children)
-    {
-        $this->children->removeElement($children);
-    }
-
-    /**
-     * Get children
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getChildren()
-    {
-        return $this->children;
     }
 
     /**
@@ -347,34 +198,11 @@ class Group implements GroupInterface
     /**
      * Get translations
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getTranslations()
     {
         return $this->translations;
-    }
-
-    /**
-     * Set parent
-     *
-     * @param Group $parent
-     * @return Group
-     */
-    public function setParent(Group $parent = null)
-    {
-        $this->parent = $parent;
-
-        return $this;
-    }
-
-    /**
-     * Get parent
-     *
-     * @return \Anar\EngineBundle\Entity\Group 
-     */
-    public function getParent()
-    {
-        return $this->parent;
     }
 
     /**
@@ -393,7 +221,7 @@ class Group implements GroupInterface
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -427,7 +255,7 @@ class Group implements GroupInterface
     /**
      * Get roles
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getRoles()
     {
@@ -451,7 +279,33 @@ class Group implements GroupInterface
      */
     public function setRoles(array $roles)
     {
-        $this->roles = $roles;
+        $this->roles = new ArrayCollection($roles);
         return $this;
+    }
+
+    /**
+     * Get default
+     *
+     * @return boolean 
+     */
+    public function getDefault()
+    {
+        return $this->default;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCurrentLocale()
+    {
+        return $this->currentLocale;
+    }
+
+    /**
+     * @param string $currentLocale
+     */
+    public function setCurrentLocale($currentLocale)
+    {
+        $this->currentLocale = $currentLocale;
     }
 }

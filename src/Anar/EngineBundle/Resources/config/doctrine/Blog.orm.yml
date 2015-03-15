@@ -2,6 +2,8 @@ Anar\EngineBundle\Entity\Blog:
     type: entity
     table: blog
     repositoryClass: Anar\EngineBundle\Entity\BlogRepository
+    entityListeners:
+        Anar\EngineBundle\EventListener\Doctrine\BlogListener: ~
     gedmo:
         tree:
             type: nested

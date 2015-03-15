@@ -2,6 +2,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: knp.yml }
 
 framework:
     #esi:             ~
@@ -97,3 +98,6 @@ fos_user:
     user_class: Anar\EngineBundle\Entity\User
     group:
         group_class: Anar\EngineBundle\Entity\Group
+
+v_bee_setting:
+    orm: doctrine

@@ -23,7 +23,8 @@
         "doctrine/doctrine-fixtures-bundle": "~2.2",
         "knplabs/knp-paginator-bundle": "~2.4",
         "liip/imagine-bundle": "dev-master",
-        "helios-ag/fm-bbcode-bundle": "6.2.1"
+        "helios-ag/fm-bbcode-bundle": "6.2.1",
+        "vbee/settingbundle": "1.*@dev"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

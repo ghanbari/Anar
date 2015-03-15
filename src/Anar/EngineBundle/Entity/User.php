@@ -149,7 +149,7 @@ class User extends BaseUser
     /**
      * Add groups
      *
-     * @param GroupInterface $groups
+     * @param Group|GroupInterface $groups
      * @return User
      */
     public function addGroup(GroupInterface $groups)
@@ -162,7 +162,7 @@ class User extends BaseUser
     /**
      * Remove groups
      *
-     * @param GroupInterface $groups
+     * @param Group $groups
      * @return null
      */
     public function removeGroup(GroupInterface $groups)
@@ -178,5 +178,44 @@ class User extends BaseUser
     public function getGroups()
     {
         return $this->groups;
+    }
+
+    /**
+     * User no have any roles
+     *
+     * User have groups & groups have roles
+     *
+     * @param string $role
+     * @return void
+     */
+    public function addRole($role) {}
+
+    /**
+     * @param array $roles
+     * @return $this
+     */
+    public function setRoles(array $roles) {}
+
+    /**
+     * User no have any roles
+     *
+     * User have groups & groups have roles
+     *
+     * @param string $role
+     * @return void
+     */
+    public function removeRole($role) {}
+
+    /**
+     * @param string|Role $role
+     * @return bool
+     */
+    public function hasRole($role)
+    {
+        if (is_string($role)) {
+            return parent::hasRole($role);
+        } else {
+            return in_array($role, $this->getRoles(), true);
+        }
     }
 }

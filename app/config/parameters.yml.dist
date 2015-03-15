@@ -22,3 +22,4 @@ parameters:
     master_blog: main
     admin_username: admin
     admin_password: admin
+    admin_email: ghanbari.daniel@gmail.com
