@@ -20,7 +20,5 @@ class LoadAppData implements FixtureInterface
         $app = new App('AnarContentBundle', 'content', 'component');
         $manager->persist($app);
         $manager->flush();
-
-        $this->addReference('content_application', $app);
     }
 }
