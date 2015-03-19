@@ -38,6 +38,11 @@ class User extends BaseUser
     protected $groups;
 
     /**
+     * @var \Anar\EngineBundle\Entity\Grade
+     */
+    private $grade;
+
+    /**
      * constructor
      */
     public function __construct()
@@ -217,5 +222,28 @@ class User extends BaseUser
         } else {
             return in_array($role, $this->getRoles(), true);
         }
+    }
+
+    /**
+     * Set grade
+     *
+     * @param Grade $grade
+     * @return User
+     */
+    public function setGrade(Grade $grade = null)
+    {
+        $this->grade = $grade;
+
+        return $this;
+    }
+
+    /**
+     * Get grade
+     *
+     * @return Grade
+     */
+    public function getGrade()
+    {
+        return $this->grade;
     }
 }

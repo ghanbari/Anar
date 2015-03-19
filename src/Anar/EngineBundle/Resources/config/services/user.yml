@@ -1,0 +1,5 @@
+services:
+    user_search.form.type:
+        class: Anar\EngineBundle\Form\UserFilterType
+        tags:
+            - { name: form.type, alias: user_search }

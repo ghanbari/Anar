@@ -1,2 +1,3 @@
 imports:
     - { resource: services/doctrine_extensions.yml }
+    - { resource: services/user.yml }

@@ -1,6 +1,7 @@
 Anar\EngineBundle\Entity\User:
     table: users
     type: entity
+    repositoryClass: UserRepository
     id:
         id:
             type: integer
@@ -28,9 +29,10 @@ Anar\EngineBundle\Entity\User:
                     group_id:
                         referencedColumnName: id
                         onDelete: cascade
-#    manyToOne:
-#        grade:
-#            targetEntity: \Ghanbari\SuperPanelBundle\Entity\Grade
-#            joinColumn:
-#                name: grade_id
-#                referencedColumnName: id
+    manyToOne:
+        grade:
+            targetEntity: Anar\EngineBundle\Entity\Grade
+            joinColumn:
+                name: grade_id
+                referencedColumnName: id
+                onDelete: restrict

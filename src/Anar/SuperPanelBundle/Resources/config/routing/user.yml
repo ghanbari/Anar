@@ -1,10 +1,23 @@
 anar_super_panel_user_index:
-    path:     /
-    defaults: { _controller: "AnarSuperPanelBundle:User:index" }
+    path:     /{page}
+    defaults:
+        _controller: "AnarSuperPanelBundle:User:index"
+        page: 1
+    requirements:
+        page: \d+
 
-anar_super_panel_user_show:
-    path:     /{id}/show
-    defaults: { _controller: "AnarSuperPanelBundle:User:show" }
+anar_super_panel_user_search:
+    path:     /search/{page}
+    defaults:
+        _controller: "AnarSuperPanelBundle:User:search"
+        page: 1
+    requirements:
+        page: \d+
+    methods: [POST]
+
+anar_super_panel_user_check_username:
+    path: /check/{username}
+    defaults: { _controller: AnarSuperPanelBundle:User:checkUsername }
 
 anar_super_panel_user_new:
     path:     /new
