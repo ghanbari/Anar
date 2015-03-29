@@ -5,7 +5,6 @@
     <title>سوپر پنل</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    {#----------------------commonStyles----------------------#}
     <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/css/addFonts.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/css/icons.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/css/commonStyles.css') }}">
@@ -14,12 +13,10 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/css/bootstrapPersianNormailze.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/jstreeV3-0-4/themes/default/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/tinyNotice/FlatTheme.css') }}">
-    {#----------------------/commonStyles----------------------#}
-    {#----------------------PrivateStyles----------------------#}
     <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/css/privateStyle.css') }}">
-    {#----------------------/PrivateStyles----------------------#}
 
     {% block csses %}
+        <style></style>
     {% endblock csses %}
 </head>
 
@@ -29,11 +26,9 @@
     <span>آخرین ورود : <time dir="ltr"></time></span>
     <a class="btn btn-xs btn-danger" href="">خروج</a>
 </div>
-<!-----------------wrap----------------->
 <div id="sp-headerWrap">
     <div id="sp-logo"></div>
 </div>
-<!-----------------wrap----------------->
 <div id="sp-tabBar">
     <div id="sp-label">
         <h1>Super Panel</h1>
@@ -50,13 +45,11 @@
 {% endblock top_fixed_superpanel_box %}
 
 {% block container %}
-<!-----------------wrap----------------->
 <div id="sp-boxWrap">
     <div id="sp-contentWrap">
         <i class="fa fa-times" id="sp-contencClose"></i>
         <div id="sp-contentContainer"></div>
     </div>
-    <!-----------------wrap----------------->
     <div id="sp-desktopWrap">
         <div id="sp-clockWrap">
             <time></time>
@@ -78,7 +71,6 @@
 </div>
 {% endblock container %}
 
-{#----------------------commonScripts----------------------#}
 <script src="{{ asset('static/jquery/dist/jquery.min.js') }}"></script>
 <script src="{{ asset('static/jquery-ui/jquery-ui.min.js') }}"></script>
 <script src="{{ asset('static/bootstrap/dist/js/bootstrap.min.js') }}"></script>
@@ -86,13 +78,66 @@
 <script src="{{ asset('plugins/nicescroll/jquery.nicescroll.min.js') }}"></script>
 <script src="{{ asset('plugins/tinyNotice/tinyNotice.js') }}"></script>
 <script src="{{ asset('scripts/commonActions.js') }}"></script>
-{#----------------------/commonScripts----------------------#}
-{#----------------------PrivateScripts----------------------#}
 
 <script src="{{ asset('bundles/anarsuperpanel/js/privateActions.js') }}"></script>
-{#----------------------/PrivateScripts----------------------#}
 
 {% block scripts %}
+
+    <script>
+        function renderTime(){
+            var currentTime = new Date();
+            var h = currentTime.getHours();
+            var m = currentTime.getMinutes();
+            var s = currentTime.getSeconds();
+            var month = new Array(12);
+            month[0] = "Jan";
+            month[1] = "Feb";
+            month[2] = "Mar";
+            month[3] = "Apr";
+            month[4] = "May";
+            month[5] = "June";
+            month[6] = "July";
+            month[7] = "Aug";
+            month[8] = "Sep";
+            month[9] = "Oct";
+            month[10] = "Nov";
+            month[11] = "Dec";
+            var weekday = new Array(7);
+            weekday[0]=  "Sun";
+            weekday[1] = "Mon";
+            weekday[2] = "Tue";
+            weekday[3] = "Wed";
+            weekday[4] = "Thu";
+            weekday[5] = "Fri";
+            weekday[6] = "Sat";
+
+            var rooz_hafte = weekday[currentTime.getDay()];
+            var mah = month[currentTime.getMonth()];
+            var sal = currentTime.getFullYear();
+            var rooz = currentTime.getDate();
+
+            if (h == 0){
+                h = 12;
+            }
+            if (h < 10){
+                h = "0" + h;
+            }
+            if (m < 10){
+                m = "0" + m;
+            }
+            if (s < 10){
+                s = "0" + s;
+            }
+
+            var myClock = $('#sp-clockWrap time');
+            var myDate = $('#sp-clockWrap span');
+            myClock.html(h + ":" + m + ":" + s);
+            myDate.html(rooz_hafte + " " + mah + " " + rooz + " " + sal);
+            setTimeout('renderTime()', 1000);
+        }
+        renderTime();
+    </script>
+
 {% endblock scripts %}
 </body>
 </html>
