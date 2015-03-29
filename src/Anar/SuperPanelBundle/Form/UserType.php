@@ -1,6 +1,6 @@
 <?php
 
-namespace Anar\EngineBundle\Form;
+namespace Anar\SuperPanelBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -18,7 +18,7 @@ class UserType extends AbstractType
             ->add('fname', 'text')
             ->add('lname', 'text')
             ->add('faname', 'text')
-            ->add('staffCode', 'integer')
+            ->add('staffCode', 'number')
             ->add('grade', 'entity', array(
                 'class' => 'AnarEngineBundle:Grade',
                 'property' => 'name'
@@ -36,11 +36,16 @@ class UserType extends AbstractType
         ));
     }
 
+    public function getParent()
+    {
+        return 'fos_user_registration';
+    }
+
     /**
      * @return string
      */
     public function getName()
     {
-        return 'anar_enginebundle_user';
+        return 'super_panel_user_registraton';
     }
 }

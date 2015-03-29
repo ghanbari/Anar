@@ -2,31 +2,26 @@
 
 {% block body -%}
     <h1>User list ({{ users.getTotalItemCount }})</h1>
-
+    {{ form(form) }}
     <table class="records_list">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Fname</th>
-                <th>Lname</th>
-                <th>Faname</th>
-                <th>Staffcode</th>
-                <th>Actions</th>
-            </tr>
+        <tr>
+            {# sorting of properties based on query components #}
+            <th>{{ knp_pagination_sortable(users, 'ای دی', 'u.id') }}</th>
+            <th{% if users.isSorted('u.username') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(users, 'username', 'u.username') }}</th>
+        </tr>
         </thead>
         <tbody>
         {% for user in users %}
             <tr>
-                <td><a href="{{ path('anar_super_panel_user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
                 <td>{{ user.fname }}</td>
                 <td>{{ user.lname }}</td>
-                <td>{{ user.faname }}</td>
                 <td>{{ user.staffCode }}</td>
+                <td>{{ user.grade.name }}</td>
                 <td>
                 <ul>
-                    <li>
-                        <a href="{{ path('anar_super_panel_user_show', { 'id': user.id }) }}">show</a>
-                    </li>
                     <li>
                         <a href="{{ path('anar_super_panel_user_edit', { 'id': user.id }) }}">edit</a>
                     </li>

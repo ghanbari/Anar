@@ -27,6 +27,7 @@ class BlogController extends Controller
     /**
      * Lists all Blog entities.
      *
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction()
     {
@@ -44,6 +45,7 @@ class BlogController extends Controller
     /**
      * Displays a form to create a new Blog entity.
      *
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function newAction()
     {
@@ -53,12 +55,15 @@ class BlogController extends Controller
         return $this->render('AnarSuperPanelBundle:Blog:new.html.twig', array(
             'blog' => $blog,
             'form' => $form->createView(),
+            'action' => 'create',
         ));
     }
 
     /**
      * Creates a new Blog entity.
      *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function createAction(Request $request)
     {
@@ -78,6 +83,7 @@ class BlogController extends Controller
         return $this->render('AnarSuperPanelBundle:Blog:new.html.twig', array(
             'blog' => $blog,
             'form'   => $form->createView(),
+            'action' => 'create',
         ));
     }
 
@@ -103,6 +109,8 @@ class BlogController extends Controller
     /**
      * Displays a form to edit an existing Blog entity.
      *
+     * @param int $id
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function editAction($id)
     {
@@ -119,6 +127,7 @@ class BlogController extends Controller
         return $this->render('AnarSuperPanelBundle:Blog:new.html.twig', array(
             'blog'      => $blog,
             'form'   => $editForm->createView(),
+            'action' => 'update',
         ));
     }
 
@@ -140,9 +149,13 @@ class BlogController extends Controller
 
         return $form;
     }
+
     /**
      * Edits an existing Blog entity.
      *
+     * @param Request $request
+     * @param int $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function updateAction(Request $request, $id)
     {
@@ -167,6 +180,7 @@ class BlogController extends Controller
         return $this->render('AnarSuperPanelBundle:Blog:new.html.twig', array(
             'blog'      => $blog,
             'form'   => $editForm->createView(),
+            'action' => 'update',
         ));
     }
 
@@ -191,13 +205,20 @@ class BlogController extends Controller
                 $em->remove($entity);
                 $em->flush();
             }
-            $status = 'success';
-            $statusText = '';
+            $status = array(
+                'code' => 200,
+                'message' => 'OK'
+            );
         } else {
-            $status = 'unsuccess';
-            $statusText = 'token_is_not_valid';
+            $status = array(
+                'code' => 400,
+                'message' => 'Token is invalid'
+            );
         }
-        return new JsonResponse(array('status' => $status, 'statusText' => $statusText));
+        return new JsonResponse(array(
+            'status' => $status,
+            'response' => array()
+        ));
     }
 
     /**
@@ -207,18 +228,29 @@ class BlogController extends Controller
     public function checkNameAction($name)
     {
         if ($this->getRepository()->findOneByName($name)) {
-            $status = 'unsuccess';
-            $statusText = 'This Address Is Exists.';
+            $status = array(
+                'code' => 0,
+                'message' => 'This name is exists!',
+            );
         } else {
             if (is_string($name) and preg_match('/^[a-z]{4,100}$/', $name)) {
-                $status = 'success';
-                $statusText = 'success';
+                $status = array(
+                    'code' => 200,
+                    'message' => 'You can use this name',
+                );
             } else {
-                $status = 'unsuccess';
-                $statusText = 'This Name Is Invalid!';
+                $status = array(
+                    'code' => 400,
+                    'message' => 'Username have not allowed character',
+                );
             }
         }
 
-        return new JsonResponse(array('status'=> $status, 'statusText' => $statusText));
+        return new JsonResponse(array(
+            'status' => $status,
+            'response' => array(
+                'username' => $name
+            )
+        ));
     }
 }
