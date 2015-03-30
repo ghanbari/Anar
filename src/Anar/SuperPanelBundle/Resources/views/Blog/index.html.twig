@@ -2,4 +2,12 @@
     {{ message|trans }}
 {% endfor %}
 
+{% for message in app.session.getFlashBag().get('errors') %}
+    {{ message|trans }}
+{% endfor %}
+
+{% for message in app.session.getFlashBag().get('warning') %}
+    {{ message|trans }}
+{% endfor %}
+
 {{ tree|raw }}
