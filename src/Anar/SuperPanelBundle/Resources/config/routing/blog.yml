@@ -14,17 +14,36 @@ anar_super_panel_blog_create:
 anar_super_panel_blog_edit:
     path:     /{id}/edit
     defaults: { _controller: "AnarSuperPanelBundle:Blog:edit" }
+    requirements:
+        id: \d+
 
 anar_super_panel_blog_update:
     path:     /{id}/update
     defaults: { _controller: "AnarSuperPanelBundle:Blog:update" }
     methods:  [POST, PUT]
+    requirements:
+        id: \d+
 
 anar_super_panel_blog_delete:
     path:     /{id}/delete
     defaults: { _controller: "AnarSuperPanelBundle:Blog:delete" }
     methods:  [POST, DELETE]
+    requirements:
+        id: \d+
 
 anar_super_panel_blog_check_name:
     path:     /check/{name}
     defaults: { _controller: AnarSuperPanelBundle:Blog:checkName }
+
+anar_super_panel_blog_admins:
+    path: /{id}/admins
+    defaults: { _controller: AnarSuperPanelBundle:Blog:adminsList }
+    requirements:
+        id: \d+
+
+anar_super_panel_blog_admins_delete:
+    path: /{id}/admins/delete
+    defaults: { _controller: AnarSuperPanelBundle:Blog:deleteUserFromAdminsList }
+    methods: [POST]
+    requirements:
+        id: \d+

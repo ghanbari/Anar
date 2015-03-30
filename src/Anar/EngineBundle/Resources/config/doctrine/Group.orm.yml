@@ -57,3 +57,6 @@ Anar\EngineBundle\Entity\Group:
                     role_id:
                         referencedColumnName: id
                         onDelete: cascade
+        users:
+            targetEntity: User
+            mappedBy: groups

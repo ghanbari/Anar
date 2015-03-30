@@ -3,6 +3,7 @@
 namespace Anar\EngineBundle\Entity;
 
 use Gedmo\Tree\Entity\Repository\NestedTreeRepository;
+use Symfony\Component\VarDumper\VarDumper;
 
 /**
  * BlogRepository
@@ -16,17 +17,42 @@ class BlogRepository extends NestedTreeRepository
      * @param int|null $parent parent id
      * @param boolean|null $active blog status
      * @param boolean|null $onTree whether show blog on tree
+     * @param array $selected selected blogs
      * @return array
      */
-    public function getTreeForJstree($parent = null, $active=null, $onTree=null, $locale='fa')
+    public function getTreeForJstree($parent = null, $active=null, $onTree=null, $locale='fa', array $selected=array())
+    {
+        $blogs = $this->getTreeQuery($parent, $active, $onTree, $locale)->getResult();
+
+        $tree = array();
+        foreach ($blogs as $blog) {
+            $tree[] = array(
+                'id' => (string) $blog->getId(),
+                'parent' => ($blog->getParent() == $parent) ? '#' : $blog->getParent()->getId(),
+                'text' => $blog->getTitle(),
+                'state' => array('selected' => in_array($blog->getId(), $selected) ? true : false)
+            );
+        }
+
+        return $tree;
+    }
+
+    /**
+     * return query that show blog's tree.
+     *
+     * @param null|string $parent
+     * @param null|bool $active
+     * @param null|bool $onTree
+     * @param string $locale
+     * @return \Doctrine\ORM\Query
+     */
+    public function getTreeQuery($parent = null, $active=null, $onTree=null, $locale='fa')
     {
         $qb = $this->createQueryBuilder('b')->select('b');
 
         if (!is_null($parent)) {
             $qb->where($qb->expr()->eq('b.parent', ':parent'));
             $qb->setParameter('parent', $parent);
-        } else {
-            $qb->where($qb->expr()->isNull('b.parent'));
         }
 
         if (!is_null($active)) {
@@ -50,22 +76,7 @@ class BlogRepository extends NestedTreeRepository
             $locale
         );
 
-        $blogs = $query->getResult();
-
-        $tree = array();
-        foreach ($blogs as $blog) {
-            if ($blog->getParent() == $parent) {
-                $parent = '#';
-            } else {
-                $parent = $blog->getParent()->getId();
-            }
-
-            $tree[] = array(
-                'id' => (string) $blog->getId(), 'parent' => $parent, 'text' => $blog->getTitle(), 'state' => array('selected' => false)
-            );
-        }
-
-        return $tree;
+        return $query;
     }
 
 }

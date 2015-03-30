@@ -15,13 +15,40 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('fname', 'text')
-            ->add('lname', 'text')
-            ->add('faname', 'text')
-            ->add('staffCode', 'number')
+            ->add('fname', 'text', array(
+                'label' => 'first.name',
+                'required' => true,
+                'attr' => array(
+                    'maxlength' => 255,
+                ),
+            ))
+            ->add('lname', 'text', array(
+                'label' => 'last.name',
+                'required' => true,
+                'attr' => array(
+                    'maxlength' => 255,
+                ),
+            ))
+            ->add('faname', 'text', array(
+                'label' => 'father.name',
+                'required' => false,
+                'attr' => array(
+                    'maxlength' => 255,
+                ),
+            ))
+            ->add('staffCode', 'number', array(
+                'label' => 'staff.code',
+                'required' => true,
+                'attr' => array(
+                    'pattern' => '\d+',
+                ),
+            ))
             ->add('grade', 'entity', array(
                 'class' => 'AnarEngineBundle:Grade',
-                'property' => 'name'
+                'property' => 'name',
+                'label' => 'grade',
+                'required' => true,
+                'placeholder' => 'placeholder',
             ))
         ;
     }
@@ -32,7 +59,8 @@ class UserType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Anar\EngineBundle\Entity\User'
+            'data_class' => 'Anar\EngineBundle\Entity\User',
+            'translation_domain' => 'forms',
         ));
     }
 

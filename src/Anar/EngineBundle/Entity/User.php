@@ -2,6 +2,7 @@
 
 namespace Anar\EngineBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\GroupInterface;
 use FOS\UserBundle\Model\User as BaseUser;
 
@@ -159,7 +160,9 @@ class User extends BaseUser
      */
     public function addGroup(GroupInterface $groups)
     {
-        $this->groups[] = $groups;
+        if (!$this->groups->contains($groups)) {
+            $this->groups[] = $groups;
+        }
 
         return $this;
     }
@@ -167,12 +170,12 @@ class User extends BaseUser
     /**
      * Remove groups
      *
-     * @param Group $groups
+     * @param Group|GroupInterface $group
      * @return null
      */
-    public function removeGroup(GroupInterface $groups)
+    public function removeGroup(GroupInterface $group)
     {
-        $this->groups->removeElement($groups);
+        $this->groups->removeElement($group);
     }
 
     /**
