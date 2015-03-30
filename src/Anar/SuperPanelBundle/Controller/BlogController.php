@@ -149,6 +149,7 @@ class BlogController extends Controller
             'method' => 'PUT',
         ));
 
+        $form->remove('name');
         $form->add('submit', 'submit', array('label' => 'update'));
 
         return $form;
