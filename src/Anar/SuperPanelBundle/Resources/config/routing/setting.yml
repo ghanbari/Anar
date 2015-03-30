@@ -1,0 +1,9 @@
+anar_super_panel_setting_index:
+    path:     /
+    defaults: { _controller: AnarSuperPanelBundle:Setting:index }
+    methods:   [GET]
+
+anar_super_panel_setting_update_password:
+    path:     /update/password
+    defaults: { _controller: AnarSuperPanelBundle:Setting:passwordUpdate }
+    methods:   [POST]
