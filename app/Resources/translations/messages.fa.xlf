@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="fa" target-language="fa" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="282e55163904dfddf54b0165fb01ea4c" resname="token.is.invalid">
+        <source>token.is.invalid</source>
+        <target>نشانه امنیتی اشتباه است</target>
+      </trans-unit>
+      <trans-unit id="ba02c482241c1cf80868fe2c88f552da" resname="name.is.exists">
+        <source>name.is.exists</source>
+        <target>این نام وجود دارد!</target>
+      </trans-unit>
+      <trans-unit id="bbae0b2374c5beeae759c898f0d6395b" resname="you.can.use.this.name">
+        <source>you.can.use.this.name</source>
+        <target>شما می توانید این نام را استفاده کنید!</target>
+      </trans-unit>
+      <trans-unit id="eb3c49354caa1a7de74f3fdf78723a52" resname="username.not.have.valid.character">
+        <source>username.not.have.valid.character</source>
+        <target>نام کاربری شامل کاراکتر های نامعتبر است</target>
+      </trans-unit>
+      <trans-unit id="d17e43ee8f4ba12545aea5911e8b17c8" resname="blog.is.not.exists">
+        <source>blog.is.not.exists</source>
+        <target>وبلاگ مورد نظر وجود ندارد!</target>
+      </trans-unit>
+      <trans-unit id="06f89679637d764ab1b734ce8bacdb83" resname="not.found">
+        <source>not.found</source>
+        <target>اطلاعات مورد نظر یافت نشد</target>
+      </trans-unit>
+      <trans-unit id="e39eae8a35e983b076f57d1b3684f3b2" resname="form.is.invalid">
+        <source>form.is.invalid</source>
+        <target>فرم نامعتبر است</target>
+      </trans-unit>
+      <trans-unit id="9b5a66af5f17837fee3cc3796fdaa8a2" resname="user.is.not.exists">
+        <source>user.is.not.exists</source>
+        <target>کاربر مورد نظر وجود ندارد!</target>
+      </trans-unit>
+        <trans-unit id="1">
+            <source>system.error</source>
+            <target>متاسفانه خطایی در سیستم رخ داده است</target>
+        </trans-unit>
+    </body>
+  </file>
+</xliff>

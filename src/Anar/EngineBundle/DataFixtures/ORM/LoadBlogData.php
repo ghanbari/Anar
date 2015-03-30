@@ -25,6 +25,7 @@ class LoadBlogData extends AbstractFixture implements OrderedFixtureInterface, C
         $name = $this->container->hasParameter('master_blog') ? $this->container->getParameter('master_blog') : 'main';
         $title = $this->container->hasParameter('title') ? $this->container->getParameter('title') : 'Anar Notification System';
         $blog->setName($name)->setTitle($title)->setCurrentLocale($this->container->getParameter('locale'));
+        $blog->setTheme($this->getReference('theme.public'));
         $manager->persist($blog);
         $manager->flush();
 

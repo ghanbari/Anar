@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Anar\EngineBundle\Entity\User;
 use Anar\SuperPanelBundle\Form\UserType;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\VarDumper\VarDumper;
 
 /**
  * User controller.
@@ -76,7 +77,7 @@ class UserController extends Controller
             return new JsonResponse(array(
                 'status' => array(
                     'code' => (count($users) == 0) ? 404 : 200,
-                    'message' => (count($users) == 0) ? 'Not Found' : 'OK'
+                    'message' => (count($users) == 0) ? 'not.found' : 'OK'
                 ),
                 'response' => array(
                     'users' => (count($users) != 0) ? array(
@@ -101,7 +102,7 @@ class UserController extends Controller
             return new JsonResponse(array(
                'status' => array(
                    'code' => 400,
-                   'message' => 'Form is invalid'
+                   'message' => 'form.is.invalid'
                ),
                 'response' => array(
                     'users' => array()
@@ -160,7 +161,7 @@ class UserController extends Controller
             $em->persist($user);
             $em->flush();
 
-            $request->getSession()->getFlashBag()->add('info', 'User was created! click on link');
+            $request->getSession()->getFlashBag()->add('info', 'user.was.created.successfully');
             return $this->redirect($this->generateUrl('anar_super_panel_user_index'));
         }
 
@@ -184,7 +185,7 @@ class UserController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'create'));
 
         return $form;
     }
@@ -195,13 +196,14 @@ class UserController extends Controller
      * @param int $id
      * @return Response
      */
-    public function editAction($id)
+    public function editAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
         $user = $em->getRepository('AnarEngineBundle:User')->find($id);
 
         if (!$user) {
-            throw $this->createNotFoundException('Unable to find User entity.');
+            $request->getSession()->getFlashBag()->add('error', 'user.is.not.exists');
+            $this->redirectToRoute('anar_super_panel_user_index');
         }
 
         $form = $this->createEditForm($user);
@@ -226,7 +228,7 @@ class UserController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'update'));
 
         return $form;
     }
@@ -234,6 +236,9 @@ class UserController extends Controller
     /**
      * Edits an existing User entity.
      *
+     * @param Request $request
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
     public function updateAction(Request $request, $id)
     {
@@ -243,7 +248,8 @@ class UserController extends Controller
         $user = $em->getRepository('AnarEngineBundle:User')->find($id);
 
         if (!$user) {
-            throw $this->createNotFoundException('Unable to find User entity.');
+            $request->getSession()->getFlashBag()->add('error', 'user.is.not.exists');
+            $this->redirectToRoute('anar_super_panel_user_index');
         }
 
         $form = $this->createEditForm($user);
@@ -252,7 +258,8 @@ class UserController extends Controller
         if ($form->isValid()) {
             $userManager->updateUser($user);
 
-            return $this->redirect($this->generateUrl('anar_super_panel_user_edit', array('id' => $id)));
+            $request->getSession()->getFlashBag()->add('info', 'user.is.not.exists');
+            return $this->redirect($this->generateUrl('anar_super_panel_user_index', array('id' => $id)));
         }
 
         return $this->render('AnarSuperPanelBundle:User:new.html.twig', array(
@@ -272,13 +279,14 @@ class UserController extends Controller
     public function deleteAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
+        $translator = $this->get('translator');
 
         $user = $em->find('AnarEngineBundle:User', $id);
 
         if (!$user) {
             $status = array(
                 'code' => 404,
-                'message' => 'User is not found!'
+                'message' => $translator->trans('not.found')
             );
         }
 
@@ -288,12 +296,12 @@ class UserController extends Controller
 
             $status = array(
                 'code' => 200,
-                'message' => 'User is deleted!'
+                'message' => $translator->trans('user.was.deleted')
             );
         } else {
             $status = array(
                 'code' => 400,
-                'message' => 'Token is not valid!'
+                'message' => $translator->trans('token.is.invalid')
             );
         }
         return new JsonResponse(array(
@@ -302,19 +310,94 @@ class UserController extends Controller
         ));
     }
 
+    /**
+     * check whether username is exists.
+     *
+     * @param $username
+     * @return JsonResponse
+     */
     public function checkUsernameAction($username)
     {
+        $translator = $this->get('translator');
         if (!$this->get('fos_user.user_manager')->findUserByUsername($username)) {
             $status = array(
                 'code' => 200,
-                'message' => 'You can use this username',
+                'message' => $translator->trans('you.can.use.this.name'),
             );
         } else {
             $status = array(
                 'code' => 0,
-                'message' => 'This username is exists!',
+                'message' => $translator->trans('name.is.exists'),
             );
         }
+        return new JsonResponse(array(
+            'status' => $status,
+            'response' => array()
+        ));
+    }
+
+    public function permissionAction($id)
+    {
+        $doctrine = $this->getDoctrine();
+        $manager = $doctrine->getManager();
+        $dql = "SELECT IDENTITY(g.blog) From AnarEngineBundle:Group g JOIN g.roles r JOIN g.users u WITH u.id = :user WHERE r.role = 'ROLE_ADMIN' ";
+        $userBlogs = $manager->createQuery($dql)->setParameter('user', $id)->getResult();
+        $userBlogIds = array();
+
+        foreach ($userBlogs as $userBlog) {
+            $userBlogIds[] = (int) $userBlog[1];
+        }
+
+        $tree = $doctrine->getRepository('AnarEngineBundle:Blog')->getTreeForJstree(null, null, null, null, $userBlogIds);
+        return new JsonResponse(array(
+           'status' => array(
+               'code' => 200,
+               'message' => 'OK',
+           ),
+           'response' => array(
+                'tree' => $tree
+            ),
+        ));
+    }
+
+    public function permissionUpdateAction(Request $request, $id)
+    {
+        $blogIds = (array) $request->request->get('blogIds', array());
+        $translator = $this->get('translator');
+        $manager = $this->getDoctrine()->getManager();
+
+        $user = $manager->createQuery('SELECT u FROM AnarEngineBundle:User u LEFT JOIN u.groups g WHERE u.id = :id')
+            ->setParameter('id', $id)->getOneOrNullResult();
+
+        $dql = "SELECT g FROM AnarEngineBundle:Group g JOIN g.blog b JOIN g.roles r WHERE r.role = 'ROLE_ADMIN' AND b.id IN(:blogIds)";
+        $userNewAdminGroups = $manager->createQuery($dql)->setParameter('blogIds', $blogIds)->getResult();
+
+        $dql = "SELECT g From AnarEngineBundle:Group g JOIN g.roles r JOIN g.users u WITH u.id = :user WHERE r.role = 'ROLE_ADMIN' ";
+        $userOldAdminGroups = $manager->createQuery($dql)->setParameter('user', $id)->getResult();
+
+
+        if (!$user) {
+            $status = array(
+                'code' => 400,
+                'message' => $translator->trans('user.is.not.exists'),
+            );
+        } else {
+            $status = array(
+                'code' => 200,
+                'message' => 'OK'
+            );
+        }
+
+        foreach ($userOldAdminGroups as $group) {
+            $user->removeGroup($group);
+        }
+
+        foreach ($userNewAdminGroups as $group) {
+            $user->addGroup($group);
+        }
+
+        $manager->flush();
+
         return new JsonResponse(array(
             'status' => $status,
             'response' => array()

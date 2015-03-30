@@ -31,11 +31,6 @@ class Blog
     private $name;
 
     /**
-     * @var string
-     */
-    private $theme;
-
-    /**
      * @var boolean
      */
     private $onTree;
@@ -106,6 +101,11 @@ class Blog
     private $groups;
 
     /**
+     * @var \Anar\EngineBundle\Entity\Theme
+     */
+    private $theme;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -114,7 +114,6 @@ class Blog
         $this->translations = new ArrayCollection();
         $this->apps = new ArrayCollection();
         $this->groups = new ArrayCollection();
-        $this->theme = 'Public';
         $this->active = True;
         $this->onTree = True;
     }
@@ -196,29 +195,6 @@ class Blog
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * Set theme
-     *
-     * @param string $theme
-     * @return Blog
-     */
-    public function setTheme($theme)
-    {
-        $this->theme = $theme;
-
-        return $this;
-    }
-
-    /**
-     * Get theme
-     *
-     * @return string 
-     */
-    public function getTheme()
-    {
-        return $this->theme;
     }
 
     /**
@@ -402,6 +378,7 @@ class Blog
     public function addChild(Blog $children)
     {
         $this->children[] = $children;
+        $children->setParent($this);
 
         return $this;
     }
@@ -583,5 +560,28 @@ class Blog
     public function __toString()
     {
         return $this->getTitle();
+    }
+
+    /**
+     * Set theme
+     *
+     * @param Theme $theme
+     * @return Blog
+     */
+    public function setTheme(Theme $theme = null)
+    {
+        $this->theme = $theme;
+
+        return $this;
+    }
+
+    /**
+     * Get theme
+     *
+     * @return Theme
+     */
+    public function getTheme()
+    {
+        return $this->theme;
     }
 }

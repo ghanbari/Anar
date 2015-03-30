@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>سوپر پنل</title>
+    <title>{{ 'superpanel'|trans }}</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/css/addFonts.css') }}">
@@ -23,8 +23,8 @@
 <body>
 {% block top_fixed_superpanel_box %}
 <div id="sp-topBar">
-    <span>آخرین ورود : <time dir="ltr"></time></span>
-    <a class="btn btn-xs btn-danger" href="">خروج</a>
+    <span>{{ 'last login:' }}<time dir="ltr"></time></span>
+    <a class="btn btn-xs btn-danger" href="">{{ 'logout'|trans }}</a>
 </div>
 <div id="sp-headerWrap">
     <div id="sp-logo"></div>
@@ -35,10 +35,10 @@
         <h2>Pomegranate notification system</h2>
     </div>
     <span id="sp-firstSpan"></span>
-    <span data-URL="ajaxUrlRoles"><i class="fa fa-sitemap"></i><br>نقش ها</span>
-    <span data-URL="ajaxUrlUsers"><i class="fa fa-users"></i><br>کاربران</span>
-    <span data-URL="ajaxUrlPermations"><i class="fa fa-paperclip"></i><br>دسترسی</span>
-    <span data-URL="ajaxUrlsetttings"><i class="fa fa-gears"></i><br>تنظیمات</span>
+    <span data-URL="ajaxUrlRoles"><i class="fa fa-sitemap"></i><br>{{ 'blogs'|trans }}</span>
+    <span data-URL="ajaxUrlUsers"><i class="fa fa-users"></i><br>{{ 'users'|trans }}</span>
+    <span data-URL="ajaxUrlPermations"><i class="fa fa-paperclip"></i><br>{{ 'permission'|trans }}</span>
+    <span data-URL="ajaxUrlsetttings"><i class="fa fa-gears"></i><br>{{ 'settings'|trans }}</span>
     <span id="sp-lastSpan"></span>
 </div>
 
@@ -59,12 +59,12 @@
         </div>
         <div class="sp-shower">
             <i class="sp-iconLabel fa fa-file"><span></span></i>
-            <span class="sp-showerTitr">تعداد نقش های سیستم</span>
+            <span class="sp-showerTitr">{{ 'blogs.count:'|trans }}</span>
             <span class="sp-showerNumber" id="desktop_NumOfRoles"></span>
         </div>
         <div class="sp-shower">
             <i class="sp-iconLabel fa fa-copy"><span></span></i>
-            <span class="sp-showerTitr">تعداد کاربران سیستم</span>
+            <span class="sp-showerTitr">{{ 'users.count:'|trans }}</span>
             <span class="sp-showerNumber" id="desktop_NumOfUser"></span>
         </div>
     </div>

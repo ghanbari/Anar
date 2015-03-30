@@ -1,1 +1,5 @@
+{% for message in app.session.getFlashBag().get('info') %}
+    {{ message|trans }}
+{% endfor %}
+
 {{ tree|raw }}

@@ -1,0 +1,83 @@
+Anar\EngineBundle\Entity\Blog:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: name
+
+    properties:
+        title:
+            - NotBlank:
+                message: string.between.4_255.character
+            - Type:
+                type: string
+                message: string.between.4_255.character
+            - Length:
+                min: 4
+                max: 255
+                minMessage: string.between.4_255.character
+                maxMessage: string.between.4_255.character
+        description:
+            - Length:
+                max: 500
+                maxMessage: string.lower.than.500.character
+        name:
+            - NotBlank:
+                message: string.betwwen.4_100.character.with.lower.english.character
+            - Type:
+                type: string
+                message: string.betwwen.4_100.character.with.lower.english.character
+            - Regex:
+                pattern: '/^[a-z]{4,100}$/'
+                message: string.betwwen.4_100.character.with.lower.english.character
+        parent:
+            - NotNull: ~
+            - Type:
+                type: 'Anar\EngineBundle\Entity\Blog'
+                message: 'select.a.item'
+        theme:
+            - NotNull: ~
+            - Type:
+                type: 'Anar\EngineBundle\Entity\Theme'
+                message: 'select.a.item'
+        onTree:
+            - Type: bool
+        active:
+            - Type: bool
+        apps:
+            - NotNull:
+                message: 'select.a.item'
+            - Count:
+                min: 1
+                minMessage: 'select.a.item'
+            - All:
+                constraints:
+                    - Type:
+                        type: 'Anar\EngineBundle\Entity\App'
+                        message: 'select.a.item'
+
+Anar\EngineBundle\Entity\User:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: staffCode
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: email
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: username
+
+    properties:
+        fname:
+            - NotBlank: ~
+            - Type: string
+            - Length:
+                max: 255
+        lname:
+            - NotBlank: ~
+            - Type: string
+            - Length:
+                max: 255
+        faname:
+            - Type: string
+            - Length:
+                max: 255
+        staffCode:
+            - NotNull: ~
+            - Type:
+                type: numeric
+        grade:
+            - NotNull: ~
+            - Type: Anar\EngineBundle\Entity\Grade

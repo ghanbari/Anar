@@ -41,3 +41,13 @@ anar_super_panel_user_delete:
     path:     /{id}/delete
     defaults: { _controller: "AnarSuperPanelBundle:User:delete" }
     methods:  [POST, DELETE]
+
+
+anar_super_panel_user_permissions:
+    path: /{id}/permission
+    defaults: { _controller: AnarSuperPanelBundle:User:permission }
+
+anar_super_panel_user_permission_update:
+    path: /{id}/permission/update
+    defaults: { _controller: AnarSuperPanelBundle:User:permissionUpdate }
+    methods: [POST]

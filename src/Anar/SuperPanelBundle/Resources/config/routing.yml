@@ -9,6 +9,14 @@ anar_super_panel_blog:
     resource: "@AnarSuperPanelBundle/Resources/config/routing/blog.yml"
     prefix:   /blog
 
+anar_super_panel_setting:
+    resource: "@AnarSuperPanelBundle/Resources/config/routing/setting.yml"
+    prefix:   /setting
+
+anar_super_panel_status:
+    path:     /status
+    defaults: { _controller: AnarSuperPanelBundle:Desktop:status }
+
 anar_super_panel_home:
     path: /
     defaults: { _controller: AnarSuperPanelBundle:Desktop:home }

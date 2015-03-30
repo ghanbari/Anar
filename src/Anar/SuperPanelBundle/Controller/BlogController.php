@@ -3,6 +3,9 @@
 namespace Anar\SuperPanelBundle\Controller;
 
 use Anar\EngineBundle\Entity\BlogRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
+use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -76,7 +79,7 @@ class BlogController extends Controller
             $em->persist($blog);
             $em->flush();
 
-            $request->getSession()->getFlashBag()->add('info', 'Blog was created, click on link');
+            $request->getSession()->getFlashBag()->add('info', 'blog.was.created.successfully');
             return $this->redirect($this->generateUrl('anar_super_panel_blog_index'));
         }
 
@@ -101,7 +104,7 @@ class BlogController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit');
+        $form->add('submit', 'submit', array('label' => 'create'));
 
         return $form;
     }
@@ -112,14 +115,15 @@ class BlogController extends Controller
      * @param int $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function editAction($id)
+    public function editAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
         $blog = $em->getRepository('AnarEngineBundle:Blog')->find($id);
 
         if (!$blog) {
-            throw $this->createNotFoundException('Unable to find Blog entity.');
+            $request->getSession()->getFlashBag()->add('error', 'blog.is.not.exists');
+            $this->redirectToRoute('anar_super_panel_blog_index');
         }
 
         $editForm = $this->createEditForm($blog);
@@ -145,7 +149,7 @@ class BlogController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'update'));
 
         return $form;
     }
@@ -164,7 +168,8 @@ class BlogController extends Controller
         $blog = $em->getRepository('AnarEngineBundle:Blog')->find($id);
 
         if (!$blog) {
-            throw $this->createNotFoundException('Unable to find Blog entity.');
+            $request->getSession()->getFlashBag()->add('error', 'blog.is.not.exists');
+            $this->redirectToRoute('anar_super_panel_blog_index');
         }
 
         $editForm = $this->createEditForm($blog);
@@ -173,7 +178,7 @@ class BlogController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            $request->getSession()->getFlashBag()->add('info', 'Blog Is Edited');
+            $request->getSession()->getFlashBag()->add('info', 'blog.was.edited.successfully');
             return $this->redirect($this->generateUrl('anar_super_panel_blog_index'));
         }
 
@@ -191,28 +196,25 @@ class BlogController extends Controller
     public function deleteAction(Request $request, $id)
     {
         if ($this->get('form.csrf_provider')->isCsrfTokenValid('blog_delete', $request->request->get('token'))) {
-            $form = $this->createDeleteForm($id);
-            $form->handleRequest($request);
+            $em = $this->getDoctrine()->getManager();
+            $entity = $em->getRepository('AnarEngineBundle:Blog')->find($id);
 
-            if ($form->isValid()) {
-                $em = $this->getDoctrine()->getManager();
-                $entity = $em->getRepository('AnarEngineBundle:Blog')->find($id);
-
-                if (!$entity) {
-                    throw $this->createNotFoundException('Unable to find Blog entity.');
-                }
-
-                $em->remove($entity);
-                $em->flush();
+            if (!$entity) {
+                $request->getSession()->getFlashBag()->add('error', 'blog.is.not.exists');
+                $this->redirectToRoute('anar_super_panel_blog_index');
             }
+
+            $em->remove($entity);
+            $em->flush();
+
             $status = array(
                 'code' => 200,
-                'message' => 'OK'
+                'message' => 'blog.is.deleted'
             );
         } else {
             $status = array(
                 'code' => 400,
-                'message' => 'Token is invalid'
+                'message' => 'token.is.invalid'
             );
         }
         return new JsonResponse(array(
@@ -227,21 +229,22 @@ class BlogController extends Controller
      */
     public function checkNameAction($name)
     {
+        $translator = $this->get('translator');
         if ($this->getRepository()->findOneByName($name)) {
             $status = array(
                 'code' => 0,
-                'message' => 'This name is exists!',
+                'message' => $translator->trans('name.is.exists'),
             );
         } else {
             if (is_string($name) and preg_match('/^[a-z]{4,100}$/', $name)) {
                 $status = array(
                     'code' => 200,
-                    'message' => 'You can use this name',
+                    'message' => $translator->trans('you.can.use.this.name'),
                 );
             } else {
                 $status = array(
                     'code' => 400,
-                    'message' => 'Username have not allowed character',
+                    'message' => $translator->trans('username.not.have.valid.character'),
                 );
             }
         }
@@ -252,5 +255,101 @@ class BlogController extends Controller
                 'username' => $name
             )
         ));
+    }
+
+    /**
+     * Return admin's list of given blog.
+     *
+     * @param int $id
+     * @return JsonResponse
+     */
+    public function adminsListAction($id)
+    {
+        $manager = $this->getDoctrine()->getManager();
+        $blog = $manager->find('AnarEngineBundle:Blog', $id);
+
+        if (!$blog) {
+            $status = array(
+                'code' => 400,
+                'message' => $this->get('translator')->trans('blog.is.not.exists'),
+            );
+        } else {
+            $dql = "SELECT PARTIAL u.{id, username, email, fname, lname, staffCode} FROM AnarEngineBundle:User u JOIN u.groups g JOIN g.blog b JOIN g.roles r WHERE b.id = :blogId AND r.role = 'ROLE_ADMIN' ";
+            $users = $manager->createQuery($dql)->setParameter('blogId', $id)->getArrayResult();
+            $status = array(
+                'code' => 200,
+                'message' => 'OK',
+            );
+        }
+
+        return new JsonResponse(array(
+            'status' => $status,
+            'response' => array(
+                'users' => $status['code'] == 200 ? $users : array()
+            )
+        ));
+    }
+
+    public function deleteUserFromAdminsListAction(Request $request, $id)
+    {
+        $manager = $this->getDoctrine()->getManager();
+        $translator = $this->get('translator');
+
+        $blog = $manager->find('AnarEngineBundle:Blog', $id);
+
+        if (!$blog) {
+            return new JsonResponse(array(
+                'status' => array(
+                    'code' => 400,
+                    'message' => $translator->trans('blog.is.not.exists'),
+                ),
+                'response' => array()
+            ));
+        }
+
+        $userId = $request->request->get('userId', null);
+
+        if (is_null($userId)) {
+            return new JsonResponse(array());
+        }
+
+        $user = $manager->find('AnarEngineBundle:User', $userId);
+
+        if (!$user) {
+            return new JsonResponse(array(
+                'status' => array(
+                    'code' => 400,
+                    'message' => $translator->trans('user.is.not.exists'),
+                ),
+                'response' => array()
+            ));
+        }
+
+        $dql = "SELECT g FROM AnarEngineBundle:Group g JOIN g.users u JOIN g.blog b JOIN g.roles r WHERE b.id = :blogId AND r.role = 'ROLE_ADMIN' AND u.id = :userId";
+        try {
+            $group = $manager->createQuery($dql)->setParameter('blogId', $id)->setParameter('userId', $userId)->getSingleResult();
+            $user->removeGroup($group);
+            $manager->flush();
+            $status = array(
+                'code' => 200,
+                'message' => 'OK',
+            );
+        } catch (NonUniqueResultException $e) {
+            $status = array(
+                'code' => 500,
+                'message' => $translator->trans('system.error'),
+            );
+        } catch (NoResultException $e) {
+            $status = array(
+                'code' => 500,
+                'message' => $translator->trans('system.error'),
+            );
+        }
+
+        return new JsonResponse(array(
+            'status' => $status,
+            'response' => array()
+        ));
+
     }
 }

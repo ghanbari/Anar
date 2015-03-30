@@ -28,10 +28,6 @@ Anar\EngineBundle\Entity\Blog:
         name:
             unique: true
             length: 100
-        theme:
-            length: 100
-            options:
-                default: Public
         onTree:
             type: boolean
             options:
@@ -77,6 +73,12 @@ Anar\EngineBundle\Entity\Blog:
                 onDelete: restrict
             gedmo:
                 - treeParent
+        theme:
+            targetEntity: Theme
+            joinColumn:
+                name: theme_id
+                referencedColumnName: id
+                onDelete: "set null"
     oneToMany:
         children:
             targetEntity: Blog
