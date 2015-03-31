@@ -1,8 +1,170 @@
-{% extends '::base.html.twig' %}
+{% extends "AnarSuperPanelBundle:Desktop:home.html.twig" %}
 
-{% block body -%}
-    <h1>Blog creation</h1>
+{% block csses %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/css/super_panel.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/css/bootstrap-switch-metro-rtl.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/css/select2_metro_rtl.css') }}">
+    <style>
+        .select{
+            width: 100%;
+        }
 
-    {{ form(form) }}
+        .select2-arrow b{
+            background-position: 5px 4px !important;
+        }
 
+        #anar_enginebundle_blog_submit{
+            display: none;
+        }
+    </style>
+{% endblock csses %}
+
+{% block top_fixed_superpanel_box %}
+    <div id="sp-topBar">
+        <span>{{ 'last login:' }}<time dir="ltr"></time></span>
+        <a class="btn btn-xs btn-danger" href="">{{ 'logout'|trans }}</a>
+    </div>
+    <div id="sp-headerWrap">
+        <div id="sp-logo"></div>
+    </div>
+    <div id="sp-tabBar">
+        <div id="sp-label">
+            <h1>Super Panel</h1>
+            <h2>Pomegranate notification system</h2>
+        </div>
+        <span id="sp-firstSpan"></span>
+        <span onclick="location.href = '{{ path("anar_super_panel_blog_index") }}'" data-URL="ajaxUrlRoles" data-active="true"><i class="fa fa-sitemap"></i><br>{{ 'blogs'|trans }}</span>
+        <span data-URL="ajaxUrlUsers"><i class="fa fa-users"></i><br>{{ 'users'|trans }}</span>
+        <span data-URL="ajaxUrlPermations"><i class="fa fa-paperclip"></i><br>{{ 'permission'|trans }}</span>
+        <span data-URL="ajaxUrlsetttings"><i class="fa fa-gears"></i><br>{{ 'settings'|trans }}</span>
+        <span id="sp-lastSpan"></span>
+    </div>
+
+{% endblock top_fixed_superpanel_box %}
+
+{% block container %}
+
+<div class="col-md-10 col-sm-10 col-md-offset-1 col-sm-offset-1 tab_content_box margin-top-25 margin-bottom-25">
+    <div class="row">
+        <div class="col-md-6 col-sm-6 tittle_tab_content">
+            <i class="fa fa-sitemap"></i>
+            <span>افزودن وبلاگ</span>
+        </div>
+        <div class="col-md-1 col-sm-1 pull-left text-left">
+            <i onclick="location.href = '{{ path("anar_super_panel_home") }}'" class="glyphicon glyphicon-remove cursor_pointer" style="cursor: pointer"></i>
+        </div>
+    </div>
+    <hr id="cutter">
+    <div class="row">
+        <div class="col-md-8 col-sm-8">
+            {{ form_start(form) }}
+                <div class="row">
+                    <div class="form-group">
+                        <label class="col-md-2 col-sm-2 control-label text-left">عنوان</label>
+                        <div class="col-md-9 col-sm-9">
+                            {{ form_widget(form.title,{ 'attr' : {'class':'form-control'} }) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row margin-top-10">
+                    <div class="form-group">
+                        <label class="col-md-2 col-sm-2 control-label text-left">توضیحات</label>
+                        <div class="col-md-9 col-sm-9">
+                            {{ form_widget(form.description,{ 'attr' : {'class':'form-control'} }) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row margin-top-10">
+                    <div class="form-group">
+                        <label class="col-md-2 col-sm-2 control-label text-left">نام</label>
+                        <div class="col-md-9 col-sm-9">
+                            {{ form_widget(form.name,{ 'attr' : {'class':'form-control name_input','onblur':'check_name()'} }) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row margin-top-10">
+                    <div class="form-group">
+                        <label class="col-md-2 col-sm-2 control-label text-left">پوسته</label>
+                        <div class="col-md-9 col-sm-9">
+                            {{ form_widget(form.theme,{ 'attr' : {'class':'select'} }) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row margin-top-10">
+                    <div class="form-group">
+                        <label class="col-md-2 col-sm-2 control-label text-left">نمایش در منو</label>
+                        <div class="col-md-9 col-sm-9">
+                            <div class="make-switch">
+                                {{ form_widget(form.onTree,{ 'attr' : {'class':'toggle'} }) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row margin-top-10">
+                    <div class="form-group">
+                        <label class="col-md-2 col-sm-2 control-label text-left">فعال</label>
+                        <div class="col-md-9 col-sm-9">
+                            <div class="make-switch">
+                                {{ form_widget(form.active,{ 'attr' : {'class':'toggle'} }) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row margin-top-10">
+                    <div class="form-group">
+                        <label class="col-md-2 col-sm-2 control-label text-left">والد</label>
+                        <div class="col-md-9 col-sm-9">
+                            {{ form_widget(form.parent,{ 'attr' : {'class':'select'} }) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row margin-top-10">
+                    <div class="form-group">
+                        <label class="col-md-2 col-sm-2 control-label text-left">امکانات</label>
+                        <div class="col-md-9 col-sm-9">
+                            {{ form_widget(form.apps,{ 'attr' : {'class':'form-control'} }) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row margin-top-10">
+                    <div class="col-md-2 col-sm-2"></div>
+                    <div class="col-md-9 col-sm-9">
+                        <button type="submit" class="btn btn-submit-blog">ذخیره</button>
+                    </div>
+                </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ asset('bundles/anarsuperpanel/js/bootstrap-switch.min.js') }}"></script>
+<script src="{{ asset('bundles/anarsuperpanel/js/select2.min.js') }}"></script>
+<script>
+    $(".select").select2({
+        placeholder: "انتخاب کنید"
+    });
+
+    function check_name(){
+        var name_val = $('.name_input').val();
+        var checkPath = "{{ path('anar_super_panel_blog_check_name', {'name': '__name__'}) }}";
+        checkPath = checkPath.replace("__name__", name_val);
+        $.ajax({
+            url: checkPath,
+            error: function(message){
+                alert("message : "+message);
+            },
+            success: function(data){
+                alert(data.status['code']);
+                if(data.status['code'] == 400){
+                    alert("لطفا از حروف انگلیسی کوچک a-z استفاده نمایید");
+                }
+            }
+        })
+    }
+</script>
 {% endblock %}

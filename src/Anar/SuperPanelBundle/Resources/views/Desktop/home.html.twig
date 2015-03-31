@@ -11,9 +11,9 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('static/bootstrap/dist/css/bootstrap.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('static/bootstrap/dist/css/bootstrap-theme.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/css/bootstrapPersianNormailze.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/jstreeV3-0-4/themes/default/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/tinyNotice/FlatTheme.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/css/privateStyle.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/css/select2_metro_rtl.css') }}">
 
     {% block csses %}
         <style></style>
@@ -35,7 +35,7 @@
         <h2>Pomegranate notification system</h2>
     </div>
     <span id="sp-firstSpan"></span>
-    <span data-URL="ajaxUrlRoles"><i class="fa fa-sitemap"></i><br>{{ 'blogs'|trans }}</span>
+    <span onclick="location.href = '{{ path("anar_super_panel_blog_index") }}'" data-URL="ajaxUrlRoles"><i class="fa fa-sitemap"></i><br>{{ 'blogs'|trans }}</span>
     <span data-URL="ajaxUrlUsers"><i class="fa fa-users"></i><br>{{ 'users'|trans }}</span>
     <span data-URL="ajaxUrlPermations"><i class="fa fa-paperclip"></i><br>{{ 'permission'|trans }}</span>
     <span data-URL="ajaxUrlsetttings"><i class="fa fa-gears"></i><br>{{ 'settings'|trans }}</span>
@@ -60,12 +60,12 @@
         <div class="sp-shower">
             <i class="sp-iconLabel fa fa-file"><span></span></i>
             <span class="sp-showerTitr">{{ 'blogs.count:'|trans }}</span>
-            <span class="sp-showerNumber" id="desktop_NumOfRoles"></span>
+            <span class="sp-showerNumber" id="desktop_NumOfRoles">{{ blogsCount }}</span>
         </div>
         <div class="sp-shower">
             <i class="sp-iconLabel fa fa-copy"><span></span></i>
             <span class="sp-showerTitr">{{ 'users.count:'|trans }}</span>
-            <span class="sp-showerNumber" id="desktop_NumOfUser"></span>
+            <span class="sp-showerNumber" id="desktop_NumOfUser">{{ usersCount }}</span>
         </div>
     </div>
 </div>
@@ -74,12 +74,12 @@
 <script src="{{ asset('static/jquery/dist/jquery.min.js') }}"></script>
 <script src="{{ asset('static/jquery-ui/jquery-ui.min.js') }}"></script>
 <script src="{{ asset('static/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('static/jstree/dist/jstree.min.js') }}"></script>
 <script src="{{ asset('plugins/nicescroll/jquery.nicescroll.min.js') }}"></script>
-<script src="{{ asset('plugins/tinyNotice/tinyNotice.js') }}"></script>
+{#<script src="{{ asset('plugins/tinyNotice/tinyNotice.js') }}"></script>#}
 <script src="{{ asset('scripts/commonActions.js') }}"></script>
+<script src="{{ asset('bundles/anarsuperpanel/js/select2.min.js') }}"></script>
 
-<script src="{{ asset('bundles/anarsuperpanel/js/privateActions.js') }}"></script>
+{#<script src="{{ asset('bundles/anarsuperpanel/js/privateActions.js') }}"></script>#}
 
 {% block scripts %}
 
@@ -116,9 +116,6 @@
             var sal = currentTime.getFullYear();
             var rooz = currentTime.getDate();
 
-            if (h == 0){
-                h = 12;
-            }
             if (h < 10){
                 h = "0" + h;
             }

@@ -1,3 +1,35 @@
+{% extends "AnarSuperPanelBundle:Desktop:home.html.twig" %}
+
+{% block csses %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/css/super_panel.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('static/jstree/dist/themes/default/style.css') }}">
+{% endblock csses %}
+
+{% block top_fixed_superpanel_box %}
+    <div id="sp-topBar">
+        <span>{{ 'last login:' }}<time dir="ltr"></time></span>
+        <a class="btn btn-xs btn-danger" href="">{{ 'logout'|trans }}</a>
+    </div>
+    <div id="sp-headerWrap">
+        <div id="sp-logo"></div>
+    </div>
+    <div id="sp-tabBar">
+        <div id="sp-label">
+            <h1>Super Panel</h1>
+            <h2>Pomegranate notification system</h2>
+        </div>
+        <span id="sp-firstSpan"></span>
+        <span onclick="location.href = '{{ path("anar_super_panel_blog_index") }}'" data-URL="ajaxUrlRoles" data-active="true"><i class="fa fa-sitemap"></i><br>{{ 'blogs'|trans }}</span>
+        <span data-URL="ajaxUrlUsers"><i class="fa fa-users"></i><br>{{ 'users'|trans }}</span>
+        <span data-URL="ajaxUrlPermations"><i class="fa fa-paperclip"></i><br>{{ 'permission'|trans }}</span>
+        <span data-URL="ajaxUrlsetttings"><i class="fa fa-gears"></i><br>{{ 'settings'|trans }}</span>
+        <span id="sp-lastSpan"></span>
+    </div>
+
+{% endblock top_fixed_superpanel_box %}
+
+{% block container %}
+
 {% for message in app.session.getFlashBag().get('info') %}
     {{ message|trans }}
 {% endfor %}
@@ -10,4 +42,134 @@
     {{ message|trans }}
 {% endfor %}
 
-{{ tree|raw }}
+
+<div class="col-md-10 col-sm-10 col-md-offset-1 col-sm-offset-1 tab_content_box margin-top-25 margin-bottom-25">
+    <div class="row">
+        <div class="col-md-6 col-sm-6 tittle_tab_content">
+            <i class="fa fa-sitemap"></i>
+            <span>مدیریت وبلاگ ها</span>
+        </div>
+        <div class="col-md-1 col-sm-1 pull-left text-left">
+            <i onclick="location.href = '{{ path("anar_super_panel_home") }}'" class="glyphicon glyphicon-remove cursor_pointer" style="cursor: pointer"></i>
+        </div>
+    </div>
+    <hr id="cutter">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 margin-top-10">
+            <button type="button" class="btn-primary-costum" onclick="location.href = '{{ path("anar_super_panel_blog_new") }}'">
+                <i class="fa fa-plus"></i> ایجاد وبلاگ جدید
+            </button>
+        </div>
+        <div class="col-md-12 col-sm-12 margin-top-10">
+            <div id="jstree_div"></div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ asset('static/jstree/dist/jstree.min.js') }}"></script>
+
+    <script>
+        function customMenu(node){
+            // The default set of all items
+            var items = {
+                renameItem: { // The "rename" menu item
+                    "label": "ویرایش",
+                    "icon": "glyphicon glyphicon-edit",
+                    action: function () {}
+                },
+                deleteItem: { // The "delete" menu item
+                    "label": "حذف",
+                    "icon": "glyphicon glyphicon-remove",
+                    action: function () {}
+                }
+            };
+
+//            if ($(node).hasClass("folder")) {
+//                // Delete the "delete" menu item
+//                delete items.deleteItem;
+//            }
+
+            return items;
+        }
+
+        $("#jstree_div").jstree({
+            'core' : {
+                'data' : {{ tree|raw }},
+                'strings' : {
+                    'Loading ...' : 'در حال بارگذاری لطفا صبر نمایید ...<sub>ممکن است چند ثانیه طول بکشید</sub>'
+                },
+                'themes' : {
+                    "variant" : "large"
+                }
+            },
+            'checkbox' : {
+                'three_state': false,
+                'keep_selected_style' : false
+            },
+            "plugins": ["themes", "html_data", "ui", "crrm", "contextmenu"],
+            contextmenu: {items: customMenu}
+//            "contextmenu": {
+//                "items": function ($node) {
+//                    return {
+//                        "Edit": {
+//                            "label": "ویرایش ",
+//                            "icon": "glyphicon glyphicon-edit",
+//                            "action": function () {
+//                                if($rolesList.jstree(true).get_selected().length == 1){
+//                                    $.ajax({
+//                                        url:"role/"+$node.id+"/edit",
+//                                        error: function(XHR,message){
+//                                            alert("در روند درخواست پنجره ویرایش نقش خطایی رخ داده است! <br> message : "+message);
+//                                        },
+//                                        success: function(response){
+//                                            $("div#app-modal-container").html(response);
+//                                        }
+//                                    });
+//                                }else{
+//                                    alert("امکان ویرایش دسته جمعی در این نسخه موجود نمی باشد.");
+//                                }
+//                            }
+//                        },
+//                        "Delete": {
+//                            "label": "حذف ",
+//                            "icon": "glyphicon glyphicon-remove",
+//                            "action": function () {
+//                                if($rolesList.jstree(true).get_selected().length == 1){
+//                                    $.tinyNotice({
+//                                        setConfirm:["بله","نه,ممنون"], //to use default botton topic writing true
+//                                        statusTitle : "حذف نقش",
+//                                        statusText : "آیامی خواهید نقش "+$node.text+" را برای همیشه حذف نمایید ؟",
+//                                        accept: function(){
+//                                            $.ajax({
+//                                                type:"post",
+//                                                url:"role/"+$node.id+"/delete",
+//                                                error: function(XHR,message){
+//                                                    alert("در روند درخواست حذف نقش خطایی رخ داده است! <br> message : "+message);
+//                                                },
+//                                                success: function(response){
+//                                                    if (response.status == "success") {
+//                                                        alert("نقش "+$node.text+" با موفقیت حذف شد! <br> message : "+response.status_text);
+//                                                        $rolesList.jstree("refresh");
+//                                                    } else {
+//                                                        alert("عملیات حذف نقش "+$node.text+" با مشکل مواجه شده است. <br><small>توجه : امکان حذف نقش پدر در این نسخه وجود ندارد و باید ابتدا کلیه فرزندان آن را حذف نمایید <br> message : "+response.status_text);
+//                                                    }
+//                                                }
+//                                            });
+//                                        }
+//                                    });
+//                                }else{
+//                                    alert("امکان حذف دسته جمعی در این نسخه موجود نمی باشد.");
+//                                }
+//                            }
+//                        }
+//                    };
+//                }
+//            }
+        }).on('loaded.jstree', function() {
+            $(this).jstree('open_all');
+        });
+    </script>
+{% endblock %}

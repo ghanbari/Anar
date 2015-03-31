@@ -1,0 +1,64 @@
+.tab_content_box{
+    background: white;
+    padding: 25px;
+    min-height: 400px;
+}
+
+.tittle_tab_content{
+    font-size: 1.2em;
+}
+
+.cursor_pointer{
+    cursor: pointer !important;
+}
+
+.margin_top_5{
+    margin-top: 5px;
+}
+
+.margin-top-10{
+    margin-top: 10px;
+}
+
+.margin-top-15{
+    margin-top: 15px;
+}
+
+.margin-top-20{
+    margin-top: 20px;
+}
+
+.margin-top-25{
+    margin-top: 25px;
+}
+
+.margin_bottom_5{
+    margin-bottom: 5px;
+}
+
+.margin-bottom-10{
+    margin-bottom: 10px;
+}
+
+.margin-bottom-15{
+    margin-bottom: 15px;
+}
+
+.margin-bottom-20{
+    margin-bottom: 20px;
+}
+
+.margin-bottom-25{
+    margin-bottom: 25px;
+}
+
+.btn-submit-blog{
+    background: #00a0dc;
+    padding: 5px 20px;
+    color: #ffffff;
+}
+
+.btn-submit-blog:hover{
+    background: #0079A6;
+    color: #ffffff;
+}
