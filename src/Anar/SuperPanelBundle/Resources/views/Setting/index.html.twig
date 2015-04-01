@@ -1,0 +1,109 @@
+{#<script>#}
+   {#$(document).ready(function() {#}
+       {#var passesIsValid = false;#}
+        {#$("input#form_newPassword_password").change(function(){#}
+            {#$("input#form_newPassword_repeat").val("");#}
+        {#});#}
+
+        {#$("input#form_newPassword_repeat").focusout(function(){#}
+            {#var newPass = $("input#form_newPassword_password").val();#}
+            {#if($(this).val() != newPass){#}
+                {#if(newPass != "")#}
+                    {#passErorring("setErorr");#}
+            {#}else {#}
+                    {#passErorring("deleteErorr");#}
+                    {#passesIsValid = true;#}
+            {#}#}
+        {#});#}
+
+        {#function passErorring(mod){#}
+            {#if(mod == "setErorr"){#}
+{#$.tinyNotice("client error","رمز عبور و تکرار آن با هم متفاوتند!","error",0);      #}
+                {#$("input#form_newPassword_password").closest(".form-group").addClass("has-error");#}
+                {#$("input#form_newPassword_repeat").closest(".form-group").addClass("has-error");#}
+            {#}#}
+            {#else if (mod == "deleteErorr"){#}
+                {#$.tinyNotice("destroy");      #}
+                {#$("input#form_newPassword_password").closest(".form-group").removeClass("has-error");#}
+                {#$("input#form_newPassword_repeat").closest(".form-group").removeClass("has-error");#}
+            {#}#}
+        {#}#}
+
+        {#$("button[data-submit]").click(function() {#}
+            {#if(passesIsValid){#}
+                {#$.ajax({#}
+                    {#url:"{{ path('anar_super_panel_setting_update_password') }}",#}
+                    {#error: function(XHR,message){#}
+{#$.tinyNotice("AJAX client error","در روند ثبت اطلاعات خطایی رخ داده است! <br> message : "+message,"error",6000); #}
+                    {#},#}
+                    {#success: function(response){#}
+                        {#if(response.status == "success"){#}
+{#$.tinyNotice("AJAX response success","اطلاعات با موفقیت ثبت شدند<br> message : "+response.status_text,"success");#}
+                        {#}else{#}
+{#$.tinyNotice("AJAX response error","اطلاعات به دلیل بروز خطلایی ثبت نشدند! message : "+response.status_text,"error",0);                   #}
+                        {#}#}
+                    {#}#}
+                {#});#}
+            {#}else{#}
+{#$.tinyNotice("client warning","پسورد جدید و تکرار آن با هم برابر نیستند!","warning",0);         #}
+            {#}#}
+        {#});#}
+
+    {#});#}
+{#</script>#}
+
+
+
+
+{#<h2><i class="fa fa-gears"></i> تنظیمات سوپر پنل </h2>#}
+{#<hr id="cutter"><div class="com-notification"><i class="fa fa-times com-close"></i><span></span></div>#}
+{#<!------------content-------------->#}
+
+
+{#<h3>تغییر نام کاربری</h3>#}
+{#<form class="form-horizontal" role="form">#}
+    {#<div class="form-group">#}
+        {#<label class="col-sm-2 control-label">نام کاربری جدید</label>#}
+        {#<div class="col-sm-4">#}
+            {#<input type="text" class="form-control">#}
+        {#</div>#}
+    {#</div>#}
+    {#<div class="form-group">#}
+        {#<label class="col-sm-2 control-label">رمز عبور</label>#}
+        {#<div class="col-sm-4">#}
+            {#<input name="newUsername" type="password" class="form-control" >#}
+        {#</div>#}
+    {#</div>#}
+    {#<div class="form-group">#}
+        {#<div class="col-sm-12">#}
+            {#<button name="userNameSubmit" data-submit="submit" type="button" class="btn btn-primary">ثبت اطلاعات</button>#}
+        {#</div>#}
+    {#</div>#}
+{#</form>#}
+
+{#<hr class="com-lineDashed">#}
+<html>
+<body>
+    <h3>تغییر رمز عبور</h3>
+        {{ form_start(form, {'attr': {'class': 'form-horizontal', 'role': 'form'}}) }}
+        <div class="form-group">
+            <label class="col-sm-2 control-label">رمز عبور فعلی</label>
+            <div class="col-sm-4">
+                {{ form_widget(form.oldPassword, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">رمز عبور جدید</label>
+            <div class="col-sm-4">
+                {{ form_widget(form.password.first, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">تکرار رمز عبور</label>
+            <div class="col-sm-4">
+                {{ form_widget(form.password.second, {'attr': {'class': 'form-control'}}) }}
+            </div>
+        </div>
+    {{ form_end(form) }}
+</body>
+</html>

@@ -34,10 +34,14 @@
         <source>user.is.not.exists</source>
         <target>کاربر مورد نظر وجود ندارد!</target>
       </trans-unit>
-        <trans-unit id="1">
-            <source>system.error</source>
-            <target>متاسفانه خطایی در سیستم رخ داده است</target>
-        </trans-unit>
+      <trans-unit id="890aa99a89c7b6847f1506fafc454be6" resname="system.error">
+        <source>system.error</source>
+        <target>متاسفانه خطایی در سیستم رخ داده است</target>
+      </trans-unit>
+      <trans-unit id="3c4a5350b5cae41f120ae9539e96732a" resname="information.was.updated">
+        <source>information.was.updated</source>
+        <target>اطلاعات با موفقیت بروزرسانی شد</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -54,6 +54,14 @@
         <source>blog.is.deleted</source>
         <target>وبلاگ با موفقیت حذف شد</target>
       </trans-unit>
+      <trans-unit id="caae0a6a57acf2c4b38bd22c40973fcc" resname="password.is.not.identical">
+        <source>password.is.not.identical</source>
+        <target>پسورد ها برابر نیستند</target>
+      </trans-unit>
+      <trans-unit id="a3239f7f4ddd331cb4e1ad631ccd93a1" resname="password.is.wrong">
+        <source>password.is.wrong</source>
+        <target>پسورد اشتباه است</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

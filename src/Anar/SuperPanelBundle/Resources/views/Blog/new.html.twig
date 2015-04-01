@@ -74,14 +74,16 @@
                         </div>
                     </div>
                 </div>
+            {% if action == 'create' %}
                 <div class="row margin-top-10">
                     <div class="form-group">
                         <label class="col-md-2 col-sm-2 control-label text-left">نام</label>
                         <div class="col-md-9 col-sm-9">
-                            {{ form_widget(form.name,{ 'attr' : {'class':'form-control name_input','onblur':'check_name()'} }) }}
+                            {{ form_widget(form.name, { 'attr' : {'class':'form-control name_input','onblur':'check_name()'} }) }}
                         </div>
                     </div>
                 </div>
+            {% endif %}
                 <div class="row margin-top-10">
                     <div class="form-group">
                         <label class="col-md-2 col-sm-2 control-label text-left">پوسته</label>

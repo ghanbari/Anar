@@ -1,3 +1,6 @@
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
 anar_engine_bundle:
     resource: "@AnarEngineBundle/Resources/config/routing.yml"
 

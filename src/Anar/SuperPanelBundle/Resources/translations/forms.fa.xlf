@@ -40,7 +40,7 @@
       </trans-unit>
       <trans-unit id="3ac340832f29c11538fbe2d6f75e8bcc" resname="update">
         <source>update</source>
-        <target>ویرایش</target>
+        <target>بروزرسانی</target>
       </trans-unit>
       <trans-unit id="20ba9a7ab13d44a46f368d26ce84a2d2" resname="first.name">
         <source>first.name</source>
@@ -65,6 +65,18 @@
       <trans-unit id="6a99c575ab87f8c7d1ed1e52e7e349ce" resname="placeholder">
         <source>placeholder</source>
         <target>لطفا یک گزینه را انتخاب نمایید</target>
+      </trans-unit>
+      <trans-unit id="288456d48d3ca0260c6bfd9b741b230b" resname="password.old">
+        <source>password.old</source>
+        <target>پسورد قبلی: </target>
+      </trans-unit>
+      <trans-unit id="16884de628f640ee10a66ecf94500e3b" resname="password.new">
+        <source>password.new</source>
+        <target>پسورد جدید: </target>
+      </trans-unit>
+      <trans-unit id="2015b841af75b27114bfdf2f5e6ddffc" resname="password.repeat">
+        <source>password.repeat</source>
+        <target>تکرار پسورپ جدید:</target>
       </trans-unit>
     </body>
   </file>

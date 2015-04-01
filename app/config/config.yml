@@ -95,9 +95,20 @@ swiftmailer:
 fos_user:
     db_driver: orm
     firewall_name: main
+    use_listener: false
     user_class: Anar\EngineBundle\Entity\User
     group:
         group_class: Anar\EngineBundle\Entity\Group
 
 v_bee_setting:
     orm: doctrine
+
+jms_translation:
+    configs:
+        app:
+            dirs: [%kernel.root_dir%, %kernel.root_dir%/../src]
+            output_dir: %kernel.root_dir%/Resources/translations
+            ignored_domains: [routes]
+            excluded_names: ["*TestCase.php", "*Test.php"]
+            excluded_dirs: [cache, data, logs]
+            output-format: xliff

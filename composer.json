@@ -24,7 +24,9 @@
         "knplabs/knp-paginator-bundle": "~2.4",
         "liip/imagine-bundle": "dev-master",
         "helios-ag/fm-bbcode-bundle": "6.2.1",
-        "vbee/settingbundle": "1.*@dev"
+        "vbee/settingbundle": "1.*@dev",
+        "friendsofsymfony/jsrouting-bundle": "~1.5",
+        "jms/translation-bundle": "~1.1"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
