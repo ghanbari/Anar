@@ -16,6 +16,9 @@
         #anar_enginebundle_blog_submit{
             display: none;
         }
+        .required:after{
+            content: '*';
+        }
     </style>
 {% endblock csses %}
 
@@ -86,7 +89,7 @@
             {% endif %}
                 <div class="row margin-top-10">
                     <div class="form-group">
-                        <label class="col-md-2 col-sm-2 control-label text-left">پوسته</label>
+                        {{ form_label(form.theme, null, {'label_attr': {'class': 'col-md-2 col-sm-2 control-label text-left'}}) }}
                         <div class="col-md-9 col-sm-9">
                             {{ form_widget(form.theme,{ 'attr' : {'class':'select'} }) }}
                         </div>

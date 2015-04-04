@@ -79,7 +79,10 @@ class BlogController extends Controller
             $em->persist($blog);
             $em->flush();
 
-            $request->getSession()->getFlashBag()->add('info', 'blog.was.created.successfully');
+            $request->getSession()->getFlashBag()->add(
+                'info',
+                $this->get('translator')->trans('blog.was.created.successfully')
+            );
             return $this->redirect($this->generateUrl('anar_super_panel_blog_index'));
         }
 
@@ -122,14 +125,17 @@ class BlogController extends Controller
         $blog = $em->getRepository('AnarEngineBundle:Blog')->find($id);
 
         if (!$blog) {
-            $request->getSession()->getFlashBag()->add('error', 'blog.is.not.exists');
+            $request->getSession()->getFlashBag()->add(
+                'error',
+                $this->get('translator')->trans('blog.is.not.exists')
+            );
             $this->redirectToRoute('anar_super_panel_blog_index');
         }
 
         $editForm = $this->createEditForm($blog);
 
         return $this->render('AnarSuperPanelBundle:Blog:new.html.twig', array(
-            'blog'      => $blog,
+            'blog'   => $blog,
             'form'   => $editForm->createView(),
             'action' => 'update',
         ));
@@ -169,7 +175,10 @@ class BlogController extends Controller
         $blog = $em->getRepository('AnarEngineBundle:Blog')->find($id);
 
         if (!$blog) {
-            $request->getSession()->getFlashBag()->add('error', 'blog.is.not.exists');
+            $request->getSession()->getFlashBag()->add(
+                'error',
+                $this->get('translator')->trans('blog.is.not.exists')
+            );
             $this->redirectToRoute('anar_super_panel_blog_index');
         }
 
@@ -179,7 +188,10 @@ class BlogController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            $request->getSession()->getFlashBag()->add('info', 'blog.was.edited.successfully');
+            $request->getSession()->getFlashBag()->add(
+                'info',
+                $this->get('translator')->trans('blog.was.edited.successfully')
+            );
             return $this->redirect($this->generateUrl('anar_super_panel_blog_index'));
         }
 
@@ -196,12 +208,17 @@ class BlogController extends Controller
      */
     public function deleteAction(Request $request, $id)
     {
+        $translator = $this->get('translator');
+
         if ($this->get('form.csrf_provider')->isCsrfTokenValid('blog_delete', $request->request->get('token'))) {
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('AnarEngineBundle:Blog')->find($id);
 
             if (!$entity) {
-                $request->getSession()->getFlashBag()->add('error', 'blog.is.not.exists');
+                $request->getSession()->getFlashBag()->add(
+                    'error',
+                    $translator->trans('blog.is.not.exists')
+                );
                 $this->redirectToRoute('anar_super_panel_blog_index');
             }
 
@@ -210,12 +227,12 @@ class BlogController extends Controller
 
             $status = array(
                 'code' => 200,
-                'message' => 'blog.is.deleted'
+                'message' => $translator->trans('blog.is.deleted')
             );
         } else {
             $status = array(
                 'code' => 400,
-                'message' => 'token.is.invalid'
+                'message' => $translator->trans('token.is.invalid')
             );
         }
         return new JsonResponse(array(

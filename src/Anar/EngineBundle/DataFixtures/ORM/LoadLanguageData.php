@@ -20,7 +20,8 @@ class LoadLanguageData implements FixtureInterface
         $language = new Language();
         $language->setName('persian')
             ->setCode('fa')
-            ->setIcon('');
+            ->setIcon('iran')
+            ->setDirection('rtl');
         $manager->persist($language);
         $manager->flush();
     }

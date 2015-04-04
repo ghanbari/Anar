@@ -8,4 +8,7 @@ Anar\EngineBundle\Entity\Theme:
                 strategy: AUTO
     fields:
         name: ~
+        direction:
+            type: array
+            nullable: false
     lifecycleCallbacks: {  }

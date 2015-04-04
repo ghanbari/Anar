@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
+  <file date="2015-04-02T01:23:20Z" source-language="en" target-language="fa" datatype="plaintext" original="not.available">
+    <header>
+      <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
+      <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
+    </header>
+    <body>
+      <trans-unit id="cb329146a0dd0d566b0628744d67936558741ffa" resname="description">
+        <jms:reference-file line="26">SuperPanelBundle/Form/BlogType.php</jms:reference-file>
+        <source>description</source>
+        <target state="new">توضیحات</target>
+      </trans-unit>
+      <trans-unit id="7a1255f0bbc3632172c6083239a8824b8736113b" resname="display.in.menu">
+        <jms:reference-file line="47">SuperPanelBundle/Form/BlogType.php</jms:reference-file>
+        <source>display.in.menu</source>
+        <target state="new">نمایش در منو</target>
+      </trans-unit>
+      <trans-unit id="f2115eded7c0557558b0fd5ca53ab7dd6508ac6c" resname="facilities">
+        <jms:reference-file line="67">SuperPanelBundle/Form/BlogType.php</jms:reference-file>
+        <source>facilities</source>
+        <target state="new">امکانات</target>
+      </trans-unit>
+      <trans-unit id="4da07db05d17b9c86960089692d682837ee292f7" resname="father.name">
+        <jms:reference-file line="33">SuperPanelBundle/Form/UserType.php</jms:reference-file>
+        <source>father.name</source>
+        <target state="new">نام پدر</target>
+      </trans-unit>
+      <trans-unit id="407004ca4b2231ca02e81ecb048f2d7d21524fcf" resname="first.name">
+        <jms:reference-file line="19">SuperPanelBundle/Form/UserType.php</jms:reference-file>
+        <source>first.name</source>
+        <target state="new">نام</target>
+      </trans-unit>
+      <trans-unit id="39a6bd435eb632f802d806b2b41b9326f1b16b51" resname="grade">
+        <jms:reference-file line="49">SuperPanelBundle/Form/UserType.php</jms:reference-file>
+        <source>grade</source>
+        <target state="new">مقطع تحصیلی</target>
+      </trans-unit>
+      <trans-unit id="9c1b5ca04a38c4387ad45098a75b7bb3eab327f7" resname="is.active">
+        <jms:reference-file line="52">SuperPanelBundle/Form/BlogType.php</jms:reference-file>
+        <source>is.active</source>
+        <target state="new">فعال؟</target>
+      </trans-unit>
+      <trans-unit id="a52f641322a1f1443d4b4131a3a791df04b97cd6" resname="last.name">
+        <jms:reference-file line="26">SuperPanelBundle/Form/UserType.php</jms:reference-file>
+        <source>last.name</source>
+        <target state="new">نام خانوادگی</target>
+      </trans-unit>
+      <trans-unit id="6ae999552a0d2dca14d62e2bc8b764d377b1dd6c" resname="name">
+        <jms:reference-file line="33">SuperPanelBundle/Form/BlogType.php</jms:reference-file>
+        <source>name</source>
+        <target state="new">نام</target>
+      </trans-unit>
+      <trans-unit id="d8fd39d0bbdd2dcf322d8b11390a4c5825b11495" resname="parent">
+        <jms:reference-file line="59">SuperPanelBundle/Form/BlogType.php</jms:reference-file>
+        <source>parent</source>
+        <target state="new">والد</target>
+      </trans-unit>
+      <trans-unit id="a3948b95a984bdf724e6a000c138d673be80502f" resname="password.old">
+        <jms:reference-file line="34">SuperPanelBundle/Controller/SettingController.php</jms:reference-file>
+        <source>password.old</source>
+        <target state="new">پسورد قبلی</target>
+      </trans-unit>
+      <trans-unit id="ff55435345834a3fe224936776c2aa15f6ed5358" resname="placeholder">
+        <source>placeholder</source>
+        <target>لطفا یک گزینه انتخاب کنید</target>
+      </trans-unit>
+      <trans-unit id="149218a3c46acd1bed832f3dce1cff0af8d3ada4" resname="staff.code">
+        <jms:reference-file line="40">SuperPanelBundle/Form/UserType.php</jms:reference-file>
+        <source>staff.code</source>
+        <target state="new">کد پرسنلی</target>
+      </trans-unit>
+      <trans-unit id="dc151a5a2b81059b41f6ee78dbae34c114ce1528" resname="theme">
+        <jms:reference-file line="42">SuperPanelBundle/Form/BlogType.php</jms:reference-file>
+        <source>theme</source>
+        <target state="new">پوسته</target>
+      </trans-unit>
+      <trans-unit id="3c6de1b7dd91465d437ef415f94f36afc1fbc8a8" resname="title">
+        <jms:reference-file line="19">SuperPanelBundle/Form/BlogType.php</jms:reference-file>
+        <source>title</source>
+        <target state="new">عنوان</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

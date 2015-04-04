@@ -77,7 +77,7 @@ class UserController extends Controller
             return new JsonResponse(array(
                 'status' => array(
                     'code' => (count($users) == 0) ? 404 : 200,
-                    'message' => (count($users) == 0) ? 'not.found' : 'OK'
+                    'message' => (count($users) == 0) ? $this->get('translator')->trans('not.found') : 'OK'
                 ),
                 'response' => array(
                     'users' => (count($users) != 0) ? array(
@@ -102,7 +102,7 @@ class UserController extends Controller
             return new JsonResponse(array(
                'status' => array(
                    'code' => 400,
-                   'message' => 'form.is.invalid'
+                   'message' => $this->get('translator')->trans('form.is.invalid')
                ),
                 'response' => array(
                     'users' => array()
@@ -161,7 +161,10 @@ class UserController extends Controller
             $em->persist($user);
             $em->flush();
 
-            $request->getSession()->getFlashBag()->add('info', 'user.was.created.successfully');
+            $request->getSession()->getFlashBag()->add(
+                'info',
+                $this->get('translator')->trans('user.was.created.successfully')
+            );
             return $this->redirect($this->generateUrl('anar_super_panel_user_index'));
         }
 
@@ -185,7 +188,7 @@ class UserController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'create'));
+        $form->add('submit', 'submit', array('label' => 'create', 'translation_domain' => 'messages'));
 
         return $form;
     }
@@ -202,7 +205,10 @@ class UserController extends Controller
         $user = $em->getRepository('AnarEngineBundle:User')->find($id);
 
         if (!$user) {
-            $request->getSession()->getFlashBag()->add('error', 'user.is.not.exists');
+            $request->getSession()->getFlashBag()->add(
+                'error',
+                $this->get('translator')->trans('user.is.not.exists')
+            );
             $this->redirectToRoute('anar_super_panel_user_index');
         }
 
@@ -248,7 +254,10 @@ class UserController extends Controller
         $user = $em->getRepository('AnarEngineBundle:User')->find($id);
 
         if (!$user) {
-            $request->getSession()->getFlashBag()->add('error', 'user.is.not.exists');
+            $request->getSession()->getFlashBag()->add(
+                'error',
+                $this->get('translator')->trans('user.is.not.exists')
+            );
             $this->redirectToRoute('anar_super_panel_user_index');
         }
 
@@ -258,7 +267,10 @@ class UserController extends Controller
         if ($form->isValid()) {
             $userManager->updateUser($user);
 
-            $request->getSession()->getFlashBag()->add('info', 'user.is.not.exists');
+            $request->getSession()->getFlashBag()->add(
+                'info',
+                $this->get('translator')->trans('user.was.edited.successfully')
+            );
             return $this->redirect($this->generateUrl('anar_super_panel_user_index', array('id' => $id)));
         }
 

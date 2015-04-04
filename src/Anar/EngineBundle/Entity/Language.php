@@ -29,6 +29,10 @@ class Language
      */
     private $icon;
 
+    /**
+     * @var string
+     */
+    private $direction;
 
     /**
      * Get id
@@ -107,5 +111,28 @@ class Language
     public function getIcon()
     {
         return $this->icon;
+    }
+
+    /**
+     * Set direction
+     *
+     * @param string $direction
+     * @return Language
+     */
+    public function setDirection($direction)
+    {
+        $this->direction = $direction;
+
+        return $this;
+    }
+
+    /**
+     * Get direction
+     *
+     * @return string 
+     */
+    public function getDirection()
+    {
+        return $this->direction;
     }
 }

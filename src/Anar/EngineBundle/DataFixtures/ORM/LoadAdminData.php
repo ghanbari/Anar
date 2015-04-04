@@ -41,7 +41,6 @@ class LoadAdminData implements FixtureInterface, ContainerAwareInterface
             ->setSuperAdmin(true)
             ->setPlainPassword($this->container->getParameter('admin_password'));
 
-        $manager->persist($admin);
-        $manager->flush();
+        $this->container->get('fos_user.user_manager')->updateUser($admin);
     }
 }

@@ -13,4 +13,6 @@ Anar\EngineBundle\Entity\Language:
         code:
             length: 20
         icon: ~
+        direction:
+            length: 3
     lifecycleCallbacks: {  }
