@@ -1,8 +1,180 @@
-{% extends '::base.html.twig' %}
+{% extends "AnarSuperPanelBundle:Desktop:home.html.twig" %}
 
-{% block body -%}
+{% block csses %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/css/super_panel.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/css/bootstrap-switch-metro-rtl.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/css/select2_metro_rtl.css') }}">
+    <style>
+        .select{
+            width: 100%;
+        }
+
+        .select2-arrow b{
+            background-position: 5px 4px !important;
+        }
+
+        #user_search_Search{
+            display: none;
+        }
+        .required:after{
+            content: '*';
+        }
+
+        .form_title{
+            font-size: 1.2em;
+        }
+    </style>
+{% endblock csses %}
+
+{% block top_fixed_superpanel_box %}
+    <div id="sp-topBar">
+        <span>{{ 'last login:' }}<time dir="ltr"></time></span>
+        <a class="btn btn-xs btn-danger" href="">{{ 'logout'|trans }}</a>
+    </div>
+    <div id="sp-headerWrap">
+        <div id="sp-logo"></div>
+    </div>
+    <div id="sp-tabBar">
+        <div id="sp-label">
+            <h1>Super Panel</h1>
+            <h2>Pomegranate notification system</h2>
+        </div>
+        <span id="sp-firstSpan"></span>
+        <span onclick="location.href = '{{ path("anar_super_panel_blog_index") }}'" data-URL="ajaxUrlRoles"><i class="fa fa-sitemap"></i><br>{{ 'blogs'|trans }}</span>
+        <span onclick="location.href = '{{ path("anar_super_panel_user_index") }}'" data-URL="ajaxUrlUsers" data-active="true"><i class="fa fa-users"></i><br>{{ 'users'|trans }}</span>
+        <span data-URL="ajaxUrlPermations"><i class="fa fa-paperclip"></i><br>{{ 'permission'|trans }}</span>
+        <span data-URL="ajaxUrlsetttings"><i class="fa fa-gears"></i><br>{{ 'settings'|trans }}</span>
+        <span id="sp-lastSpan"></span>
+    </div>
+
+{% endblock top_fixed_superpanel_box %}
+
+{% block container %}
+{% for message in app.session.getFlashBag().get('info') %}
+    {{ message|trans }}
+{% endfor %}
+
+{% for message in app.session.getFlashBag().get('errors') %}
+    {{ message|trans }}
+{% endfor %}
+
+{% for message in app.session.getFlashBag().get('warning') %}
+    {{ message|trans }}
+{% endfor %}
+<div class="col-md-10 col-sm-10 col-md-offset-1 col-sm-offset-1 tab_content_box margin-top-25 margin-bottom-25">
+    <div class="row">
+        <div class="col-md-6 col-sm-6 tittle_tab_content">
+            <i class="fa fa-users"></i>
+            <span>مدیریت  کاربران</span>
+        </div>
+        <div class="col-md-1 col-sm-1 pull-left text-left">
+            <i onclick="location.href = '{{ path("anar_super_panel_home") }}'" class="glyphicon glyphicon-remove cursor_pointer" style="cursor: pointer"></i>
+        </div>
+    </div>
+    <hr id="cutter">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 margin-top-10">
+            <button type="button" class="btn-primary-costum" onclick="location.href = '{{ path("anar_super_panel_user_new") }}'">
+                <i class="fa fa-plus"></i> ایجاد کاربر جدید
+            </button>
+        </div>
+        <div class="col-md-12 col-sm-12 margin-top-10">
+            <div class="form_container">
+                <p class="form_title">جستجوی کاربر</p>
+                <hr id="cutter">
+                <div class="row">
+                    <div class="col-md-8 col-sm-8 margin-top-10">
+                        {{ form_start(form) }}
+                        <div class="row">
+                            <div class="form-group">
+                                <label class="col-md-2 col-sm-2 control-label text-left">نام کاربری</label>
+                                <div class="col-md-9 col-sm-9">
+                                    {{ form_widget(form.username,{ 'attr' : {'class':'form-control'} }) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row margin-top-10">
+                            <div class="form-group">
+                                <label class="col-md-2 col-sm-2 control-label text-left">ایمیل</label>
+                                <div class="col-md-9 col-sm-9">
+                                    {{ form_widget(form.email,{ 'attr' : {'class':'form-control'} }) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row margin-top-10">
+                            <div class="form-group">
+                                <label class="col-md-2 col-sm-2 control-label text-left">نام</label>
+                                <div class="col-md-9 col-sm-9">
+                                    {{ form_widget(form.fname,{ 'attr' : {'class':'form-control'} }) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row margin-top-10">
+                            <div class="form-group">
+                                <label class="col-md-2 col-sm-2 control-label text-left">نام خانوادگی</label>
+                                <div class="col-md-9 col-sm-9">
+                                    {{ form_widget(form.lname,{ 'attr' : {'class':'form-control'} }) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row margin-top-10">
+                            <div class="form-group">
+                                <label class="col-md-2 col-sm-2 control-label text-left">شماره پرسنلی</label>
+                                <div class="col-md-9 col-sm-9">
+                                    {{ form_widget(form.staffCode,{ 'attr' : {'class':'form-control'} }) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row margin-top-10">
+                            <div class="form-group">
+                                <label class="col-md-2 col-sm-2 control-label text-left">مدرک</label>
+                                <div class="col-md-9 col-sm-9">
+                                    {{ form_widget(form.grade,{ 'attr' : {'class':'select'} }) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row margin-top-10">
+                            <div class="form-group">
+                                <label class="col-md-2 col-sm-2 control-label text-left">فعال</label>
+                                <div class="col-md-9 col-sm-9">
+                                    <div class="make-switch">
+                                        {{ form_widget(form.enabled,{ 'attr' : {'class':'toggle'} }) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row margin-top-10">
+                            <div class="form-group">
+                                <label class="col-md-2 col-sm-2 control-label text-left">منقضی شده</label>
+                                <div class="col-md-9 col-sm-9">
+                                    <div class="make-switch">
+                                        {{ form_widget(form.expired,{ 'attr' : {'class':'toggle'} }) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row margin-top-10">
+                            <div class="col-md-2 col-sm-2"></div>
+                            <div class="col-md-9 col-sm-9">
+                                <button type="submit" class="btn btn-submit-blog">جستجو</button>
+                            </div>
+                        </div>
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-sm-12 margin-top-20">
+            <table class="table">
+
+            </table>
+        </div>
+
+    </div>
+</div>
+
     <h1>User list ({{ users.getTotalItemCount }})</h1>
-    {{ form(form) }}
+
     <table class="records_list">
         <thead>
         <tr>
@@ -14,25 +186,25 @@
         <tbody>
         {% for user in users %}
             <tr>
-                <td>{{ user.username }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.fname }}</td>
-                <td>{{ user.lname }}</td>
-                <td>{{ user.staffCode }}</td>
-                <td>{{ user.grade.name }}</td>
-                <td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.fname }}</td>
+            <td>{{ user.lname }}</td>
+            <td>{{ user.staffCode }}</td>
+            <td>{{ user.grade.name }}</td>
+            <td>
                 <ul>
                     <li>
                         <a href="{{ path('anar_super_panel_user_edit', { 'id': user.id }) }}">edit</a>
                     </li>
                 </ul>
-                </td>
-            </tr>
+            </td>
+        </tr>
         {% endfor %}
         </tbody>
     </table>
 
-        <ul>
+    <ul>
         <li>
             <a href="{{ path('anar_super_panel_user_new') }}">
                 Create a new entry
@@ -40,4 +212,27 @@
         </li>
     </ul>
     {{ knp_pagination_render(users) }}
-    {% endblock %}
+{% endblock %}
+
+
+{% block scripts %}
+<script src="{{ asset('bundles/anarsuperpanel/js/bootstrap-switch.min.js') }}"></script>
+<script src="{{ asset('bundles/anarsuperpanel/js/select2.min.js') }}"></script>
+<script>
+    $(".select").select2({
+        placeholder: "انتخاب کنید"
+    });
+
+    $('.btn-submit-blog').click(function(){
+        $.ajax({
+            url: "{{ path('anar_super_panel_user_search') }}"
+            error: function(message){
+                alert("message : "+message);
+            },
+            success: function(data){
+                alert(data.response['pagination']);
+            }
+        })
+    });
+</script>
+{% endblock %}

@@ -1,15 +1,155 @@
-{% extends '::base.html.twig' %}
+{% extends "AnarSuperPanelBundle:Desktop:home.html.twig" %}
 
-{% block body -%}
-    <h1>User creation</h1>
+{% block csses %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/css/super_panel.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/css/bootstrap-switch-metro-rtl.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/css/select2_metro_rtl.css') }}">
+    <style>
+        .select{
+            width: 100%;
+        }
 
-    {{ form(form) }}
+        .select2-arrow b{
+            background-position: 5px 4px !important;
+        }
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('anar_super_panel_user_index') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+        #super_panel_user_registraton_submit{
+            display: none;
+        }
+        .required:after{
+            content: '*';
+        }
+    </style>
+{% endblock csses %}
+
+{% block top_fixed_superpanel_box %}
+    <div id="sp-topBar">
+        <span>{{ 'last login:' }}<time dir="ltr"></time></span>
+        <a class="btn btn-xs btn-danger" href="">{{ 'logout'|trans }}</a>
+    </div>
+    <div id="sp-headerWrap">
+        <div id="sp-logo"></div>
+    </div>
+    <div id="sp-tabBar">
+        <div id="sp-label">
+            <h1>Super Panel</h1>
+            <h2>Pomegranate notification system</h2>
+        </div>
+        <span id="sp-firstSpan"></span>
+        <span onclick="location.href = '{{ path("anar_super_panel_blog_index") }}'" data-URL="ajaxUrlRoles"><i class="fa fa-sitemap"></i><br>{{ 'blogs'|trans }}</span>
+        <span onclick="location.href = '{{ path("anar_super_panel_user_index") }}'" data-URL="ajaxUrlUsers" data-active="true"><i class="fa fa-users"></i><br>{{ 'users'|trans }}</span>
+        <span data-URL="ajaxUrlPermations"><i class="fa fa-paperclip"></i><br>{{ 'permission'|trans }}</span>
+        <span data-URL="ajaxUrlsetttings"><i class="fa fa-gears"></i><br>{{ 'settings'|trans }}</span>
+        <span id="sp-lastSpan"></span>
+    </div>
+
+{% endblock top_fixed_superpanel_box %}
+
+{% block container %}
+<div class="col-md-10 col-sm-10 col-md-offset-1 col-sm-offset-1 tab_content_box margin-top-25 margin-bottom-25">
+    <div class="row">
+        <div class="col-md-6 col-sm-6 tittle_tab_content">
+            <i class="fa fa-sitemap"></i>
+            <span>افزودن کاربر</span>
+        </div>
+        <div class="col-md-1 col-sm-1 pull-left text-left">
+            <i onclick="location.href = '{{ path("anar_super_panel_home") }}'" class="glyphicon glyphicon-remove cursor_pointer" style="cursor: pointer"></i>
+        </div>
+    </div>
+    <hr id="cutter">
+    <div class="row">
+        <div class="col-md-8 col-sm-8">
+            {{ form_start(form) }}
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-md-2 col-sm-2 control-label text-left">{{ form_label(form.email) }}</label>
+                    <div class="col-md-9 col-sm-9">
+                        {{ form_widget(form.email,{ 'attr' : {'class':'form-control'} }) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                <div class="form-group">
+                    <label class="col-md-2 col-sm-2 control-label text-left">{{ form_label(form.username) }}</label>
+                    <div class="col-md-9 col-sm-9">
+                        {{ form_widget(form.username,{ 'attr' : {'class':'form-control'} }) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                <div class="form-group">
+                    <label class="col-md-2 col-sm-2 control-label text-left">{{ form_label(form.plainPassword.first) }}</label>
+                    <div class="col-md-9 col-sm-9">
+                        {{ form_widget(form.plainPassword.first,{ 'attr' : {'class':'form-control'} }) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                <div class="form-group">
+                    <label class="col-md-2 col-sm-2 control-label text-left">{{ form_label(form.plainPassword.second) }}</label>
+                    <div class="col-md-9 col-sm-9">
+                        {{ form_widget(form.plainPassword.second,{ 'attr' : {'class':'form-control'} }) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                <div class="form-group">
+                    <label class="col-md-2 col-sm-2 control-label text-left">{{ form_label(form.fname) }}</label>
+                    <div class="col-md-9 col-sm-9">
+                        {{ form_widget(form.fname,{ 'attr' : {'class':'form-control'} }) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                <div class="form-group">
+                    <label class="col-md-2 col-sm-2 control-label text-left">{{ form_label(form.lname) }}</label>
+                    <div class="col-md-9 col-sm-9">
+                        {{ form_widget(form.lname,{ 'attr' : {'class':'form-control'} }) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                <div class="form-group">
+                    <label class="col-md-2 col-sm-2 control-label text-left">{{ form_label(form.faname) }}</label>
+                    <div class="col-md-9 col-sm-9">
+                        {{ form_widget(form.faname,{ 'attr' : {'class':'form-control'} }) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                <div class="form-group">
+                    <label class="col-md-2 col-sm-2 control-label text-left">{{ form_label(form.staffCode) }}</label>
+                    <div class="col-md-9 col-sm-9">
+                        {{ form_widget(form.staffCode,{ 'attr' : {'class':'form-control'} }) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                <div class="form-group">
+                    <label class="col-md-2 col-sm-2 control-label text-left">{{ form_label(form.grade) }}</label>
+                    <div class="col-md-9 col-sm-9">
+                        {{ form_widget(form.grade,{ 'attr' : {'class':'select'} }) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                <div class="col-md-2 col-sm-2"></div>
+                <div class="col-md-9 col-sm-9">
+                    <button type="submit" class="btn btn-submit-blog">ذخیره</button>
+                    <a class="btn btn-submit-blog" href="{{ path('anar_super_panel_user_index') }}">بازگشت</a>
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{{ asset('bundles/anarsuperpanel/js/bootstrap-switch.min.js') }}"></script>
+<script src="{{ asset('bundles/anarsuperpanel/js/select2.min.js') }}"></script>
+<script>
+    $(".select").select2({
+        placeholder: "انتخاب کنید"
+    });
+</script>
 {% endblock %}
