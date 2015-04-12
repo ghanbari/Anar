@@ -4,6 +4,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/css/super_panel.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/css/bootstrap-switch-metro-rtl.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/css/select2_metro_rtl.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/plugins/Alert/alert.css') }}">
     <style>
         .select{
             width: 100%;
@@ -50,17 +51,14 @@
 {% endblock top_fixed_superpanel_box %}
 
 {% block container %}
-{% for message in app.session.getFlashBag().get('info') %}
-    {{ message|trans }}
-{% endfor %}
 
-{% for message in app.session.getFlashBag().get('errors') %}
-    {{ message|trans }}
-{% endfor %}
+{#{% for message in app.session.getFlashBag().get('errors') %}#}
+    {#{{ message|trans }}#}
+{#{% endfor %}#}
 
-{% for message in app.session.getFlashBag().get('warning') %}
-    {{ message|trans }}
-{% endfor %}
+{#{% for message in app.session.getFlashBag().get('warning') %}#}
+    {#{{ message|trans }}#}
+{#{% endfor %}#}
 <div class="col-md-10 col-sm-10 col-md-offset-1 col-sm-offset-1 tab_content_box margin-top-25 margin-bottom-25">
     <div class="row">
         <div class="col-md-6 col-sm-6 tittle_tab_content">
@@ -156,7 +154,7 @@
                         <div class="row margin-top-10">
                             <div class="col-md-2 col-sm-2"></div>
                             <div class="col-md-9 col-sm-9">
-                                <button type="submit" class="btn btn-submit-blog">جستجو</button>
+                                <button type="submit" onclick="submit_search_form(event)" class="btn btn-submit-blog">جستجو</button>
                             </div>
                         </div>
                         {{ form_end(form) }}
@@ -165,74 +163,92 @@
             </div>
         </div>
         <div class="col-md-12 col-sm-12 margin-top-20">
-            <table class="table">
-
+            <div class="row">
+                <p class="text-center">لیست کاربران <span class="user_total_count">({{ users.getTotalItemCount }})</span> </p>
+            </div>
+            <table class="records_list">
+                <tr>
+                    {# sorting of properties based on query components #}
+                    {#<td>{{ knp_pagination_sortable(users, 'ای دی', 'u.id') }}</td>#}
+                    <td{% if users.isSorted('u.username') %} class="sorted col-md-2 col-sm-2"{% endif %}>{{ knp_pagination_sortable(users, 'نام کاربری', 'u.username') }}</td>
+                    <td{% if users.isSorted('u.email') %} class="sorted col-md-2 col-sm-2"{% endif %}>{{ knp_pagination_sortable(users, 'ایمیل', 'u.email') }}</td>
+                    <td{% if users.isSorted('u.fname') %} class="sorted col-md-1 col-sm-1"{% endif %}>{{ knp_pagination_sortable(users, 'نام', 'u.fname') }}</td>
+                    <td{% if users.isSorted('u.lname') %} class="sorted col-md-2 col-sm-2"{% endif %}>{{ knp_pagination_sortable(users, 'نام خانوادگی', 'u.lname') }}</td>
+                    <td{% if users.isSorted('u.staffcode') %} class="sorted col-md-2 col-sm-2"{% endif %}>{{ knp_pagination_sortable(users, 'شماره پرسنلی', 'u.staffcode') }}</td>
+                    <td{% if users.isSorted('u.degree') %} class="sorted col-md-1 col-sm-1"{% endif %}>{{ knp_pagination_sortable(users, 'مدرک', 'u.degree') }}</td>
+                    <td class="col-md-2 col-sm-2"></td>
+                </tr>
+                {% set i = 1 %}
+                {% for user in users %}
+                    <tr data-id="{{ user.id }}" {% if i % 2 == 0 %} class="t2" {% else %} class="t1" {% endif %}>
+                        <td class="col-md-2 col-sm-2">{{ user.username }}</td>
+                        <td class="col-md-2 col-sm-2">{{ user.email }}</td>
+                        <td class="col-md-1 col-sm-1">{{ user.fname }}</td>
+                        <td class="col-md-2 col-sm-2">{{ user.lname }}</td>
+                        <td class="col-md-2 col-sm-2">{{ user.staffCode }}</td>
+                        <td class="col-md-1 col-sm-1">{{ user.grade.name }}</td>
+                        <td class="col-md-2 col-sm-2">
+                            <span class="R_butt_green" onclick="location.href = '{{ path('anar_super_panel_user_edit', { 'id': user.id }) }}'">ویرایش</span>
+                            <span class="R_butt_red delete_user" data-id="{{ user.id }}">حذف</span>
+                        </td>
+                    </tr>
+                {% set i = i + 1 %}
+                {% endfor %}
             </table>
+            {{ knp_pagination_render(users) }}
         </div>
 
     </div>
 </div>
 
-    <h1>User list ({{ users.getTotalItemCount }})</h1>
-
-    <table class="records_list">
-        <thead>
-        <tr>
-            {# sorting of properties based on query components #}
-            <th>{{ knp_pagination_sortable(users, 'ای دی', 'u.id') }}</th>
-            <th{% if users.isSorted('u.username') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(users, 'username', 'u.username') }}</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for user in users %}
-            <tr>
-            <td>{{ user.username }}</td>
-            <td>{{ user.email }}</td>
-            <td>{{ user.fname }}</td>
-            <td>{{ user.lname }}</td>
-            <td>{{ user.staffCode }}</td>
-            <td>{{ user.grade.name }}</td>
-            <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('anar_super_panel_user_edit', { 'id': user.id }) }}">edit</a>
-                    </li>
-                </ul>
-            </td>
-        </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('anar_super_panel_user_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
-    {{ knp_pagination_render(users) }}
 {% endblock %}
 
 
 {% block scripts %}
 <script src="{{ asset('bundles/anarsuperpanel/js/bootstrap-switch.min.js') }}"></script>
 <script src="{{ asset('bundles/anarsuperpanel/js/select2.min.js') }}"></script>
+<script src="{{ asset('bundles/anarsuperpanel/plugins/Alert/alert.js') }}"></script>
 <script>
+    var message = 111;
+    {% for message in app.session.getFlashBag().get('info') %}
+        message = '{{ message|trans }}';
+    {% endfor %}
+    alert(message);
     $(".select").select2({
         placeholder: "انتخاب کنید"
     });
 
-    $('.btn-submit-blog').click(function(){
+    function submit_search_form(event){
+        event.preventDefault();
         $.ajax({
-            url: "{{ path('anar_super_panel_user_search') }}"
+            url: "{{ path('anar_super_panel_user_search') }}",
             error: function(message){
-                alert("message : "+message);
+                Alert.render("message : "+message);
             },
             success: function(data){
-                alert(data.response['pagination']);
+                Alert.render(JSON.stringify(data.response['pagination']));
             }
-        })
+        });
+    }
+
+    $('.delete_user').click(function(){
+        var user_id = $(this).attr('data-id');
+        var check_path = "{{ path('anar_super_panel_user_delete', { 'id': "__id__" }) }}";
+        var delete_path = check_path.replace("__id__", user_id);
+        $.ajax({
+            url: delete_path,
+            type: "post",
+            data:{
+                "token": '{{ token }}'
+            },
+            error: function(message){
+                Alert.render("message : "+message.status['message']);
+            },
+            success: function(data){
+                Alert.render('کاربر با موفقیت حذف شد!');
+                $('tr[data-id=' + user_id + ']').remove();
+            }
+        });
     });
 </script>
 {% endblock %}

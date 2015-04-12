@@ -68,3 +68,82 @@
     border: 1px solid #e5e5e5;
     padding: 15px;
 }
+
+.records_list{
+    width: 100%;
+}
+
+.records_list tr:first-child{
+    background: #ccc;
+    padding: 10px;
+    color: white;
+}
+
+.records_list tr:first-child{
+    background: #ccc;
+    padding: 10px;
+    color: #ffffff;
+}
+
+.records_list tr:first-child td{
+    padding: 10px;
+}
+
+.records_list tr:first-child td a{
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.records_list .t1{
+    background: #ffffff;
+    color: #828282;
+}
+
+.records_list .t1 td{
+    padding: 10px;
+}
+
+.records_list .t2{
+    background: #f7f7f7;
+    color: #828282;
+}
+
+.records_list .t2 td{
+    padding: 10px;
+}
+
+.R_butt_green{
+    background: #6dc437;
+    padding: 0 10px;
+    color: #ffffff;
+    text-align: center;
+    cursor: pointer;
+}
+
+.R_butt_green:hover{
+    background: #508f29;
+}
+
+.R_butt_red{
+    background: #c44d49;
+    padding: 0 10px;
+    color: #ffffff;
+    text-align: center;
+    cursor: pointer;
+}
+
+.R_butt_red:hover{
+    background: #933937;
+}
+
+.R_butt_blue{
+    background: #00a0dc;
+    padding: 0 10px;
+    color: #ffffff;
+    text-align: center;
+    cursor: pointer;
+}
+
+.R_butt_blue:hover{
+    background: #0079A6;
+}
