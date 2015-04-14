@@ -70,6 +70,8 @@
 
 {% block scripts %}
     <script src="{{ asset('static/jstree/dist/jstree.min.js') }}"></script>
+    <script src="{{ asset('bundles/anarsuperpanel/js/routes.js') }}"></script>
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
 
     <script>
         function customMenu(node){
@@ -78,7 +80,10 @@
                 renameItem: { // The "rename" menu item
                     "label": "ویرایش",
                     "icon": "glyphicon glyphicon-edit",
-                    action: function () {}
+                    action: function () {
+                        var check_path = Routing.generate('anar_super_panel_blog_edit',{'id': node.id});
+                        alert(check_path);
+                    }
                 },
                 deleteItem: { // The "delete" menu item
                     "label": "حذف",
@@ -111,63 +116,6 @@
             },
             "plugins": ["themes", "html_data", "ui", "crrm", "contextmenu"],
             contextmenu: {items: customMenu}
-//            "contextmenu": {
-//                "items": function ($node) {
-//                    return {
-//                        "Edit": {
-//                            "label": "ویرایش ",
-//                            "icon": "glyphicon glyphicon-edit",
-//                            "action": function () {
-//                                if($rolesList.jstree(true).get_selected().length == 1){
-//                                    $.ajax({
-//                                        url:"role/"+$node.id+"/edit",
-//                                        error: function(XHR,message){
-//                                            alert("در روند درخواست پنجره ویرایش نقش خطایی رخ داده است! <br> message : "+message);
-//                                        },
-//                                        success: function(response){
-//                                            $("div#app-modal-container").html(response);
-//                                        }
-//                                    });
-//                                }else{
-//                                    alert("امکان ویرایش دسته جمعی در این نسخه موجود نمی باشد.");
-//                                }
-//                            }
-//                        },
-//                        "Delete": {
-//                            "label": "حذف ",
-//                            "icon": "glyphicon glyphicon-remove",
-//                            "action": function () {
-//                                if($rolesList.jstree(true).get_selected().length == 1){
-//                                    $.tinyNotice({
-//                                        setConfirm:["بله","نه,ممنون"], //to use default botton topic writing true
-//                                        statusTitle : "حذف نقش",
-//                                        statusText : "آیامی خواهید نقش "+$node.text+" را برای همیشه حذف نمایید ؟",
-//                                        accept: function(){
-//                                            $.ajax({
-//                                                type:"post",
-//                                                url:"role/"+$node.id+"/delete",
-//                                                error: function(XHR,message){
-//                                                    alert("در روند درخواست حذف نقش خطایی رخ داده است! <br> message : "+message);
-//                                                },
-//                                                success: function(response){
-//                                                    if (response.status == "success") {
-//                                                        alert("نقش "+$node.text+" با موفقیت حذف شد! <br> message : "+response.status_text);
-//                                                        $rolesList.jstree("refresh");
-//                                                    } else {
-//                                                        alert("عملیات حذف نقش "+$node.text+" با مشکل مواجه شده است. <br><small>توجه : امکان حذف نقش پدر در این نسخه وجود ندارد و باید ابتدا کلیه فرزندان آن را حذف نمایید <br> message : "+response.status_text);
-//                                                    }
-//                                                }
-//                                            });
-//                                        }
-//                                    });
-//                                }else{
-//                                    alert("امکان حذف دسته جمعی در این نسخه موجود نمی باشد.");
-//                                }
-//                            }
-//                        }
-//                    };
-//                }
-//            }
         }).on('loaded.jstree', function() {
             $(this).jstree('open_all');
         });

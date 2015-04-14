@@ -78,7 +78,7 @@
                 <hr id="cutter">
                 <div class="row">
                     <div class="col-md-8 col-sm-8 margin-top-10">
-                        {{ form_start(form) }}
+                        {{ form_start(form, { 'attr': {'class': 'search_form'}}) }}
                         <div class="row">
                             <div class="form-group">
                                 <label class="col-md-2 col-sm-2 control-label text-left">نام کاربری</label>
@@ -221,6 +221,7 @@
         $.ajax({
             url: "{{ path('anar_super_panel_user_search') }}",
             type: "post",
+            data: $('.search_form').serialize(),
             error: function(message){
                 Alert.render("message : "+message);
             },
