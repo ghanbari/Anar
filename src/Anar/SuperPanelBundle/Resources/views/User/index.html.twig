@@ -13,10 +13,6 @@
         .select2-arrow b{
             background-position: 5px 4px !important;
         }
-
-        #user_search_Search{
-            display: none;
-        }
         .required:after{
             content: '*';
         }
@@ -154,7 +150,7 @@
                         <div class="row margin-top-10">
                             <div class="col-md-2 col-sm-2"></div>
                             <div class="col-md-9 col-sm-9">
-                                <button type="submit" onclick="submit_search_form(event)" class="btn btn-submit-blog">جستجو</button>
+                                {{ form_widget(form.Search, {'attr': {'class': 'btn btn-submit-blog', 'onclick': 'submit_search_form(event)'}}) }}
                             </div>
                         </div>
                         {{ form_end(form) }}
@@ -175,7 +171,7 @@
                     <td{% if users.isSorted('u.fname') %} class="sorted col-md-1 col-sm-1"{% endif %}>{{ knp_pagination_sortable(users, 'نام', 'u.fname') }}</td>
                     <td{% if users.isSorted('u.lname') %} class="sorted col-md-2 col-sm-2"{% endif %}>{{ knp_pagination_sortable(users, 'نام خانوادگی', 'u.lname') }}</td>
                     <td{% if users.isSorted('u.staffcode') %} class="sorted col-md-2 col-sm-2"{% endif %}>{{ knp_pagination_sortable(users, 'شماره پرسنلی', 'u.staffcode') }}</td>
-                    <td{% if users.isSorted('u.degree') %} class="sorted col-md-1 col-sm-1"{% endif %}>{{ knp_pagination_sortable(users, 'مدرک', 'u.degree') }}</td>
+                    <td class="col-md-1 col-sm-1">فعال</td>
                     <td class="col-md-2 col-sm-2"></td>
                 </tr>
                 {% set i = 1 %}
@@ -186,7 +182,7 @@
                         <td class="col-md-1 col-sm-1">{{ user.fname }}</td>
                         <td class="col-md-2 col-sm-2">{{ user.lname }}</td>
                         <td class="col-md-2 col-sm-2">{{ user.staffCode }}</td>
-                        <td class="col-md-1 col-sm-1">{{ user.grade.name }}</td>
+                        <td class="col-md-1 col-sm-1 {% if user.enabled %}active{% endif %}">{{ user.enabled }}</td>
                         <td class="col-md-2 col-sm-2">
                             <span class="R_butt_green" onclick="location.href = '{{ path('anar_super_panel_user_edit', { 'id': user.id }) }}'">ویرایش</span>
                             <span class="R_butt_red delete_user" data-id="{{ user.id }}">حذف</span>
@@ -195,9 +191,11 @@
                 {% set i = i + 1 %}
                 {% endfor %}
             </table>
+
+        </div>
+        <div class="col-md-12 col-sm-12 text-center">
             {{ knp_pagination_render(users) }}
         </div>
-
     </div>
 </div>
 
@@ -222,11 +220,18 @@
         event.preventDefault();
         $.ajax({
             url: "{{ path('anar_super_panel_user_search') }}",
+            type: "post",
             error: function(message){
                 Alert.render("message : "+message);
             },
             success: function(data){
-                Alert.render(JSON.stringify(data.response['pagination']));
+                if(data.status['code'] == 200){
+                    Alert.render("aaa" + JSON.stringify(data.response['pagination']));
+                }
+                else{
+                    Alert.render(data.status['code']);
+                    Alert.render(data.status['message']);
+                }
             }
         });
     }
