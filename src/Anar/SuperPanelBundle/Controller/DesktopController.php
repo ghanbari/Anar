@@ -41,7 +41,7 @@ class DesktopController extends Controller
         $usersCount = $this->getDoctrine()->getRepository('AnarEngineBundle:User')->createQueryBuilder('u')
             ->select('count(u.id)')->getQuery()->getSingleScalarResult();
 
-        return new JsonResponse(array(
+        return (new JsonResponse(array(
             'status' => array(
                 'code' => 200,
                 'message' => 'OK'
@@ -50,6 +50,6 @@ class DesktopController extends Controller
                 'blogsCount' => $blogsCount,
                 'usersCount' => $usersCount,
             ),
-        ));
+        )))->setStatusCode(200);
     }
 }

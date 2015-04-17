@@ -46,11 +46,13 @@ class BlogType extends AbstractType
             ->add('onTree', 'checkbox', array(
                 'label' => 'display.in.menu',
                 'data' => true,
+                'required' => false,
                 'empty_data' => true,
             ))
             ->add('active', 'checkbox', array(
                 'label' => 'is.active',
                 'empty_data' => true,
+                'required' => false,
                 'data' => true,
             ))
             ->add('parent', 'entity', array(

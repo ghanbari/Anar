@@ -64,11 +64,9 @@ class SettingController extends Controller
         $form->handleRequest($request);
         $password = $form->getData();
 
-        $encoder_service = $this->get('security.encoder_factory');
-        $encoder = $encoder_service->getEncoder($user);
-        $encoded_pass = $encoder->encodePassword($password['oldPassword'], $user->getSalt());
+        $encoder = $this->get('security.password_encoder');
 
-        if ($encoded_pass == $user->getPassword()) {
+        if ($encoder->isPasswordValid($user, $password['oldPassword'])) {
             if (isset($password['password'])) {
                 $user->setPlainPassword($password['password']);
                 $userManager->updatePassword($user);
@@ -90,9 +88,9 @@ class SettingController extends Controller
             );
         }
 
-        return new JsonResponse(array(
+        return (new JsonResponse(array(
             'status' => $status,
-            'response' => array(),
-        ));
+            'response' => array()
+        )))->setStatusCode($status['code']);
     }
 }

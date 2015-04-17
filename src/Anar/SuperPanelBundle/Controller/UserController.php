@@ -40,12 +40,12 @@ class UserController extends Controller
      *
      * @return Response
      */
-    public function indexAction()
+    public function indexAction($page)
     {
         $paginator = $this->get('knp_paginator');
         $users = $paginator->paginate(
             $this->getUsersQuery(),
-            1,
+            $page,
             $this->getSetting()->get('superpanel.item_per_page', 10)
         );
         return $this->render('AnarSuperPanelBundle:User:index.html.twig', array(
@@ -67,16 +67,16 @@ class UserController extends Controller
         $form = $this->createSearchForm();
         $form->handleRequest($request);
 
-        if ($form->isValid()) {
+        if ($form->isSubmitted()) {
             $userRepository = $this->getDoctrine()->getRepository('AnarEngineBundle:User');
             $usersQuery = $userRepository->getUsersQueryFilterBy($form->getData());
             $paginator = $this->get('knp_paginator');
             $itemPerPage = $this->getSetting()->get('superpanel.item_per_page', 10);
             $pagination = $paginator->paginate($usersQuery, $page, $itemPerPage);
             $users = $pagination->getItems();
-            return new JsonResponse(array(
+            return (new JsonResponse(array(
                 'status' => array(
-                    'code' => (count($users) == 0) ? 404 : 200,
+                    'code' => $statusCode = (count($users) == 0) ? 404 : 200,
                     'message' => (count($users) == 0) ? $this->get('translator')->trans('not.found') : 'OK'
                 ),
                 'response' => array(
@@ -97,9 +97,9 @@ class UserController extends Controller
                         )
                     )
                 )
-            ));
+            )))->setStatusCode($statusCode);
         } else {
-            return new JsonResponse(array(
+            return (new JsonResponse(array(
                'status' => array(
                    'code' => 400,
                    'message' => $this->get('translator')->trans('form.is.invalid')
@@ -107,7 +107,7 @@ class UserController extends Controller
                 'response' => array(
                     'users' => array()
                 )
-            ));
+            )))->setStatusCode(400);
         }
     }
 
@@ -157,9 +157,8 @@ class UserController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
+            $user->setEnabled(true);
+            $this->get('fos_user.user_manager')->updateUser($user);
 
             $request->getSession()->getFlashBag()->add(
                 'info',
@@ -316,10 +315,10 @@ class UserController extends Controller
                 'message' => $translator->trans('token.is.invalid')
             );
         }
-        return new JsonResponse(array(
+        return (new JsonResponse(array(
             'status' => $status,
             'response' => array()
-        ));
+        )))->setStatusCode($status['code']);
     }
 
     /**
@@ -342,10 +341,10 @@ class UserController extends Controller
                 'message' => $translator->trans('name.is.exists'),
             );
         }
-        return new JsonResponse(array(
+        return (new JsonResponse(array(
             'status' => $status,
             'response' => array()
-        ));
+        )))->setStatusCode($status['code']);
     }
 
     public function permissionAction($id)
@@ -361,15 +360,15 @@ class UserController extends Controller
         }
 
         $tree = $doctrine->getRepository('AnarEngineBundle:Blog')->getTreeForJstree(null, null, null, null, $userBlogIds);
-        return new JsonResponse(array(
-           'status' => array(
-               'code' => 200,
-               'message' => 'OK',
-           ),
-           'response' => array(
+        return (new JsonResponse(array(
+            'status' => array(
+                'code' => 200,
+                'message' => 'OK',
+            ),
+            'response' => array(
                 'tree' => $tree
             ),
-        ));
+        )))->setStatusCode(200);
     }
 
     public function permissionUpdateAction(Request $request, $id)
@@ -410,9 +409,9 @@ class UserController extends Controller
 
         $manager->flush();
 
-        return new JsonResponse(array(
+        return (new JsonResponse(array(
             'status' => $status,
             'response' => array()
-        ));
+        )))->setStatusCode($status['code']);
     }
 }

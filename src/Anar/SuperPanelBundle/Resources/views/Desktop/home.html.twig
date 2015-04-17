@@ -82,8 +82,8 @@
 {#<script src="{{ asset('bundles/anarsuperpanel/js/privateActions.js') }}"></script>#}
 
 {% block scripts %}
-
     <script>
+        var basePath = '{{ app.request.getUriForPath('') }}';
         function renderTime(){
             var currentTime = new Date();
             var h = currentTime.getHours();

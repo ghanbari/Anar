@@ -5,7 +5,6 @@ namespace Anar\SuperPanelBundle\Controller;
 use Anar\EngineBundle\Entity\BlogRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
-use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -32,15 +31,15 @@ class BlogController extends Controller
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $repo = $this->getRepository();
 
         return $this->render(
-            'AnarSuperPanelBundle:Blog:index.html.twig',
+            'AnarSuperPanelBundle:Blog:index.' . $request->getRequestFormat() . '.twig',
             array(
                 'tree' => json_encode($repo->getTreeForJstree()),
-                'token' => $this->get('form.csrf_provider')->generateCsrfToken('blog_delete')
+                'token' => $this->get('security.csrf.token_manager')->refreshToken('blog_delete'),
             )
         );
     }
@@ -210,11 +209,16 @@ class BlogController extends Controller
     {
         $translator = $this->get('translator');
 
-        if ($this->get('form.csrf_provider')->isCsrfTokenValid('blog_delete', $request->request->get('token'))) {
+        if ($this->isCsrfTokenValid('blog_delete', $request->request->get('token'))) {
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('AnarEngineBundle:Blog')->find($id);
 
             if (!$entity) {
+                $status = array(
+                    'code' => 404,
+                    'message' => $translator->trans('not.found')
+                );
+
                 $request->getSession()->getFlashBag()->add(
                     'error',
                     $translator->trans('blog.is.not.exists')
@@ -235,10 +239,10 @@ class BlogController extends Controller
                 'message' => $translator->trans('token.is.invalid')
             );
         }
-        return new JsonResponse(array(
+        return (new JsonResponse(array(
             'status' => $status,
             'response' => array()
-        ));
+        )))->setStatusCode($status['code']);
     }
 
     /**
@@ -250,7 +254,7 @@ class BlogController extends Controller
         $translator = $this->get('translator');
         if ($this->getRepository()->findOneByName($name)) {
             $status = array(
-                'code' => 0,
+                'code' => 403,
                 'message' => $translator->trans('name.is.exists'),
             );
         } else {
@@ -267,18 +271,18 @@ class BlogController extends Controller
             }
         }
 
-        return new JsonResponse(array(
+        return (new JsonResponse(array(
             'status' => $status,
             'response' => array(
                 'username' => $name
             )
-        ));
+        )))->setStatusCode($status['code']);
     }
 
     /**
      * Return admin's list of given blog.
      *
-     * @param int $id
+     * @param int $id Blog id.
      * @return JsonResponse
      */
     public function adminsListAction($id)
@@ -300,12 +304,12 @@ class BlogController extends Controller
             );
         }
 
-        return new JsonResponse(array(
+        return (new JsonResponse(array(
             'status' => $status,
             'response' => array(
                 'users' => $status['code'] == 200 ? $users : array()
             )
-        ));
+        )))->setStatusCode($status['code']);
     }
 
     public function deleteUserFromAdminsListAction(Request $request, $id)
@@ -364,10 +368,10 @@ class BlogController extends Controller
             );
         }
 
-        return new JsonResponse(array(
+        return (new JsonResponse(array(
             'status' => $status,
             'response' => array()
-        ));
+        )))->setStatusCode($status['code']);
 
     }
 }

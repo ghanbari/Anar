@@ -69,9 +69,10 @@
 {% endblock %}
 
 {% block scripts %}
+    {{ parent() }}
     <script src="{{ asset('static/jstree/dist/jstree.min.js') }}"></script>
-    <script src="{{ asset('bundles/anarsuperpanel/js/routes.js') }}"></script>
     <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ asset('bundles/anarsuperpanel/js/routes.js') }}"></script>
 
     <script>
         function customMenu(node){
