@@ -84,6 +84,7 @@
 {% block scripts %}
 
     <script>
+        var basePath = '{{ app.request.getBasePath }}';
         function renderTime(){
             var currentTime = new Date();
             var h = currentTime.getHours();

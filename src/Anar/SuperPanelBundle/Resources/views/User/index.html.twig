@@ -176,7 +176,7 @@
                 </tr>
                 {% set i = 1 %}
                 {% for user in users %}
-                    <tr data-id="{{ user.id }}" {% if i % 2 == 0 %} class="t2" {% else %} class="t1" {% endif %}>
+                    <tr data-id="{{ user.id }}" {% if i % 2 == 0 %} class="t2 users_data" {% else %} class="t1 users_data" {% endif %}>
                         <td class="col-md-2 col-sm-2">{{ user.username }}</td>
                         <td class="col-md-2 col-sm-2">{{ user.email }}</td>
                         <td class="col-md-1 col-sm-1">{{ user.fname }}</td>
@@ -193,8 +193,10 @@
             </table>
 
         </div>
-        <div class="col-md-12 col-sm-12 text-center">
-            {{ knp_pagination_render(users) }}
+        <div class="col-md-12 col-sm-12 users_pagination_parent text-center">
+            <div class="users_pagination">
+                {{ knp_pagination_render(users) }}
+            </div>
         </div>
     </div>
 </div>
@@ -227,7 +229,23 @@
             },
             success: function(data){
                 if(data.status['code'] == 200){
-                    Alert.render("aaa" + JSON.stringify(data.response['pagination']));
+                    $('.users_data').remove();
+                    $('.users_pagination').remove();
+                    var users_find = '' +
+                        '<tr class="t1">' +
+                            '<td class="col-md-2 col-sm-2">' + data.response['users']['username'] + '</td>' +
+                            '<td class="col-md-2 col-sm-2">' + data.response['users']['email'] + '</td>' +
+                            '<td class="col-md-1 col-sm-1">' + data.response['users']['fname'] + '</td>' +
+                            '<td class="col-md-2 col-sm-2">' + data.response['users']['lname'] + '</td>' +
+                            '<td class="col-md-2 col-sm-2">' + data.response['users']['staffCode'] + '</td>' +
+                            '<td class="col-md-1 col-sm-1 ">' + data.response['users']['grade'] + '</td>' +
+                            '<td class="col-md-2 col-sm-2">' +
+                                '<span class="R_butt_green" onclick="">ویرایش</span>' +
+                            '</td>' +
+                        '</tr>';
+                    alert(users_find);
+                    $('.records_list').append(users_find);
+                    Alert.render("aaa" + JSON.stringify(data.response['users']['username']));
                 }
                 else{
                     Alert.render(data.status['code']);

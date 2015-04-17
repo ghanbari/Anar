@@ -3,6 +3,7 @@
 {% block csses %}
     <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/css/super_panel.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('static/jstree/dist/themes/default/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/plugins/Alert/alert.css') }}">
 {% endblock csses %}
 
 {% block top_fixed_superpanel_box %}
@@ -70,35 +71,11 @@
 
 {% block scripts %}
     <script src="{{ asset('static/jstree/dist/jstree.min.js') }}"></script>
-    <script src="{{ asset('bundles/anarsuperpanel/js/routes.js') }}"></script>
     <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ asset('bundles/anarsuperpanel/js/routes.js') }}"></script>
+    <script src="{{ asset('bundles/anarsuperpanel/plugins/Alert/alert.js') }}"></script>
 
     <script>
-        function customMenu(node){
-            // The default set of all items
-            var items = {
-                renameItem: { // The "rename" menu item
-                    "label": "ویرایش",
-                    "icon": "glyphicon glyphicon-edit",
-                    action: function () {
-                        var check_path = Routing.generate('anar_super_panel_blog_edit',{'id': node.id});
-                        alert(check_path);
-                    }
-                },
-                deleteItem: { // The "delete" menu item
-                    "label": "حذف",
-                    "icon": "glyphicon glyphicon-remove",
-                    action: function () {}
-                }
-            };
-
-//            if ($(node).hasClass("folder")) {
-//                // Delete the "delete" menu item
-//                delete items.deleteItem;
-//            }
-
-            return items;
-        }
 
         $("#jstree_div").jstree({
             'core' : {
@@ -119,5 +96,55 @@
         }).on('loaded.jstree', function() {
             $(this).jstree('open_all');
         });
+
+        function customMenu(node){
+            // The default set of all items
+            var items = {
+                renameItem: { // The "rename" menu item
+                    "label": "ویرایش",
+                    "icon": "glyphicon glyphicon-edit",
+                    action: function () {
+                        var check_path = Routing.generate('anar_super_panel_blog_edit',{'id': node.id});
+                        location.href = check_path;
+                    }
+                },
+                deleteItem: { // The "delete" menu item
+                    "label": "حذف",
+                    "icon": "glyphicon glyphicon-remove",
+                    action: function () {
+                        var check_path = Routing.generate('anar_super_panel_blog_delete',{'id': node.id});
+                        $.ajax({
+                            url: check_path,
+                            type: "post",
+                            data: {'token': '{{ token }}'},
+                            error: function(message){
+                                alert(123456);
+                                Alert.render("message : "+message);
+                            },
+                            success: function(data){
+                                if(data.status['code'] == 200){
+                                    Alert.render(JSON.stringify(data.status['message']));
+                                    $("#jstree_div").jstree("remove","#" + node.id);
+//                                    $("#jstree_div").delete_node(node);
+//                                    $("#jstree_div").jstree("refresh");
+//                                    var tree = jQuery.jstree.reference("#jstree_div");
+//                                    tree.refresh();
+                                }
+                                else{
+                                    Alert.render(data.status['message']);
+                                }
+                            }
+                        });
+                    }
+                }
+            };
+
+//            if ($(node).hasClass("folder")) {
+//                // Delete the "delete" menu item
+//                delete items.deleteItem;
+//            }
+
+            return items;
+        }
     </script>
 {% endblock %}
