@@ -51,7 +51,7 @@ class UserController extends Controller
         return $this->render('AnarSuperPanelBundle:User:index.html.twig', array(
             'users' => $users,
             'form' => $this->createSearchForm()->createView(),
-            'token' => $this->get('form.csrf_provider')->generateCsrfToken('user_index'),
+            'token' => $this->get('form.csrf_provider')->generateCsrfToken('user_delete'),
         ));
     }
 
@@ -289,32 +289,32 @@ class UserController extends Controller
      */
     public function deleteAction(Request $request, $id)
     {
-        $em = $this->getDoctrine()->getManager();
         $translator = $this->get('translator');
 
-        $user = $em->find('AnarEngineBundle:User', $id);
+        if ($this->isCsrfTokenValid('user_delete', $request->request->get('token'))) {
+            $em = $this->getDoctrine()->getManager();
+            $user = $em->find('AnarEngineBundle:User', $id);
 
-        if (!$user) {
-            $status = array(
-                'code' => 404,
-                'message' => $translator->trans('not.found')
-            );
-        }
-
-        if ($this->get('form.csrf_provider')->isCsrfTokenValid('user_index', $request->request->get('token'))) {
-            $em->remove($user);
-            $em->flush();
-
-            $status = array(
-                'code' => 200,
-                'message' => $translator->trans('user.was.deleted')
-            );
+            if (!$user) {
+                $status = array(
+                    'code' => 404,
+                    'message' => $translator->trans('user.is.not.exists')
+                );
+            } else {
+                $em->remove($user);
+                $em->flush();
+                $status = array(
+                    'code' => 200,
+                    'message' => $translator->trans('user.was.deleted')
+                );
+            }
         } else {
             $status = array(
                 'code' => 400,
                 'message' => $translator->trans('token.is.invalid')
             );
         }
+
         return (new JsonResponse(array(
             'status' => $status,
             'response' => array()
@@ -336,11 +336,19 @@ class UserController extends Controller
                 'message' => $translator->trans('you.can.use.this.name'),
             );
         } else {
-            $status = array(
-                'code' => 0,
-                'message' => $translator->trans('name.is.exists'),
-            );
+            if (is_string($username) and preg_match('/^[a-z0-9_]{2,255}$/i', $username)) {
+                $status = array(
+                    'code' => 200,
+                    'message' => $translator->trans('you.can.use.this.username'),
+                );
+            } else {
+                $status = array(
+                    'code' => 400,
+                    'message' => $translator->trans('username.not.have.valid.character'),
+                );
+            }
         }
+
         return (new JsonResponse(array(
             'status' => $status,
             'response' => array()
@@ -366,7 +374,8 @@ class UserController extends Controller
                 'message' => 'OK',
             ),
             'response' => array(
-                'tree' => $tree
+                'tree' => $tree,
+                'token' => $this->get('security.csrf.token_manager')->refreshToken('user_permission'),
             ),
         )))->setStatusCode(200);
     }
