@@ -147,3 +147,13 @@
 .R_butt_blue:hover{
     background: #0079A6;
 }
+
+._error{
+    font-size: 10pt;
+    color: red;
+}
+
+._success{
+    font-size: 10pt;
+    color: #6dc437;
+}

@@ -4,6 +4,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/css/super_panel.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/css/bootstrap-switch-metro-rtl.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/css/select2_metro_rtl.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('static/jstree/dist/themes/default/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/plugins/Alert/alert.css') }}">
     <style>
         .select{
@@ -163,29 +164,30 @@
                 <p class="text-center">لیست کاربران <span class="user_total_count">({{ users.getTotalItemCount }})</span> </p>
             </div>
             <table class="records_list">
-                <tr>
+                <tr class="text-center">
                     {# sorting of properties based on query components #}
                     {#<td>{{ knp_pagination_sortable(users, 'ای دی', 'u.id') }}</td>#}
-                    <td{% if users.isSorted('u.username') %} class="sorted col-md-2 col-sm-2"{% endif %}>{{ knp_pagination_sortable(users, 'نام کاربری', 'u.username') }}</td>
-                    <td{% if users.isSorted('u.email') %} class="sorted col-md-2 col-sm-2"{% endif %}>{{ knp_pagination_sortable(users, 'ایمیل', 'u.email') }}</td>
-                    <td{% if users.isSorted('u.fname') %} class="sorted col-md-1 col-sm-1"{% endif %}>{{ knp_pagination_sortable(users, 'نام', 'u.fname') }}</td>
-                    <td{% if users.isSorted('u.lname') %} class="sorted col-md-2 col-sm-2"{% endif %}>{{ knp_pagination_sortable(users, 'نام خانوادگی', 'u.lname') }}</td>
-                    <td{% if users.isSorted('u.staffcode') %} class="sorted col-md-2 col-sm-2"{% endif %}>{{ knp_pagination_sortable(users, 'شماره پرسنلی', 'u.staffcode') }}</td>
+                    <td class="{% if users.isSorted('u.username') %}sorted{% endif %} col-md-1 col-sm-1">{{ knp_pagination_sortable(users, 'نام کاربری', 'u.username') }}</td>
+                    <td class="{% if users.isSorted('u.email') %}sorted{% endif %} col-md-2 col-sm-2">{{ knp_pagination_sortable(users, 'ایمیل', 'u.email') }}</td>
+                    <td class="{% if users.isSorted('u.fname') %}sorted{% endif %} col-md-1 col-sm-1">{{ knp_pagination_sortable(users, 'نام', 'u.fname') }}</td>
+                    <td class="{% if users.isSorted('u.lname') %}sorted{% endif %} col-md-2 col-sm-2">{{ knp_pagination_sortable(users, 'نام خانوادگی', 'u.lname') }}</td>
+                    <td class="{% if users.isSorted('u.staffcode') %}sorted{% endif %} col-md-2 col-sm-2">{{ knp_pagination_sortable(users, 'شماره پرسنلی', 'u.staffcode') }}</td>
                     <td class="col-md-1 col-sm-1">فعال</td>
-                    <td class="col-md-2 col-sm-2"></td>
+                    <td class="col-md-3 col-sm-3"></td>
                 </tr>
                 {% set i = 1 %}
                 {% for user in users %}
-                    <tr data-id="{{ user.id }}" {% if i % 2 == 0 %} class="t2 users_data" {% else %} class="t1 users_data" {% endif %}>
-                        <td class="col-md-2 col-sm-2">{{ user.username }}</td>
+                    <tr data-id="{{ user.id }}" {% if i % 2 == 0 %} class="t2 users_data text-center" {% else %} class="t1 users_data text-center" {% endif %}>
+                        <td class="col-md-1 col-sm-1">{{ user.username }}</td>
                         <td class="col-md-2 col-sm-2">{{ user.email }}</td>
                         <td class="col-md-1 col-sm-1">{{ user.fname }}</td>
                         <td class="col-md-2 col-sm-2">{{ user.lname }}</td>
                         <td class="col-md-2 col-sm-2">{{ user.staffCode }}</td>
                         <td class="col-md-1 col-sm-1 {% if user.enabled %}active{% endif %}">{{ user.enabled }}</td>
-                        <td class="col-md-2 col-sm-2">
+                        <td class="col-md-3 col-sm-3">
                             <span class="R_butt_green" onclick="location.href = '{{ path('anar_super_panel_user_edit', { 'id': user.id }) }}'">ویرایش</span>
                             <span class="R_butt_red delete_user" data-id="{{ user.id }}">حذف</span>
+                            <span class="R_butt_blue blogs" data-id="{{ user.id }}">وبلاگ ها</span>
                         </td>
                     </tr>
                 {% set i = i + 1 %}
@@ -200,20 +202,39 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="blog_list">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">لیست وبلاگ ها</h4>
+            </div>
+            <div class="modal-body">
+                <div id="jstree_div"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">بستن</button>
+                <button type="button" class="btn btn-primary user_permission">ذخیره</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 {% endblock %}
 
 
 {% block scripts %}
+{{ parent() }}
 <script src="{{ asset('bundles/anarsuperpanel/js/bootstrap-switch.min.js') }}"></script>
+<script src="{{ asset('static/jstree/dist/jstree.min.js') }}"></script>
 <script src="{{ asset('bundles/anarsuperpanel/js/select2.min.js') }}"></script>
 <script src="{{ asset('bundles/anarsuperpanel/plugins/Alert/alert.js') }}"></script>
 <script>
-    var message = 111;
-    {% for message in app.session.getFlashBag().get('info') %}
-        message = '{{ message|trans }}';
-    {% endfor %}
-    alert(message);
+
+    {#{% for message in app.session.getFlashBag().get('info') %}#}
+        {#message = '{{ message|trans }}';#}
+    {#{% endfor %}#}
+    {#alert(message);#}
     $(".select").select2({
         placeholder: "انتخاب کنید"
     });
@@ -271,6 +292,60 @@
             success: function(data){
                 Alert.render('کاربر با موفقیت حذف شد!');
                 $('tr[data-id=' + user_id + ']').remove();
+            }
+        });
+    });
+    var user_id = 0;
+    $('.blogs').click(function(){
+        user_id = $(this).attr('data-id');
+        var check_path = "{{ path('anar_super_panel_user_permissions', { 'id': "__id__" }) }}";
+        var permission_path = check_path.replace("__id__", user_id);
+        $.ajax({
+            url: permission_path,
+            type: "post",
+            error: function(message){
+                Alert.render("message : "+message.status['message']);
+            },
+            success: function(data){
+                $("#jstree_div").jstree({
+                    'core' : {
+                        'data' : data.response['tree'],
+                        'strings' : {
+                            'Loading ...' : 'در حال بارگذاری لطفا صبر نمایید ...<sub>ممکن است چند ثانیه طول بکشید</sub>'
+                        },
+                        'themes' : {
+                            "variant" : "large"
+                        }
+                    },
+                    'checkbox' : {
+                        'three_state': false,
+                        'keep_selected_style' : false
+                    },
+                    "plugins": ["themes", "html_data", "ui", "crrm","checkbox"]
+                });
+                $('#blog_list').modal("show");
+            }
+        });
+    });
+
+    $('.user_permission').click(function(){
+        var selected = $('.jstree-clicked');
+        var arr = new Array();
+        selected.each(function(j){
+            arr[j] = $(this).closest('li').attr('id');
+        });
+        var checkPath = Routing.generate('anar_super_panel_user_permission_update', {'id': user_id});
+        $.ajax({
+            url: checkPath,
+            type: "post",
+            data: {
+                'blogIds': arr
+            },
+            error: function(jqXHR, textStatus, errorThrown){
+                Alert.render((jqXHR['responseText']).status.message);
+            },
+            success: function(data){
+                Alert.render(data.status['message']);
             }
         });
     });

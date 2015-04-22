@@ -1,7 +1,7 @@
 anar_super_panel_blog_index:
     path:     /{_format}
     defaults: { _controller: "AnarSuperPanelBundle:Blog:index", _format: html }
-    requirements: { format: json|html }
+    requirements: { _format: json|html }
 
 anar_super_panel_blog_new:
     path:     /new

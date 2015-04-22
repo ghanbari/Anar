@@ -59,7 +59,7 @@
     </div>
     <hr id="cutter">
     <div class="row">
-        <div class="col-md-8 col-sm-8">
+        <div class="col-md-8 col-sm-8" style="padding-right: 0">
             {{ form_start(form) }}
                 <div class="row">
                     <div class="form-group">
@@ -139,6 +139,32 @@
                 </div>
             {{ form_end(form) }}
         </div>
+        <div class="col-md-4 col-sm-4" style="padding-right: 0">
+            <div class="row" style="min-height: 38px">
+                <span class=""></span>
+            </div>
+            <div class="row margin-top-10" style="min-height: 38px">
+                <span class=""></span>
+            </div>
+            <div class="row margin-top-10 form_fields_message" style="min-height: 38px">
+                <span class=""></span>
+            </div>
+            <div class="row margin-top-10" style="min-height: 38px">
+                <span class=""></span>
+            </div>
+            <div class="row margin-top-10" style="min-height: 38px">
+                <span class=""></span>
+            </div>
+            <div class="row margin-top-10" style="min-height: 38px">
+                <span class=""></span>
+            </div>
+            <div class="row margin-top-10" style="min-height: 38px">
+                <span class=""></span>
+            </div>
+            <div class="row margin-top-10" style="min-height: 38px">
+                <span class=""></span>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -147,6 +173,7 @@
 {% endblock %}
 
 {% block scripts %}
+{{ parent() }}
 <script src="{{ asset('bundles/anarsuperpanel/js/bootstrap-switch.min.js') }}"></script>
 <script src="{{ asset('bundles/anarsuperpanel/js/select2.min.js') }}"></script>
 <script>
@@ -156,18 +183,16 @@
 
     function check_name(){
         var name_val = $('.name_input').val();
-        var checkPath = "{{ path('anar_super_panel_blog_check_name', {'name': '__name__'}) }}";
-        checkPath = checkPath.replace("__name__", name_val);
+        var checkPath = Routing.generate('anar_super_panel_blog_check_name',{'name': name_val});
         $.ajax({
             url: checkPath,
-            error: function(message){
-                alert("message : "+message);
+            error: function(jqXHR, textStatus, errorThrown){
+                $('.form_fields_message span').addClass('_error');
+                $('.form_fields_message span').html(JSON.parse(jqXHR['responseText']).status.message);
             },
             success: function(data){
-                alert(data.status['code']);
-                if(data.status['code'] == 400){
-                    alert("لطفا از حروف انگلیسی کوچک a-z استفاده نمایید");
-                }
+                $('.form_fields_message span').addClass('_success');
+                $('.form_fields_message span').html(data.status['message']);
             }
         })
     }
