@@ -157,3 +157,7 @@
     font-size: 10pt;
     color: #6dc437;
 }
+
+.display-none{
+    display: none;
+}

@@ -1,109 +1,95 @@
-{#<script>#}
-   {#$(document).ready(function() {#}
-       {#var passesIsValid = false;#}
-        {#$("input#form_newPassword_password").change(function(){#}
-            {#$("input#form_newPassword_repeat").val("");#}
-        {#});#}
+{% extends "AnarSuperPanelBundle:Desktop:home.html.twig" %}
+{% block csses %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/css/super_panel.css') }}">
+{% endblock csses %}
 
-        {#$("input#form_newPassword_repeat").focusout(function(){#}
-            {#var newPass = $("input#form_newPassword_password").val();#}
-            {#if($(this).val() != newPass){#}
-                {#if(newPass != "")#}
-                    {#passErorring("setErorr");#}
-            {#}else {#}
-                    {#passErorring("deleteErorr");#}
-                    {#passesIsValid = true;#}
-            {#}#}
-        {#});#}
+{% block top_fixed_superpanel_box %}
+    <div id="sp-topBar">
+        <span>{{ 'last login:' }}<time dir="ltr"></time></span>
+        <a class="btn btn-xs btn-danger" href="">{{ 'logout'|trans }}</a>
+    </div>
+    <div id="sp-headerWrap">
+        <div id="sp-logo"></div>
+    </div>
+    <div id="sp-tabBar">
+        <div id="sp-label">
+            <h1>Super Panel</h1>
+            <h2>Pomegranate notification system</h2>
+        </div>
+        <span id="sp-firstSpan"></span>
+        <span onclick="location.href = '{{ path("anar_super_panel_blog_index") }}'" data-URL="ajaxUrlRoles"><i class="fa fa-sitemap"></i><br>{{ 'blogs'|trans }}</span>
+        <span onclick="location.href = '{{ path("anar_super_panel_user_index") }}'" data-URL="ajaxUrlUsers"><i class="fa fa-users"></i><br>{{ 'users'|trans }}</span>
+        <span onclick="location.href = '{{ path("anar_super_panel_setting_index") }}'" data-URL="ajaxUrlsetttings" data-active="true"><i class="fa fa-gears" data-active="true"></i><br>{{ 'settings'|trans }}</span>
+        <span id="sp-lastSpan"></span>
+    </div>
 
-        {#function passErorring(mod){#}
-            {#if(mod == "setErorr"){#}
-{#$.tinyNotice("client error","رمز عبور و تکرار آن با هم متفاوتند!","error",0);      #}
-                {#$("input#form_newPassword_password").closest(".form-group").addClass("has-error");#}
-                {#$("input#form_newPassword_repeat").closest(".form-group").addClass("has-error");#}
-            {#}#}
-            {#else if (mod == "deleteErorr"){#}
-                {#$.tinyNotice("destroy");      #}
-                {#$("input#form_newPassword_password").closest(".form-group").removeClass("has-error");#}
-                {#$("input#form_newPassword_repeat").closest(".form-group").removeClass("has-error");#}
-            {#}#}
-        {#}#}
+{% endblock top_fixed_superpanel_box %}
 
-        {#$("button[data-submit]").click(function() {#}
-            {#if(passesIsValid){#}
-                {#$.ajax({#}
-                    {#url:"{{ path('anar_super_panel_setting_update_password') }}",#}
-                    {#error: function(XHR,message){#}
-{#$.tinyNotice("AJAX client error","در روند ثبت اطلاعات خطایی رخ داده است! <br> message : "+message,"error",6000); #}
-                    {#},#}
-                    {#success: function(response){#}
-                        {#if(response.status == "success"){#}
-{#$.tinyNotice("AJAX response success","اطلاعات با موفقیت ثبت شدند<br> message : "+response.status_text,"success");#}
-                        {#}else{#}
-{#$.tinyNotice("AJAX response error","اطلاعات به دلیل بروز خطلایی ثبت نشدند! message : "+response.status_text,"error",0);                   #}
-                        {#}#}
-                    {#}#}
-                {#});#}
-            {#}else{#}
-{#$.tinyNotice("client warning","پسورد جدید و تکرار آن با هم برابر نیستند!","warning",0);         #}
-            {#}#}
-        {#});#}
-
-    {#});#}
-{#</script>#}
-
-
-
-
-{#<h2><i class="fa fa-gears"></i> تنظیمات سوپر پنل </h2>#}
-{#<hr id="cutter"><div class="com-notification"><i class="fa fa-times com-close"></i><span></span></div>#}
-{#<!------------content-------------->#}
-
-
-{#<h3>تغییر نام کاربری</h3>#}
-{#<form class="form-horizontal" role="form">#}
-    {#<div class="form-group">#}
-        {#<label class="col-sm-2 control-label">نام کاربری جدید</label>#}
-        {#<div class="col-sm-4">#}
-            {#<input type="text" class="form-control">#}
-        {#</div>#}
-    {#</div>#}
-    {#<div class="form-group">#}
-        {#<label class="col-sm-2 control-label">رمز عبور</label>#}
-        {#<div class="col-sm-4">#}
-            {#<input name="newUsername" type="password" class="form-control" >#}
-        {#</div>#}
-    {#</div>#}
-    {#<div class="form-group">#}
-        {#<div class="col-sm-12">#}
-            {#<button name="userNameSubmit" data-submit="submit" type="button" class="btn btn-primary">ثبت اطلاعات</button>#}
-        {#</div>#}
-    {#</div>#}
-{#</form>#}
-
-{#<hr class="com-lineDashed">#}
-<html>
-<body>
+{% block container %}
+<div class="col-md-10 col-sm-10 col-md-offset-1 col-sm-offset-1 tab_content_box margin-top-25 margin-bottom-25">
+    <div class="row">
+        <div class="col-md-6 col-sm-6 tittle_tab_content">
+            <i class="fa fa-setting"></i>
+            <span>تغییر رمز عبور</span>
+        </div>
+        <div class="col-md-1 col-sm-1 pull-left text-left">
+            <i onclick="location.href = '{{ path("anar_super_panel_home") }}'" class="glyphicon glyphicon-remove cursor_pointer" style="cursor: pointer"></i>
+        </div>
+    </div>
+    <hr id="cutter">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 margin-top-10">
+            {{ form_start(form, {'attr': {'class': 'form-horizontal change_pass_form', 'role': 'form'}}) }}
+            <div class="form-group">
+                <label class="col-sm-2 control-label">رمز عبور فعلی</label>
+                <div class="col-sm-4">
+                    {{ form_widget(form.oldPassword, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">رمز عبور جدید</label>
+                <div class="col-sm-4">
+                    {{ form_widget(form.password.first, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">تکرار رمز عبور</label>
+                <div class="col-sm-4">
+                    {{ form_widget(form.password.second, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                <div class="col-md-2 col-sm-2"></div>
+                <div class="col-md-9 col-sm-9">
+                    {{ form_widget(form.submit, {'attr': {'class': 'btn btn-submit-blog', 'onclick': 'submit_change_pass_form(event)'}}) }}
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
     <h3>تغییر رمز عبور</h3>
-        {{ form_start(form, {'attr': {'class': 'form-horizontal', 'role': 'form'}}) }}
-        <div class="form-group">
-            <label class="col-sm-2 control-label">رمز عبور فعلی</label>
-            <div class="col-sm-4">
-                {{ form_widget(form.oldPassword, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label">رمز عبور جدید</label>
-            <div class="col-sm-4">
-                {{ form_widget(form.password.first, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label">تکرار رمز عبور</label>
-            <div class="col-sm-4">
-                {{ form_widget(form.password.second, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-    {{ form_end(form) }}
-</body>
-</html>
+
+
+{% endblock %}
+
+
+{% block scripts %}
+{{ parent() }}
+<script>
+    function submit_change_pass_form(ev){
+        ev.preventDefault();
+        $.ajax({
+            url: Routing.generate('anar_super_panel_setting_update_password'),
+            type: "post",
+            data: $('.change_pass_form').serialize(),
+            error: function(message){
+                Alert.render("message : " + JSON.parse(message.responseText).status.message);
+            },
+            success: function(data){
+                Alert.render(data.status['message']);
+            }
+        });
+    }
+</script>
+{% endblock %}

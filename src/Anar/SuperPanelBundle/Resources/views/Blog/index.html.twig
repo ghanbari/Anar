@@ -22,8 +22,7 @@
         <span id="sp-firstSpan"></span>
         <span onclick="location.href = '{{ path("anar_super_panel_blog_index") }}'" data-URL="ajaxUrlRoles" data-active="true"><i class="fa fa-sitemap"></i><br>{{ 'blogs'|trans }}</span>
         <span onclick="location.href = '{{ path("anar_super_panel_user_index") }}'" data-URL="ajaxUrlUsers"><i class="fa fa-users"></i><br>{{ 'users'|trans }}</span>
-        <span data-URL="ajaxUrlPermations"><i class="fa fa-paperclip"></i><br>{{ 'permission'|trans }}</span>
-        <span data-URL="ajaxUrlsetttings"><i class="fa fa-gears"></i><br>{{ 'settings'|trans }}</span>
+        <span onclick="location.href = '{{ path("anar_super_panel_setting_index") }}'" data-URL="ajaxUrlsetttings"><i class="fa fa-gears" data-active="true"></i><br>{{ 'settings'|trans }}</span>
         <span id="sp-lastSpan"></span>
     </div>
 
@@ -64,6 +63,18 @@
         <div class="col-md-12 col-sm-12 margin-top-10">
             <div id="jstree_div"></div>
         </div>
+        <div class="col-md-12 col-sm-12 managers_list margin-top-25">
+            <table class="records_list display-none">
+                <tr class="text-center">
+                    <td class="col-md-2 col-sm-2">نام کاربری</td>
+                    <td class="col-md-2 col-sm-2">ایمیل</td>
+                    <td class="col-md-2 col-sm-2">نام</td>
+                    <td class="col-md-2 col-sm-2">نام خانوادگی</td>
+                    <td class="col-md-2 col-sm-2">شماره پرسنلی</td>
+                    <td class="col-md-2 col-sm-2"></td>
+                </tr>
+            </table>
+        </div>
     </div>
 </div>
 
@@ -95,7 +106,7 @@
         }).on('loaded.jstree', function() {
             $(this).jstree('open_all');
         });
-
+        var current_blog;
         function customMenu(node){
             // The default set of all items
             var items = {
@@ -111,6 +122,9 @@
                     "label": "مدیران",
                     "icon": "glyphicon glyphicon-user",
                     action: function () {
+                        $('.t1').remove();
+                        $('.t2').remove();
+                        current_blog = node.id;
                         var check_path = Routing.generate('anar_super_panel_blog_admins',{'id': node.id});
                         $.ajax({
                             url: check_path,
@@ -121,7 +135,20 @@
                                 Alert.render("message : "+message);
                             },
                             success: function(data){
-                                alert(JSON.stringify(data.response['users']));
+                                for(var i = 0; i < data.response['users'].length; i++){
+                                    var j = i + 1;
+                                    var manager_table = '' +
+                                        '<tr data-id="' + data.response['users'][i]['id'] + '" class="text-center t'+ j +'">' +
+                                            '<td class="col-md-2 col-sm-2"> '+ data.response['users'][i]['username'] +' </td> ' +
+                                            '<td class="col-md-2 col-sm-2"> '+ data.response['users'][i]['email'] +' </td> ' +
+                                            '<td class="col-md-2 col-sm-2"> '+ data.response['users'][i]['fname'] +' </td> ' +
+                                            '<td class="col-md-2 col-sm-2"> '+ data.response['users'][i]['lname'] +' </td> ' +
+                                            '<td class="col-md-2 col-sm-2"> '+ data.response['users'][i]['staffCode'] +' </td> ' +
+                                            '<td class="col-md-2 col-sm-2"><span data-id="' + data.response['users'][i]['id'] + '" class="R_butt_red delete_user">حذف</span></td> ' +
+                                        '</tr>';
+                                    $('.records_list').append(manager_table);
+                                    $('.records_list').css("display",'table');
+                                }
                             }
                         });
                     }
@@ -172,5 +199,25 @@
 
             return items;
         }
+
+        $(document).on('click','.delete_user',function(){
+            var id = $(this).attr('data-id');
+            var delete_path = Routing.generate('anar_super_panel_blog_admins_delete',{'id': current_blog});
+            $.ajax({
+                url: delete_path,
+                type:"post",
+                data:{
+                    'userId': id
+                },
+                error: function(message){
+                    Alert.render("message : " + JSON.parse(message.responseText).status.message);
+                },
+                success: function(data){
+                    if(data.status['code'] == 200){
+                        $(".records_list tr[data-id = "+id+"]").remove();
+                    }
+                }
+            });
+        });
     </script>
 {% endblock %}

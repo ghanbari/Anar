@@ -38,8 +38,7 @@
         <span id="sp-firstSpan"></span>
         <span onclick="location.href = '{{ path("anar_super_panel_blog_index") }}'" data-URL="ajaxUrlRoles"><i class="fa fa-sitemap"></i><br>{{ 'blogs'|trans }}</span>
         <span onclick="location.href = '{{ path("anar_super_panel_user_index") }}'" data-URL="ajaxUrlUsers" data-active="true"><i class="fa fa-users"></i><br>{{ 'users'|trans }}</span>
-        <span data-URL="ajaxUrlPermations"><i class="fa fa-paperclip"></i><br>{{ 'permission'|trans }}</span>
-        <span data-URL="ajaxUrlsetttings"><i class="fa fa-gears"></i><br>{{ 'settings'|trans }}</span>
+        <span onclick="location.href = '{{ path("anar_super_panel_setting_index") }}'" data-URL="ajaxUrlsetttings"><i class="fa fa-gears" data-active="true"></i><br>{{ 'settings'|trans }}</span>
         <span id="sp-lastSpan"></span>
     </div>
 
