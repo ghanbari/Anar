@@ -382,41 +382,50 @@ class UserController extends Controller
 
     public function permissionUpdateAction(Request $request, $id)
     {
-        $blogIds = (array) $request->request->get('blogIds', array());
         $translator = $this->get('translator');
-        $manager = $this->getDoctrine()->getManager();
+        $token   = $request->request->get('token', null);
+        $blogIds = (array) $request->request->get('blogIds', array());
 
-        $user = $manager->createQuery('SELECT u FROM AnarEngineBundle:User u LEFT JOIN u.groups g WHERE u.id = :id')
-            ->setParameter('id', $id)->getOneOrNullResult();
-
-        $dql = "SELECT g FROM AnarEngineBundle:Group g JOIN g.blog b JOIN g.roles r WHERE r.role = 'ROLE_ADMIN' AND b.id IN(:blogIds)";
-        $userNewAdminGroups = $manager->createQuery($dql)->setParameter('blogIds', $blogIds)->getResult();
-
-        $dql = "SELECT g From AnarEngineBundle:Group g JOIN g.roles r JOIN g.users u WITH u.id = :user WHERE r.role = 'ROLE_ADMIN' ";
-        $userOldAdminGroups = $manager->createQuery($dql)->setParameter('user', $id)->getResult();
-
-
-        if (!$user) {
+        if (!$this->isCsrfTokenValid('user_permission', $token)) {
             $status = array(
                 'code' => 400,
-                'message' => $translator->trans('user.is.not.exists'),
+                $translator->trans('token.is.invalid'),
             );
         } else {
-            $status = array(
-                'code' => 200,
-                'message' => 'OK'
-            );
-        }
+            $manager = $this->getDoctrine()->getManager();
 
-        foreach ($userOldAdminGroups as $group) {
-            $user->removeGroup($group);
-        }
+            $user = $manager->createQuery('SELECT u FROM AnarEngineBundle:User u LEFT JOIN u.groups g WHERE u.id = :id')
+                ->setParameter('id', $id)->getOneOrNullResult();
 
-        foreach ($userNewAdminGroups as $group) {
-            $user->addGroup($group);
-        }
+            $dql = "SELECT g FROM AnarEngineBundle:Group g JOIN g.blog b JOIN g.roles r WHERE r.role = 'ROLE_ADMIN' AND b.id IN(:blogIds)";
+            $userNewAdminGroups = $manager->createQuery($dql)->setParameter('blogIds', $blogIds)->getResult();
 
-        $manager->flush();
+            $dql = "SELECT g From AnarEngineBundle:Group g JOIN g.roles r JOIN g.users u WITH u.id = :user WHERE r.role = 'ROLE_ADMIN' ";
+            $userOldAdminGroups = $manager->createQuery($dql)->setParameter('user', $id)->getResult();
+
+
+            if (!$user) {
+                $status = array(
+                    'code' => 400,
+                    'message' => $translator->trans('user.is.not.exists'),
+                );
+            } else {
+                $status = array(
+                    'code' => 200,
+                    'message' => 'OK'
+                );
+            }
+
+            foreach ($userOldAdminGroups as $group) {
+                $user->removeGroup($group);
+            }
+
+            foreach ($userNewAdminGroups as $group) {
+                $user->addGroup($group);
+            }
+
+            $manager->flush();
+        }
 
         return (new JsonResponse(array(
             'status' => $status,
