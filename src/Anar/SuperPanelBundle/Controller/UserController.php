@@ -375,7 +375,7 @@ class UserController extends Controller
             ),
             'response' => array(
                 'tree' => $tree,
-                'token' => $this->get('security.csrf.token_manager')->refreshToken('user_permission'),
+                'token' => (string) $this->get('security.csrf.token_manager')->refreshToken('user_permission'),
             ),
         )))->setStatusCode(200);
     }
