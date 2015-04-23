@@ -278,8 +278,7 @@
 
     $('.delete_user').click(function(){
         var user_id = $(this).attr('data-id');
-        var check_path = "{{ path('anar_super_panel_user_delete', { 'id': "__id__" }) }}";
-        var delete_path = check_path.replace("__id__", user_id);
+        var delete_path = Routing.generate('anar_super_panel_user_delete',{'id': user_id});
         $.ajax({
             url: delete_path,
             type: "post",
@@ -298,8 +297,7 @@
     var user_id = 0;
     $('.blogs').click(function(){
         user_id = $(this).attr('data-id');
-        var check_path = "{{ path('anar_super_panel_user_permissions', { 'id': "__id__" }) }}";
-        var permission_path = check_path.replace("__id__", user_id);
+        var permission_path = Routing.generate('anar_super_panel_user_permissions', {'id': user_id});
         $.ajax({
             url: permission_path,
             type: "post",
