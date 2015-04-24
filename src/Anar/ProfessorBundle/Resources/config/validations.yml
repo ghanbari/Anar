@@ -1,0 +1,34 @@
+Anar\ProfessorBundle\Entity\Profile:
+    properties:
+        telephone:
+            - Type:
+                type: string
+            - Length:
+                min: 11
+                max: 15
+        email:
+            - Email: ~
+            - Length:
+                max: 255
+        birthday:
+            - Date:~
+        website:
+            - Url: ~
+        bio:
+            - Type: string
+            - Length:
+                max: 10000
+        jobStartedAt:
+            - Date: ~
+        skill:
+            - Type: string
+            - Length:
+                max: 10000
+        favorite:
+            - Type: string
+            - Length:
+                max: 10000
+        article:
+            - Type: string
+            - Length:
+                max: 10000

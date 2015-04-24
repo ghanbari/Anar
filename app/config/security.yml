@@ -24,18 +24,22 @@ security:
                 csrf_provider: form.csrf_provider
                 login_path: anar_super_panel_login
                 check_path: anar_super_panel_login_check
-            logout: ~
-        role_panel_login:
-            pattern: ^/rolepanel/login$
+            logout:
+                path: anar_super_panel_logout
+                target: anar_super_panel_home
+        blog_panel_login:
+            pattern: ^/blogpanel/login$
             anonymous: ~
-        role_panel:
-            pattern: ^/rolepanel
+        blog_panel:
+            pattern: ^/blogpanel
             form_login:
                 provider: fos_userbundle
                 csrf_provider: form.csrf_provider
-                login_path: anar_role_panel_login
-                check_path: anar_role_panel_login_check
-            logout: ~
+                login_path: anar_blog_panel_login
+                check_path: anar_blog_panel_login_check
+            logout:
+                path: anar_blog_panel_logout
+                target: anar_blog_panel_home
         main:
             pattern: ^/
             form_login:
@@ -43,11 +47,12 @@ security:
                 csrf_provider: form.csrf_provider
                 login_path: anar_engine_bundle_login
                 check_path: anar_engine_bundle_login_check
-            logout: ~
+            logout:
+                path: logout
+                target: /
             anonymous: ~
 
     access_control:
-        - { path: ^/rolepanel/login$,  role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/blogpanel/login$,  role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/superpanel/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/rolepanel,  role: ROLE_ADMIN }
         - { path: ^/superpanel, role: ROLE_SUPER_ADMIN }

@@ -31,23 +31,27 @@ anar_super_panel_user_create:
 anar_super_panel_user_edit:
     path:     /{id}/edit
     defaults: { _controller: "AnarSuperPanelBundle:User:edit" }
+    requirements: { id: \d+ }
 
 anar_super_panel_user_update:
     path:     /{id}/update
     defaults: { _controller: "AnarSuperPanelBundle:User:update" }
     methods:  [POST, PUT]
+    requirements: { id: \d+ }
 
 anar_super_panel_user_delete:
     path:     /{id}/delete
     defaults: { _controller: "AnarSuperPanelBundle:User:delete" }
     methods:  [POST, DELETE]
-
+    requirements: { id: \d+ }
 
 anar_super_panel_user_permissions:
     path: /{id}/permission
     defaults: { _controller: AnarSuperPanelBundle:User:permission }
+    requirements: { id: \d+ }
 
 anar_super_panel_user_permission_update:
     path: /{id}/permission/update
     defaults: { _controller: AnarSuperPanelBundle:User:permissionUpdate }
     methods: [POST]
+    requirements: { id: \d+ }

@@ -1,0 +1,51 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Plan list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Starttime</th>
+                <th>Endtime</th>
+                <th>Daynumber</th>
+                <th>Createdat</th>
+                <th>Updatedat</th>
+                <th>Createdby</th>
+                <th>Updatedby</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for plan in plans %}
+            <tr>
+                <td>{{ plan.title }}</td>
+                <td>{{ plan.startTime|date('H:i') }}</td>
+                <td>{{ plan.endTime|date('H:i') }}</td>
+                <td>{{ plan.dayNumber }}</td>
+                <td>{% if plan.createdAt %}{{ plan.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if plan.updatedAt %}{{ plan.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ plan.createdBy }}</td>
+                <td>{{ plan.updatedBy }}</td>
+                <td>
+                <ul>
+                    <li>
+
+                    </li>
+                    <li>
+
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+        </li>
+    </ul>
+    {% endblock %}

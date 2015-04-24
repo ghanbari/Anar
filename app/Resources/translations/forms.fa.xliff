@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2015-04-02T01:23:20Z" source-language="en" target-language="fa" datatype="plaintext" original="not.available">
+  <file date="2015-04-17T03:24:19Z" source-language="en" target-language="fa" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -17,7 +17,7 @@
         <target state="new">نمایش در منو</target>
       </trans-unit>
       <trans-unit id="f2115eded7c0557558b0fd5ca53ab7dd6508ac6c" resname="facilities">
-        <jms:reference-file line="67">SuperPanelBundle/Form/BlogType.php</jms:reference-file>
+        <jms:reference-file line="69">SuperPanelBundle/Form/BlogType.php</jms:reference-file>
         <source>facilities</source>
         <target state="new">امکانات</target>
       </trans-unit>
@@ -37,7 +37,7 @@
         <target state="new">مقطع تحصیلی</target>
       </trans-unit>
       <trans-unit id="9c1b5ca04a38c4387ad45098a75b7bb3eab327f7" resname="is.active">
-        <jms:reference-file line="52">SuperPanelBundle/Form/BlogType.php</jms:reference-file>
+        <jms:reference-file line="53">SuperPanelBundle/Form/BlogType.php</jms:reference-file>
         <source>is.active</source>
         <target state="new">فعال؟</target>
       </trans-unit>
@@ -52,7 +52,7 @@
         <target state="new">نام</target>
       </trans-unit>
       <trans-unit id="d8fd39d0bbdd2dcf322d8b11390a4c5825b11495" resname="parent">
-        <jms:reference-file line="59">SuperPanelBundle/Form/BlogType.php</jms:reference-file>
+        <jms:reference-file line="61">SuperPanelBundle/Form/BlogType.php</jms:reference-file>
         <source>parent</source>
         <target state="new">والد</target>
       </trans-unit>

@@ -1,0 +1,30 @@
+anar_link_backend_index:
+    path:     /{page}
+    defaults: { _controller: "AnarLinkBundle:Backend/Link:index", page: 1 }
+    requirements: { page: \d+ }
+
+anar_link_backend_new:
+    path:     /new
+    defaults: { _controller: "AnarLinkBundle:Backend/Link:new" }
+
+anar_link_backend_create:
+    path:     /create
+    defaults: { _controller: "AnarLinkBundle:Backend/Link:create" }
+    methods:  POST
+
+anar_link_backend_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AnarLinkBundle:Backend/Link:edit" }
+    requirements: { id: \d+ }
+
+anar_link_backend_update:
+    path:     /{id}/update
+    defaults: { _controller: "AnarLinkBundle:Backend/Link:update" }
+    methods:  [POST, PUT]
+    requirements: { id: \d+ }
+
+anar_link_backend_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AnarLinkBundle:Backend/Link:delete" }
+    methods:  [POST, DELETE]
+    requirements: { id: \d+ }

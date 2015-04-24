@@ -49,6 +49,20 @@ abstract class Translation extends AbstractPersonalTranslation
     protected $content;
 
     /**
+     * Convenient constructor
+     *
+     * @param string $locale
+     * @param string $field
+     * @param string $value
+     */
+    public function __construct($locale, $field, $value)
+    {
+        $this->setLocale($locale);
+        $this->setField($field);
+        $this->setContent($value);
+    }
+
+    /**
      * Get id
      *
      * @return integer $id

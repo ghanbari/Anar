@@ -1,0 +1,26 @@
+anar_professor_backend_plan_index:
+    path:     /
+    defaults: { _controller: "AnarProfessorBundle:Backend/Plan:index" }
+
+anar_professor_backend_plan_new:
+    path:     /new
+    defaults: { _controller: "AnarProfessorBundle:Backend/Plan:new" }
+
+anar_professor_backend_plan_create:
+    path:     /create
+    defaults: { _controller: "AnarProfessorBundle:Backend/Plan:create" }
+    methods:  POST
+
+anar_professor_backend_plan_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AnarProfessorBundle:Backend/Plan:edit" }
+
+anar_professor_backend_plan_update:
+    path:     /{id}/update
+    defaults: { _controller: "AnarProfessorBundle:Backend/Plan:update" }
+    methods:  [POST, PUT]
+
+anar_professor_backend_plan_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AnarProfessorBundle:Backend/Plan:delete" }
+    methods:  [POST, DELETE]

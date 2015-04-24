@@ -1,0 +1,47 @@
+Anar\ProfessorBundle\Entity\StudentsDissertation:
+    type: entity
+    table: professor_students_dissertation
+    gedmo:
+        translation:
+            entity: Anar\ProfessorBundle\Entity\StudentsDissertationTranslation
+            locale: currentLocale
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        author:
+            gedmo:
+                - translatable
+        title:
+            gedmo:
+                - translatable
+        createdAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        updatedAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: update
+        createdBy:
+            gedmo:
+                blameable:
+                    on: create
+        updatedBy:
+            gedmo:
+                blameable:
+                    on: update
+    manyToOne:
+        grade:
+            targetEntity: Anar\EngineBundle\Entity\Grade
+        profile:
+            targetEntity: Anar\ProfessorBundle\Entity\Profile
+            inversedBy: studentsDissertation
+    oneToMany:
+        translations:
+            targetEntity: Anar\ProfessorBundle\Entity\StudentsDissertationTranslation
+            mappedBy: object
+            cascade: ['persist']

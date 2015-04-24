@@ -1,0 +1,12 @@
+anar_professor_backend_profile_index:
+    path:     /
+    defaults: { _controller: "AnarProfessorBundle:Backend/Profile:edit" }
+
+anar_professor_backend_profile_edit:
+    path:     /edit
+    defaults: { _controller: "AnarProfessorBundle:Backend/Profile:edit" }
+
+anar_professor_backend_profile_update:
+    path:     /update
+    defaults: { _controller: "AnarProfessorBundle:Backend/Profile:update" }
+    methods:  [POST, PUT]

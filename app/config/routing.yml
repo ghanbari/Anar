@@ -1,12 +1,26 @@
-fos_js_routing:
-    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+logout:
+    path: /logout
+    options: { i18n: false }
 
 anar_engine_bundle:
     resource: "@AnarEngineBundle/Resources/config/routing.yml"
+    options: { i18n: false }
+
+anar_professor:
+    resource: "@AnarProfessorBundle/Resources/config/routing.yml"
+
+anar_link:
+    resource: "@AnarLinkBundle/Resources/config/routing.yml"
 
 anar_super_panel:
     resource: "@AnarSuperPanelBundle/Resources/config/routing.yml"
     prefix:   /superpanel
+    options: { i18n: false }
+
+anar_blog_panel:
+    resource: "@AnarBlogPanelBundle/Resources/config/routing.yml"
+    prefix:   /blogpanel
+    options: { i18n: false }
 
 anar_content:
     resource: "@AnarContentBundle/Resources/config/routing.yml"

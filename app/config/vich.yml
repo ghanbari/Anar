@@ -1,0 +1,9 @@
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+        anar_professor_profile_avatar:
+            uri_prefix:         %router.request_context.base_url%/uploads
+            upload_destination: %kernel.root_dir%/../web/uploads
+            namer:              vich_uploader.namer_uniqid
+            directory_namer:    anar_engine.uploader.namin.directory_namer

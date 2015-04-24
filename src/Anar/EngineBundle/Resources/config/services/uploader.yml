@@ -1,0 +1,4 @@
+services:
+    anar_engine.uploader.namin.directory_namer:
+        class: Anar\EngineBundle\Uploader\Naming\DirectoryNamer
+        arguments: ['@anar_engine.manager.blog']

@@ -1,0 +1,48 @@
+Anar\ProfessorBundle\Entity\Education:
+    type: entity
+    table: professor_education
+    gedmo:
+        translation:
+            locale: currentLocale
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        university:
+            gedmo:
+                - translatable
+        city:
+            gedmo:
+                - translatable
+        country:
+            gedmo:
+                - translatable
+        startDate:
+            type: date
+        endDate:
+            type: date
+        createdAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        updatedAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: update
+        createdBy:
+            gedmo:
+                blameable:
+                    on: create
+        updatedBy:
+            gedmo:
+                blameable:
+                    on: update
+    manyToOne:
+        grade:
+            targetEntity: Anar\EngineBundle\Entity\Grade
+        profile:
+            targetEntity: Profile
+            inversedBy: educations

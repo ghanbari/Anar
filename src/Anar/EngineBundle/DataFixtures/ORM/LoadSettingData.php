@@ -38,6 +38,7 @@ class LoadSettingData implements FixtureInterface, OrderedFixtureInterface, Cont
     {
         $setting = $this->container->get('vbee.manager.setting');
         $setting->create('superpanel.item_per_page', 10, 'int');
+        $setting->create('blogpanel.item_per_page', 10, 'int');
     }
 
     /**

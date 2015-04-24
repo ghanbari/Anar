@@ -1,0 +1,96 @@
+Anar\ProfessorBundle\Entity\Profile:
+    type: entity
+    table: professor_profile
+    gedmo:
+        translation:
+            entity: Anar\ProfessorBundle\Entity\ProfileTranslation
+            locale: currentLocale
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        telephone:
+            length: 15
+            nullable: true
+            unique: true
+        email:
+            nullable: true
+            unique: true
+        birthday:
+            type: date
+            nullable: true
+        website:
+            nullable: true
+        avatar:
+            nullable: true
+        bio:
+            type: text
+            length: 10000
+            nullable: true
+            gedmo:
+                - translatable
+        jobStartedAt:
+            column: job_started_at
+            type: date
+            nullable: true
+        skill:
+            type: text
+            length: 10000
+            nullable: true
+            gedmo:
+                - translatable
+        favorite:
+            type: text
+            length: 10000
+            nullable: true
+            gedmo:
+                - translatable
+        article:
+            type: text
+            length: 10000
+            nullable: true
+            gedmo:
+                - translatable
+        createdAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        updatedAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: update
+        createdBy:
+            gedmo:
+                blameable:
+                    on: create
+        updatedBy:
+            gedmo:
+                blameable:
+                    on: update
+    oneToMany:
+        studentsDissertation:
+            targetEntity: StudentsDissertation
+            mappedBy: profile
+            orphanRemoval: true
+        translations:
+            targetEntity: Anar\ProfessorBundle\Entity\ProfileTranslation
+            mappedBy: object
+            cascade: ["persist"]
+        plans:
+            targetEntity: Plan
+            mappedBy: profile
+            orphanRemoval: true
+        educations:
+            targetEntity: Education
+            mappedBy: profile
+            orphanRemoval: true
+    oneToOne:
+        blog:
+            targetEntity: Anar\EngineBundle\Entity\Blog
+            joinColumn:
+                name: blog_id
+                referencedColumnName: id
+                onDelete: cascade

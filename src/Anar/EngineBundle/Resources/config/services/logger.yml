@@ -1,0 +1,8 @@
+services:
+    anar_engine.listener.logger:
+        class: Anar\EngineBundle\EventListener\LoggerSubscriber
+        arguments: ['@request_stack', '@translator', '@security.token_storage']
+        calls:
+            - [setContainer, ['@service_container']]
+        tags:
+            - { name: doctrine.event_subscriber }

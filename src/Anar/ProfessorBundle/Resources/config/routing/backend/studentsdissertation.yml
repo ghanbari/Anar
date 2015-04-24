@@ -1,0 +1,30 @@
+anar_professor_backend_students_dissertation_index:
+    path:     /{page}
+    defaults:
+        _controller: "AnarProfessorBundle:Backend/StudentsDissertation:index"
+        page: 1
+    requirements:
+        page: \d+
+
+anar_professor_backend_students_dissertation_new:
+    path:     /new
+    defaults: { _controller: "AnarProfessorBundle:Backend/StudentsDissertation:new" }
+
+anar_professor_backend_students_dissertation_create:
+    path:     /create
+    defaults: { _controller: "AnarProfessorBundle:Backend/StudentsDissertation:create" }
+    methods:  POST
+
+anar_professor_backend_students_dissertation_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AnarProfessorBundle:Backend/StudentsDissertation:edit" }
+
+anar_professor_backend_students_dissertation_update:
+    path:     /{id}/update
+    defaults: { _controller: "AnarProfessorBundle:Backend/StudentsDissertation:update" }
+    methods:  [POST, PUT]
+
+anar_professor_backend_students_dissertation_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AnarProfessorBundle:Backend/StudentsDissertation:delete" }
+    methods:  [POST, DELETE]

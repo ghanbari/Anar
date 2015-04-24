@@ -1,0 +1,61 @@
+Anar\ContentBundle\Entity\Category:
+    type: entity
+    table: content_category
+    gedmo:
+        translation:
+            entity: CategoryTranslation
+            locale: currentLocale
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        title:
+            type: string
+            gedmo:
+                - translatable
+        description:
+            type: string
+            length: 500
+            nullable: true
+            gedmo:
+                - translatable
+        slug: ~
+        createdAt:
+            column: created_at
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        updatedAt:
+            column: updated_at
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: update
+    oneToMany:
+        children:
+            targetEntity: Category
+            mappedBy: parent
+        articles:
+            targetEntity: Article
+            mappedBy: category
+        translations:
+            targetEntity: CategoryTranslation
+            mappedBy: object
+            cascade: ["persist"]
+    manyToOne:
+        parent:
+            targetEntity: Category
+            inversedBy: children
+            nullable: true
+            joinColumn:
+                name: parent
+                refrencedColumnName: id
+                onDelete: set null
+        blog:
+            targetEntity: Anar\EngineBundle\Entity\Blog
+            joinCloumn:
+                name: blog_id
+                refrencedColumName: id
+                onDelete: cascade

@@ -1,0 +1,4 @@
+services:
+#    anar_link.example:
+#        class: Anar\LinkBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

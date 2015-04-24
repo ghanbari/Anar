@@ -1,0 +1,46 @@
+Anar\ProfessorBundle\Entity\Plan:
+    type: entity
+    table: professor_plan
+    gedmo:
+        translation:
+            locale: currentLocale
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        title:
+            gedmo:
+                - translatable
+        startTime:
+            type: time
+        endTime:
+            type: time
+        dayNumber:
+            type: smallint
+        createdAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        updatedAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: update
+        createdBy:
+            gedmo:
+                blameable:
+                    on: create
+        updatedBy:
+            gedmo:
+                blameable:
+                    on: update
+    manyToOne:
+        profile:
+            targetEntity: Profile
+            inversedBy: plans
+            joinColumn:
+                name: profile_id
+                referencedColumnName: id
+                onDelete: cascade

@@ -16,18 +16,27 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            new VBee\SettingBundle\VBeeSettingBundle(),
+            new Vich\UploaderBundle\VichUploaderBundle(),
+            new JMS\I18nRoutingBundle\JMSI18nRoutingBundle(),
             new Anar\SuperPanelBundle\AnarSuperPanelBundle(),
             new Anar\EngineBundle\AnarEngineBundle(),
-            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
+            new Anar\BlogPanelBundle\AnarBlogPanelBundle(),
             new Anar\ContentBundle\AnarContentBundle(),
-            new FOS\UserBundle\FOSUserBundle(),
-            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
-            new VBee\SettingBundle\VBeeSettingBundle(),
-            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
-            new JMS\TranslationBundle\JMSTranslationBundle(),
+            new Anar\LinkBundle\AnarLinkBundle(),
+            new Anar\ProfessorBundle\AnarProfessorBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
+            $bundles[] = new JMS\CommandBundle\JMSCommandBundle();
+            $bundles[] = new JMS\TranslationBundle\JMSTranslationBundle();
+            $bundles[] = new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle();
+            $bundles[] = new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();
             $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();

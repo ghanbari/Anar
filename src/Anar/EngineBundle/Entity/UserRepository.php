@@ -4,6 +4,7 @@ namespace Anar\EngineBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;
+use Doctrine\ORM\Query\Expr;
 
 class UserRepository extends EntityRepository
 {
@@ -14,7 +15,7 @@ class UserRepository extends EntityRepository
     }
 
     /**
-     * @param $filters
+     * @param array $filters array('enabled', 'expired', 'username', 'email', 'fname', 'lname')
      * @return Query
      */
     public function getUsersQueryFilterBy($filters)
@@ -52,5 +53,76 @@ class UserRepository extends EntityRepository
         }
 
         return $qb->getQuery();
+    }
+
+    /**
+     * @param int $userId
+     * @param bool $onlyOwner
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    public function getBlogsQueryBuilder($userId, $onlyOwner=true)
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $qb->select('b')
+            ->from('AnarEngineBundle:Blog', 'b')
+            ->join('b.groups', 'g')
+            ->join('g.roles', 'r')
+            ->where($qb->expr()->isMemberOf(':userId', 'g.users'))
+            ->setParameter('userId', $userId);
+
+        if ($onlyOwner) {
+            $qb->andWhere(
+                $qb->expr()->orX(
+                    $qb->expr()->eq('r.role', "'ROLE_ADMIN'"),
+                    $qb->expr()->isNotNull('r.app')
+                )
+            );
+        }
+
+        return $qb;
+    }
+
+    /**
+     * @param int $userId
+     * @param bool $onlyOwner
+     * @return Query
+     */
+    public function getBlogsQuery($userId, $onlyOwner=true)
+    {
+        return $this->getBlogsQueryBuilder($userId, $onlyOwner)->getQuery();
+    }
+
+    public function getRolesQueryBuilderFilterByBlog($userId, $blogId)
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        return $qb->select('r.role')
+            ->from('AnarEngineBundle:Role', 'r')
+            ->join('r.groups', 'g')
+            ->join('g.users', 'u')
+            ->join('g.blog', 'b')
+            ->where($qb->expr()->eq('g.blog', ':blogId'))
+            ->andWhere(
+                $qb->expr()->orX(
+                    $qb->expr()->isMemberOf('r.app', 'b.apps'),
+                    $qb->expr()->isNull('r.app')
+                )
+            )
+            ->andWhere($qb->expr()->eq('u.id', ':userId'))
+            ->setParameter('blogId', $blogId)
+            ->setParameter('userId', $userId);
+    }
+
+    public function getRolesQueryFilterByBlog($userId, $blogId)
+    {
+        return $this->getRolesQueryBuilderFilterByBlog($userId, $blogId)->getQuery();
+    }
+
+    public function getRolesFilterByBlog($userId, $blogId)
+    {
+        $roles = array();
+        foreach ($this->getRolesQueryFilterByBlog($userId, $blogId)->getArrayResult() as $role) {
+            $roles[] = $role['role'];
+        }
+        return $roles;
     }
 }

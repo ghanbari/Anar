@@ -1,0 +1,100 @@
+Anar\ContentBundle\Entity\Article:
+    type: entity
+    table: content_article
+    repositoryClass: Anar\ContentBundle\Entity\ArticleRepository
+    gedmo:
+        translation:
+            entity: ArticleTranslation
+            locale: currentLocale
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            gedmo:
+                - translatable
+        slug: ~
+        abstract:
+            type: text
+            gedmo:
+                - translatable
+        article:
+            type: text
+            nullable: true
+            gedmo:
+                - translatable
+        visit:
+            type: integer
+            nullable: true
+            options:
+                default: 0
+        enabled:
+            type: boolean
+            nullable: true
+            options:
+                default: true
+        publicationStartDate:
+            type: date
+            column: publication_start
+            nullable: true
+        publicationEndDate:
+            type: date
+            column: publication_end
+            nullable: true
+        image:
+            nullable: true
+        createdAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        updatedAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: update
+    manyToOne:
+        author:
+            targetEntity: Anar\EngineBundle\Entity\User
+            joinColumn:
+                name: author_id
+                referencedColumnName: id
+                onDelete: "SET NULL"
+                nullable: true
+            gedmo:
+                blameable:
+                    on: create
+        editor:
+            targetEntity: Anar\EngineBundle\Entity\User
+            joinColumn:
+                name: editor_id
+                referencedColumnName: id
+                onDelete: "SET NULL"
+                nullable: true
+            gedmo:
+                blameable:
+                    on: update
+        category:
+            targetEntity: Category
+            inversedBy: articles
+            joinColumn:
+                name: category_id
+                refrencedColumnName: id
+                onDelete: set null
+                nullable: true
+
+        blog:
+            targetEntity: Anar\EngineBundle\Entity\Blog
+            joinColumn:
+                name: blog_id
+                refrencedColumnName: id
+                onDelete: cascade
+    oneToMany:
+        translations:
+            targetEntity: ArticleTranslation
+            mappedBy: object
+            cascade: ["persist"]
+    lifecycleCallbacks: {  }

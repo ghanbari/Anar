@@ -260,11 +260,11 @@ class Group implements GroupInterface
     /**
      * Get roles
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @inheritdoc
      */
     public function getRoles()
     {
-        return $this->roles;
+        return $this->roles->toArray();
     }
 
     /**

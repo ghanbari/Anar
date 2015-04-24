@@ -8,8 +8,8 @@
     },
     "require": {
         "php": ">=5.3.3",
-        "symfony/symfony": "2.6.*",
-        "doctrine/orm": "~2.2,>=2.2.3",
+        "symfony/symfony": "2.7.0-BETA1",
+        "doctrine/orm": "2.5.0",
         "doctrine/doctrine-bundle": "~1.2",
         "twig/extensions": "~1.0",
         "symfony/assetic-bundle": "~2.3",
@@ -21,12 +21,21 @@
         "gedmo/doctrine-extensions": "dev-master",
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "doctrine/doctrine-fixtures-bundle": "~2.2",
-        "knplabs/knp-paginator-bundle": "~2.4",
+        "knplabs/knp-paginator-bundle": "2.4.*@dev",
         "liip/imagine-bundle": "dev-master",
         "helios-ag/fm-bbcode-bundle": "6.2.1",
         "vbee/settingbundle": "1.*@dev",
         "friendsofsymfony/jsrouting-bundle": "~1.5",
-        "jms/translation-bundle": "~1.1"
+        "doctrine/migrations": "1.0.*@dev",
+        "doctrine/doctrine-migrations-bundle": "2.1.x-dev",
+        "jms/translation-bundle": "~1.1",
+        "knplabs/knp-menu": "~2.0",
+        "knplabs/knp-menu-bundle": "~2",
+        "jms/i18n-routing-bundle": "~1.1",
+        "jms/command-bundle": "dev-master",
+        "jms/aop-bundle": "1.1.x-dev",
+        "stof/doctrine-extensions-bundle": "1.2.x-dev",
+        "vich/uploader-bundle": "1.0.x-dev"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

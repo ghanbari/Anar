@@ -1,0 +1,7 @@
+anar_link_backend:
+    resource: "@AnarLinkBundle/Resources/config/routing/backend.yml"
+    prefix:   /blogpanel/{blogName}/link
+    requirements:
+        blogName: "[a-z]{4,100}"
+    options:
+        i18n: false

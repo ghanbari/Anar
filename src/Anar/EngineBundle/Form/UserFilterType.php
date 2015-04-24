@@ -22,10 +22,19 @@ class UserFilterType extends AbstractType
             ->add('staffCode', 'number', array('required' => false))
             ->add('grade', 'entity', array(
                 'class' => 'AnarEngineBundle:Grade',
-                'property' => 'name'
+                'property' => 'name',
+                'placeholder' => 'placeholder',
+                'required' => false,
             ))
-            ->add('enabled', 'checkbox', array('required' => false))
+            ->add('enabled', 'checkbox', array('required' => false, 'data' => true))
             ->add('expired', 'checkbox', array('required' => false));
+    }
+
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'translation_domain' => 'forms',
+        ));
     }
 
     /**

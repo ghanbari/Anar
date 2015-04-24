@@ -10,12 +10,24 @@ Anar\EngineBundle\Entity\Role:
         name: ~
         role:
             unique: true
+    oneToMany:
+        children:
+            targetEntity: Anar\EngineBundle\Entity\Role
+            mappedBy: parent
     manyToOne:
         app:
             targetEntity: App
             nullable: true
+            inversedBy: roles
             joinColumn:
                 name: app_id
+                referencedColumnName: id
+                onDelete: cascade
+        parent:
+            targetEntity: Anar\EngineBundle\Entity\Role
+            inversedBy: children
+            joinColumn:
+                name: parent_id
                 referencedColumnName: id
                 onDelete: cascade
     manyToMany:

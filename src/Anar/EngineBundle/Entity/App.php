@@ -51,6 +51,11 @@ class App
     private $translations;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $roles;
+
+    /**
      * @param string $name Bundle name.
      * @param string $title Application name.
      * @param string $type Application type.
@@ -260,5 +265,39 @@ class App
     public function __toString()
     {
         return $this->title;
+    }
+
+    /**
+     * Add role
+     *
+     * @param Role $role
+     *
+     * @return App
+     */
+    public function addRole(Role $role)
+    {
+        $this->roles[] = $role;
+
+        return $this;
+    }
+
+    /**
+     * Remove role
+     *
+     * @param Role $role
+     */
+    public function removeRole(Role $role)
+    {
+        $this->roles->removeElement($role);
+    }
+
+    /**
+     * Get roles
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getRoles()
+    {
+        return $this->roles;
     }
 }

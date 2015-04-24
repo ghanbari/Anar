@@ -22,15 +22,19 @@ class BlogRepository extends NestedTreeRepository
      */
     public function getTreeForJstree($parent = null, $active=null, $onTree=null, $locale='fa', array $selected=array())
     {
-        $blogs = $this->getTreeQuery($parent, $active, $onTree, $locale)->getResult();
+        $blogs = $this->getTreeQuery($parent, $active, $onTree, $locale)->getArrayResult();
 
         $tree = array();
         foreach ($blogs as $blog) {
+            $parent = '#';
+            if (is_array($blog['parent']) and $blog['parent']['id'] == $parent) {
+                $parent = $blog['parent']['id'];
+            }
             $tree[] = array(
-                'id' => (string) $blog->getId(),
-                'parent' => ($blog->getParent() == $parent) ? '#' : $blog->getParent()->getId(),
-                'text' => $blog->getTitle(),
-                'state' => array('selected' => in_array($blog->getId(), $selected) ? true : false)
+                'id' => $blog['id'],
+                'parent' => $parent,
+                'text' => $blog['title'],
+                'state' => array('selected' => in_array($blog['id'], $selected) ? true : false)
             );
         }
 
@@ -40,7 +44,7 @@ class BlogRepository extends NestedTreeRepository
     /**
      * return query that show blog's tree.
      *
-     * @param null|string $parent
+     * @param null|int $parent
      * @param null|bool $active
      * @param null|bool $onTree
      * @param string $locale
@@ -48,7 +52,8 @@ class BlogRepository extends NestedTreeRepository
      */
     public function getTreeQuery($parent = null, $active=null, $onTree=null, $locale='fa')
     {
-        $qb = $this->createQueryBuilder('b')->select('b');
+        $qb = $this->createQueryBuilder('b')->select('b', 'p');
+        $qb->leftJoin('b.parent', 'p');
 
         if (!is_null($parent)) {
             $qb->where($qb->expr()->eq('b.parent', ':parent'));

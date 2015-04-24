@@ -1,0 +1,43 @@
+Anar\EngineBundle\Entity\Log:
+    table: sys_log
+    type: entity
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        createdAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        createdBy:
+            type: string
+            gedmo:
+                blameable:
+                    on: create
+        routeParams:
+            type: array
+            nullable: true
+        postParams:
+            type: array
+            nullable: true
+        ip:
+            type: string
+            length: 45
+            nullable: true
+            gedmo:
+                ipTraceable:
+                    on: create
+        entity: ~
+        event: ~
+        message: ~
+    manyToOne:
+        blog:
+            targetEntity: Anar\EngineBundle\Entity\Blog
+            joinColumn:
+                name: blog_id
+                referencedColumnName: id
+                onDelete: cascade
+                nullable: true

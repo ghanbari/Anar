@@ -1,0 +1,42 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>StudentsDissertation list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Author</th>
+                <th>Title</th>
+                <th>Createdat</th>
+                <th>Updatedat</th>
+                <th>Createdby</th>
+                <th>Updatedby</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for dissertation in dissertations %}
+            <tr>
+                <td>{{ dissertation.author }}</td>
+                <td>{{ dissertation.title }}</td>
+                <td>{% if dissertation.createdAt %}{{ dissertation.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if dissertation.updatedAt %}{{ dissertation.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ dissertation.createdBy }}</td>
+                <td>{{ dissertation.updatedBy }}</td>
+                <td>
+                <ul>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+
+        </li>
+    </ul>
+    {% endblock %}

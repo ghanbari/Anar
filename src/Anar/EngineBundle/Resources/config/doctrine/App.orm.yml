@@ -34,6 +34,9 @@ Anar\EngineBundle\Entity\App:
             targetEntity: Blog
             mappedBy: apps
     oneToMany:
+        roles:
+            targetEntity: Anar\EngineBundle\Entity\Role
+            mappedBy: app
         translations:
             targetEntity: AppTranslation
             mappedBy: object

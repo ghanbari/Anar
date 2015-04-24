@@ -37,17 +37,29 @@ class Role implements RoleInterface
     private $groups;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $children;
+
+    /**
+     * @var Role
+     */
+    private $parent;
+
+    /**
      * Constructor.
      *
      * @param string $role The role name
      * @param App $app
      */
-    public function __construct($name, $role, $app=null)
+    public function __construct($name, $role, $app=null, $parent=null)
     {
         $this->name = $name;
         $this->role = strtoupper($role);
         $this->app  = $app;
         $this->groups = new ArrayCollection();
+        $this->children = new ArrayCollection();
+        $this->parent = $parent;
     }
 
     /**
@@ -160,5 +172,69 @@ class Role implements RoleInterface
     public function getGroups()
     {
         return $this->groups;
+    }
+
+    /**
+     * Add children
+     *
+     * @param Role $children
+     * @return Role
+     */
+    public function addChild(Role $children)
+    {
+        $this->children[] = $children;
+
+        return $this;
+    }
+
+    /**
+     * Remove children
+     *
+     * @param Role $children
+     */
+    public function removeChild(Role $children)
+    {
+        $this->children->removeElement($children);
+    }
+
+    /**
+     * Get children
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getChildren()
+    {
+        return $this->children;
+    }
+
+    /**
+     * Set parent
+     *
+     * @param Role $parent
+     * @return Role
+     */
+    public function setParent(Role $parent = null)
+    {
+        $this->parent = $parent;
+
+        return $this;
+    }
+
+    /**
+     * Get parent
+     *
+     * @return Role
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->role;
     }
 }

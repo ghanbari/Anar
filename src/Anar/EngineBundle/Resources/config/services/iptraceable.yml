@@ -1,0 +1,14 @@
+services:
+    anar_engine.listener.ip_traceable:
+        class: Anar\EngineBundle\EventListener\IpTraceableListener
+        scope: request
+        arguments: ['@gedmo.listener.ip_traceable', '@request']
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+
+    gedmo.listener.ip_traceable:
+        class: Gedmo\IpTraceable\IpTraceableListener
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
+        calls:
+            - [ setAnnotationReader, [ @annotation_reader ] ]

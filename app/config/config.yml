@@ -3,13 +3,17 @@ imports:
     - { resource: security.yml }
     - { resource: services.yml }
     - { resource: knp.yml }
+    - { resource: fos.yml }
+    - { resource: jms.yml }
+    - { resource: stof.yml }
+    - { resource: vich.yml }
 
 framework:
-    #esi:             ~
+    #esi:        ~
     translator:
         enabled: true
         fallback: "%locale%"
-    secret:          "%secret%"
+    secret:       "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
         strict_requirements: ~
@@ -32,6 +36,11 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    globals:
+        blog: '@anar_engine.manager.blog'
+    form_themes:
+        # other form themes
+        - 'VichUploaderBundle:Form:fields.html.twig'
 
 # Assetic Configuration
 assetic:
@@ -67,22 +76,30 @@ doctrine:
         auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping: true
         mappings:
-            translatable:
+            gedmo_translatable:
                 type: annotation
-                alias: Gedmo
                 prefix: Gedmo\Translatable\Entity
-                # make sure vendor library location is correct
                 dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity"
-#            loggable:
+                alias: GedmoTranslatable # this one is optional and will default to the name set for the mapping
+                is_bundle: false
+            gedmo_translator:
+                type: annotation
+                prefix: Gedmo\Translator\Entity
+                dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translator/Entity"
+                alias: GedmoTranslator # this one is optional and will default to the name set for the mapping
+                is_bundle: false
+#            gedmo_loggable:
 #                type: annotation
-#                alias: Gedmo
 #                prefix: Gedmo\Loggable\Entity
 #                dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Loggable/Entity"
-            tree:
+#                alias: GedmoLoggable # this one is optional and will default to the name set for the mapping
+#                is_bundle: false
+            gedmo_tree:
                 type: annotation
-                alias: Gedmo
                 prefix: Gedmo\Tree\Entity
                 dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Tree/Entity"
+                alias: GedmoTree # this one is optional and will default to the name set for the mapping
+                is_bundle: false
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -92,24 +109,5 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
-fos_user:
-    db_driver: orm
-    firewall_name: main
-    use_listener: false
-    user_class: Anar\EngineBundle\Entity\User
-    group:
-        group_class: Anar\EngineBundle\Entity\Group
-
 v_bee_setting:
     orm: doctrine
-
-jms_translation:
-    configs:
-        app:
-            dirs: [%kernel.root_dir%, %kernel.root_dir%/../src]
-            output_dir: %kernel.root_dir%/Resources/translations
-            ignored_domains: [routes]
-            excluded_names: ["*TestCase.php", "*Test.php"]
-            excluded_dirs: [cache, data, logs]
-            output-format: xliff
-            keep: true

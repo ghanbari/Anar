@@ -1,0 +1,25 @@
+Anar\EngineBundle\Entity\AppMenu:
+    type: entity
+    table: sys_app_menu
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        name: ~
+        route: ~
+        icon: ~
+    manyToOne:
+        app:
+            targetEntity: Anar\EngineBundle\Entity\App
+            joinColumn:
+                name: app_id
+                referencedColumnName: id
+                onDelete: cascade
+    oneToOne:
+        role:
+            targetEntity: Anar\EngineBundle\Entity\Role
+            joinColumn:
+                name: role_id
+                referencedColumnName: id
+                onDelete: cascade

@@ -1,0 +1,41 @@
+Anar\ProfessorBundle\Entity\ProfileTranslation:
+    type: entity
+    table: professor_profile_translations
+    extends: Anar\EngineBundle\Entity\Translation
+    uniqueConstraints:
+        professor_profile_translations_unique_idx:
+            columns: [locale, object_id, field]
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        createdAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        updatedAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: update
+        createdBy:
+            gedmo:
+                blameable:
+                    on: create
+        updatedBy:
+            gedmo:
+                blameable:
+                    on: update
+    manyToOne:
+        object:
+            targetEntity: Anar\ProfessorBundle\Entity\Profile
+            inversedBy: translations
+            joinColumn:
+                name: object_id
+                referencedColumnName: id
+                onDelete: cascade
+    lifecycleCallbacks: {  }

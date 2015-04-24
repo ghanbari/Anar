@@ -1,0 +1,4 @@
+Anar\ProfessorBundle\Entity\Profile:
+    avatarFile:
+        mapping: anar_professor_profile_avatar
+        filename_property: avatar

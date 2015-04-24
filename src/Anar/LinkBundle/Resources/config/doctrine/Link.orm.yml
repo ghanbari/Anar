@@ -1,0 +1,54 @@
+Anar\LinkBundle\Entity\Link:
+    type: entity
+    table: link
+    repositoryClass: LinkRepository
+    gedmo:
+        translation:
+            entity: LinkTranslation
+            locale: currentLocale
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            gedmo:
+                - translatable
+        description:
+            nullable: true
+            gedmo:
+                - translatable
+        url: ~
+        icon:
+            nullable: true
+        createdAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        updatedAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        createdBy:
+            gedmo:
+                blameable:
+                    on: create
+        updatedBy:
+            gedmo:
+                blameable:
+                    on: update
+    manyToOne:
+        blog:
+            targetEntity: Anar\EngineBundle\Entity\Blog
+            joinColumn:
+                name: blog_id
+                referencedColumnName: id
+                onDelete: cascade
+    oneToMany:
+        translations:
+            targetEntity: LinkTranslation
+            mappedBy: object
+            cascade: ["persist"]

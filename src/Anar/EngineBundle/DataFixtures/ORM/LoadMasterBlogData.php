@@ -9,7 +9,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class LoadBlogData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
+class LoadMasterBlogData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
 
     private $container;

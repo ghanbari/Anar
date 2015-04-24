@@ -1,0 +1,8 @@
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    use_listener: false
+    use_username_form_type: false
+    user_class: Anar\EngineBundle\Entity\User
+    group:
+        group_class: Anar\EngineBundle\Entity\Group

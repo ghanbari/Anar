@@ -6,6 +6,12 @@ use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
+/**
+ * Class DoctrineExtensionListener
+ *
+ * @package Anar\EngineBundle\EventListener
+ * @deprecated
+ */
 class DoctrineExtensionListener implements ContainerAwareInterface
 {
     /**

@@ -1,0 +1,33 @@
+Anar\ContentBundle\Entity\ArticleTranslation:
+    type: entity
+    table: content_article_translations
+    extends: Anar\EngineBundle\Entity\Translation
+    uniqueConstraints:
+        content_article_translations_unique_idx:
+            columns: [locale, object_id, field]
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        createdAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        updatedAt:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: update
+    manyToOne:
+        object:
+            targetEntity: Article
+            inversedBy: translations
+            joinColumn:
+                name: object_id
+                referencedColumnName: id
+                onDelete: cascade
+    lifecycleCallbacks: {  }
