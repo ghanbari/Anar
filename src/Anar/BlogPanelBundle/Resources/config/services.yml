@@ -1,0 +1,17 @@
+services:
+    anar_blog_panel.listener.authentication:
+        class: Anar\BlogPanelBundle\EventListener\AuthenticationListener
+        arguments: ['@service_container']
+        tags:
+            - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }
+
+    anar_blog_panel.controller.desktop:
+        class: Anar\BlogPanelBundle\Controller\DesktopController
+        arguments:
+            - "@templating"
+            - '@doctrine'
+            - '@security.token_storage'
+            - '@session'
+            - '@security.csrf.token_manager'
+            - '@router'
+            - '@anar_engine.manager.blog'

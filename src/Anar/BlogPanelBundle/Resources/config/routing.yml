@@ -1,0 +1,19 @@
+anar_blog_panel_login:
+    path:     /login
+    defaults: { _controller: AnarEngineBundle:Security:loginForm }
+
+anar_blog_panel_login_check:
+    path:     /login_check
+
+anar_blog_panel_logout:
+    path:     /logout
+
+anar_blog_panel_home_blog:
+    path:     /{blogName}
+    defaults: { _controller: anar_blog_panel.controller.desktop:homeAction }
+    requirements:
+        blogname: "[a-z]{4,100}"
+
+anar_blog_panel_home:
+    path:     /
+    defaults: { _controller: anar_blog_panel.controller.desktop:homeAction }

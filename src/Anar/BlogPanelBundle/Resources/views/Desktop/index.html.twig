@@ -1,0 +1,209 @@
+<!doctype html>
+<html dir="rtl">
+<head>
+    <meta charset="utf-8">
+    <title>صفحه مدیریت - {{ blog.getName() }}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {#----------------------commonStyles----------------------#}
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/addFonts.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/icons.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('styles/commonStyles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/bootstrapV3-2-0/css/bootstrap.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/bootstrapV3-2-0/css/bootstrap-theme.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/bootstrapV3-2-0/css/bootstrapPersianNormailze.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/jstreeV3-0-4/themes/default/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/tinyNotice/FlatTheme.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/datepicker/pwt-datepicker.css') }}">
+    {#----------------------/commonStyles----------------------#}
+    {#----------------------PrivateStyles----------------------#}
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/rolepanel/styles/privateStyle.css') }}">
+    {#----------------------/PrivateStyles----------------------#}
+</head>
+
+<body>
+<!-----------------wrap----------------->
+<div id="rp-toolbarWrap">
+    <div id="rp-logo"></div>
+
+
+    <ul>
+        <li>
+            <a>
+                <i class="fa fa-user"></i>
+                <span class="rp-toolbarElementLablel">{{ app.user.getFname() }} {{  app.user.getLname() }}</span>
+                <i class="fa fa-sort-down"></i>
+            </a>
+
+            <ul>
+                <li><i class="fa fa-cog"></i> <span>تنظیمات کاربری</span></li>
+                <li><i class="fa fa-power-off"></i> <a href="{{ path('anar_blog_panel_logout') }}"><span>خروج از سیستم</span></a></li>
+            </ul>
+        </li>
+        <li>
+            <a>
+                <i class="fa fa-exchange"></i>
+                <span class="rp-toolbarElementLablel">تغییر نقش</span>
+                <i class="fa fa-sort-down"></i>
+            </a>
+            <ul>
+                {%  for userBlog in blogs %}
+
+                    <li><a href="{{ path('anar_blog_panel_home_blog', {'blogName': userBlog['name']}) }}?token={{ token }}">{{ userBlog['title'] }}</a></li>
+                {% endfor %}
+            </ul>
+        </li>
+        <li data-URL="ajaxUrlComments" role="appLinke"><i class="fa fa-comment"></i> <span class="badge">12</span></li>
+        <li data-URL="ajaxUrlPlea" role="appLinke"><i class="fa fa-envelope"></i> <span class="badge">9</span></li>
+    </ul>
+
+
+</div>
+<div id="rp-menuWrap">
+    <div id="rp-nowRoleShowerWrap"><i class="fa fa-bars"></i><i class="fa fa-desktop"></i>&nbsp;<span>{{ blog.getName() }}</span>
+    </div>
+    <ul>
+        {{ knp_menu_render('AnarBlogPanelBundle:Builder:adminMenu') }}
+        {#{% set apps = [] %}#}
+        {#{% for facility in blog.getFacilities() %}#}
+            {#{% set apps = apps|merge([facility.getName()]) %}#}
+        {#{% endfor %}#}
+        {#<li id="rp-desktopTab" data-active="true"><i class="fa fa-home"></i><span> میزکار</span></li>#}
+        {#{% if 'content' in apps %}#}
+            {#<li data-URL="ajaxUrlContents" role="appLinke"><i class="fa fa-file-text"></i><span> مطالب و دسته بندی</span></li>#}
+        {#{% endif %}#}
+        {#{% if 'link' in apps %}#}
+            {#<li data-URL="ajaxUrlLinks" role="appLinke"><i class="fa fa-link"></i><span> پیوندها</span></li>#}
+        {#{% endif %}#}
+        {#{% if 'professor_profile' in apps %}#}
+            {#<li data-URL="ajaxUrlProf" role="appLinke"><i class="fa fa-list-alt"></i><span> پروفایل اساتید</span></li>#}
+        {#{% endif %}#}
+        {#{% if 'contact' in apps %}#}
+            {#<li data-URL="ajaxUrlComments" role="appLinke"><i class="fa fa-comment"></i><span> پیام ها</span></li>#}
+        {#{% endif %}#}
+        {#{% if 'complaint' in apps %}#}
+            {#<li data-URL="ajaxUrlPlea" role="appLinke"><i class="fa fa-envelope"></i><span> انتقادات و پیشنهادات</span></li>#}
+        {#{% endif %}#}
+        {#{% if 'settings' in apps %}#}
+            {#<li data-URL="ajaxUrlRolesSetting" role="appLinke"><i class="fa fa-gear"></i><span> تنظیمات نقش جاری</span></li>#}
+        {#{% endif %}#}
+        {#{% if 'permission' in apps %}#}
+            {#<li data-URL="ajaxUrlUserPermations" role="appLinke"><i class="fa fa-users"></i><span> سطح دسترسی کاربران</span></li>#}
+        {#{% endif %}#}
+    </ul>
+</div>
+
+<!-----------------wrap----------------->
+<div id="rp-boxWrap">
+    <div id="rp-contentWrap">
+        <i class="fa fa-times" id="rp-contencClose"></i>
+
+        <div id="rp-contentContainer"></div>
+    </div>
+    <!-----------------wrap----------------->
+    <div id="rp-desktopWrap">
+
+        <div class="rp-shower">
+            <i class="rp-iconLabel fa fa-file"><span></span></i>
+            <span class="rp-showerTitr">کل مطالب</span>
+            <span class="rp-showerNumber" id="desktop_NumOfUser">980</span>
+        </div>
+
+        <div class="rp-shower">
+            <i class="rp-iconLabel fa fa-copy"><span></span></i>
+            <span class="rp-showerTitr">مطالب منقضی</span>
+            <span class="rp-showerNumber" id="desktop_NumOfUser">150</span>
+        </div>
+
+        <div class="rp-shower rp-goToDown">
+            <i class="rp-iconLabel fa fa-check-circle-o"><span></span></i>
+            <span class="rp-showerTitr">جعبه عناوین</span>
+            <span class="rp-showerNumber" id="desktop_NumOfUser">12</span>
+        </div>
+
+        <div class="rp-shower">
+            <i class="rp-iconLabel fa fa-chain"><span></span></i>
+            <span class="rp-showerTitr">پیوندها</span>
+            <span class="rp-showerNumber" id="desktop_NumOfUser">32</span>
+        </div>
+
+        <div id="rp-clockWrap">
+            <time></time>
+            <hr>
+            <i class="fa fa-calendar"></i>
+            <span></span>
+        </div>
+
+        <div id="rp-conections" class="rp-goToDown">
+            <div id="rp-topic">
+                <i class="fa  fa-comment-o"></i>
+                <span>ارتباطات<sup>[فعال]</sup></span>
+            </div>
+            <div class="rp-tabs" style="background-color:#535353;">
+                <i class="fa fa-inbox"></i>
+                <span class="rp-showerTitr">کل پیام ها</span>
+                <span class="rp-showerNumber">988</span>
+            </div>
+            <div class="rp-tabs">
+                <i class="fa fa-archive"></i>
+                <span class="rp-showerTitr">خوانده نشده</span>
+                <span class="rp-showerNumber">24</span>
+            </div>
+        </div>
+
+        <div id="rp-week">
+            <i class="fa  fa-list-alt"></i>
+            <span>برنامه هفتگی</span>
+        </div>
+
+        <div class="rp-comment">
+            <i class="fa fa-envelope-o"></i>
+            <span class="rp-showerTitr">کل نظرات</span>
+            <span class="rp-showerNumber">330</span>
+        </div>
+
+        <div class="rp-comment rp-goToDown">
+            <i class="fa fa-envelope-o"></i>
+            <span class="rp-showerTitr">خوانده نشده</span>
+            <span class="rp-showerNumber">22</span>
+        </div>
+
+    </div>
+</div>
+
+{#----------------------commonScripts----------------------#}
+<script src="{{ asset('scripts/jquery-1.11.1.min.js') }}"></script>
+<script src="{{ asset('scripts/jquery-ui-1.11.1.full.min.js') }}"></script>
+<script src="{{ asset('plugins/bootstrapV3-2-0/js/bootstrap.min.js') }}"></script>
+
+<script src="{{ asset('plugins/datepicker/pwt-date.js') }}"></script>
+<script src="{{ asset('plugins/datepicker/pwt-datepicker.js') }}"></script>
+
+<script src="{{ asset('plugins/jstreeV3-0-4/jstree.min.js') }}"></script>
+<script src="{{ asset('plugins/nicescroll/jquery.nicescroll.min.js') }}"></script>
+<script src="{{ asset('plugins/tinyNotice/tinyNotice.js') }}"></script>
+<script src="{{ asset('scripts/commonActions.js') }}"></script>
+{#----------------------/commonScripts----------------------#}
+{#----------------------PrivateScripts----------------------#}
+<script>
+    {#// variables#}
+    var serverTimestamp = 1408024511582;
+    var TodayDate = " چهارشنبه 1393/7/4";
+    var desktop_NumOfRoles = 245;
+    var desktop_NumOfUser = 305;
+
+    {#&#123;&#35;//app address&#35;&#125;#}
+    {#var ajaxUrlContents = "{{ path('pomegranate_content_backend_article_index') }}";#}
+    {#var ajaxUrlLinks = "{{ path('pomegranate_link_backend_index') }}";#}
+    {#var ajaxUrlProf = "{{ path('professor_profile_backend_home') }}";#}
+    {#var ajaxUrlComments = "{{ path('pomegranate_contact_backend_index') }}";#}
+    {#var ajaxUrlPlea = "../apps/com-plea.html";#}
+    {#var ajaxUrlRolesSetting = "../apps/com-rolesSetting.html";#}
+    {#var ajaxUrlUserPermations = "../apps/com-userPermations.html";#}
+
+
+</script>
+<script src="{{ asset('bundles/rolepanel/scripts/privateActions.js') }}"></script>
+{#----------------------/PrivateScripts----------------------#}
+</body>
+</html>
