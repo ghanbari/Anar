@@ -6,6 +6,7 @@ use Anar\BlogPanelBundle\Exception\BlogNotSelectedException;
 use Doctrine\Bundle\DoctrineBundle\Registry;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Doctrine\ORM\QueryBuilder;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 
 class BlogManager
 {
@@ -13,6 +14,11 @@ class BlogManager
      * @var \Anar\EngineBundle\Entity\Blog
      */
     private static $blog = null;
+
+    /**
+     * @var array
+     */
+    private static $blogs = null;
 
     /**
      * @var Registry
@@ -25,13 +31,20 @@ class BlogManager
     private $requestStack;
 
     /**
+     * @var TokenStorage
+     */
+    private $tokenStorage;
+
+    /**
      * @param Registry $doctrine
      * @param RequestStack $requestStack
+     * @param TokenStorage $tokenStorage
      */
-    public function __construct(Registry $doctrine, RequestStack $requestStack)
+    public function __construct(Registry $doctrine, RequestStack $requestStack, $tokenStorage)
     {
         $this->doctrine = $doctrine;
         $this->requestStack = $requestStack;
+        $this->tokenStorage = $tokenStorage;
     }
 
     /**
@@ -46,13 +59,16 @@ class BlogManager
                 return;
             }
 
-            if (!$request->attributes->has('blogName')) {
+            if (!$request->attributes->has('blogName') and !$request->getSession()->has('blogName')) {
                 if (strpos($request->attributes->get('_route'), 'super_panel')) {
                     return null;
                 } else {
                     throw new BlogNotSelectedException();
                 }
             }
+
+            $blogName = $request->attributes->has('blogName') ?
+                $request->attributes->get('blogName') : $request->getSession()->get('blogName');
 
             /** @var QueryBuilder $qb */
             $qb = $this->doctrine->getManager()->createQueryBuilder();
@@ -66,10 +82,28 @@ class BlogManager
                 ->leftJoin('g.users', 'u')
                 ->leftJoin('g.roles', 'r')
                 ->where($qb->expr()->eq('b.name', '?1'))
-                ->setParameter(1, $request->attributes->get('blogName'))
+                ->setParameter(1, $blogName)
                 ->getQuery()->getSingleResult();
         }
 
         return static::$blog;
+    }
+
+    /**
+     * @return array|void
+     */
+    public function getUserBlogs()
+    {
+        if (is_null(static::$blogs)) {
+            $token = $this->tokenStorage->getToken();
+
+            if (is_null($token) or !$token->getUser()) {
+                return;
+            }
+            static::$blogs = $this->doctrine->getRepository('AnarEngineBundle:User')
+                ->getBlogsQueryBuilder($token->getUser()->getId())->getQuery()->getArrayResult();
+        }
+
+        return static::$blogs;
     }
 }

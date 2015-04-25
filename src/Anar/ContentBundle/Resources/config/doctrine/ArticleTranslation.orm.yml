@@ -22,6 +22,14 @@ Anar\ContentBundle\Entity\ArticleTranslation:
             gedmo:
                 timestampable:
                     on: update
+        createdBy:
+            gedmo:
+                blameable:
+                    on: create
+        updatedBy:
+            gedmo:
+                blameable:
+                    on: update
     manyToOne:
         object:
             targetEntity: Article

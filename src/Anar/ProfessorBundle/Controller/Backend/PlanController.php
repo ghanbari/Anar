@@ -74,7 +74,7 @@ class PlanController extends Controller implements AdminInterface
             $em->flush();
 
             $this->addFlash('info', $this->get('translator')->trans('item.is.created'));
-            return $this->redirect($this->generateUrl('anar_professor_backend_plan_index', array('blogName' => $blog->getName())));
+            return $this->redirectToRoute('anar_professor_backend_plan_index');
         }
 
         return $this->render('AnarProfessorBundle:Backend/Plan:new.html.twig', array(
@@ -93,9 +93,8 @@ class PlanController extends Controller implements AdminInterface
      */
     private function createCreateForm(Plan $plan)
     {
-        $blog = $this->get('anar_engine.manager.blog')->getBlog();
         $form = $this->createForm(new PlanType(), $plan, array(
-            'action' => $this->generateUrl('anar_professor_backend_plan_create', array('blogName' => $blog->getName())),
+            'action' => $this->generateUrl('anar_professor_backend_plan_create'),
             'method' => 'POST',
         ));
 
@@ -112,11 +111,10 @@ class PlanController extends Controller implements AdminInterface
     {
         $em = $this->getDoctrine()->getManager();
         $plan = $em->getRepository('AnarProfessorBundle:Plan')->find($id);
-        $blog = $this->get('anar_engine.manager.blog')->getBlog();
 
         if (!$plan) {
             $this->addFlash('error', $this->get('translator')->trans('plan.is.not.exists'));
-            return $this->redirectToRoute('anar_professor_backend_plan_index', array('blogName' => $blog->getName()));
+            return $this->redirectToRoute('anar_professor_backend_plan_index');
         }
 
         $form = $this->createEditForm($plan);
@@ -137,14 +135,10 @@ class PlanController extends Controller implements AdminInterface
     */
     private function createEditForm(Plan $plan)
     {
-        $blog = $this->get('anar_engine.manager.blog')->getBlog();
         $form = $this->createForm(new PlanType(), $plan, array(
             'action' => $this->generateUrl(
                 'anar_professor_backend_plan_update',
-                array(
-                    'id' => $plan->getId(),
-                    'blogName' => $blog->getName(),
-                )
+                array('id' => $plan->getId())
             ),
             'method' => 'PUT',
         ));
@@ -162,11 +156,10 @@ class PlanController extends Controller implements AdminInterface
     {
         $em = $this->getDoctrine()->getManager();
         $plan = $em->getRepository('AnarProfessorBundle:Plan')->find($id);
-        $blog = $this->get('anar_engine.manager.blog')->getBlog();
 
         if (!$plan) {
             $this->addFlash('error', $this->get('translator')->trans('plan.is.not.exists'));
-            return $this->redirectToRoute('anar_professor_backend_plan_index', array('blogName' => $blog->getName()));
+            return $this->redirectToRoute('anar_professor_backend_plan_index');
         }
 
         $form = $this->createEditForm($plan);
@@ -176,7 +169,7 @@ class PlanController extends Controller implements AdminInterface
             $em->flush();
 
             $this->addFlash('info', $this->get('translator')->trans('item.is.updated'));
-            return $this->redirect($this->generateUrl('anar_professor_backend_plan_index', array('blogName' => $blog->getName())));
+            return $this->redirect($this->generateUrl('anar_professor_backend_plan_index'));
         }
 
         return $this->render('AnarProfessorBundle:Backend/Plan:new.html.twig', array(

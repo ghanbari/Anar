@@ -28,12 +28,10 @@ Anar\ContentBundle\Entity\Article:
                 - translatable
         visit:
             type: integer
-            nullable: true
             options:
                 default: 0
         enabled:
             type: boolean
-            nullable: true
             options:
                 default: true
         publicationStartDate:
@@ -83,7 +81,7 @@ Anar\ContentBundle\Entity\Article:
             joinColumn:
                 name: category_id
                 refrencedColumnName: id
-                onDelete: set null
+                onDelete: "SET NULL"
                 nullable: true
 
         blog:

@@ -1,6 +1,7 @@
 <?php
 
 namespace Anar\ContentBundle\Entity;
+
 use Anar\EngineBundle\Entity\Translation;
 
 /**
@@ -24,10 +25,19 @@ class CategoryTranslation extends Translation
     private $updatedAt;
 
     /**
+     * @var string
+     */
+    private $createdBy;
+
+    /**
+     * @var string
+     */
+    private $updatedBy;
+
+    /**
      * @var \Anar\ContentBundle\Entity\Category
      */
     protected $object;
-
 
     /**
      * Get id
@@ -85,6 +95,54 @@ class CategoryTranslation extends Translation
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * Set createdBy
+     *
+     * @param string $createdBy
+     *
+     * @return CategoryTranslation
+     */
+    public function setCreatedBy($createdBy)
+    {
+        $this->createdBy = $createdBy;
+
+        return $this;
+    }
+
+    /**
+     * Get createdBy
+     *
+     * @return string
+     */
+    public function getCreatedBy()
+    {
+        return $this->createdBy;
+    }
+
+    /**
+     * Set updatedBy
+     *
+     * @param string $updatedBy
+     *
+     * @return CategoryTranslation
+     */
+    public function setUpdatedBy($updatedBy)
+    {
+        $this->updatedBy = $updatedBy;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedBy
+     *
+     * @return string
+     */
+    public function getUpdatedBy()
+    {
+        return $this->updatedBy;
     }
 
     /**

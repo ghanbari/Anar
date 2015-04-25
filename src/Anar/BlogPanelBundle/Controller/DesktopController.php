@@ -81,13 +81,12 @@ class DesktopController
     /**
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function homeAction($blogName=null)
+    public function homeAction(Request $request, $blogName=null)
     {
         $user = $this->tokenStorage->getToken()->getUser();
-        $blogs = $this->doctrine->getRepository('AnarEngineBundle:User')
-            ->getBlogsQueryBuilder($user->getId())->select('b.id, b.title, b.name')->getQuery()->getResult();
+        $blogs = $this->blogManager->getUserBlogs();
 
-        if (is_null($blogName)) {
+        if (is_null($blogName) and !$request->getSession()->has('blogName')) {
             if ($blogs) {
                 return new RedirectResponse(
                     $this->router->generate('anar_blog_panel_home_blog', array('blogName' => $blogs[0]['name']))
@@ -95,14 +94,15 @@ class DesktopController
             } else {
                 throw new AccessDeniedException();
             }
+        } elseif (!is_null($blogName)) {
+            $request->getSession()->set('blogName', $blogName);
         }
 
-        $blog = $this->blogManager->getBlog();
         $token = $this->csrfTokenManager->refreshToken('blogChange');
 
         return $this->templating->renderResponse(
             'AnarBlogPanelBundle:Desktop:index.html.twig',
-            array('blog' => $blog, 'blogs' => $blogs, 'token' => $token,)
+            array('token' => $token,)
         );
     }
 }

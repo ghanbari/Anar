@@ -17,12 +17,13 @@ class LoadRoleData extends AbstractFixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
         $app = $this->getReference('AnarLinkBundle');
-        $index = new Role('لیست لینک ها', 'Anar_Link_Backend_Link_index', $app);
-        $new = new Role('افزودن لینک', 'Anar_Link_Backend_Link_new', $app);
-        $create = new Role('افزودن لینک', 'Anar_Link_Backend_Link_create', $app, $new);
-        $edit = new Role('ویرایش لینک', 'Anar_Link_Backend_Link_edit', $app);
-        $update = new Role('ویرایش لینک', 'Anar_Link_Backend_Link_update', $app, $edit);
-        $delete = new Role('حذف لینک', 'Anar_Link_Backend_Link_delete', $app);
+
+        $index = new Role('لیست لینک ها', 'ANAR_LINK_BACKEND_LINK_INDEX', $app);
+        $new = new Role('افزودن لینک', 'ANAR_LINK_BACKEND_LINK_NEW', $app);
+        $create = new Role('افزودن لینک', 'ANAR_LINK_BACKEND_LINK_CREATE', $app, $new);
+        $edit = new Role('ویرایش لینک', 'ANAR_LINK_BACKEND_LINK_EDIT', $app);
+        $update = new Role('ویرایش لینک', 'ANAR_LINK_BACKEND_LINK_UPDATE', $app, $edit);
+        $delete = new Role('حذف لینک', 'ANAR_LINK_BACKEND_LINK_DELETE', $app);
 
         $manager->persist($index);
         $manager->persist($new);
@@ -30,6 +31,9 @@ class LoadRoleData extends AbstractFixture implements OrderedFixtureInterface
         $manager->persist($edit);
         $manager->persist($update);
         $manager->persist($delete);
+        $this->setReference('linkIndex', $index);
+        $this->setReference('linkNew', $new);
+
         $manager->flush();
     }
 

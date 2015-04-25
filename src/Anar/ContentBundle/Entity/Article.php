@@ -2,6 +2,8 @@
 
 namespace Anar\ContentBundle\Entity;
 
+use Symfony\Component\HttpFoundation\File\File;
+
 /**
  * Article
  */
@@ -17,58 +19,6 @@ class Article
      */
     private $title;
 
-    private $currentLocale;
-
-    /**
-     * @return mixed
-     */
-    public function getCurrentLocale()
-    {
-        return $this->currentLocale;
-    }
-
-    /**
-     * @param mixed $currentLocale
-     */
-    public function setCurrentLocale($currentLocale)
-    {
-        $this->currentLocale = $currentLocale;
-    }
-
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set title
-     *
-     * @param string $title
-     *
-     * @return Article
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    /**
-     * Get title
-     *
-     * @return string
-     */
-    public function getTitle()
-    {
-        return $this->title;
-    }
     /**
      * @var string
      */
@@ -107,7 +57,7 @@ class Article
     /**
      * @var string
      */
-    private $image;
+    protected $image;
 
     /**
      * @var \DateTime
@@ -120,6 +70,11 @@ class Article
     private $updatedAt;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $translations;
+
+    /**
      * @var \Anar\EngineBundle\Entity\User
      */
     private $author;
@@ -130,7 +85,7 @@ class Article
     private $editor;
 
     /**
-     * @var \Anar\ContentBundle\Entity\Category
+     * @var Category
      */
     private $category;
 
@@ -139,6 +94,59 @@ class Article
      */
     private $blog;
 
+    /**
+     * @var string
+     */
+    private $currentLocale;
+
+    /**
+     * @var File
+     */
+    protected $imageFile;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->translations = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->visit = 0;
+        $this->enabled = true;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     *
+     * @return Article
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
 
     /**
      * Set slug
@@ -381,6 +389,40 @@ class Article
     }
 
     /**
+     * Add translation
+     *
+     * @param ArticleTranslation $translation
+     *
+     * @return Article
+     */
+    public function addTranslation(ArticleTranslation $translation)
+    {
+        $this->translations[] = $translation;
+
+        return $this;
+    }
+
+    /**
+     * Remove translation
+     *
+     * @param ArticleTranslation $translation
+     */
+    public function removeTranslation(ArticleTranslation $translation)
+    {
+        $this->translations->removeElement($translation);
+    }
+
+    /**
+     * Get translations
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTranslations()
+    {
+        return $this->translations;
+    }
+
+    /**
      * Set author
      *
      * @param \Anar\EngineBundle\Entity\User $author
@@ -431,11 +473,11 @@ class Article
     /**
      * Set category
      *
-     * @param \Anar\ContentBundle\Entity\Category $category
+     * @param Category $category
      *
      * @return Article
      */
-    public function setCategory(\Anar\ContentBundle\Entity\Category $category = null)
+    public function setCategory(Category $category = null)
     {
         $this->category = $category;
 
@@ -445,7 +487,7 @@ class Article
     /**
      * Get category
      *
-     * @return \Anar\ContentBundle\Entity\Category
+     * @return Category
      */
     public function getCategory()
     {
@@ -475,50 +517,39 @@ class Article
     {
         return $this->blog;
     }
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $translations;
 
     /**
-     * Constructor
+     * @return string
      */
-    public function __construct()
+    public function getCurrentLocale()
     {
-        $this->translations = new \Doctrine\Common\Collections\ArrayCollection();
+        return $this->currentLocale;
     }
 
     /**
-     * Add translation
-     *
-     * @param \Anar\ContentBundle\Entity\BlogTranslation $translation
-     *
-     * @return Article
+     * @param string $currentLocale
      */
-    public function addTranslation(\Anar\ContentBundle\Entity\BlogTranslation $translation)
+    public function setCurrentLocale($currentLocale)
     {
-        $this->translations[] = $translation;
-
-        return $this;
+        $this->currentLocale = $currentLocale;
     }
 
     /**
-     * Remove translation
-     *
-     * @param \Anar\ContentBundle\Entity\BlogTranslation $translation
+     * @param File $imageFile
      */
-    public function removeTranslation(\Anar\ContentBundle\Entity\BlogTranslation $translation)
+    public function setImageFile(File $imageFile=null)
     {
-        $this->translations->removeElement($translation);
+        if ($imageFile) {
+            $this->imageFile = $imageFile;
+            $this->updatedAt = new \DateTime();
+        }
     }
 
     /**
-     * Get translations
-     *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return File
      */
-    public function getTranslations()
+    public function getImageFile()
     {
-        return $this->translations;
+        return $this->imageFile;
     }
 }

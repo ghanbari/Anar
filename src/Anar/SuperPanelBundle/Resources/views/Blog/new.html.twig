@@ -22,28 +22,6 @@
     </style>
 {% endblock csses %}
 
-{% block top_fixed_superpanel_box %}
-    <div id="sp-topBar">
-        <span>{{ 'last login:' }}<time dir="ltr"></time></span>
-        <a class="btn btn-xs btn-danger" href="">{{ 'logout'|trans }}</a>
-    </div>
-    <div id="sp-headerWrap">
-        <div id="sp-logo"></div>
-    </div>
-    <div id="sp-tabBar">
-        <div id="sp-label">
-            <h1>Super Panel</h1>
-            <h2>Pomegranate notification system</h2>
-        </div>
-        <span id="sp-firstSpan"></span>
-        <span onclick="location.href = '{{ path("anar_super_panel_blog_index") }}'" data-URL="ajaxUrlRoles" data-active="true"><i class="fa fa-sitemap"></i><br>{{ 'blogs'|trans }}</span>
-        <span onclick="location.href = '{{ path("anar_super_panel_user_index") }}'" data-URL="ajaxUrlUsers"><i class="fa fa-users"></i><br>{{ 'users'|trans }}</span>
-        <span onclick="location.href = '{{ path("anar_super_panel_setting_index") }}'" data-URL="ajaxUrlsetttings"><i class="fa fa-gears" data-active="true"></i><br>{{ 'settings'|trans }}</span>
-        <span id="sp-lastSpan"></span>
-    </div>
-
-{% endblock top_fixed_superpanel_box %}
-
 {% block container %}
 
 <div class="col-md-10 col-sm-10 col-md-offset-1 col-sm-offset-1 tab_content_box margin-top-25 margin-bottom-25">

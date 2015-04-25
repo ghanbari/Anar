@@ -78,10 +78,7 @@ class StudentsDissertationController extends Controller implements AdminInterfac
             $em->flush();
 
             $this->addFlash('info', $this->get('translator')->trans('item.is.created'));
-            return $this->redirectToRoute(
-                'anar_professor_backend_students_dissertation_index',
-                array('blogName' => $blog->getName())
-            );
+            return $this->redirectToRoute('anar_professor_backend_students_dissertation_index');
         }
 
         return $this->render('AnarProfessorBundle:Backend/StudentsDissertation:new.html.twig', array(
@@ -100,12 +97,8 @@ class StudentsDissertationController extends Controller implements AdminInterfac
      */
     private function createCreateForm(StudentsDissertation $dissertation)
     {
-        $blog = $this->get('anar_engine.manager.blog')->getBlog();
         $form = $this->createForm(new StudentsDissertationType(), $dissertation, array(
-            'action' => $this->generateUrl(
-                'anar_professor_backend_students_dissertation_create',
-                array('blogName' => $blog->getName())
-            ),
+            'action' => $this->generateUrl('anar_professor_backend_students_dissertation_create'),
             'method' => 'POST',
         ));
 
@@ -120,17 +113,13 @@ class StudentsDissertationController extends Controller implements AdminInterfac
      */
     public function editAction($id)
     {
-        $blog = $this->get('anar_engine.manager.blog')->getBlog();
         $em = $this->getDoctrine()->getManager();
 
         $dissertation = $em->getRepository('AnarProfessorBundle:StudentsDissertation')->find($id);
 
         if (!$dissertation) {
             $this->addFlash('error', $this->get('translator')->trans('students.dissertation.is.not.exists'));
-            return $this->redirectToRoute(
-                'anar_professor_backend_students_dissertation_index',
-                array('blogName' => $blog->getName())
-            );
+            return $this->redirectToRoute('anar_professor_backend_students_dissertation_index');
         }
 
         $form = $this->createEditForm($dissertation);
@@ -151,14 +140,10 @@ class StudentsDissertationController extends Controller implements AdminInterfac
     */
     private function createEditForm(StudentsDissertation $dissertation)
     {
-        $blog = $this->get('anar_engine.manager.blog')->getBlog();
         $form = $this->createForm(new StudentsDissertationType(), $dissertation, array(
             'action' => $this->generateUrl(
                 'anar_professor_backend_students_dissertation_update',
-                array(
-                    'id' => $dissertation->getId(),
-                    'blogName' => $blog->getName()
-                )
+                array('id' => $dissertation->getId())
             ),
             'method' => 'PUT',
         ));
@@ -174,17 +159,13 @@ class StudentsDissertationController extends Controller implements AdminInterfac
      */
     public function updateAction(Request $request, $id)
     {
-        $blog = $this->get('anar_engine.manager.blog')->getBlog();
         $em = $this->getDoctrine()->getManager();
 
         $dissertation = $em->getRepository('AnarProfessorBundle:StudentsDissertation')->find($id);
 
         if (!$dissertation) {
             $this->addFlash('error', $this->get('translator')->trans('students.dissertation.is.not.exists'));
-            return $this->redirectToRoute(
-                'anar_professor_backend_students_dissertation_index',
-                array('blogName' => $blog->getName())
-            );
+            return $this->redirectToRoute('anar_professor_backend_students_dissertation_index');
         }
 
         $form = $this->createEditForm($dissertation);
@@ -194,10 +175,7 @@ class StudentsDissertationController extends Controller implements AdminInterfac
             $em->flush();
 
             $this->addFlash('info', $this->get('translator')->trans('item.is.updated'));
-            return $this->redirectToRoute(
-                'anar_professor_backend_students_dissertation_index',
-                array('blogName' => $blog->getName())
-            );
+            return $this->redirectToRoute('anar_professor_backend_students_dissertation_index');
         }
 
         return $this->render('AnarProfessorBundle:Backend/StudentsDissertation:new.html.twig', array(

@@ -26,10 +26,12 @@ class BlogRepository extends NestedTreeRepository
 
         $tree = array();
         foreach ($blogs as $blog) {
-            $parent = '#';
-            if (is_array($blog['parent']) and $blog['parent']['id'] == $parent) {
+            if (is_array($blog['parent'])) {
                 $parent = $blog['parent']['id'];
+            } else {
+                $parent = '#';
             }
+
             $tree[] = array(
                 'id' => $blog['id'],
                 'parent' => $parent,

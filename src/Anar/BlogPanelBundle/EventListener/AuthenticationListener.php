@@ -35,17 +35,17 @@ class AuthenticationListener
             return;
         }
 
-        if (!($controller[0] instanceof AdminInterface) || is_null($token)) {
+        if (!($controller[0] instanceof AdminInterface)) {
             return;
         }
 
 
         $bundleName = str_replace('\\', '', strstr(get_class($controller[0]), 'Bundle', true)) . 'Bundle';
 
-        if (!$this->container->get('request_stack')->getMasterRequest()->attributes->has('blogName')) {
-            $event->setController(array($this->container->get('anar_blog_panel.controller.desktop'), 'homeAction'));
-            return;
-        }
+//        if (!$this->container->get('request_stack')->getMasterRequest()->attributes->has('blogName')) {
+//            $event->setController(array($this->container->get('anar_blog_panel.controller.desktop'), 'homeAction'));
+//            return;
+//        }
 
         $apps = array();
         foreach ($this->container->get('anar_engine.manager.blog')->getBlog()->getApps() as $app) {

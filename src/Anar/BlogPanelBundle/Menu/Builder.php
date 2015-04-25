@@ -60,6 +60,7 @@ class Builder extends ContainerAware
                 $app = $menu->addChild(
                     $appMenu['app']['name'],
                     array(
+                        /** @Ignore */
                         'label' => $translator->trans($appMenu['app']['title']),
                     )
                 );
@@ -72,6 +73,7 @@ class Builder extends ContainerAware
                     'routeParameters' => array(
                         'blogName' => $blog->getName()
                     ),
+                    /** @Ignore */
                     'label' => $translator->trans($appMenu['name'])
                 )
             );

@@ -12,6 +12,9 @@ anar_professor:
 anar_link:
     resource: "@AnarLinkBundle/Resources/config/routing.yml"
 
+anar_content:
+    resource: "@AnarContentBundle/Resources/config/routing.yml"
+
 anar_super_panel:
     resource: "@AnarSuperPanelBundle/Resources/config/routing.yml"
     prefix:   /superpanel

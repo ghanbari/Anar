@@ -37,6 +37,21 @@ class AppMenu
      */
     private $app;
 
+    /**
+     * @param string $name
+     * @param App $app
+     * @param Role $role
+     * @param string $route
+     * @param string $icon
+     */
+    public function __construct($name, $app, $role, $route, $icon='')
+    {
+        $this->name = $name;
+        $this->app = $app;
+        $this->role = $role;
+        $this->route = $route;
+        $this->icon = $icon;
+    }
 
     /**
      * Get id

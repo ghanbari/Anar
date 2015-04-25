@@ -1,23 +1,17 @@
 anar_professor_backend_students_dissertation:
     resource: "@AnarProfessorBundle/Resources/config/routing/backend/studentsdissertation.yml"
-    prefix:   /blogpanel/{blogName}/professor/students/dissertation
-    requirements:
-        blogName: "[a-z]{4,100}"
+    prefix:   /blogpanel/professor/students/dissertation
     options:
         i18n: false
 
 anar_professor_backend_profile:
     resource: "@AnarProfessorBundle/Resources/config/routing/backend/profile.yml"
-    prefix:   /blogpanel/{blogName}/professor/profile
-    requirements:
-        blogName: "[a-z]{4,100}"
+    prefix:   /blogpanel/professor/profile
     options:
         i18n: false
 
 anar_professor_backend_plan:
     resource: "@AnarProfessorBundle/Resources/config/routing/backend/plan.yml"
-    prefix:   /blogpanel/{blogName}/professor/plan
-    requirements:
-        blogName: "[a-z]{4,100}"
+    prefix:   /blogpanel/professor/plan
     options:
         i18n: false

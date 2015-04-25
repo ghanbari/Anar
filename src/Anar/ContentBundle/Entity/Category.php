@@ -38,6 +38,16 @@ class Category
     private $updatedAt;
 
     /**
+     * @var string
+     */
+    private $createdBy;
+
+    /**
+     * @var string
+     */
+    private $updatedBy;
+
+    /**
      * @var \Doctrine\Common\Collections\Collection
      */
     private $children;
@@ -46,6 +56,11 @@ class Category
      * @var \Doctrine\Common\Collections\Collection
      */
     private $articles;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $translations;
 
     /**
      * @var \Anar\ContentBundle\Entity\Category
@@ -57,24 +72,10 @@ class Category
      */
     private $blog;
 
-
+    /**
+     * @var string
+     */
     private $currentLocale;
-
-    /**
-     * @return mixed
-     */
-    public function getCurrentLocale()
-    {
-        return $this->currentLocale;
-    }
-
-    /**
-     * @param mixed $currentLocale
-     */
-    public function setCurrentLocale($currentLocale)
-    {
-        $this->currentLocale = $currentLocale;
-    }
 
     /**
      * Constructor
@@ -83,6 +84,7 @@ class Category
     {
         $this->children = new \Doctrine\Common\Collections\ArrayCollection();
         $this->articles = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->translations = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -216,6 +218,54 @@ class Category
     }
 
     /**
+     * Set createdBy
+     *
+     * @param string $createdBy
+     *
+     * @return Category
+     */
+    public function setCreatedBy($createdBy)
+    {
+        $this->createdBy = $createdBy;
+
+        return $this;
+    }
+
+    /**
+     * Get createdBy
+     *
+     * @return string
+     */
+    public function getCreatedBy()
+    {
+        return $this->createdBy;
+    }
+
+    /**
+     * Set updatedBy
+     *
+     * @param string $updatedBy
+     *
+     * @return Category
+     */
+    public function setUpdatedBy($updatedBy)
+    {
+        $this->updatedBy = $updatedBy;
+
+        return $this;
+    }
+
+    /**
+     * Get updatedBy
+     *
+     * @return string
+     */
+    public function getUpdatedBy()
+    {
+        return $this->updatedBy;
+    }
+
+    /**
      * Add child
      *
      * @param \Anar\ContentBundle\Entity\Category $child
@@ -284,6 +334,40 @@ class Category
     }
 
     /**
+     * Add translation
+     *
+     * @param \Anar\ContentBundle\Entity\CategoryTranslation $translation
+     *
+     * @return Category
+     */
+    public function addTranslation(\Anar\ContentBundle\Entity\CategoryTranslation $translation)
+    {
+        $this->translations[] = $translation;
+
+        return $this;
+    }
+
+    /**
+     * Remove translation
+     *
+     * @param \Anar\ContentBundle\Entity\CategoryTranslation $translation
+     */
+    public function removeTranslation(\Anar\ContentBundle\Entity\CategoryTranslation $translation)
+    {
+        $this->translations->removeElement($translation);
+    }
+
+    /**
+     * Get translations
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTranslations()
+    {
+        return $this->translations;
+    }
+
+    /**
      * Set parent
      *
      * @param \Anar\ContentBundle\Entity\Category $parent
@@ -330,43 +414,21 @@ class Category
     {
         return $this->blog;
     }
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $translations;
-
 
     /**
-     * Add translation
-     *
-     * @param \Anar\ContentBundle\Entity\BlogTranslation $translation
-     *
-     * @return Category
+     * @return string
      */
-    public function addTranslation(\Anar\ContentBundle\Entity\BlogTranslation $translation)
+    public function getCurrentLocale()
     {
-        $this->translations[] = $translation;
-
-        return $this;
+        return $this->currentLocale;
     }
 
     /**
-     * Remove translation
-     *
-     * @param \Anar\ContentBundle\Entity\BlogTranslation $translation
+     * @param string $currentLocale
      */
-    public function removeTranslation(\Anar\ContentBundle\Entity\BlogTranslation $translation)
+    public function setCurrentLocale($currentLocale)
     {
-        $this->translations->removeElement($translation);
-    }
-
-    /**
-     * Get translations
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getTranslations()
-    {
-        return $this->translations;
+        $this->currentLocale = $currentLocale;
     }
 }
+

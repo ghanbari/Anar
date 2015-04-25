@@ -24,6 +24,8 @@ security:
                 csrf_provider: form.csrf_provider
                 login_path: anar_super_panel_login
                 check_path: anar_super_panel_login_check
+                default_target_path: anar_super_panel_home
+                always_use_default_target_path: true
             logout:
                 path: anar_super_panel_logout
                 target: anar_super_panel_home
@@ -37,6 +39,8 @@ security:
                 csrf_provider: form.csrf_provider
                 login_path: anar_blog_panel_login
                 check_path: anar_blog_panel_login_check
+                default_target_path: anar_blog_panel_home
+                always_use_default_target_path: true
             logout:
                 path: anar_blog_panel_logout
                 target: anar_blog_panel_home

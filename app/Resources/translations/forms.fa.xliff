@@ -1,13 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2015-04-17T03:24:19Z" source-language="en" target-language="fa" datatype="plaintext" original="not.available">
+  <file date="2015-04-25T21:08:45Z" source-language="en" target-language="fa" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
     </header>
     <body>
+      <trans-unit id="ec3ec33367ae71405e35bd1b8b9135d59e173c1a" resname="abstract">
+        <jms:reference-file line="33">ContentBundle/Form/ArticleType.php</jms:reference-file>
+        <source>abstract</source>
+        <target state="new">چکیده</target>
+      </trans-unit>
+      <trans-unit id="565cecd7e8f5c6063935b41db41797aa37d53b04" resname="article">
+        <jms:reference-file line="37">ContentBundle/Form/ArticleType.php</jms:reference-file>
+        <jms:reference-file line="82">ProfessorBundle/Form/ProfileType.php</jms:reference-file>
+        <source>article</source>
+        <target state="new">مقاله</target>
+      </trans-unit>
+      <trans-unit id="f64cd8e32f5ac7553c150bd05d6f2252bb73f68d" resname="author">
+        <jms:reference-file line="19">ProfessorBundle/Form/StudentsDissertationType.php</jms:reference-file>
+        <source>author</source>
+        <target state="new">نویسنده</target>
+      </trans-unit>
+      <trans-unit id="0420e9bad3e06c6a31f325e51d157f9618556e43" resname="begin.date.of.job">
+        <jms:reference-file line="61">ProfessorBundle/Form/ProfileType.php</jms:reference-file>
+        <source>begin.date.of.job</source>
+        <target state="new">تاریخ شروع کار</target>
+      </trans-unit>
+      <trans-unit id="f5ab0a953dd0508a6a438d87d3c21df3885b6798" resname="bio">
+        <jms:reference-file line="54">ProfessorBundle/Form/ProfileType.php</jms:reference-file>
+        <source>bio</source>
+        <target state="new">زندگینامه</target>
+      </trans-unit>
+      <trans-unit id="d98f2c581b10506c6b7376434c945c4f7e87d11e" resname="birthday">
+        <jms:reference-file line="35">ProfessorBundle/Form/ProfileType.php</jms:reference-file>
+        <source>birthday</source>
+        <target state="new">تاریخ تولد</target>
+      </trans-unit>
+      <trans-unit id="5ccbf9c9c5fc1bc34df8238a97094968f38f5165" resname="category">
+        <jms:reference-file line="61">ContentBundle/Form/ArticleType.php</jms:reference-file>
+        <source>category</source>
+        <target state="new">دسته بندی</target>
+      </trans-unit>
+      <trans-unit id="2c54892c40a1751663d9aca4e03e6a833056bc9f" resname="city">
+        <jms:reference-file line="26">ProfessorBundle/Form/EducationType.php</jms:reference-file>
+        <source>city</source>
+        <target state="new">شهر</target>
+      </trans-unit>
+      <trans-unit id="8e68b3e5af636475363c23b52ade8e6064b05806" resname="country">
+        <jms:reference-file line="33">ProfessorBundle/Form/EducationType.php</jms:reference-file>
+        <source>country</source>
+        <target state="new">کشور</target>
+      </trans-unit>
       <trans-unit id="cb329146a0dd0d566b0628744d67936558741ffa" resname="description">
         <jms:reference-file line="26">SuperPanelBundle/Form/BlogType.php</jms:reference-file>
+        <jms:reference-file line="27">LinkBundle/Form/LinkType.php</jms:reference-file>
         <source>description</source>
         <target state="new">توضیحات</target>
       </trans-unit>
@@ -15,6 +62,16 @@
         <jms:reference-file line="47">SuperPanelBundle/Form/BlogType.php</jms:reference-file>
         <source>display.in.menu</source>
         <target state="new">نمایش در منو</target>
+      </trans-unit>
+      <trans-unit id="a88b7dcd1a9e3e17770bbaa6d7515b31a2d7e85d" resname="email">
+        <jms:reference-file line="28">ProfessorBundle/Form/ProfileType.php</jms:reference-file>
+        <source>email</source>
+        <target state="new">ایمیل</target>
+      </trans-unit>
+      <trans-unit id="3ea3f9802accf8817bacd6f3df46a73b93ccddec" resname="enabled">
+        <jms:reference-file line="41">ContentBundle/Form/ArticleType.php</jms:reference-file>
+        <source>enabled</source>
+        <target state="new">فعال؟</target>
       </trans-unit>
       <trans-unit id="f2115eded7c0557558b0fd5ca53ab7dd6508ac6c" resname="facilities">
         <jms:reference-file line="69">SuperPanelBundle/Form/BlogType.php</jms:reference-file>
@@ -26,13 +83,30 @@
         <source>father.name</source>
         <target state="new">نام پدر</target>
       </trans-unit>
+      <trans-unit id="75017a36ec07fd4c377a0d2a011400ab193e61db" resname="favorite">
+        <jms:reference-file line="75">ProfessorBundle/Form/ProfileType.php</jms:reference-file>
+        <source>favorite</source>
+        <target state="new">علایق</target>
+      </trans-unit>
       <trans-unit id="407004ca4b2231ca02e81ecb048f2d7d21524fcf" resname="first.name">
         <jms:reference-file line="19">SuperPanelBundle/Form/UserType.php</jms:reference-file>
         <source>first.name</source>
         <target state="new">نام</target>
       </trans-unit>
+      <trans-unit id="67b5fa48f92ce8525701f324d6dfed859c20b64f" resname="friday">
+        <jms:reference-file line="51">ProfessorBundle/Form/PlanType.php</jms:reference-file>
+        <source>friday</source>
+        <target state="new">جمعه</target>
+      </trans-unit>
+      <trans-unit id="217152caa21a0e8f546322644217e7618a379a0f" resname="from.date">
+        <jms:reference-file line="40">ProfessorBundle/Form/EducationType.php</jms:reference-file>
+        <source>from.date</source>
+        <target state="new">از تاریخ</target>
+      </trans-unit>
       <trans-unit id="39a6bd435eb632f802d806b2b41b9326f1b16b51" resname="grade">
         <jms:reference-file line="49">SuperPanelBundle/Form/UserType.php</jms:reference-file>
+        <jms:reference-file line="54">ProfessorBundle/Form/EducationType.php</jms:reference-file>
+        <jms:reference-file line="33">ProfessorBundle/Form/StudentsDissertationType.php</jms:reference-file>
         <source>grade</source>
         <target state="new">مقطع تحصیلی</target>
       </trans-unit>
@@ -45,6 +119,11 @@
         <jms:reference-file line="26">SuperPanelBundle/Form/UserType.php</jms:reference-file>
         <source>last.name</source>
         <target state="new">نام خانوادگی</target>
+      </trans-unit>
+      <trans-unit id="ad8167df4b75bd9f2e165ea9f6053195cf7652b5" resname="monday">
+        <jms:reference-file line="47">ProfessorBundle/Form/PlanType.php</jms:reference-file>
+        <source>monday</source>
+        <target state="new">دو شنبه</target>
       </trans-unit>
       <trans-unit id="6ae999552a0d2dca14d62e2bc8b764d377b1dd6c" resname="name">
         <jms:reference-file line="33">SuperPanelBundle/Form/BlogType.php</jms:reference-file>
@@ -65,20 +144,105 @@
         <source>placeholder</source>
         <target>لطفا یک گزینه انتخاب کنید</target>
       </trans-unit>
+      <trans-unit id="5a1ce3d0e4206b6acaf395c16893dbc462fedd4e" resname="publication.end.in.date">
+        <jms:reference-file line="52">ContentBundle/Form/ArticleType.php</jms:reference-file>
+        <source>publication.end.in.date</source>
+        <target state="new">تاریخ اتمام انتشار</target>
+      </trans-unit>
+      <trans-unit id="b05be4f35a58539886f0b59a271408e5eb42bff9" resname="publication.start.from.date">
+        <jms:reference-file line="46">ContentBundle/Form/ArticleType.php</jms:reference-file>
+        <source>publication.start.from.date</source>
+        <target state="new">تاریخ شروع انتشار</target>
+      </trans-unit>
+      <trans-unit id="9155ef5fde64a89f06048015eb7c1b09f8db67ed" resname="saturday">
+        <jms:reference-file line="45">ProfessorBundle/Form/PlanType.php</jms:reference-file>
+        <source>saturday</source>
+        <target state="new">شنبه</target>
+      </trans-unit>
+      <trans-unit id="34b33e00b199d35ff4cda21df27122784573256b" resname="skill">
+        <jms:reference-file line="68">ProfessorBundle/Form/ProfileType.php</jms:reference-file>
+        <source>skill</source>
+        <target state="new">مهارت</target>
+      </trans-unit>
+      <trans-unit id="63007774fdc1d7d24a7dd3e012741189be005a7a" resname="slug">
+        <jms:reference-file line="26">ContentBundle/Form/ArticleType.php</jms:reference-file>
+        <source>slug</source>
+        <target state="new">شناسه</target>
+      </trans-unit>
       <trans-unit id="149218a3c46acd1bed832f3dce1cff0af8d3ada4" resname="staff.code">
         <jms:reference-file line="40">SuperPanelBundle/Form/UserType.php</jms:reference-file>
         <source>staff.code</source>
         <target state="new">کد پرسنلی</target>
+      </trans-unit>
+      <trans-unit id="1390470c09daf4c6179c197e6aebe9821c9ca92d" resname="sunday">
+        <jms:reference-file line="46">ProfessorBundle/Form/PlanType.php</jms:reference-file>
+        <source>sunday</source>
+        <target state="new">یک شنبه</target>
+      </trans-unit>
+      <trans-unit id="3b01d3ebd10b89a1117c003d909ee9b795730f20" resname="telephone">
+        <jms:reference-file line="21">ProfessorBundle/Form/ProfileType.php</jms:reference-file>
+        <source>telephone</source>
+        <target state="new">تلفن</target>
       </trans-unit>
       <trans-unit id="dc151a5a2b81059b41f6ee78dbae34c114ce1528" resname="theme">
         <jms:reference-file line="42">SuperPanelBundle/Form/BlogType.php</jms:reference-file>
         <source>theme</source>
         <target state="new">پوسته</target>
       </trans-unit>
+      <trans-unit id="002b7ecc95217c7be04db6b72ca559d61b49eafa" resname="thursday">
+        <jms:reference-file line="50">ProfessorBundle/Form/PlanType.php</jms:reference-file>
+        <source>thursday</source>
+        <target state="new">پنج شنبه</target>
+      </trans-unit>
+      <trans-unit id="714eea0f4c980736bde0065fe73f573487f08e3a" resname="time">
+        <jms:reference-file line="28">ProfessorBundle/Form/PlanType.php</jms:reference-file>
+        <jms:reference-file line="35">ProfessorBundle/Form/PlanType.php</jms:reference-file>
+        <source>time</source>
+        <target state="new">زمان</target>
+      </trans-unit>
       <trans-unit id="3c6de1b7dd91465d437ef415f94f36afc1fbc8a8" resname="title">
         <jms:reference-file line="19">SuperPanelBundle/Form/BlogType.php</jms:reference-file>
+        <jms:reference-file line="19">ContentBundle/Form/ArticleType.php</jms:reference-file>
+        <jms:reference-file line="20">LinkBundle/Form/LinkType.php</jms:reference-file>
+        <jms:reference-file line="27">ProfessorBundle/Form/StudentsDissertationType.php</jms:reference-file>
+        <jms:reference-file line="22">ProfessorBundle/Form/PlanType.php</jms:reference-file>
         <source>title</source>
         <target state="new">عنوان</target>
+      </trans-unit>
+      <trans-unit id="e9aa025cd33f497fbe0b2c613b61f404c2f861ad" resname="to.date">
+        <jms:reference-file line="47">ProfessorBundle/Form/EducationType.php</jms:reference-file>
+        <source>to.date</source>
+        <target state="new">تا تاریخ</target>
+      </trans-unit>
+      <trans-unit id="0ff11fb076d3d5f9300bdd34fee8a92a7ce76716" resname="tuesday">
+        <jms:reference-file line="48">ProfessorBundle/Form/PlanType.php</jms:reference-file>
+        <source>tuesday</source>
+        <target state="new">سه شنبه</target>
+      </trans-unit>
+      <trans-unit id="f9f914060ccb1e10d551ad49016b1a6658d6edec" resname="university">
+        <jms:reference-file line="19">ProfessorBundle/Form/EducationType.php</jms:reference-file>
+        <source>university</source>
+        <target state="new">دانشگاه</target>
+      </trans-unit>
+      <trans-unit id="81736358b1645103ae83247b10c5f82af641ddfc" resname="url">
+        <jms:reference-file line="31">LinkBundle/Form/LinkType.php</jms:reference-file>
+        <source>url</source>
+        <target state="new">ادرس سایت</target>
+      </trans-unit>
+      <trans-unit id="3ab3e0b020a6d41f3d259ddd3ed8ff273843839b" resname="website">
+        <jms:reference-file line="42">ProfessorBundle/Form/ProfileType.php</jms:reference-file>
+        <source>website</source>
+        <target state="new">وب سایت</target>
+      </trans-unit>
+      <trans-unit id="c1b89f8476a88e28ce442887a1cf20b5e91f3903" resname="wednesday">
+        <jms:reference-file line="49">ProfessorBundle/Form/PlanType.php</jms:reference-file>
+        <source>wednesday</source>
+        <target state="new">چهارشنبه</target>
+      </trans-unit>
+      <trans-unit id="98005feefc272b7e5b67850714c09519ae36633e" resname="week.day.number">
+        <jms:reference-file line="42">ProfessorBundle/Form/PlanType.php</jms:reference-file>
+        <source>week.day.number</source>
+        <target state="new">روز هفته</target>
       </trans-unit>
     </body>
   </file>

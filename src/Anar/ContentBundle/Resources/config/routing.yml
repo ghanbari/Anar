@@ -1,3 +1,11 @@
-anar_content_home:
-    path:     /blogpanel/{blogName}/aaaa/{name}
-    defaults: { _controller: AnarContentBundle:Default:index, name: test }
+anar_content_backend_article:
+    resource: "@AnarContentBundle/Resources/config/routing/backend/article.yml"
+    prefix:   /blogpanel/content/article
+    options:
+        i18n: false
+
+anar_content_backend_category:
+    resource: "@AnarContentBundle/Resources/config/routing/backend/category.yml"
+    prefix:   /blogpanel/content/category
+    options:
+        i18n: false

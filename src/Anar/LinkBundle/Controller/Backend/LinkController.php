@@ -73,10 +73,7 @@ class LinkController extends Controller implements AdminInterface
             $em->flush();
 
             $this->addFlash('info', $this->get('translator')->trans('link.was.created.successfully'));
-            return $this->redirectToRoute(
-                'anar_link_backend_index',
-                array('blogName' => $request->attributes->get('blogName'))
-            );
+            return $this->redirectToRoute('anar_link_backend_index');
         }
 
         return $this->render('AnarLinkBundle:Backend/Link:new.html.twig', array(
@@ -95,9 +92,8 @@ class LinkController extends Controller implements AdminInterface
      */
     private function createCreateForm(Link $link)
     {
-        $blog = $this->get('anar_engine.manager.blog')->getBlog();
         $form = $this->createForm(new LinkType(), $link, array(
-            'action' => $this->generateUrl('anar_link_backend_create', array('blogName' => $blog->getName())),
+            'action' => $this->generateUrl('anar_link_backend_create'),
             'method' => 'POST',
         ));
 
@@ -120,10 +116,7 @@ class LinkController extends Controller implements AdminInterface
 
         if (!$link) {
             $this->addFlash('error', $this->get('translator')->trans('link.is.not.exists'));
-            $this->redirectToRoute(
-                'anar_link_backend_index',
-                array('blogName' => $this->get('anar_engine.manager.blog')->getBlog()->getName())
-            );
+            $this->redirectToRoute('anar_link_backend_index');
         }
 
         $form = $this->createEditForm($link);
@@ -144,12 +137,8 @@ class LinkController extends Controller implements AdminInterface
     */
     private function createEditForm(Link $link)
     {
-        $blog = $this->get('anar_engine.manager.blog')->getBlog();
         $form = $this->createForm(new LinkType(), $link, array(
-            'action' => $this->generateUrl('anar_link_backend_update', array(
-                'id' => $link->getId(),
-                'blogName' => $blog->getName(),
-            )),
+            'action' => $this->generateUrl('anar_link_backend_update', array('id' => $link->getId())),
             'method' => 'PUT',
         ));
 
@@ -170,10 +159,7 @@ class LinkController extends Controller implements AdminInterface
 
         if (!$link) {
             $this->addFlash('error', $this->get('translator')->trans('link.is.not.exists'));
-            $this->redirectToRoute(
-                'anar_link_backend_index',
-                array('blogName' => $this->get('anar_engine.manager.blog')->getBlog()->getName())
-            );
+            $this->redirectToRoute('anar_link_backend_index');
         }
 
         $form = $this->createEditForm($link);
@@ -182,10 +168,7 @@ class LinkController extends Controller implements AdminInterface
         if ($form->isValid()) {
             $em->flush();
             $this->addFlash('info', $this->get('translator')->trans('link.was.edited.successfully'));
-            return $this->redirectToRoute(
-                'anar_link_backend_index',
-                array('blogName' => $request->attributes->get('blogName'))
-            );
+            return $this->redirectToRoute('anar_link_backend_index');
         }
 
         return $this->render('AnarLinkBundle:Backend/Link:new.html.twig', array(

@@ -11,7 +11,6 @@ Anar\ContentBundle\Entity\Category:
             generator: { strategy: AUTO }
     fields:
         title:
-            type: string
             gedmo:
                 - translatable
         description:
@@ -33,6 +32,14 @@ Anar\ContentBundle\Entity\Category:
             gedmo:
                 timestampable:
                     on: update
+        createdBy:
+            gedmo:
+                blameable:
+                    on: create
+        updatedBy:
+            gedmo:
+                blameable:
+                    on: update
     oneToMany:
         children:
             targetEntity: Category
@@ -50,7 +57,7 @@ Anar\ContentBundle\Entity\Category:
             inversedBy: children
             nullable: true
             joinColumn:
-                name: parent
+                name: parent_id
                 refrencedColumnName: id
                 onDelete: set null
         blog:

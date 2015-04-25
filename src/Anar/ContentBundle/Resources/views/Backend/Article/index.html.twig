@@ -1,0 +1,53 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+
+    <h1>Article list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Slug</th>
+                <th>Abstract</th>
+                <th>Article</th>
+                <th>Visit</th>
+                <th>Enabled</th>
+                <th>Publicationstartdate</th>
+                <th>Publicationenddate</th>
+                <th>Image</th>
+                <th>Createdat</th>
+                <th>Updatedat</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for article in articles %}
+            <tr>
+                <td>{{ article.title }}</td>
+                <td>{{ article.slug }}</td>
+                <td>{{ article.abstract }}</td>
+                <td>{{ article.article }}</td>
+                <td>{{ article.visit }}</td>
+                <td>{{ article.enabled }}</td>
+                <td>{% if article.publicationStartDate %}{{ article.publicationStartDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if article.publicationEndDate %}{{ article.publicationEndDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ article.image }}</td>
+                <td>{% if article.createdAt %}{{ article.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if article.updatedAt %}{{ article.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                <ul>
+
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+        </li>
+    </ul>
+    {% endblock %}

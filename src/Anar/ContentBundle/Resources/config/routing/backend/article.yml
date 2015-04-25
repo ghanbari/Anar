@@ -1,0 +1,30 @@
+anar_content_backend_article_index:
+    path:     /{page}
+    defaults:
+        _controller: "AnarContentBundle:Backend/Article:index"
+        page: 1
+    requirements:
+        page: \d+
+
+anar_content_backend_article_new:
+    path:     /new
+    defaults: { _controller: "AnarContentBundle:Backend/Article:new" }
+
+anar_content_backend_article_create:
+    path:     /create
+    defaults: { _controller: "AnarContentBundle:Backend/Article:create" }
+    methods:  POST
+
+anar_content_backend_article_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AnarContentBundle:Backend/Article:edit" }
+
+anar_content_backend_article_update:
+    path:     /{id}/update
+    defaults: { _controller: "AnarContentBundle:Backend/Article:update" }
+    methods:  [POST, PUT]
+
+anar_content_backend_article_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AnarContentBundle:Backend/Article:delete" }
+    methods:  [POST, DELETE]

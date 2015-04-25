@@ -12,7 +12,7 @@ anar_blog_panel_home_blog:
     path:     /{blogName}
     defaults: { _controller: anar_blog_panel.controller.desktop:homeAction }
     requirements:
-        blogname: "[a-z]{4,100}"
+        blogName: "[a-z]{4,100}"
 
 anar_blog_panel_home:
     path:     /

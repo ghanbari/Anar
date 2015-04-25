@@ -50,9 +50,8 @@ class ProfileController extends Controller implements AdminInterface
     */
     private function createEditForm(Profile $profile)
     {
-        $blog = $this->get('anar_engine.manager.blog')->getBlog();
         $form = $this->createForm(new ProfileType(), $profile, array(
-            'action' => $this->generateUrl('anar_professor_backend_profile_update', array('blogName' => $blog->getName())),
+            'action' => $this->generateUrl('anar_professor_backend_profile_update'),
             'method' => 'PUT',
         ));
 
@@ -78,7 +77,7 @@ class ProfileController extends Controller implements AdminInterface
         if ($form->isValid()) {
             $em->flush();
             $this->addFlash('info', $this->get('translator')->trans('profile.is.updated'));
-            $this->redirectToRoute('anar_professor_backend_profile_index', array('blogName' => $blog->getName()));
+            $this->redirectToRoute('anar_professor_backend_profile_index');
         }
 
         return $this->render('AnarProfessorBundle:Backend/Profile:edit.html.twig', array(
