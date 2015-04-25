@@ -1,0 +1,58 @@
+.tab_content_box{
+    background: white;
+    padding: 25px;
+    min-height: 400px;
+}
+
+.R_butt_green{
+    background: #6dc437;
+    padding: 5px 15px;
+    color: #ffffff;
+    text-align: center;
+    cursor: pointer;
+}
+
+.R_butt_green:hover{
+    background: #508f29;
+    color: white;
+}
+
+.R_butt_red{
+    background: #c44d49;
+    padding: 5px 15px;
+    color: #ffffff;
+    text-align: center;
+    cursor: pointer;
+}
+
+.R_butt_red:hover{
+    background: #933937;
+    color: white;
+}
+
+.R_butt_blue{
+    background: #00a0dc;
+    padding: 5px 15px;
+    color: #ffffff;
+    text-align: center;
+    cursor: pointer;
+}
+
+.R_butt_blue:hover{
+    background: #0079A6;
+    color: white;
+}
+
+._error{
+    font-size: 10pt;
+    color: red;
+}
+
+._success{
+    font-size: 10pt;
+    color: #6dc437;
+}
+
+.display-none{
+    display: none;
+}
