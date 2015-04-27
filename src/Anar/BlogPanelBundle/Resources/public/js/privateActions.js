@@ -1,14 +1,5 @@
 // JavaScript Document
-$(document).ready(function(e) { 
-	
-	$("#rp-menuWrap").niceScroll({
-		cursorcolor:"#c32438",
-		cursorborderradius:0,
-		cursorborder:"none",
-		cursoropacitymin : 0.5,
-		zindex : 10000000,
-		railoffset : {top:50}
-	});
+$(document).ready(function(e) {
 
     //در حالت ریسپانسیو - دکمه استک  - باز و بسته کردن منو
 	$("#rp-nowRoleShowerWrap").find("i.fa-bars").click(function() {
