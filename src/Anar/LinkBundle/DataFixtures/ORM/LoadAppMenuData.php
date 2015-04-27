@@ -18,8 +18,8 @@ class LoadAppMenuData extends AbstractFixture implements OrderedFixtureInterface
     {
         $link = $this->getReference('AnarLinkBundle');
 
-        $linkIndexMenu = new AppMenu('link.management', $link, $this->getReference('linkIndex'), 'anar_link_backend_index');
-        $linkNewMenu = new AppMenu('link.create', $link, $this->getReference('linkNew'), 'anar_link_backend_new');
+        $linkIndexMenu = new AppMenu('link.management', $link, $this->getReference('linkIndex'), 'anar_link_backend_index', 'fa fa-globe');
+        $linkNewMenu = new AppMenu('link.create', $link, $this->getReference('linkNew'), 'anar_link_backend_new', 'fa fa-link');
 
         $manager->persist($linkIndexMenu);
         $manager->persist($linkNewMenu);

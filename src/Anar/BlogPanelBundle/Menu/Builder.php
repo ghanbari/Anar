@@ -70,8 +70,8 @@ class Builder extends ContainerAware
                 $appMenu['name'],
                 array(
                     'route' => $appMenu['route'],
-                    'routeParameters' => array(
-                        'blogName' => $blog->getName()
+                    'extras' => array(
+                        'icon' => $appMenu['icon'],
                     ),
                     /** @Ignore */
                     'label' => $translator->trans($appMenu['name'])

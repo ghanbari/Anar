@@ -18,10 +18,10 @@ class LoadAppMenuData extends AbstractFixture implements OrderedFixtureInterface
     {
         $content = $this->getReference('AnarContentBundle');
 
-        $articleIndexMenu = new AppMenu('article.management', $content, $this->getReference('articleIndex'), 'anar_content_backend_article_index');
-        $articleNewMenu = new AppMenu('article.create', $content, $this->getReference('articleNew'), 'anar_content_backend_article_new');
-        $categoryIndexMenu = new AppMenu('category.management', $content, $this->getReference('categoryIndex'), 'anar_content_backend_category_index');
-        $categoryNewMenu = new AppMenu('category.create', $content, $this->getReference('categoryNew'), 'anar_content_backend_category_new');
+        $articleIndexMenu = new AppMenu('article.management', $content, $this->getReference('articleIndex'), 'anar_content_backend_article_index', 'fa fa-th-list');
+        $articleNewMenu = new AppMenu('article.create', $content, $this->getReference('articleNew'), 'anar_content_backend_article_new', 'fa fa-edit');
+        $categoryIndexMenu = new AppMenu('category.management', $content, $this->getReference('categoryIndex'), 'anar_content_backend_category_index', 'fa fa-folder-open');
+        $categoryNewMenu = new AppMenu('category.create', $content, $this->getReference('categoryNew'), 'anar_content_backend_category_new', 'fa fa-tasks');
 
         $manager->persist($articleIndexMenu);
         $manager->persist($articleNewMenu);
