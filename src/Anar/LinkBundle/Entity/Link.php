@@ -7,6 +7,15 @@ namespace Anar\LinkBundle\Entity;
  */
 class Link
 {
+    const FOOTER_I   = 'FOOTER_I';
+    const FOOTER_II  = 'FOOTER_II';
+    const FOOTER_III = 'FOOTER_III';
+    const FOOTER_IV  = 'FOOTER_IV';
+    const FOOTER_V   = 'FOOTER_V';
+    const FOOTER_VI  = 'FOOTER_VI';
+    const SIDEBAR_I  = 'SIDEBAR_I';
+    const SIDEBAR_II = 'SIDEBAR_II';
+
     /**
      * @var integer
      */
@@ -31,6 +40,11 @@ class Link
      * @var string
      */
     private $icon;
+
+    /**
+     * @var string
+     */
+    private $position;
 
     /**
      * @var \DateTime
@@ -66,6 +80,11 @@ class Link
      * @var string
      */
     private $currentLocale;
+
+    /**
+     * @var \Anar\LinkBundle\Entity\LinkCategory
+     */
+    private $category;
 
     /**
      * Constructor
@@ -284,7 +303,7 @@ class Link
      *
      * @return Link
      */
-    public function addTranslation(\Anar\LinkBundle\Entity\LinkTranslation $translation)
+    public function addTranslation(LinkTranslation $translation)
     {
         $this->translations[] = $translation;
 
@@ -296,7 +315,7 @@ class Link
      *
      * @param \Anar\LinkBundle\Entity\LinkTranslation $translation
      */
-    public function removeTranslation(\Anar\LinkBundle\Entity\LinkTranslation $translation)
+    public function removeTranslation(LinkTranslation $translation)
     {
         $this->translations->removeElement($translation);
     }
@@ -349,5 +368,46 @@ class Link
     public function setCurrentLocale($currentLocale)
     {
         $this->currentLocale = $currentLocale;
+    }
+
+    /**
+     * @return array
+     */
+    public static function getAvailablePosition()
+    {
+        return array(
+            self::FOOTER_I,
+            self::FOOTER_II,
+            self::FOOTER_III,
+            self::FOOTER_IV,
+            self::FOOTER_V,
+            self::FOOTER_VI,
+            self::SIDEBAR_I,
+            self::SIDEBAR_II,
+        );
+    }
+
+    /**
+     * Set position
+     *
+     * @param string $position
+     *
+     * @return Link
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
+
+        return $this;
+    }
+
+    /**
+     * Get position
+     *
+     * @return string
+     */
+    public function getPosition()
+    {
+        return $this->position;
     }
 }

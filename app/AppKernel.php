@@ -23,6 +23,7 @@ class AppKernel extends Kernel
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new VBee\SettingBundle\VBeeSettingBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
+            new JMS\TranslationBundle\JMSTranslationBundle(),
             new JMS\I18nRoutingBundle\JMSI18nRoutingBundle(),
             new Anar\SuperPanelBundle\AnarSuperPanelBundle(),
             new Anar\EngineBundle\AnarEngineBundle(),
@@ -34,7 +35,6 @@ class AppKernel extends Kernel
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
             $bundles[] = new JMS\CommandBundle\JMSCommandBundle();
-            $bundles[] = new JMS\TranslationBundle\JMSTranslationBundle();
             $bundles[] = new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle();
             $bundles[] = new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();
             $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();

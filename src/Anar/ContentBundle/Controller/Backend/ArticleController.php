@@ -2,16 +2,16 @@
 
 namespace Anar\ContentBundle\Controller\Backend;
 
+use Anar\BlogPanelBundle\Interfaces\AdminInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Anar\ContentBundle\Entity\Article;
-use Anar\ContentBundle\Form\ArticleType;
 
 /**
  * Article controller.
  *
  */
-class ArticleController extends Controller
+class ArticleController extends Controller implements AdminInterface
 {
     /**
      * Lists all Article entities.
@@ -20,9 +20,8 @@ class ArticleController extends Controller
     public function indexAction($page)
     {
         $blog = $this->get('anar_engine.manager.blog')->getBlog();
-        $em = $this->getDoctrine()->getManager();
-        $dql = "SELECT a FROM AnarContentBundle:Article a WHERE a.blog = :blogId";
-        $query = $em->createQuery($dql)->setParameter('blogId', $blog->getId());
+        $doctrine = $this->getDoctrine();
+        $query = $doctrine->getRepository('AnarContentBundle:Article')->getQueryFilterByBlog($blog->getId());
 
         $articles = $this->get('knp_paginator')->paginate(
             $query,
@@ -91,7 +90,7 @@ class ArticleController extends Controller
      */
     private function createCreateForm(Article $article)
     {
-        $form = $this->createForm(new ArticleType(), $article, array(
+        $form = $this->createForm('article', $article, array(
             'action' => $this->generateUrl('anar_content_backend_article_create'),
             'method' => 'POST',
         ));
@@ -133,7 +132,7 @@ class ArticleController extends Controller
     */
     private function createEditForm(Article $article)
     {
-        $form = $this->createForm(new ArticleType(), $article, array(
+        $form = $this->createForm('article', $article, array(
             'action' => $this->generateUrl('anar_content_backend_article_update', array('id' => $article->getId())),
             'method' => 'PUT',
         ));

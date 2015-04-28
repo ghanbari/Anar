@@ -94,6 +94,7 @@ class ProfileType extends AbstractType
                 'allow_delete' => true,
                 'delete_empty' => true,
                 'required' => false,
+                'by_reference' => false,
             ))
         ;
     }

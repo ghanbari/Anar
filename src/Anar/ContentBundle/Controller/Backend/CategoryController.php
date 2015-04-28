@@ -2,9 +2,9 @@
 
 namespace Anar\ContentBundle\Controller\Backend;
 
+use Anar\BlogPanelBundle\Interfaces\AdminInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use Anar\ContentBundle\Entity\Category;
 use Anar\ContentBundle\Form\CategoryType;
 
@@ -12,7 +12,7 @@ use Anar\ContentBundle\Form\CategoryType;
  * Category controller.
  *
  */
-class CategoryController extends Controller
+class CategoryController extends Controller implements AdminInterface
 {
     /**
      * Lists all Category entities.
@@ -21,10 +21,9 @@ class CategoryController extends Controller
     public function indexAction($page)
     {
         $blog = $this->get('anar_engine.manager.blog')->getBlog();
-        $em = $this->getDoctrine()->getManager();
+        $doctrine = $this->getDoctrine();
 
-        $dql = "SELECT c FROM AnarContentBundle:Category c WHERE c.blog = :blogId";
-        $query = $em->createQuery($dql)->setParameter('blogId', $blog->getId());
+        $query = $doctrine->getRepository('AnarContentBundle:Category')->getQueryFilterByBlog($blog->getId());
 
         $categories = $this->get('knp_paginator')->paginate(
             $query,

@@ -63,6 +63,11 @@ class StudentsDissertation
     private $currentLocale;
 
     /**
+     * @var string
+     */
+    private $abstract;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -321,5 +326,28 @@ class StudentsDissertation
     {
         $this->currentLocale = $currentLocale;
     }
-}
 
+    /**
+     * Set abstract
+     *
+     * @param string $abstract
+     *
+     * @return StudentsDissertation
+     */
+    public function setAbstract($abstract)
+    {
+        $this->abstract = $abstract;
+
+        return $this;
+    }
+
+    /**
+     * Get abstract
+     *
+     * @return string
+     */
+    public function getAbstract()
+    {
+        return $this->abstract;
+    }
+}

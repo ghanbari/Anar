@@ -42,11 +42,6 @@ class AuthenticationListener
 
         $bundleName = str_replace('\\', '', strstr(get_class($controller[0]), 'Bundle', true)) . 'Bundle';
 
-//        if (!$this->container->get('request_stack')->getMasterRequest()->attributes->has('blogName')) {
-//            $event->setController(array($this->container->get('anar_blog_panel.controller.desktop'), 'homeAction'));
-//            return;
-//        }
-
         $apps = array();
         foreach ($this->container->get('anar_engine.manager.blog')->getBlog()->getApps() as $app) {
             $apps[] = $app->getName();

@@ -22,6 +22,7 @@ Anar\LinkBundle\Entity\Link:
         url: ~
         icon:
             nullable: true
+        position: ~
         createdAt:
             type: datetime
             gedmo:

@@ -646,6 +646,7 @@ class Profile
     public function addEducation(Education $education)
     {
         $this->educations[] = $education;
+        $education->setProfile($this);
 
         return $this;
     }

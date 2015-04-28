@@ -72,15 +72,13 @@ class BlogManager
 
             /** @var QueryBuilder $qb */
             $qb = $this->doctrine->getManager()->createQueryBuilder();
-            static::$blog = $qb->select('b')
+            static::$blog = $qb->select(array('b', 't', 'g', 'p', 'child', 'apps'))
                 ->from('AnarEngineBundle:Blog', 'b')
                 ->join('b.theme', 't')
                 ->join('b.groups', 'g')
                 ->leftJoin('b.parent', 'p')
                 ->leftJoin('b.children', 'child')
                 ->leftJoin('b.apps', 'apps')
-                ->leftJoin('g.users', 'u')
-                ->leftJoin('g.roles', 'r')
                 ->where($qb->expr()->eq('b.name', '?1'))
                 ->setParameter(1, $blogName)
                 ->getQuery()->getSingleResult();

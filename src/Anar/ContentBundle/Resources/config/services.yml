@@ -1,4 +1,6 @@
 services:
-#    anar_content.example:
-#        class: Anar\ContentBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+    anar_content.form.type.article:
+        class: Anar\ContentBundle\Form\ArticleType
+        arguments: ['@anar_engine.manager.blog', '@doctrine']
+        tags:
+            - { name: form.type, alias: article }

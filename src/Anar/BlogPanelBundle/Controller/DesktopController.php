@@ -83,7 +83,6 @@ class DesktopController
      */
     public function homeAction(Request $request, $blogName=null)
     {
-        $user = $this->tokenStorage->getToken()->getUser();
         $blogs = $this->blogManager->getUserBlogs();
 
         if (is_null($blogName) and !$request->getSession()->has('blogName')) {
@@ -100,6 +99,7 @@ class DesktopController
 
         $token = $this->csrfTokenManager->refreshToken('blogChange');
 
+        // TODO: fix CSRF attack on change blog.
         return $this->templating->renderResponse(
             'AnarBlogPanelBundle:Desktop:index.html.twig',
             array('token' => $token,)

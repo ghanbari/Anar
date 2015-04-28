@@ -2,18 +2,44 @@
 
 namespace Anar\ContentBundle\Form;
 
+use Anar\EngineBundle\Doctrine\BlogManager;
+use Anar\EngineBundle\Entity\Blog;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Doctrine\Bundle\DoctrineBundle\Registry;
 
 class ArticleType extends AbstractType
 {
+
+    /**
+     * @var Blog
+     */
+    private $blog;
+
+    /**
+     * @var Registry
+     */
+    private $doctrine;
+
+    /**
+     * @param BlogManager $blogManager
+     * @param Registry $doctrine
+     */
+    public function __construct(BlogManager $blogManager, Registry $doctrine)
+    {
+        $this->blog = $blogManager->getBlog();
+        $this->doctrine = $doctrine;
+    }
+
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $categoryRepo = $this->doctrine->getRepository('AnarContentBundle:Category');
+        $categories = $categoryRepo->getAllFilterByBlog($this->blog->getId());
         $builder
             ->add('title', 'text', array(
                 'label' => 'title',
@@ -63,6 +89,7 @@ class ArticleType extends AbstractType
                 'placeholder' => 'placeholder',
                 'class' => 'Anar\ContentBundle\Entity\Category',
                 'property' => 'title',
+                'choices' => $categories,
             ))
         ;
     }
@@ -83,6 +110,6 @@ class ArticleType extends AbstractType
      */
     public function getName()
     {
-        return 'anar_contentbundle_article';
+        return 'article';
     }
 }

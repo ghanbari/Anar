@@ -1,6 +1,7 @@
 Anar\ContentBundle\Entity\Category:
     type: entity
     table: content_category
+    repositoryClass: CategoryRepository
     gedmo:
         translation:
             entity: CategoryTranslation
@@ -19,7 +20,8 @@ Anar\ContentBundle\Entity\Category:
             nullable: true
             gedmo:
                 - translatable
-        slug: ~
+        slug:
+            unique: true
         createdAt:
             column: created_at
             type: datetime
@@ -55,7 +57,6 @@ Anar\ContentBundle\Entity\Category:
         parent:
             targetEntity: Category
             inversedBy: children
-            nullable: true
             joinColumn:
                 name: parent_id
                 refrencedColumnName: id

@@ -431,4 +431,3 @@ class Category
         $this->currentLocale = $currentLocale;
     }
 }
-

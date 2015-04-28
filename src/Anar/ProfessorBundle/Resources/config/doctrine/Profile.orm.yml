@@ -87,6 +87,7 @@ Anar\ProfessorBundle\Entity\Profile:
             targetEntity: Education
             mappedBy: profile
             orphanRemoval: true
+            cascade: ["persist"]
     oneToOne:
         blog:
             targetEntity: Anar\EngineBundle\Entity\Blog

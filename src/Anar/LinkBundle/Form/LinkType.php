@@ -2,6 +2,7 @@
 
 namespace Anar\LinkBundle\Form;
 
+use Anar\LinkBundle\Entity\Link;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -29,6 +30,11 @@ class LinkType extends AbstractType
             ->add('url', 'url', array(
                 'required' => true,
                 'label' => 'url',
+            ))
+            ->add('position', 'choice', array(
+                'label' => 'position.in.page',
+                'required' => true,
+                'choices' => Link::getAvailablePosition(),
             ))
         ;
     }

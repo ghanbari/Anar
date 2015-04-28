@@ -20,7 +20,7 @@ class LoadAppMenuData extends AbstractFixture implements OrderedFixtureInterface
 
         $profileIndexMenu = new AppMenu('profile.management', $professor, $this->getReference('profileIndex'), 'anar_professor_backend_profile_index', 'fa fa-user');
         $planIndexMenu = new AppMenu('plan.management', $professor, $this->getReference('planIndex'), 'anar_professor_backend_plan_index', 'fa fa-columns');
-        $planNewMenu = new AppMenu('plan.create', $professor, $this->getReference('planNew'), 'anar_professor_backend_plan_new', 'fa fa-calender');
+        $planNewMenu = new AppMenu('plan.create', $professor, $this->getReference('planNew'), 'anar_professor_backend_plan_new', 'fa fa-calendar');
         $dissertationIndexMenu = new AppMenu('dissertation.management', $professor, $this->getReference('dissertationIndex'), 'anar_professor_backend_students_dissertation_index', 'fa fa-book');
         $dissertationNewMenu = new AppMenu('dissertation.create', $professor, $this->getReference('dissertationNew'), 'anar_professor_backend_students_dissertation_new', 'fa fa-foursquare');
 

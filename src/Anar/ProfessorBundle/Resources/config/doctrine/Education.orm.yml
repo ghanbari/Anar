@@ -46,3 +46,7 @@ Anar\ProfessorBundle\Entity\Education:
         profile:
             targetEntity: Profile
             inversedBy: educations
+            joinColumn:
+                name: profile_id
+                referencedColumnName: id
+                onDelete: cascade

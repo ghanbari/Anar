@@ -3,6 +3,7 @@
 namespace Anar\ProfessorBundle\Controller\Backend;
 
 use Anar\BlogPanelBundle\Interfaces\AdminInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -71,10 +72,22 @@ class ProfileController extends Controller implements AdminInterface
 
         $profile = $em->getRepository('AnarProfessorBundle:Profile')->findOneByBlog($blog);
 
+        $educations = new ArrayCollection();
+
+        foreach ($profile->getEducations() as $education) {
+            $educations->add($education);
+        }
+
         $form = $this->createEditForm($profile);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+            foreach ($educations as $education) {
+                if (!$profile->getEducations()->contain($education)) {
+                    $em->remove($education);
+                }
+            }
+
             $em->flush();
             $this->addFlash('info', $this->get('translator')->trans('profile.is.updated'));
             $this->redirectToRoute('anar_professor_backend_profile_index');

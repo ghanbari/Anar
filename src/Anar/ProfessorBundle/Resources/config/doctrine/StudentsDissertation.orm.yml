@@ -16,6 +16,8 @@ Anar\ProfessorBundle\Entity\StudentsDissertation:
         title:
             gedmo:
                 - translatable
+        abstract:
+            length: 1000
         createdAt:
             type: datetime
             gedmo:

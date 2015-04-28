@@ -42,7 +42,6 @@ class CategoryType extends AbstractType
                 'class' => 'Anar\ContentBundle\Entity\Category',
                 'property' => 'title',
                 'placeholder' => 'placeholder',
-                'empty_value' => null,
             ))
         ;
     }
