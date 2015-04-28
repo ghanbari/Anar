@@ -24,7 +24,3 @@ anar_blog_panel:
     resource: "@AnarBlogPanelBundle/Resources/config/routing.yml"
     prefix:   /blogpanel
     options: { i18n: false }
-
-anar_content:
-    resource: "@AnarContentBundle/Resources/config/routing.yml"
-    prefix:   /
