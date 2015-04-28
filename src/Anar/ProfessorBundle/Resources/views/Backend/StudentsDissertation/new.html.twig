@@ -1,12 +1,77 @@
-{% extends '::base.html.twig' %}
+{% extends "AnarBlogPanelBundle:Desktop:index.html.twig" %}
 
-{% block body -%}
-    <h1>StudentsDissertation creation</h1>
+{% block csses %}
 
-    {{ form(form) }}
-
-        <ul class="record_actions">
-    <li>
-    </li>
-</ul>
 {% endblock %}
+
+{% block Container %}
+<div class="col-md-11 col-sm-11 margin-left-45 tab_content_box margin-top-25 margin-bottom-25">
+    <div class="row">
+        <div class="col-md-6 col-sm-6 pull-right tittle_tab_content">
+            <i class="fa fa-list-alt"></i>
+            <span>ایجاد پایان نامه</span>
+        </div>
+        <div class="col-md-1 col-sm-1 pull-left text-left">
+            <i onclick="location.href = '{{ path("anar_blog_panel_home") }}'" class="glyphicon glyphicon-remove cursor_pointer" style="cursor: pointer"></i>
+        </div>
+    </div>
+    <hr id="cutter">
+    <div class="row">
+        <div class="col-md-8 col-sm-8 pull-right margin-top-10">
+            {{ form_start(form, { 'attr': {'class': 'Dissertation_form'}}) }}
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-md-2 col-sm-2 pull-right control-label text-left">{{ form_label(form.author) }}</label>
+                    <div class="col-md-9 col-sm-9">
+                        {{ form_widget(form.author,{ 'attr' : {'class':'form-control'} }) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                <div class="form-group">
+                    <label class="col-md-2 col-sm-2 pull-right control-label text-left">{{ form_label(form.title) }}</label>
+                    <div class="col-md-9 col-sm-9">
+                        {{ form_widget(form.title,{ 'attr' : {'class':'form-control'} }) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                <div class="form-group">
+                    <label class="col-md-2 col-sm-2 pull-right control-label text-left">{{ form_label(form.grade) }}</label>
+                    <div class="col-md-9 col-sm-9">
+                        {{ form_widget(form.grade,{ 'attr' : {'class':'form-control'} }) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                <div class="form-group">
+                    <div class="col-md-2 col-sm-2 pull-right control-label text-left"></div>
+                    <div class="col-md-9 col-sm-9">
+                        {{ form_widget(form.submit,{ 'attr' : {'class':'R_butt_blue btn'} }) }}
+                    </div>
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+        <div class="col-md-4 col-sm-4">
+            <div class="row form_fields_message" style="min-height: 38px">
+                <span class=""></span>
+            </div>
+            <div class="row margin-top-10 form_fields_message" style="min-height: 38px">
+                <span class=""></span>
+            </div>
+            <div class="row margin-top-10 form_fields_message" style="min-height: 38px">
+                <span class=""></span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+
+    <script>
+        $('.current_ancestor').removeClass('minus').addClass('open');
+    </script>
+
+{% endblock scripts %}
