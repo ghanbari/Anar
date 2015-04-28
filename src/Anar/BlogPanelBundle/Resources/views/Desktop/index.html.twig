@@ -1,4 +1,4 @@
-{% set blog = blogManager.getBlog() %}
+{% set blog  = blogManager.getBlog() %}
 {% set blogs = blogManager.getUserBlogs() %}
 <!doctype html>
 <html dir="rtl">
@@ -74,35 +74,8 @@
 <div id="rp-menuWrap">
     <div id="rp-nowRoleShowerWrap"><i class="fa fa-bars"></i><i class="fa fa-desktop"></i>&nbsp;<span>{{ blog.getName() }}</span>
     </div>
-    <ul>
-        {{ knp_menu_render('AnarBlogPanelBundle:Builder:adminMenu', {'template': 'AnarBlogPanelBundle:Menu:BlogMenu.html.twig'}) }}
-        {#{% set apps = [] %}#}
-        {#{% for facility in blog.getFacilities() %}#}
-            {#{% set apps = apps|merge([facility.getName()]) %}#}
-        {#{% endfor %}#}
-        {#<li id="rp-desktopTab" data-active="true"><i class="fa fa-home"></i><span> میزکار</span></li>#}
-        {#{% if 'content' in apps %}#}
-            {#<li data-URL="ajaxUrlContents" role="appLinke"><i class="fa fa-file-text"></i><span> مطالب و دسته بندی</span></li>#}
-        {#{% endif %}#}
-        {#{% if 'link' in apps %}#}
-            {#<li data-URL="ajaxUrlLinks" role="appLinke"><i class="fa fa-link"></i><span> پیوندها</span></li>#}
-        {#{% endif %}#}
-        {#{% if 'professor_profile' in apps %}#}
-            {#<li data-URL="ajaxUrlProf" role="appLinke"><i class="fa fa-list-alt"></i><span> پروفایل اساتید</span></li>#}
-        {#{% endif %}#}
-        {#{% if 'contact' in apps %}#}
-            {#<li data-URL="ajaxUrlComments" role="appLinke"><i class="fa fa-comment"></i><span> پیام ها</span></li>#}
-        {#{% endif %}#}
-        {#{% if 'complaint' in apps %}#}
-            {#<li data-URL="ajaxUrlPlea" role="appLinke"><i class="fa fa-envelope"></i><span> انتقادات و پیشنهادات</span></li>#}
-        {#{% endif %}#}
-        {#{% if 'settings' in apps %}#}
-            {#<li data-URL="ajaxUrlRolesSetting" role="appLinke"><i class="fa fa-gear"></i><span> تنظیمات نقش جاری</span></li>#}
-        {#{% endif %}#}
-        {#{% if 'permission' in apps %}#}
-            {#<li data-URL="ajaxUrlUserPermations" role="appLinke"><i class="fa fa-users"></i><span> سطح دسترسی کاربران</span></li>#}
-        {#{% endif %}#}
-    </ul>
+        {% set options = {'leaf_class': 'leaf', 'branch_class': 'branch', 'currentAsLink': false} %}
+        {{ knp_menu_render('AnarBlogPanelBundle:Builder:adminMenu', options) }}
 </div>
 {% endblock Sidebar %}
 
