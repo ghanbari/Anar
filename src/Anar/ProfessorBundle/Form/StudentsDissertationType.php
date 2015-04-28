@@ -35,6 +35,10 @@ class StudentsDissertationType extends AbstractType
                 'class' => 'Anar\EngineBundle\Entity\Grade',
                 'property' => 'name',
             ))
+            ->add('abstract', 'textarea', array(
+                'label' => 'abstract',
+                'required' => false,
+            ))
         ;
     }
 
