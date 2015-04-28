@@ -1,14 +1,142 @@
-{% extends '::base.html.twig' %}
+{% extends "AnarBlogPanelBundle:Desktop:index.html.twig" %}
 
-{% block body -%}
-    <h1>Profile edit</h1>
+{% block csses %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarblogpanel/css/blogpanel.css') }}">
 
-    {{ form(form) }}
+    <style>
+        .fa.fa-list-alt{
+            vertical-align: -4px;
+        }
 
-        <ul class="record_actions">
-    <li>
-            Back to the list
-        </a>
-    </li>
-</ul>
-{% endblock %}
+        .tittle_tab_content{
+            font-size: 16pt;
+        }
+    </style>
+{% endblock csses %}
+
+{% block Container %}
+<div class="col-md-11 col-sm-11 margin-left-45 tab_content_box margin-top-25 margin-bottom-25">
+    <div class="row">
+        <div class="col-md-6 col-sm-6 pull-right tittle_tab_content">
+            <i class="fa fa-list-alt"></i>
+            <span>ویرایش پروفایل</span>
+        </div>
+        <div class="col-md-1 col-sm-1 pull-left text-left">
+            <i onclick="location.href = '{{ path("anar_blog_panel_home") }}'" class="glyphicon glyphicon-remove cursor_pointer" style="cursor: pointer"></i>
+        </div>
+    </div>
+    <hr id="cutter">
+    <div class="row">
+        <div class="col-md-8 col-sm-8 pull-right margin-top-10">
+    <div class="form-inline">
+        <div class="form-group" style="width: 50%">
+            <label for="input1">Name</label>
+            <input type="text" class="form-control" id="input1" placeholder="David">
+        </div>
+        <div class="form-group" style="width: 50%">
+            <label for="input2">Last Name</label>
+            <input type="text" class="form-control" id="input2" placeholder="Tanner">
+        </div>
+    </div>
+            {{ form_start(form, { 'attr': {'class': 'create_link'}}) }}
+            <div class="row">
+                <div class="form-group">
+                    <label class="col-md-2 col-sm-2 pull-right control-label text-left">تلفن</label>
+                    <div class="col-md-9 col-sm-9">
+                        {{ form_widget(form.telephone,{ 'attr' : {'class':'form-control'} }) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                <div class="form-group">
+                    <label class="col-md-2 col-sm-2 pull-right control-label text-left">ایمیل</label>
+                    <div class="col-md-9 col-sm-9">
+                        {{ form_widget(form.email,{ 'attr' : {'class':'form-control'} }) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                <div class="form-group">
+                    <label class="col-md-2 col-sm-2 pull-right control-label text-left">تاریخ تولد</label>
+                    <div class="col-md-9 col-sm-9">
+                        {{ form_widget(form.birthday,{ 'attr' : {'class':'form-control'} }) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                <div class="form-group">
+                    <label class="col-md-2 col-sm-2 pull-right control-label text-left">وب سایت</label>
+                    <div class="col-md-9 col-sm-9">
+                        {{ form_widget(form.website,{ 'attr' : {'class':'form-control'} }) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                <div class="form-group">
+                    <label class="col-md-2 col-sm-2 pull-right control-label text-left">عکس کاربری</label>
+                    <div class="col-md-9 col-sm-9">
+                        {{ form_widget(form.avatarFile) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                <div class="form-group">
+                    <label class="col-md-2 col-sm-2 pull-right control-label text-left">زندگی نامه</label>
+                    <div class="col-md-9 col-sm-9">
+                        {{ form_widget(form.bio,{ 'attr' : {'class':'form-control'} }) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                <div class="form-group">
+                    <label class="col-md-2 col-sm-2 pull-right control-label text-left">تاریخ شروع کار</label>
+                    <div class="col-md-9 col-sm-9">
+                        {{ form_widget(form.jobStartedAt,{ 'attr' : {'class':'form-control'} }) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                <div class="form-group">
+                    <label class="col-md-2 col-sm-2 pull-right control-label text-left">مهارت ها</label>
+                    <div class="col-md-9 col-sm-9">
+                        {{ form_widget(form.skill,{ 'attr' : {'class':'form-control'} }) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                <div class="form-group">
+                    <label class="col-md-2 col-sm-2 pull-right control-label text-left">علاقه مندی ها</label>
+                    <div class="col-md-9 col-sm-9">
+                        {{ form_widget(form.favorite,{ 'attr' : {'class':'form-control'} }) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                <div class="form-group">
+                    <label class="col-md-2 col-sm-2 pull-right control-label text-left">مقالات</label>
+                    <div class="col-md-9 col-sm-9">
+                        {{ form_widget(form.article,{ 'attr' : {'class':'form-control'} }) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                <div class="form-group">
+                    <label class="col-md-2 col-sm-2 pull-right control-label text-left">تحصیلات</label>
+                    <div class="col-md-9 col-sm-9">
+                        {{ form_widget(form.educations,{ 'attr' : {'class':''} }) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                <div class="form-group">
+                    <label class="col-md-2 col-sm-2 pull-right control-label text-left"></label>
+                    <div class="col-md-9 col-sm-9">
+                        {{ form_widget(form.submit, {'attr': {'class': 'btn R_butt_blue', 'onclick': 'submit_search_form(event)'}}) }}
+                    </div>
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+{% endblock Container %}

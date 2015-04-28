@@ -1,4 +1,5 @@
-{% set blog = blog.getBlog() %}
+{% set blog = blogManager.getBlog() %}
+{% set blogs = blogManager.getUserBlogs() %}
 <!doctype html>
 <html dir="rtl">
 <head>
@@ -55,10 +56,10 @@
                 <i class="fa fa-sort-down"></i>
             </a>
             <ul>
-                {#{%  for userBlog in blogs %}#}
+                {%  for userBlog in blogs %}
 
-                    {#<li><a href="{{ path('anar_blog_panel_home_blog', {'blogName': userBlog.name}) }}?token={{ token }}">{{ userBlog.title }}</a></li>#}
-                {#{% endfor %}#}
+                    <li><a href="{{ path('anar_blog_panel_home_blog', {'blogName': userBlog.name}) }}">{{ userBlog.title }}</a></li>
+                {% endfor %}
             </ul>
         </li>
         <li data-URL="ajaxUrlComments" role="appLinke"><i class="fa fa-comment"></i> <span class="badge">12</span></li>
@@ -74,7 +75,7 @@
     <div id="rp-nowRoleShowerWrap"><i class="fa fa-bars"></i><i class="fa fa-desktop"></i>&nbsp;<span>{{ blog.getName() }}</span>
     </div>
     <ul>
-        {{ knp_menu_render('AnarBlogPanelBundle:Builder:adminMenu') }}
+        {{ knp_menu_render('AnarBlogPanelBundle:Builder:adminMenu', {'template': 'AnarBlogPanelBundle:Menu:BlogMenu.html.twig'}) }}
         {#{% set apps = [] %}#}
         {#{% for facility in blog.getFacilities() %}#}
             {#{% set apps = apps|merge([facility.getName()]) %}#}

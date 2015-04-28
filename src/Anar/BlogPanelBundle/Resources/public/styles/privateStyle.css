@@ -1,0 +1,502 @@
+@charset "utf-8";
+/* CSS Document */
+body{
+	margin:0px;
+	padding:0px;
+	border:none;
+	background-color:#e6e8ea;
+	font-family:"yekan";
+	font-size:16px;	
+	direction:rtl !important;
+}
+
+
+#rp-toolbarWrap{
+	position:fixed;
+	top:0px;
+	left:0px;
+	width:100%;
+	height:50px;
+	background-color:#fff;
+	z-index:1000;
+	border-bottom:1px solid #dddee0;
+
+}
+#rp-toolbarWrap #rp-logo{
+	width:240px;
+	float:right;
+	height:50px;
+	background:url(../images/rolePanelLogo.png) no-repeat center center;
+	border-left:1px solid #dddee0;
+}
+
+#rp-toolbarWrap > ul{
+	margin:0px;
+	padding:0px;
+	float:left;
+	margin-left:10px;
+}
+#rp-toolbarWrap > ul > li{
+	list-style:none;
+	float:left;
+	display:block;
+	line-height:49px;
+	padding:0px 15px;
+	color:#666;
+	cursor:pointer;
+	position:relative;
+}
+#rp-toolbarWrap li:hover,
+#rp-toolbarWrap li a:hover{
+    text-decoration: none;
+    background:#efefef;
+    color:#000;
+}
+#rp-toolbarWrap li a{
+	color: #666;
+}
+#rp-toolbarWrap ul li ul{
+	display:none;
+	position: absolute;
+  	top: 100%;
+	left: 0;
+	z-index: 1000;
+	float: left;
+	min-width: 160px;
+	padding: 5px 0;
+	margin: 0px;
+	font-size: 14px;
+	text-align: right;
+	list-style: none;
+	background-color: #fff;
+	-webkit-background-clip: padding-box;
+			background-clip: padding-box;
+	border: 1px solid #999;
+        border-bottom: 3px solid #999;
+        border-top: 1px solid #dddee0;
+}
+#rp-toolbarWrap ul li{
+	list-style:none;
+	display:block;
+	padding:0px 15px;
+	color:#666;
+	cursor:pointer;
+}
+
+#rp-toolbarWrap i,#rp-toolbarWrap .badge{
+    display: inline-block;
+}
+
+
+
+
+
+#rp-menuWrap{
+	position:fixed;
+	top:0px;
+	right:0px;
+	width:240px;
+	height:100%;
+	background-color:#282828;
+	color:#858585;
+	z-index:100;
+	padding-top:50px;
+}
+
+
+#rp-menuWrap #rp-nowRoleShowerWrap{
+	width:240px;
+	background-color:#0d0d0d;
+	color:#fff;
+	padding:15px 18px 15px 5px;
+	position:relative;
+}
+#rp-nowRoleShowerWrap i.fa-bars{
+	display:none;
+}
+#rp-menuWrap #rp-nowRoleShowerWrap i{
+	font-size:20px;
+}
+#rp-menuWrap #rp-nowRoleShowerWrap span{
+	font-family:"yekan";
+	font-size:18px;
+}
+
+#ascrail2000{
+	right:235px;
+}
+
+
+#rp-menuWrap ul{
+	margin:0px;
+	padding:10px;
+	font-family:"yekan" !important;
+	font-size:18px;
+	display:block;
+}
+
+#rp-menuWrap ul li{	
+	list-style:none;
+	margin:0px;
+	margin-bottom:10px;
+	padding:6px 8px;
+	cursor:pointer;
+	border-radius:5px;
+	-webkit-border-radius:5px;
+	-moz-border-radius:5px;
+}
+
+#rp-menuWrap ul li:hover{
+	background-color:#FFF;
+	color:#222;
+}
+
+#rp-menuWrap ul li[data-active]{	
+	background-color:#ca4247 !important;
+	color:#fff !important;
+	cursor:default;
+}
+
+#rp-menuWrap ul li i{	
+	font-size:20px;
+}
+
+#rp-boxWrap{
+	position:relative;
+	margin-right:240px;
+	margin-top:50px;
+}
+#rp-contentWrap{
+	display:none;
+	background-color:#fff;
+	padding:15px;
+	width:96.666666666666666666666666666667%;
+	margin:1.7857142857142857142857142857143%;
+	font-size:20px;
+	float:left;
+	position:relative;
+}
+#rp-contentContainer{
+	font-size:0.9em;/*20px*/
+}
+div#rp-contentWrap div#rp-contentContainer h2 i{
+	font-size:1em;
+}
+div#rp-contentWrap div#rp-contentContainer h2{
+	margin:0px;
+	font-size:1.5em;
+}
+div#rp-contentWrap div#rp-contentContainer h3{
+	font-size:1.1em;
+	font-weight:bold;
+	color:#ababab;
+	font-family:"yekan";
+}
+div#rp-contentWrap #rp-contencClose{
+	float:left;
+	cursor:pointer;
+}
+
+
+#rp-desktopWrap{
+	font-size:16px;
+}
+#rp-desktopWrap div{
+	float:right;
+}
+
+
+
+div#rp-desktopWrap div.rp-shower{
+	position:relative;
+	width:21.428571428571428571428571428571%;
+	height:105px;
+	border:1px solid #dddee0;
+	background-color:#FFF;
+	margin:1.7857142857142857142857142857143%;
+}
+
+div#rp-desktopWrap div.rp-shower i.rp-iconLabel{
+	display:block;
+	width:40px;
+	height:70px;
+	background-color:#d93348;
+	text-align:center;
+	color:#fff;
+	font-size:1.4em;
+	padding-top:20px;
+	position:absolute;
+	top:-6px;
+	right:10px;
+}
+div#rp-desktopWrap div.rp-shower i.rp-iconLabel span{
+	display:block;
+	width:29px;
+	height:29px;
+	background-color:#FFF;
+	transform:rotate(45deg);
+	-ms-transform:rotate(45deg); /* IE 9 */
+	-webkit-transform:rotate(45deg);
+	position:absolute;
+	left:5px;
+	bottom:-15px;
+}
+div#rp-desktopWrap  div.rp-shower span.rp-showerTitr{
+	display:block;
+	margin-right:60px;
+	margin-top:10px;
+	font-size:1.2em;
+	color:#2a2a2a;
+}
+div#rp-desktopWrap div.rp-shower span.rp-showerNumber{
+	display:block;
+	float:left;
+	font-size:1.8em;
+	font-weight:bold;
+	margin-top:6px;
+	margin-left:4%;
+	color:#2a2a2a;
+}
+
+
+
+
+div#rp-desktopWrap div#rp-clockWrap{
+	width:46.428571428571428571428571428571%;
+	height:235px;
+	background-color: #b12133;
+	color:#fff;
+	text-align:center;
+	margin:1.7857142857142857142857142857143%;
+}
+div#rp-desktopWrap div#rp-clockWrap time{
+	font-size:4em;
+	margin-right:auto;
+	margin-left:auto;
+	line-height:150px;
+}
+div#rp-desktopWrap div#rp-clockWrap hr{
+	width:96%;
+	border-top:1px solid #981c2c;
+	border-bottom:1px solid #b13646;
+	margin:0px;
+	margin-right:auto;
+	margin-left:auto;
+}
+div#rp-desktopWrap div#rp-clockWrap i{
+	font-size:1.6em;
+	direction:rtl;
+	margin-top:29px;
+	float:right;
+	margin-right:6%;
+}
+div#rp-desktopWrap div#rp-clockWrap span{
+	font-size:1em;
+	margin-top:32px;
+	margin-right:6px;
+	float:right;
+	font-family:'roya';
+}
+
+
+
+
+#rp-conections{
+	width:46.428571428571428571428571428571%;
+	height:235px;
+	background-color: #fff;
+	color:#000;
+	margin:1.7857142857142857142857142857143%;
+}
+
+#rp-conections #rp-topic{
+	width:100%;
+	height:146px;
+	padding:5px;
+}
+#rp-conections #rp-topic i{
+	font-size:5em;
+}
+#rp-conections #rp-topic span{
+	font-size:3em;
+}
+#rp-conections #rp-topic sup{
+	font-size:0.35em;
+}
+
+
+#rp-conections .rp-tabs{
+	width:50%;
+	height:89px;
+	float:right;
+	background-color:#646464;
+	position:relative;
+	line-height:89px;
+	padding:5px;
+}
+#rp-conections .rp-tabs i{
+	background:#b12133;
+	width:60px;
+	height:60px;
+	color:#fff;
+	font-size:25px;
+	line-height:60px;
+	text-align:center;
+	border-radius:30px;
+	-moz-border-radius:30px;
+	-webkit-border-radius:30px;
+	position:absolute;
+	top:-25px;
+	left:40%;
+	border:5px solid #fff;
+}
+
+#rp-conections .rp-showerTitr{
+	color:#fff;
+	float:right;
+}
+#rp-conections .rp-showerNumber{
+	color:#fff;
+	float:left;
+	font-size:2em;
+}
+
+
+
+
+#rp-week{
+	background-color:#fff;
+	padding:10px;
+	width:96.666666666666666666666666666667%;
+	margin:1.7857142857142857142857142857143%;
+	font-size:30px;
+}
+#rp-week i{
+	font-size:50px;
+}
+
+.rp-comment{
+	width:46.428571428571428571428571428571%;
+	height:90px;
+	background-color: #282828;
+	color:#fff;
+	margin:1.7857142857142857142857142857143%;
+	padding:0px;
+	border:none;
+}
+.rp-comment i{
+	font-size:40px;
+	line-height:90px;
+	background-color:#6f6f6f;
+	width:90px;
+	text-align:center;
+	margin:0px;
+	float:right;
+	padding:0px;
+	border:none;
+}
+
+
+.rp-comment .rp-showerTitr{
+	color:#fff;
+	float:right;
+	margin-right:10px;
+	line-height:90px;
+	font-size:1.5em;
+}
+.rp-comment .rp-showerNumber{
+	color:#fff;
+	float:left;
+	font-size:2em;
+	line-height:90px;
+	font-size:2.5em;
+	margin-left:10px;
+}
+
+
+@media (min-width: 690px){
+	#rp-menuWrap ul{
+		display:block !important;
+	}
+}
+@media (max-width:970px) and (min-width: 690px){
+	div#rp-desktopWrap div.rp-shower{
+	  width:46.4%;
+ 	}
+	div#rp-desktopWrap div#rp-clockWrap , #rp-conections,.rp-comment{
+		width:96.666666666666666666666666666667%;
+	}
+
+	.rp-goToDown{
+		clear:right;
+	}
+	
+	
+	#rp-contentWrap{
+		font-size:18px;
+	}
+}
+
+@media (max-width:689px){
+	#rp-toolbarWrap #rp-logo{
+		width:56px;
+		height:50px;
+		background:url(../images/rolePanelLogomini.png) no-repeat center center;
+		
+	}
+
+	#rp-boxWrap div#rp-desktopWrap > div{
+		width:96.666666666666666666666666666667%;
+		margin:1.7857142857142857142857142857143%;	
+	}
+	
+	#rp-menuWrap{
+	  position:relative;
+	  width:100%;
+	  margin-top:50px;
+	  background-color:#282828;
+	  padding-top:0px;
+	}
+	#rp-menuWrap ul{
+		display:none;
+	}
+	
+	#rp-menuWrap #rp-nowRoleShowerWrap{
+	  width:100%;
+	  padding-right:70px;
+	 }
+
+	#rp-nowRoleShowerWrap i.fa-bars{
+	  display:block;
+	  position:absolute;
+	  height:100%;
+	  line-height:55px;
+	  width:55px;
+	  top:0px;
+	  right:0px;
+	  background-color:#282828;
+	  float:right;
+	  text-align:center;
+  	}
+	#rp-nowRoleShowerWrap i.fa-bars:hover{
+	  background-color:#a62339;
+	  cursor:pointer;
+  	}
+	
+	
+	#rp-boxWrap{
+		margin-right:0px;
+		margin-top:5px;
+	}
+	
+	
+	#rp-contentWrap{
+		font-size:14px;
+	}
+	
+}
+@media (max-width:460px){
+	.rp-toolbarElementLablel{
+		display:none;
+	}
+}

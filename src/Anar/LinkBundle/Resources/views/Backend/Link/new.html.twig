@@ -8,7 +8,7 @@
 <div class="col-md-11 col-sm-11 margin-left-45 tab_content_box margin-top-25 margin-bottom-25">
     <div class="row">
         <div class="col-md-6 col-sm-6 pull-right tittle_tab_content">
-            <i class="fa fa-sitemap"></i>
+            <i class="fa fa-list-alt"></i>
             <span>ایجاد لینک</span>
         </div>
         <div class="col-md-1 col-sm-1 pull-left text-left">
@@ -21,7 +21,7 @@
             {{ form_start(form, { 'attr': {'class': 'create_link'}}) }}
             <div class="row">
                 <div class="form-group">
-                    <label class="col-md-2 col-sm-2 pull-right control-label text-left">نام کاربری</label>
+                    <label class="col-md-2 col-sm-2 pull-right control-label text-left">عنوان</label>
                     <div class="col-md-9 col-sm-9">
                         {{ form_widget(form.title,{ 'attr' : {'class':'form-control'} }) }}
                     </div>
@@ -29,7 +29,7 @@
             </div>
             <div class="row margin-top-10">
                 <div class="form-group">
-                    <label class="col-md-2 col-sm-2 pull-right control-label text-left">ایمیل</label>
+                    <label class="col-md-2 col-sm-2 pull-right control-label text-left">توضیحات</label>
                     <div class="col-md-9 col-sm-9">
                         {{ form_widget(form.description,{ 'attr' : {'class':'form-control'} }) }}
                     </div>
@@ -37,7 +37,7 @@
             </div>
             <div class="row margin-top-10">
                 <div class="form-group">
-                    <label class="col-md-2 col-sm-2 pull-right control-label text-left">نام</label>
+                    <label class="col-md-2 col-sm-2 pull-right control-label text-left">یوآرال</label>
                     <div class="col-md-9 col-sm-9">
                         {{ form_widget(form.url,{ 'attr' : {'class':'form-control'} }) }}
                     </div>
