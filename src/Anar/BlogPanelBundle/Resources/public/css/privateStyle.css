@@ -132,10 +132,10 @@ body{
 	padding:10px;
 	font-family:"yekan" !important;
 	font-size:18px;
-	display:block;
+	/*display:block;*/
 }
 
-#rp-menuWrap ul li{	
+#rp-menuWrap ul li{
 	list-style:none;
 	margin:0px;
 	margin-bottom:10px;
@@ -151,13 +151,13 @@ body{
 	color:#222;
 }
 
-#rp-menuWrap ul li[data-active]{	
+#rp-menuWrap ul li[data-active]{
 	background-color:#ca4247 !important;
 	color:#fff !important;
 	cursor:default;
 }
 
-#rp-menuWrap ul li i{	
+#rp-menuWrap ul li i{
 	font-size:20px;
 }
 
@@ -413,12 +413,6 @@ div#rp-desktopWrap div#rp-clockWrap span{
 	margin-left:10px;
 }
 
-
-@media (min-width: 690px){
-	#rp-menuWrap ul{
-		display:block !important;
-	}
-}
 @media (max-width:970px) and (min-width: 690px){
 	div#rp-desktopWrap div.rp-shower{
 	  width:46.4%;

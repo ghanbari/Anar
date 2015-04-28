@@ -20,6 +20,7 @@
     {#----------------------/commonStyles----------------------#}
     {#----------------------PrivateStyles----------------------#}
         <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarblogpanel/css/privateStyle.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarblogpanel/css/blogpanel.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarblogpanel/css/common.css') }}">
     {#----------------------/PrivateStyles----------------------#}
 
@@ -74,7 +75,7 @@
 <div id="rp-menuWrap">
     <div id="rp-nowRoleShowerWrap"><i class="fa fa-bars"></i><i class="fa fa-desktop"></i>&nbsp;<span>{{ blog.getName() }}</span>
     </div>
-        {% set options = {'leaf_class': 'leaf', 'branch_class': 'branch', 'currentAsLink': false} %}
+        {% set options = {'leaf_class': 'leaf', 'branch_class': 'branch', 'template': 'AnarBlogPanelBundle:Menu:BlogMenu.html.twig'} %}
         {{ knp_menu_render('AnarBlogPanelBundle:Builder:adminMenu', options) }}
 </div>
 {% endblock Sidebar %}
@@ -167,11 +168,24 @@
 {#<script src="{{ asset('plugins/datepicker/pwt-datepicker.js') }}"></script>#}
 
 {#<script src="{{ asset('plugins/jstreeV3-0-4/jstree.min.js') }}"></script>#}
-<script src="{{ asset('bundles/anarblogpanel/js/jquery.nicescroll.min.js') }}"></script>
+{#<script src="{{ asset('bundles/anarblogpanel/js/jquery.nicescroll.min.js') }}"></script>#}
 {#<script src="{{ asset('plugins/tinyNotice/tinyNotice.js') }}"></script>#}
 {#<script src="{{ asset('scripts/commonActions.js') }}"></script>#}
 {#----------------------/commonScripts----------------------#}
 {#----------------------PrivateScripts----------------------#}
+<script>
+    var currentNode = '';
+    $(document).on('click','.menu-items', function(e){
+        var elm = $(e.target);
+        var parent = elm.parent();
+        if (elm.html() != currentNode) {
+            $('.menu_level_1').slideUp(600);
+        }
+        $('.menu_level_1', parent).slideToggle(600);
+        currentNode = elm.html();
+    });
+</script>
+
 {% block scripts %}
 <script>
     {#// variables#}

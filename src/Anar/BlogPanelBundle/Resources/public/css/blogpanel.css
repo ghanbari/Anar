@@ -56,3 +56,34 @@
 .display-none{
     display: none;
 }
+
+.branch:hover{
+    background: #282828 !important;
+}
+
+.branch .menu_level_1{
+    display: none;
+}
+
+.menu-items{
+    color: white !important;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.menu-items:hover{
+    background: #B12133 !important;
+    color: white !important;
+}
+
+.sub-menu-items{
+    color: #ffffff;
+}
+
+.sub-menu-items:hover{
+    text-decoration: none;
+}
+
+.leaf:hover a{
+    color: #282828 !important;
+}
