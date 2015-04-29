@@ -5,9 +5,9 @@ namespace Anar\ProfessorBundle\Controller\Backend;
 use Anar\BlogPanelBundle\Interfaces\AdminInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use Anar\ProfessorBundle\Entity\Plan;
 use Anar\ProfessorBundle\Form\PlanType;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Plan controller.
@@ -188,7 +188,7 @@ class PlanController extends Controller implements AdminInterface
         $translator = $this->get('translator');
         $token = $request->request->get('token');
 
-        if ($this->isCsrfTokenValid('plan_delete', $token)) {
+        if (!$this->isCsrfTokenValid('plan_delete', $token)) {
             $status = array(
                 'code' => 400,
                 'message' => $translator->trans('token.is.invalid')

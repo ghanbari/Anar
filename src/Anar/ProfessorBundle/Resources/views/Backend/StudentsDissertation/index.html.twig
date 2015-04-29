@@ -63,14 +63,12 @@
 
 
 {% block scripts %}
-
+{{ parent() }}
     <script>
         $('.current_ancestor').removeClass('minus').addClass('open');
-
         $('.delete_dissertation').click(function(){
-            var path = "{{ path('anar_professor_backend_students_dissertation_delete',{'id': '__id__'}) }}";
             var id = $(this).attr('data-id');
-            path = path.replace('__id__',id);
+            var path = Routing.generate('anar_professor_backend_students_dissertation_delete',{ 'id': id });
             $.ajax({
                 url: path,
                 type: "post",
@@ -85,8 +83,8 @@
         });
 
         $('.edit_dissertation').click(function(){
-            var path = '{{ path('anar_professor_backend_students_dissertation_edit',{'id':'__id__'}) }}'
-            path = path.replace('__id__',$(this).attr('data-id'));
+            var id = $(this).attr('data-id');
+            var path = Routing.generate('anar_professor_backend_students_dissertation_edit',{ 'id': id });
             location.href = path;
         });
     </script>

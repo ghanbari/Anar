@@ -45,6 +45,14 @@
             </div>
             <div class="row margin-top-10">
                 <div class="form-group">
+                    <label class="col-md-2 col-sm-2 pull-right control-label text-left">{{ form_label(form.abstract) }}</label>
+                    <div class="col-md-9 col-sm-9">
+                        {{ form_widget(form.abstract,{ 'attr' : {'class':'form-control', 'style':'resize:none'} }) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                <div class="form-group">
                     <div class="col-md-2 col-sm-2 pull-right control-label text-left"></div>
                     <div class="col-md-9 col-sm-9">
                         {{ form_widget(form.submit,{ 'attr' : {'class':'R_butt_blue btn'} }) }}
@@ -55,6 +63,9 @@
         </div>
         <div class="col-md-4 col-sm-4">
             <div class="row form_fields_message" style="min-height: 38px">
+                <span class=""></span>
+            </div>
+            <div class="row margin-top-10 form_fields_message" style="min-height: 38px">
                 <span class=""></span>
             </div>
             <div class="row margin-top-10 form_fields_message" style="min-height: 38px">
