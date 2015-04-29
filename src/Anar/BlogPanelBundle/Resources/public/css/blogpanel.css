@@ -129,3 +129,42 @@
     -o-transition: 0.5s;
     transition: 0.5s;
 }
+
+
+
+.records_list{
+    width: 100%;
+}
+
+.records_list tr:first-child{
+    background: #5f5f5f;
+    padding: 10px;
+    color: white;
+}
+
+.records_list tr:first-child td{
+    padding: 10px;
+}
+
+.records_list tr:first-child td a{
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.records_list .t1{
+    background: #ffffff;
+    color: #828282;
+}
+
+.records_list .t1 td{
+    padding: 10px;
+}
+
+.records_list .t2{
+    background: #f7f7f7;
+    color: #828282;
+}
+
+.records_list .t2 td{
+    padding: 10px;
+}

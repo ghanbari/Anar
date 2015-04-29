@@ -1,42 +1,94 @@
-{% extends '::base.html.twig' %}
+{% extends "AnarBlogPanelBundle:Desktop:index.html.twig" %}
 
-{% block body -%}
-    <h1>StudentsDissertation list</h1>
+{% block csses %}
 
-    <table class="records_list">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Author</th>
-                <th>Title</th>
-                <th>Createdat</th>
-                <th>Updatedat</th>
-                <th>Createdby</th>
-                <th>Updatedby</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for dissertation in dissertations %}
-            <tr>
-                <td>{{ dissertation.author }}</td>
-                <td>{{ dissertation.title }}</td>
-                <td>{% if dissertation.createdAt %}{{ dissertation.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if dissertation.updatedAt %}{{ dissertation.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ dissertation.createdBy }}</td>
-                <td>{{ dissertation.updatedBy }}</td>
-                <td>
-                <ul>
-                </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+{% endblock %}
 
-        <ul>
-        <li>
+{% block Container %}
+<div class="col-md-11 col-sm-11 margin-left-45 tab_content_box margin-top-25 margin-bottom-25">
+    <div class="row">
+        <div class="col-md-6 col-sm-6 pull-right tittle_tab_content">
+            <i class="fa fa-list-alt"></i>
+            <span>لیست پایان نامه ها ({{ dissertations.getTotalItemCount() }})</span>
+        </div>
+        <div class="col-md-1 col-sm-1 pull-left text-left">
+            <i onclick="location.href = '{{ path("anar_blog_panel_home") }}'" class="glyphicon glyphicon-remove cursor_pointer" style="cursor: pointer"></i>
+        </div>
+    </div>
+    <hr id="cutter">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 margin-top-10">
+            <table class="records_list">
+                <tr class="text-center">
+                    <td>{{ knp_pagination_sortable(dissertations, 'author'|trans({}, 'forms'), 'sd.author') }}
+                        {% if dissertations.isSorted('sd.author') %}aaaa{% endif %}</td>
+                    <td>{{ knp_pagination_sortable(dissertations, 'title'|trans({}, 'forms'), 'sd.title') }}
+                        {% if dissertations.isSorted('sd.title') %}aaaa{% endif %}</td>
+                    <td>{{ knp_pagination_sortable(dissertations, 'createdAt'|trans({}, 'forms'), 'sd.createdAt') }}
+                        {% if dissertations.isSorted('sd.createdAt') %}aaaa{% endif %}</td>
+                    <td>{{ knp_pagination_sortable(dissertations, 'updatedAt'|trans({}, 'forms'), 'sd.updatedat') }}
+                        {% if dissertations.isSorted('sd.updatedat') %}aaaa{% endif %}</td>
+                    <td>{{ knp_pagination_sortable(dissertations, 'createdBy'|trans({}, 'forms'), 'sd.createdBy') }}
+                        {% if dissertations.isSorted('sd.createdBy') %}aaaa{% endif %}</td>
+                    <td>{{ knp_pagination_sortable(dissertations, 'updatedBy'|trans({}, 'forms'), 'sd.updatedBy') }}
+                        {% if dissertations.isSorted('sd.updatedBy') %}aaaa{% endif %}</td>
+                    <td></td>
+                </tr>
+                {% set i = 0 %}
+                {% for dissertation in dissertations %}
+                    <tr data-id="{{ dissertation.id }}" class="text-center {% if i % 2 == 0 %}t1{% else %}t2{% endif %}">
+                        <td>{{ dissertation.author }}</td>
+                        <td>{{ dissertation.title }}</td>
+                        <td>{% if dissertation.createdAt %}{{ dissertation.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        <td>{% if dissertation.updatedAt %}{{ dissertation.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        <td>{{ dissertation.createdBy }}</td>
+                        <td>{{ dissertation.updatedBy }}</td>
+                        <td>
+                            <button data-id="{{ dissertation.id }}" class="R_butt_green edit_dissertation btn">ویرایش</button>
+                            <button data-id="{{ dissertation.id }}" class="R_butt_red delete_dissertation btn">حذف</button>
+                        </td>
+                    </tr>
+                    {% set i = i + 1 %}
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 text-center">
+            {{ knp_pagination_render(dissertations) }}
+        </div>
+    </div>
+</div>
+{% endblock %}
 
-        </li>
-    </ul>
-    {% endblock %}
+
+{% block scripts %}
+
+    <script>
+        $('.current_ancestor').removeClass('minus').addClass('open');
+
+        $('.delete_dissertation').click(function(){
+            var path = "{{ path('anar_professor_backend_students_dissertation_delete',{'id': '__id__'}) }}";
+            var id = $(this).attr('data-id');
+            path = path.replace('__id__',id);
+            $.ajax({
+                url: path,
+                type: "post",
+                success: function(data){
+                    Alert.render('حذف با موفقیت انجام شد!');
+                    $('tr[data-id='+ id +']').remove();
+                },
+                error: function(data){
+                    Alert.render('در عملیات حذف مشکلی به وجود آمده است!');
+                }
+            });
+        });
+
+        $('.edit_dissertation').click(function(){
+            var path = '{{ path('anar_professor_backend_students_dissertation_edit',{'id':'__id__'}) }}'
+            path = path.replace('__id__',$(this).attr('data-id'));
+            location.href = path;
+        });
+    </script>
+
+{% endblock scripts %}
