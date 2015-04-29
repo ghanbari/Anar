@@ -79,7 +79,7 @@
         {%- endif %}
         {# displaying the item #}
         {% import _self as knp_menu %}
-        <li{{ knp_menu.attributes(attributes) }} {%- if item.uri %} onclick="location.href = '{{ item.uri }}' {% endif %}">
+        <li{{ knp_menu.attributes(attributes) }} {%- if item.uri %} onclick="location.href = '{{ item.uri }}'" {% endif %}>
             {% if item.extras %}
                 <i class="{{ item.extras.icon }}"></i>
             {% endif %}
@@ -100,6 +100,6 @@
 
 {% block linkElement %}{% import _self as knp_menu %}<a class="sub-menu-items" href="{{ item.uri }}"{{ knp_menu.attributes(item.linkAttributes) }}>{{ block('label') }}</a>{% endblock %}
 
-{% block spanElement %}{% import _self as knp_menu %}<div{{ knp_menu.attributes(item.labelAttributes) }} class="menu-items">{{ block('label') }}</div>{% endblock %}
+{% block spanElement %}{% import _self as knp_menu %}<div{{ knp_menu.attributes(item.labelAttributes) }} class="menu-items"><i class="fa fa-plus-square-o"></i> {{ block('label') }}</div>{% endblock %}
 
 {% block label %}{% if options.allow_safe_labels and item.getExtra('safe_label', false) %}{{ item.label|raw }}{% else %}{{ item.label }}{% endif %}{% endblock %}

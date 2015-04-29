@@ -174,15 +174,24 @@
 {#----------------------/commonScripts----------------------#}
 {#----------------------PrivateScripts----------------------#}
 <script>
-    var currentNode = '';
+//    var currentNode = '';
+    $('.branch').addClass('minus');
     $(document).on('click','.menu-items', function(e){
         var elm = $(e.target);
         var parent = elm.parent();
-        if (elm.html() != currentNode) {
-            $('.menu_level_1').slideUp(600);
+        if(parent.hasClass('minus')){
+//            $('.open .menu_level_1').slideUp(600);
+            $('.open').removeClass('open').addClass('minus');
+            parent.removeClass('minus').addClass('open');
+            $('.fa.fa-minus-square-o').attr('class','fa fa-plus-square-o');
+//            $('.menu_level_1', parent).slideToggle(600);
+            $('.menu-items i', parent).attr('class','fa fa-minus-square-o');
         }
-        $('.menu_level_1', parent).slideToggle(600);
-        currentNode = elm.html();
+        else if(parent.hasClass('open')) {
+            parent.removeClass('open').addClass('minus');
+//            $('.menu_level_1', parent).slideToggle(600);
+            $('.menu-items i', parent).attr('class','fa fa-plus-square-o');
+        }
     });
 </script>
 
