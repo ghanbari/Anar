@@ -6,6 +6,9 @@ anar_engine_bundle:
     resource: "@AnarEngineBundle/Resources/config/routing.yml"
     options: { i18n: false }
 
+anar_menu:
+    resource: "@AnarMenuBundle/Resources/config/routing.yml"
+
 anar_professor:
     resource: "@AnarProfessorBundle/Resources/config/routing.yml"
 

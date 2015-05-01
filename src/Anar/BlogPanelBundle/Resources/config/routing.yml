@@ -8,6 +8,10 @@ anar_blog_panel_login_check:
 anar_blog_panel_logout:
     path:     /logout
 
+anar_blog_panel_group:
+    resource: "@AnarBlogPanelBundle/Resources/config/routing/group.yml"
+    prefix:   /group
+
 anar_blog_panel_home_blog:
     path:     /{blogName}
     defaults: { _controller: anar_blog_panel.controller.desktop:homeAction }

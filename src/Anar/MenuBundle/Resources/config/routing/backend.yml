@@ -1,0 +1,26 @@
+anar_menu_backend_index:
+    path:     /
+    defaults: { _controller: "AnarMenuBundle:Backend/Menu:index" }
+    
+anar_menu_backend_new:
+    path:     /new
+    defaults: { _controller: "AnarMenuBundle:Backend/Menu:new" }
+
+anar_menu_backend_create:
+    path:     /create
+    defaults: { _controller: "AnarMenuBundle:Backend/Menu:create" }
+    methods:  POST
+
+anar_menu_backend_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AnarMenuBundle:Backend/Menu:edit" }
+
+anar_menu_backend_update:
+    path:     /{id}/update
+    defaults: { _controller: "AnarMenuBundle:Backend/Menu:update" }
+    methods:  [POST, PUT]
+
+anar_menu_backend_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AnarMenuBundle:Backend/Menu:delete" }
+    methods:  [POST, DELETE]

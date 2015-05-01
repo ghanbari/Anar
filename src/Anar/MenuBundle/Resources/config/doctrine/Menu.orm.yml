@@ -1,0 +1,65 @@
+Anar\MenuBundle\Entity\Menu:
+    repositoryClass: Anar\MenuBundle\Entity\MenuRepository
+    type: entity
+    table: menu
+    gedmo:
+        translation:
+            entity: MenuTranslation
+            locale: currentLocale
+        tree:
+            type: nested
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            gedmo:
+                - translatable
+        url: ~
+        lft:
+            type: integer
+            gedmo:
+                - treeLeft
+        rgt:
+            type: integer
+            gedmo:
+                - treeRight
+        root:
+            type: integer
+            gedmo:
+                - treeRoot
+        level:
+            type: integer
+            gedmo:
+                - treeLevel
+    oneToMany:
+        children:
+            targetEntity: Menu
+            mappedBy: parent
+            orderBy:
+                lft: ASC
+        translations:
+            targetEntity: MenuTranslation
+            mappedBy: object
+            cascade: ["persist"]
+    manyToOne:
+        parent:
+            targetEntity: Menu
+            inversedBy: children
+            joinColumn:
+                name: parent_id
+                referencedColumnName: id
+                onDelete: cascade
+            gedmo:
+                - treeParent
+        blog:
+            targetEntity: Anar\EngineBundle\Entity\Blog
+            joinColumn:
+                name: blog_id
+                referencedColumnName: id
+                onDelete: cascade
+
+    lifecycleCallbacks: {  }

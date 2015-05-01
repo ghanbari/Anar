@@ -30,6 +30,15 @@ Anar\EngineBundle\Entity\Group:
             gedmo:
                 timestampable:
                     on: update
+        createdBy:
+            gedmo:
+                blameable:
+                    on: create
+        updatedBy:
+            gedmo:
+                blameable:
+                    on: update
+
     manyToOne:
         blog:
             targetEntity: Blog

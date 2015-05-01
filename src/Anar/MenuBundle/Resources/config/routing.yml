@@ -1,0 +1,4 @@
+anar_menu_backend:
+    resource: "@AnarMenuBundle/Resources/config/routing/backend.yml"
+    prefix:   /blogpanel/menu
+

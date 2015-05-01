@@ -1,0 +1,12 @@
+anar_blog_panel_group_index:
+    path:     /
+    defaults: { _controller: AnarBlogPanelBundle:Group:index }
+
+anar_blog_panel_group_new:
+    path:     /new
+    defaults: { _controller: AnarBlogPanelBundle:Group:new }
+
+anar_blog_panel_group_create:
+    path:     /create
+    defaults: { _controller: AnarBlogPanelBundle:Group:create }
+    methods:  [POST]

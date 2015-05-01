@@ -1,0 +1,4 @@
+services:
+#    anar_menu.example:
+#        class: Anar\MenuBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
