@@ -82,6 +82,7 @@ class ArticleType extends AbstractType
             ))
             ->add('imageFile', 'file', array(
                 'required' => false,
+                'label' => 'image',
             ))
             ->add('category', 'entity', array(
                 'label' => 'category',
