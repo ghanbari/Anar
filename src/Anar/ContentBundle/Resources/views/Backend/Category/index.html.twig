@@ -21,21 +21,21 @@
             <table class="records_list">
                 <tr class="text-center">
                     <td>{{ 'title'|trans }}</td>
-                    <td>{{ 'description'|trans }}</td>
                     <td>{{ 'slug'|trans }}</td>
+                    <td>{{ 'description'|trans }}</td>
                     <td>{{ 'created.at'|trans }}</td>
                     <td>{{ 'updated.at'|trans }}</td>
                     <td>{{ 'created.by'|trans }}</td>
                     <td>{{ 'updated.by'|trans }}</td>
                     <td></td>
                 </tr>
-
                 {% set i = 0 %}
                 {% for category in categories %}
                     <tr data-id="{{ category.id }}" class="text-center {% if i % 2 == 0 %}t1{% else %}t2{% endif %}">
                         <td>{{ category.title }}</td>
-                        <td>{{ category.description }}</td>
+                        {#<td>{{ category.description }}</td>#}
                         <td>{{ category.slug }}</td>
+                        <td>{% if category.description|length > 15 %} {{ category.description[0:15] }}... {% else %} {{ category.description }} {% endif %}</td>
                         <td>{% if category.createdAt %}{{ category.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
                         <td>{% if category.updatedAt %}{{ category.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
                         <td>{{ category.createdBy }}</td>

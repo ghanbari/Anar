@@ -42,6 +42,14 @@
     <hr id="cutter">
     <div class="row">
         <div class="col-md-8 col-sm-8 pull-right margin-top-10">
+            <script>
+                var university = '{{ form_widget(form.educations.vars.prototype.university,{ 'attr' : {'class':'form-control'} }) }}';
+                var city = '{{ form_widget(form.educations.vars.prototype.city,{ 'attr' : {'class':'form-control'} }) }}';
+                var country = '{{ form_widget(form.educations.vars.prototype.country,{ 'attr' : {'class':'form-control'} }) }}';
+                var startDate = '{{ form_widget(form.educations.vars.prototype.startDate,{ 'attr' : {'class':'form-control s_d'} }) }}';
+                var endDate = '{{ form_widget(form.educations.vars.prototype.endDate,{ 'attr' : {'class':'form-control s_d'} }) }}';
+                var grade = '{{ form_widget(form.educations.vars.prototype.grade,{ 'attr' : {'class':'select1'} }) }}';
+            </script>
             {{ form_start(form, { 'attr': {'class': 'update_profile'}}) }}
             <div class="row">
                 <div class="form-group">
@@ -223,17 +231,11 @@
 
         var count = {{ form.educations|length }};
         $('.add-education-btn').click(function(){
-            var university = '{{ form_widget(form.educations.vars.prototype.university,{ 'attr' : {'class':'form-control'} }) }}';
-            university = university.replace('_name_',count);
-            var city = '{{ form_widget(form.educations.vars.prototype.city,{ 'attr' : {'class':'form-control'} }) }}';
             city = city.replace('_name_',count);
-            var country = '{{ form_widget(form.educations.vars.prototype.country,{ 'attr' : {'class':'form-control'} }) }}';
             country = country.replace('_name_',count);
-            var startDate = '{{ form_widget(form.educations.vars.prototype.startDate,{ 'attr' : {'class':'form-control s_d'} }) }}';
             startDate = startDate.replace('_name_',count);
-            var endDate = '{{ form_widget(form.educations.vars.prototype.endDate,{ 'attr' : {'class':'form-control s_d'} }) }}';
             endDate = endDate.replace('_name_',count);
-            var grade = '{{ form_widget(form.educations.vars.prototype.grade,{ 'attr' : {'class':'select1'} }) }}';
+            university = university.replace('_name_',count);
             grade = grade.replace('_name_',count);
             var html_str = ''+
                     '<div class="add-education-form">' +
@@ -245,29 +247,29 @@
                             '<div class="col-md-9 col-sm-9">'+ university +'</div> ' +
                         '</div> '+
                         '<div class="row margin-top-10">' +
-                            '<div class="col-md-3 col-sm-3 pull-right text-left">city</div> ' +
+                            '{{ form_label(form.educations.vars.prototype.city, '', {'label_attr' : {'class': 'col-md-3 col-sm-3 pull-right text-left'} } ) }} ' +
                             '<div class="col-md-9 col-sm-9">'+ city +'</div> ' +
                         '</div> '+
                         '<div class="row margin-top-10">' +
-                            '<div class="col-md-3 col-sm-3 pull-right text-left">country</div> ' +
+                            '{{ form_label(form.educations.vars.prototype.country, '', {'label_attr' : {'class': 'col-md-3 col-sm-3 pull-right text-left'} } ) }} ' +
                             '<div class="col-md-9 col-sm-9">'+ country +'</div> ' +
                         '</div> '+
                         '<div class="row margin-top-10">' +
-                            '<div class="col-md-3 col-sm-3 pull-right text-left">from.date</div> ' +
+                            '<div class="col-md-3 col-sm-3 pull-right text-left">تاریخ شروع</div> ' +
                             '<div class="col-md-9 col-sm-9">'+ startDate +'</div> ' +
                         '</div> '+
                         '<div class="row margin-top-10">' +
-                            '<div class="col-md-3 col-sm-3 pull-right text-left">to.date</div> ' +
+                            '<div class="col-md-3 col-sm-3 pull-right text-left">تاریخ پایان</div> ' +
                             '<div class="col-md-9 col-sm-9">'+ endDate +'</div> ' +
                         '</div> '+
                         '<div class="row margin-top-10">' +
-                            '<div class="col-md-3 col-sm-3 pull-right text-left">grade</div> ' +
+                            '{{ form_label(form.educations.vars.prototype.grade, '', {'label_attr' : {'class': 'col-md-3 col-sm-3 pull-right text-left'} } ) }} ' +
                             '<div class="col-md-9 col-sm-9">'+ grade +'</div> ' +
                         '</div> '+
                     '</div> ';
             $('.add-more-education').append(html_str);
 //            $(".select1").select2("destroy").select2({
-//                placeholder: "انتخاب کنید"
+//                placeholder: "?????? ????"
 //            });
             count = count + 1;
         });

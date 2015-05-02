@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/css/commonStyles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('static/bootstrap/dist/css/bootstrap.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('static/bootstrap/dist/css/bootstrap-theme.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/bootstrapV3-2-0/css/bootstrapPersianNormailze.css') }}">
+    {#<link rel="stylesheet" type="text/css" href="{{ asset('plugins/bootstrapV3-2-0/css/bootstrapPersianNormailze.css') }}">#}
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/jstreeV3-0-4/themes/default/style.css') }}">
     {#<link rel="stylesheet" type="text/css" href="{{ asset('plugins/tinyNotice/FlatTheme.css') }}">#}
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/datepicker/pwt-datepicker.css') }}">
@@ -187,21 +187,23 @@
 //    var currentNode = '';
     $('.branch').addClass('minus');
     $(document).on('click','.menu-items', function(e){
-        var elm = $(e.target);
-        var parent = elm.parent();
-        if(parent.hasClass('minus')){
-//            $('.open .menu_level_1').slideUp(600);
-            $('.open').removeClass('open').addClass('minus');
-            parent.removeClass('minus').addClass('open');
-            $('.fa.fa-minus-square-o').attr('class','fa fa-plus-square-o');
-//            $('.menu_level_1', parent).slideToggle(600);
-            $('.menu-items i', parent).attr('class','fa fa-minus-square-o');
-        }
-        else if(parent.hasClass('open')) {
-            parent.removeClass('open').addClass('minus');
-//            $('.menu_level_1', parent).slideToggle(600);
-            $('.menu-items i', parent).attr('class','fa fa-plus-square-o');
-        }
+//        var elm = $(e.target);
+        var data_name = $(this).attr('data-name');
+        $('.menu_level_1[data-name='+data_name+']').slideToggle(600);
+//        var parent = elm.parent();
+//        if(parent.hasClass('minus')){
+//            $('.open .menu_level_1').slideToggle(600);
+//            $('.open').removeClass('open').addClass('minus');
+//            parent.removeClass('minus').addClass('open');
+//            $('.fa.fa-minus-square-o').attr('class','fa fa-plus-square-o');
+//            $('.menu_level_1', $(this)).slideToggle(600);
+//            $('.menu-items i', parent).attr('class','fa fa-minus-square-o');
+//        }
+//        else if(parent.hasClass('open')) {
+//            parent.removeClass('open').addClass('minus');
+////            $('.menu_level_1', parent).slideToggle(600);
+//            $('.menu-items i', parent).attr('class','fa fa-plus-square-o');
+//        }
     });
 </script>
 
