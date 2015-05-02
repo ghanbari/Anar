@@ -2,6 +2,16 @@
 
 {% block csses %}
     <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarblogpanel/css/blogpanel.css') }}">
+    <style>
+        .select{
+            width: 100%;
+        }
+
+        .select2-arrow b{
+            background-position: 5px 4px !important;
+        }
+    </style>
+
 {% endblock csses %}
 
 {% block Container %}
@@ -21,7 +31,7 @@
             {{ form_start(form, { 'attr': {'class': 'create_link'}}) }}
             <div class="row">
                 <div class="form-group">
-                    <label class="col-md-2 col-sm-2 pull-right control-label text-left">عنوان</label>
+                    {{ form_label(form.title, '', {'label_attr': {'class': 'col-md-2 col-sm-2 pull-right control-label text-left'} }) }}
                     <div class="col-md-9 col-sm-9">
                         {{ form_widget(form.title,{ 'attr' : {'class':'form-control'} }) }}
                     </div>
@@ -29,7 +39,7 @@
             </div>
             <div class="row margin-top-10">
                 <div class="form-group">
-                    <label class="col-md-2 col-sm-2 pull-right control-label text-left">توضیحات</label>
+                    {{ form_label(form.description, '', {'label_attr': {'class': 'col-md-2 col-sm-2 pull-right control-label text-left'} }) }}
                     <div class="col-md-9 col-sm-9">
                         {{ form_widget(form.description,{ 'attr' : {'class':'form-control'} }) }}
                     </div>
@@ -37,9 +47,17 @@
             </div>
             <div class="row margin-top-10">
                 <div class="form-group">
-                    <label class="col-md-2 col-sm-2 pull-right control-label text-left">یوآرال</label>
+                    {{ form_label(form.url, '', {'label_attr': {'class': 'col-md-2 col-sm-2 pull-right control-label text-left'} }) }}
                     <div class="col-md-9 col-sm-9">
                         {{ form_widget(form.url,{ 'attr' : {'class':'form-control'} }) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                <div class="form-group">
+                    {{ form_label(form.position, '', {'label_attr': {'class': 'col-md-2 col-sm-2 pull-right control-label text-left'} }) }}
+                    <div class="col-md-9 col-sm-9">
+                        {{ form_widget(form.position,{ 'attr' : {'class':'select'} }) }}
                     </div>
                 </div>
             </div>
@@ -59,3 +77,14 @@
 </div>
 
 {% endblock Container %}
+
+{% block scripts %}
+    {{ parent() }}
+    <script>
+        $('.current_ancestor').removeClass('minus').addClass('open');
+        $('.current_ancestor .menu-items i').attr('class','fa fa-minus-square-o');
+        $(".select").select2({
+            placeholder: "انتخاب کنید"
+        });
+    </script>
+{% endblock scripts %}

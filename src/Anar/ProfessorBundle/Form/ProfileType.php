@@ -44,11 +44,14 @@ class ProfileType extends AbstractType
                   'maxlength' => 255
                 ),
             ))
-            ->add('avatarFile', 'vich_file', array(
+            ->add('avatarFile', 'file', array(
                 'required'      => false,
                 'constraints' => new Image(array(
                     'minWidth' => 10
                 )),
+                'attr' => array(
+                    'class' => 'default',
+                ),
             ))
             ->add('bio', 'textarea', array(
                 'label' => 'bio',

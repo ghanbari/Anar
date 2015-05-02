@@ -83,7 +83,7 @@ class ProfileController extends Controller implements AdminInterface
 
         if ($form->isValid()) {
             foreach ($educations as $education) {
-                if (!$profile->getEducations()->contain($education)) {
+                if (!$profile->getEducations()->contains($education)) {
                     $em->remove($education);
                 }
             }

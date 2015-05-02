@@ -80,7 +80,7 @@ class ArticleType extends AbstractType
                 'format' => 'yyyy/MM/dd',
                 'widget' => 'single_text',
             ))
-            ->add('imageFile', 'vich_file', array(
+            ->add('imageFile', 'file', array(
                 'required' => false,
             ))
             ->add('category', 'entity', array(

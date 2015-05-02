@@ -1,12 +1,168 @@
-{% extends '::base.html.twig' %}
+{% extends "AnarBlogPanelBundle:Desktop:index.html.twig" %}
 
-{% block body -%}
-    <h1>Article creation</h1>
+{% block csses %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/css/bootstrap-switch-metro-rtl.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarblogpanel/plugins/DatePicker/pwt-datepicker.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarblogpanel/plugins/bootstrap-fileupload/bootstrap-fileupload.css') }}">
+    <style>
+        .select{
+            width: 100%;
+        }
 
-    {{ form(form) }}
-
-        <ul class="record_actions">
-    <li>
-    </li>
-</ul>
+        .select2-arrow b{
+            background-position: 5px 4px !important;
+        }
+    </style>
 {% endblock %}
+
+{% block Container %}
+<div class="col-md-11 col-sm-11 margin-left-45 tab_content_box margin-top-25 margin-bottom-25">
+    <div class="row">
+        <div class="col-md-6 col-sm-6 pull-right tittle_tab_content">
+            <i class="fa fa-list-alt"></i>
+            {% if action == 'create' %}<span>ایجاد مقاله</span>{% endif %}
+            {% if action == 'update' %}<span>ویرایش مقاله</span>{% endif %}
+        </div>
+        <div class="col-md-1 col-sm-1 pull-left text-left">
+            <i onclick="location.href = '{{ path("anar_blog_panel_home") }}'" class="glyphicon glyphicon-remove cursor_pointer" style="cursor: pointer"></i>
+        </div>
+    </div>
+    <hr id="cutter">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 pull-right margin-top-10">
+            {{ form_start(form, { 'attr': {'class': 'article_form'}}) }}
+            <div class="row">
+                <div class="form-group">
+                    {{ form_label(form.title, '', {'label_attr': {'class': 'col-md-2 col-sm-2 pull-right control-label text-left'} }) }}
+                    <div class="col-md-5 col-sm-5 pull-right">
+                        {{ form_widget(form.title,{ 'attr' : {'class':'form-control'} }) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                <div class="form-group">
+                    {{ form_label(form.slug, '', {'label_attr': {'class': 'col-md-2 col-sm-2 pull-right control-label text-left'} }) }}
+                    <div class="col-md-5 col-sm-5 pull-right">
+                        {{ form_widget(form.slug,{ 'attr' : {'class':'form-control'} }) }}
+                    </div>
+                </div>
+            </div>
+            <hr style="margin: 30px 0">
+            <div class="row margin-top-10">
+                <div class="form-group">
+                    {{ form_label(form.abstract, '', {'label_attr': {'class': 'col-md-2 col-sm-2 pull-right control-label text-left'} }) }}
+                    <div class="col-md-9 col-sm-9 pull-right">
+                        {{ form_widget(form.abstract,{ 'attr' : {'class':'form-control'} }) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                <div class="form-group">
+                    {{ form_label(form.article, '', {'label_attr': {'class': 'col-md-2 col-sm-2 pull-right control-label text-left'} }) }}
+                    <div class="col-md-9 col-sm-9 pull-right">
+                        {{ form_widget(form.article,{ 'attr' : {'class':'form-control'} }) }}
+                    </div>
+                </div>
+            </div>
+            <hr style="margin: 30px 0">
+            <div class="row margin-top-10">
+                <div class="form-group">
+                    {{ form_label(form.category, '', {'label_attr': {'class': 'col-md-2 col-sm-2 pull-right control-label text-left'} }) }}
+                    <div class="col-md-5 col-sm-5 pull-right">
+                        {{ form_widget(form.category,{ 'attr' : {'class':'select'} }) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                <div class="form-group">
+                    {{ form_label(form.publicationStartDate, '', {'label_attr': {'class': 'col-md-2 col-sm-2 pull-right control-label text-left'} }) }}
+                    <div class="col-md-5 col-sm-5 pull-right">
+                        {{ form_widget(form.publicationStartDate,{ 'attr' : {'class':'form-control s_d'} }) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                <div class="form-group">
+                    {{ form_label(form.publicationEndDate, '', {'label_attr': {'class': 'col-md-2 col-sm-2 pull-right control-label text-left'} }) }}
+                    <div class="col-md-5 col-sm-5 pull-right">
+                        {{ form_widget(form.publicationEndDate,{ 'attr' : {'class':'form-control s_d'} }) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                <div class="form-group">
+                    {{ form_label(form.imageFile, '', {'label_attr': {'class': 'col-md-2 col-sm-2 pull-right control-label text-left'} }) }}
+                    <div class="col-md-5 col-sm-5 pull-right">
+                        <div class="fileupload fileupload-new" data-provides="fileupload">
+                            <div id="photo_show" class="fileupload-new thumbnail" style="width: 184px; height: 142px;">
+                                <img src="" alt="" />
+                            </div>
+                            <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                            <div>
+                                <span class="btn backgroundBlue colorWhite btn-file">
+                                <span class="fileupload-new"><i class="fa fa-paper-clip"></i> انتخاب تصویر </span>
+                                <span class="fileupload-exists"><i class="fa fa-undo"></i> تغییر</span>
+                                {{ form_widget(form.imageFile) }}
+                                </span>
+                                <a href="#" class="btn backgroundRed colorWhite fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash-o"></i> حذف</a>
+                            </div>
+                        </div>
+                        {{ form_widget(form.imageFile,{ 'attr' : {'class':'form-control'} }) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                <div class="form-group">
+                    {{ form_label(form.enabled, '', {'label_attr': {'class': 'col-md-2 col-sm-2 pull-right control-label text-left'} }) }}
+                    <div class="col-md-5 col-sm-5 pull-right">
+                        <div class="make-switch">
+                            {{ form_widget(form.enabled,{ 'attr' : {'class':'toggle'} }) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                <div class="form-group">
+                    <div class="col-md-2 col-sm-2 pull-right control-label text-left"></div>
+                    <div class="col-md-5 col-sm-5 pull-right">
+                        {{ form_widget(form.submit,{ 'attr' : {'class':'R_butt_blue btn'} }) }}
+                    </div>
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block scripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/anarsuperpanel/js/bootstrap-switch.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/anarblogpanel/plugins/DatePicker/pwt-date.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/anarblogpanel/plugins/DatePicker/pwt-datepicker.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/anarblogpanel/plugins/CKEditor/ckeditor.js') }}"></script>
+    <script src="{{ asset('bundles/anarblogpanel/plugins/bootstrap-fileupload/bootstrap-fileupload.js') }}"></script>
+
+    <script>
+        $('.s_d').val('').pDatepicker();
+
+        CKEDITOR.replace('article_abstract',{
+            language: 'fa',
+            uiColor: '#F7F7F7'
+        });
+        CKEDITOR.replace('article_article',{
+            language: 'fa',
+            uiColor: '#F7F7F7'
+        });
+
+        $('.current_ancestor').removeClass('minus').addClass('open');
+        $('.current_ancestor .menu-items i').attr('class','fa fa-minus-square-o');
+
+
+        $(".select").select2({
+            placeholder: "انتخاب کنید"
+        });
+    </script>
+{% endblock scripts %}

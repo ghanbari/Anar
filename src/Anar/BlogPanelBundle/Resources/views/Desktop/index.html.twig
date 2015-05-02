@@ -4,7 +4,7 @@
 <html dir="rtl">
 <head>
     <meta charset="utf-8">
-    <title>{{ blog.getName() }}</title>
+    <title>{{ blog.getTitle() }}</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {#----------------------commonStyles----------------------#}
@@ -75,7 +75,7 @@
 
 {% block Sidebar %}
 <div id="rp-menuWrap">
-    <div id="rp-nowRoleShowerWrap"><i class="fa fa-bars"></i><i class="fa fa-desktop"></i>&nbsp;<span>{{ blog.getName() }}</span>
+    <div id="rp-nowRoleShowerWrap"><i class="fa fa-bars"></i><i class="fa fa-desktop"></i>&nbsp;<span>{{ blog.getTitle() }}</span>
     </div>
         {% set options = {'leaf_class': 'leaf', 'branch_class': 'branch', 'template': 'AnarBlogPanelBundle:Menu:BlogMenu.html.twig'} %}
         {{ knp_menu_render('AnarBlogPanelBundle:Builder:adminMenu', options) }}
@@ -173,6 +173,7 @@
 <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
 <script src="{{ asset('bundles/anarblogpanel/js/routes.js') }}"></script>
 
+<script src="{{ asset('bundles/anarblogpanel/js/privateActions.js') }}"></script>
 {#<script src="{{ asset('plugins/datepicker/pwt-date.js') }}"></script>#}
 {#<script src="{{ asset('plugins/datepicker/pwt-datepicker.js') }}"></script>#}
 
@@ -223,7 +224,6 @@
 
 
 </script>
-<script src="{{ asset('bundles/anarblogpanel/js/privateActions.js') }}"></script>
 {#----------------------/PrivateScripts----------------------#}
 {% endblock scripts %}
 </body>
