@@ -1,12 +1,78 @@
-{% extends '::base.html.twig' %}
+{% extends "AnarBlogPanelBundle:Desktop:index.html.twig" %}
 
-{% block body -%}
-    <h1>Menu creation</h1>
+{% block csses %}
+    {#<link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarblogpanel/css/blogpanel.css') }}">#}
+    <style>
+        .select{
+            width: 100%;
+        }
 
-    {{ form(form) }}
+        .select2-arrow b{
+            background-position: 5px 4px !important;
+        }
+    </style>
 
-        <ul class="record_actions">
-    <li>
-    </li>
-</ul>
+{% endblock csses %}
+
+{% block Container %}
+<div class="col-md-11 col-sm-11 margin-left-45 tab_content_box margin-top-25 margin-bottom-25">
+    <div class="row">
+        <div class="col-md-6 col-sm-6 pull-right tittle_tab_content">
+            <i class="fa fa-list-alt"></i>
+            <span>ساخت منو</span>
+        </div>
+        <div class="col-md-1 col-sm-1 pull-left text-left">
+            <i onclick="location.href = '{{ path("anar_blog_panel_home") }}'" class="glyphicon glyphicon-remove cursor_pointer" style="cursor: pointer"></i>
+        </div>
+    </div>
+    <hr id="cutter">
+    <div class="row">
+        <div class="col-md-8 col-sm-8 pull-right margin-top-10">
+            {{ form_start(form, { 'attr': {'class': 'create_link'}}) }}
+            <div class="row">
+                <div class="form-group">
+                    {{ form_label(form.name, '', {'label_attr': {'class': 'col-md-2 col-sm-2 pull-right control-label text-left'} }) }}
+                    <div class="col-md-9 col-sm-9">
+                        {{ form_widget(form.name,{ 'attr' : {'class':'form-control'} }) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                <div class="form-group">
+                    {{ form_label(form.url, '', {'label_attr': {'class': 'col-md-2 col-sm-2 pull-right control-label text-left'} }) }}
+                    <div class="col-md-9 col-sm-9">
+                        {{ form_widget(form.url,{ 'attr' : {'class':'form-control'} }) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                <div class="form-group">
+                    {{ form_label(form.parent, '', {'label_attr': {'class': 'col-md-2 col-sm-2 pull-right control-label text-left'} }) }}
+                    <div class="col-md-9 col-sm-9">
+                        {{ form_widget(form.parent,{ 'attr' : {'class':'select'} }) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                <div class="form-group">
+                    <label class="col-md-2 col-sm-2 pull-right control-label text-left"></label>
+                    <div class="col-md-9 col-sm-9">
+                        {{ form_widget(form.submit, {'attr': {'class': 'btn R_butt_blue'}}) }}
+                    </div>
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
 {% endblock %}
+
+{% block scripts %}
+    <script>
+        $('.current_ancestor').removeClass('minus').addClass('open');
+        $('.current_ancestor .menu-items i').attr('class','fa fa-minus-square-o');
+        $(".select").select2({
+            placeholder: "انتخاب کنید"
+        });
+    </script>
+{% endblock scripts %}

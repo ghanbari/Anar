@@ -1,1 +1,116 @@
-<body>{{ tree }}</body>
+{% extends "AnarBlogPanelBundle:Desktop:index.html.twig" %}
+
+{% block csses %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('static/jstree/dist/themes/default/style.css') }}">
+
+{% endblock %}
+
+{% block Container %}
+<div class="col-md-11 col-sm-11 margin-left-45 tab_content_box margin-top-25 margin-bottom-25">
+    <div class="row">
+        <div class="col-md-6 col-sm-6 pull-right tittle_tab_content">
+            <i class="fa fa-list-alt"></i>
+            <span>لیست منوها</span>
+        </div>
+        <div class="col-md-1 col-sm-1 pull-left text-left">
+            <i onclick="location.href = '{{ path("anar_blog_panel_home") }}'" class="glyphicon glyphicon-remove cursor_pointer" style="cursor: pointer"></i>
+        </div>
+    </div>
+    <hr id="cutter">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 margin-top-10">
+            <div id="jstree_div"></div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+    {{ parent() }}
+    <script src="{{ asset('static/jstree/dist/jstree.min.js') }}"></script>
+    <script>
+        $('.current_ancestor').removeClass('minus').addClass('open');
+        $('.current_ancestor .menu-items i').attr('class','fa fa-minus-square-o');
+        $("#jstree_div").jstree({
+            'core' : {
+                'data' : {{ tree|raw }},
+                'strings' : {
+                    'Loading ...' : 'در حال بارگذاری لطفا صبر نمایید ...<sub>ممکن است چند ثانیه طول بکشید</sub>'
+                },
+                'themes' : {
+                    "variant" : "large"
+                }
+            },
+            'checkbox' : {
+                'three_state': false,
+                'keep_selected_style' : false
+            },
+            "plugins": ["themes", "html_data", "ui", "crrm", "contextmenu"],
+            contextmenu: {items: customMenu}
+        }).on('loaded.jstree', function() {
+            $(this).jstree('open_all');
+        });
+        var current_blog;
+        function customMenu(node){
+            // The default set of all items
+            var items = {
+                renameItem: { // The "rename" menu item
+                    "label": "ویرایش",
+                    "icon": "glyphicon glyphicon-edit",
+                    action: function () {
+                        var check_path = "{{ path('anar_menu_backend_edit',{'id': '__id__'}) }}";
+                        check_path = check_path.replace('__id__', node.id);
+                        location.href = check_path;
+                    }
+                },
+                deleteItem: { // The "delete" menu item
+                    "label": "حذف",
+                    "icon": "glyphicon glyphicon-remove",
+                    action: function () {
+                        var check_path = "{{ path('anar_menu_backend_delete',{'id': '__id__'}) }}";
+                        check_path = check_path.replace('__id__', node.id);
+                        $.ajax({
+                            url: check_path,
+                            type: "post",
+                            data: {'token': '{{ token }}'},
+                            error: function(message){
+                                Alert.render("message : "+message);
+                            },
+                            success: function(data){
+                                if(data.status['code'] == 200){
+                                    Alert.render(JSON.stringify(data.status['message']));
+                                    $('#jstree_div').jstree("destroy");
+                                    location.reload();
+                                    {#var check_path1 = "{{ path('anar_menu_backend_index',{'_format': 'json'}) }}";#}
+                                    {#$.ajax({#}
+                                        {#url: check_path1,#}
+                                        {#type: "get",#}
+                                        {#error: function (xhr, ajaxOptions, thrownError) {#}
+                                            {#alert(xhr.status);#}
+                                            {#alert(thrownError);#}
+                                        {#},#}
+                                        {#success: function(data1){#}
+                                            {#$('#jstree_div').jstree("destroy");#}
+                                            {#location.reload();#}
+                                        {#}#}
+                                    {#})#}
+                                }
+                                else{
+                                    Alert.render(data.status['message']);
+                                }
+                            }
+                        });
+                    }
+                }
+            };
+
+//            if ($(node).hasClass("folder")) {
+//                // Delete the "delete" menu item
+//                delete items.deleteItem;
+//            }
+
+            return items;
+        }
+    </script>
+{% endblock scripts %}
