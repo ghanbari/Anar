@@ -66,7 +66,7 @@ class Group implements GroupInterface
      * @param array $roles
      * @param boolean $default
      */
-    public function __construct($name, $roles=array(), $default=false)
+    public function __construct($name='', $roles=array(), $default=false)
     {
         $this->name = $name;
         $this->default = $default;

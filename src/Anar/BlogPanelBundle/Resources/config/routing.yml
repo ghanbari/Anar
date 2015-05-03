@@ -12,6 +12,11 @@ anar_blog_panel_group:
     resource: "@AnarBlogPanelBundle/Resources/config/routing/group.yml"
     prefix:   /group
 
+anar_blog_panel_log:
+    path:     /logs/{page}
+    defaults: { _controller: AnarBlogPanelBundle:Log:index, page: 1 }
+    requirements: { page: \d+ }
+
 anar_blog_panel_home_blog:
     path:     /{blogName}
     defaults: { _controller: anar_blog_panel.controller.desktop:homeAction }

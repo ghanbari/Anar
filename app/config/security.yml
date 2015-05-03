@@ -58,5 +58,6 @@ security:
 
     access_control:
         - { path: ^/blogpanel/login$,  role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/blogpanel/group,  role: ROLE_ADMIN }
         - { path: ^/superpanel/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/superpanel, role: ROLE_SUPER_ADMIN }

@@ -68,6 +68,10 @@ class BlogType extends AbstractType
                 'multiple' => true,
                 'label' => 'facilities',
                 'required' => true,
+                'query_builder' => function ($er) {
+                    $qb = $er->createQueryBuilder('a');
+                    return $qb->where($qb->expr()->neq('a.type', "'system'"));
+                }
             ))
         ;
     }

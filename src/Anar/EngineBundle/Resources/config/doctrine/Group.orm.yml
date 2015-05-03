@@ -1,4 +1,5 @@
 Anar\EngineBundle\Entity\Group:
+    repositoryClass: GroupRepository
     table: groups
     type: entity
     gedmo:
@@ -31,10 +32,12 @@ Anar\EngineBundle\Entity\Group:
                 timestampable:
                     on: update
         createdBy:
+            nullable: true
             gedmo:
                 blameable:
                     on: create
         updatedBy:
+            nullable: true
             gedmo:
                 blameable:
                     on: update

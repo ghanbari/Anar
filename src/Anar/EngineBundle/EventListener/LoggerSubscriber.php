@@ -103,7 +103,11 @@ class LoggerSubscriber extends ContainerAware implements EventSubscriber
         $request = $this->requestStack->getMasterRequest();
         if (!is_null($request)) {
             $routeParams = $request->attributes->all();
-            $postParams = $request->request->all();
+            if (!$entity instanceof User) {
+                $postParams = $request->request->all();
+            } else {
+                $postParams = array();
+            }
         } else {
             $routeParams = null;
             $postParams = null;

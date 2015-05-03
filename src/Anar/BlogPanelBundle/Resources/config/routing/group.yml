@@ -10,3 +10,44 @@ anar_blog_panel_group_create:
     path:     /create
     defaults: { _controller: AnarBlogPanelBundle:Group:create }
     methods:  [POST]
+
+anar_blog_panel_group_edit:
+    path:     /{groupId}/edit
+    defaults: { _controller: AnarBlogPanelBundle:Group:edit }
+    requirements: { id: \d+ }
+
+anar_blog_panel_group_update:
+    path:     /{groupId}/update
+    defaults: { _controller: AnarBlogPanelBundle:Group:update }
+    requirements: { id: \d+ }
+    methods: [POST, PUT]
+
+anar_blog_panel_group_delete:
+    path:     /{groupId}/delete
+    defaults: { _controller: AnarBlogPanelBundle:Group:delete }
+    requirements: { id: \d+ }
+    methods: [POST, DELETE]
+
+anar_blog_panel_group_user:
+    path:     /{groupId}/user
+    defaults: { _controller: AnarBlogPanelBundle:Group:users }
+    requirements: { id: \d+ }
+    methods: [GET]
+
+anar_blog_panel_group_user_search:
+    path:     /{groupId}/user
+    defaults: { _controller: AnarBlogPanelBundle:Group:search }
+    requirements: { id: \d+ }
+    methods: [POST]
+    
+anar_blog_panel_group_user_add:
+    path:     /{groupId}/user/{userId}/add
+    defaults: { _controller: AnarBlogPanelBundle:Group:addUser }
+    requirements: { id: \d+, userId: \d+ }
+    methods: [POST]
+
+anar_blog_panel_group_user_delete:
+    path:     /{groupId}/user/{userId}/delete
+    defaults: { _controller: AnarBlogPanelBundle:Group:deleteUser }
+    requirements: { id: \d+, userId: \d+ }
+    methods: [POST, DELETE]

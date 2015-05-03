@@ -39,7 +39,7 @@ class PlanType extends AbstractType
                 'translation_domain' => false,
             ))
             ->add('dayNumber', 'choice', array(
-                'label' => 'week.day.number',
+                'label' => 'week.day',
                 'required' => true,
                 'choices' => array(
                     '0' => 'saturday',

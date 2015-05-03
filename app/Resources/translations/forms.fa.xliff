@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2015-05-02T01:32:00Z" source-language="en" target-language="fa" datatype="plaintext" original="not.available">
+  <file date="2015-05-03T20:30:23Z" source-language="en" target-language="fa" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -69,9 +69,9 @@
         <target state="new">ساخته شده توسط</target>
       </trans-unit>
       <trans-unit id="7505d64a54e061b7acd54ccd58b49dc43500b635" resname="default">
-        <jms:reference-file line="22">BlogPanelBundle/Form/GroupType.php</jms:reference-file>
+        <jms:reference-file line="40">BlogPanelBundle/Form/GroupType.php</jms:reference-file>
         <source>default</source>
-        <target state="new">default</target>
+        <target state="new">پیش فرض</target>
       </trans-unit>
       <trans-unit id="cb329146a0dd0d566b0628744d67936558741ffa" resname="description">
         <jms:reference-file line="26">SuperPanelBundle/Form/BlogType.php</jms:reference-file>
@@ -154,7 +154,7 @@
       </trans-unit>
       <trans-unit id="6ae999552a0d2dca14d62e2bc8b764d377b1dd6c" resname="name">
         <jms:reference-file line="33">SuperPanelBundle/Form/BlogType.php</jms:reference-file>
-        <jms:reference-file line="15">BlogPanelBundle/Form/GroupType.php</jms:reference-file>
+        <jms:reference-file line="33">BlogPanelBundle/Form/GroupType.php</jms:reference-file>
         <source>name</source>
         <target state="new">نام</target>
       </trans-unit>
@@ -187,6 +187,11 @@
         <jms:reference-file line="72">ContentBundle/Form/ArticleType.php</jms:reference-file>
         <source>publication.start.from.date</source>
         <target state="new">تاریخ شروع انتشار</target>
+      </trans-unit>
+      <trans-unit id="037c883f00c362bc76dbfb07f6042d289ce6aa21" resname="roles">
+        <jms:reference-file line="47">BlogPanelBundle/Form/GroupType.php</jms:reference-file>
+        <source>roles</source>
+        <target state="new">نقش ها</target>
       </trans-unit>
       <trans-unit id="9155ef5fde64a89f06048015eb7c1b09f8db67ed" resname="saturday">
         <jms:reference-file line="45">ProfessorBundle/Form/PlanType.php</jms:reference-file>
@@ -286,9 +291,9 @@
         <source>wednesday</source>
         <target state="new">چهارشنبه</target>
       </trans-unit>
-      <trans-unit id="98005feefc272b7e5b67850714c09519ae36633e" resname="week.day.number">
+      <trans-unit id="faedc84949fd92d81a0e2953133096eee4b1da94" resname="week.day">
         <jms:reference-file line="42">ProfessorBundle/Form/PlanType.php</jms:reference-file>
-        <source>week.day.number</source>
+        <source>week.day</source>
         <target state="new">روز هفته</target>
       </trans-unit>
     </body>

@@ -16,7 +16,6 @@ Anar\EngineBundle\Entity\AppMenu:
                 name: app_id
                 referencedColumnName: id
                 onDelete: cascade
-    oneToOne:
         role:
             targetEntity: Anar\EngineBundle\Entity\Role
             joinColumn:

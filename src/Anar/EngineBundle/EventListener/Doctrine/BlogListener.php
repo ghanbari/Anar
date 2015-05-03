@@ -23,8 +23,11 @@ class BlogListener
 
         $member = new Group('اعضا', array($user));
         $member->setBlog($blog);
+        $member->setDefault(true);
         $member->setCurrentLocale('fa');
 
+        $blogPanel = $em->getRepository('AnarEngineBundle:App')->findOneByName('AnarBlogPanelBundle');
+        $blog->addApp($blogPanel);
         $em->persist($superadmin);
         $em->persist($member);
     }

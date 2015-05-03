@@ -13,7 +13,8 @@ Anar\EngineBundle\Entity\App:
             generator:
                 strategy: AUTO
     fields:
-        name: ~
+        name:
+            unique: true
         title:
             gedmo:
                 - translatable

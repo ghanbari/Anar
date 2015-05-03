@@ -39,6 +39,6 @@ class LoadMasterBlogData extends AbstractFixture implements OrderedFixtureInterf
      */
     function getOrder()
     {
-        return 1;
+        return 5;
     }
 }

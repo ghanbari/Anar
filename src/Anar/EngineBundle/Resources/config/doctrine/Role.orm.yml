@@ -1,4 +1,5 @@
 Anar\EngineBundle\Entity\Role:
+    repositoryClass: RoleRepository
     type: entity
     table: sys_roles
     id:

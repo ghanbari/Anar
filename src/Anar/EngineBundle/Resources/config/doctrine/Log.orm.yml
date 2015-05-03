@@ -1,4 +1,5 @@
 Anar\EngineBundle\Entity\Log:
+    repositoryClass: LogRepository
     table: sys_log
     type: entity
     id:

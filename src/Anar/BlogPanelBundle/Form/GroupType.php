@@ -2,12 +2,30 @@
 
 namespace Anar\BlogPanelBundle\Form;
 
+use Anar\EngineBundle\Entity\Blog;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class GroupType extends AbstractType
 {
+    /**
+     * @var Blog
+     */
+    private $blog;
+
+    /**
+     * @param $blog
+     */
+    public function __construct($blog)
+    {
+        $this->blog = $blog;
+    }
+
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
@@ -23,9 +41,26 @@ class GroupType extends AbstractType
                 'required' => false,
                 'data' => false,
             ))
+            ->add('roles', 'entity', array(
+                'class' => 'Anar\EngineBundle\Entity\Role',
+                'property' => 'name',
+                'label' => 'roles',
+                'multiple' => true,
+                'query_builder' => function ($er) {
+                    $qb = $er->createQueryBuilder('r');
+                    return $qb->join('r.app', 'a')
+                        ->join('a.blogs', 'b')
+                        ->where($qb->expr()->eq('b.id', '?1'))
+                        ->andWhere($qb->expr()->isNull('r.parent'))
+                        ->setParameter(1, $this->blog->getId());
+                }
+            ))
         ;
     }
 
+    /**
+     * @param OptionsResolver $resolver
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
