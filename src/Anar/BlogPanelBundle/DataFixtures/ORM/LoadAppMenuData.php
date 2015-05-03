@@ -21,12 +21,10 @@ class LoadAppMenuData extends AbstractFixture implements OrderedFixtureInterface
 
         $groupIndexMenu = new AppMenu('group.management', $blogPanel, $adminRole, 'anar_blog_panel_group_index', 'fa fa-group');
         $groupNewMenu = new AppMenu('group.create', $blogPanel, $adminRole, 'anar_blog_panel_group_new', 'fa fa-group');
-        $groupUsersIndexMenu= new AppMenu('group.users.management', $blogPanel, $adminRole, 'anar_blog_panel_group_user', 'fa fa-group');
         $logMenu = new AppMenu('logs', $blogPanel, $adminRole, 'anar_blog_panel_log', 'fa fa-exclamation-triangle');
 
         $manager->persist($groupIndexMenu);
         $manager->persist($groupNewMenu);
-        $manager->persist($groupUsersIndexMenu);
         $manager->persist($logMenu);
         $manager->flush();
     }

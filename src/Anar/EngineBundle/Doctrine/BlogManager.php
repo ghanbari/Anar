@@ -81,7 +81,11 @@ class BlogManager
                 ->leftJoin('b.apps', 'apps')
                 ->where($qb->expr()->eq('b.name', '?1'))
                 ->setParameter(1, $blogName)
-                ->getQuery()->getSingleResult();
+                ->getQuery()->getOneOrNullResult();
+        }
+
+        if (is_null(static::$blog)) {
+            throw new BlogNotSelectedException();
         }
 
         return static::$blog;

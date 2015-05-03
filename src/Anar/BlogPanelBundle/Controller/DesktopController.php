@@ -2,6 +2,7 @@
 
 namespace Anar\BlogPanelBundle\Controller;
 
+use Anar\BlogPanelBundle\Exception\BlogNotSelectedException;
 use Anar\EngineBundle\Doctrine\BlogManager;
 use Symfony\Bundle\FrameworkBundle\Routing\Router;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
@@ -94,7 +95,14 @@ class DesktopController
                 throw new AccessDeniedException();
             }
         } elseif (!is_null($blogName)) {
-            $request->getSession()->set('blogName', $blogName);
+            try {
+                $blog = $this->blogManager->getBlog();
+                $request->getSession()->set('blogName', $blog->getName());
+            } catch (BlogNotSelectedException $e) {
+                return new RedirectResponse(
+                    $this->router->generate('anar_blog_panel_home_blog', array('blogName' => $blogs[0]['name']))
+                );
+            }
         }
 
         $token = $this->csrfTokenManager->refreshToken('blogChange');
