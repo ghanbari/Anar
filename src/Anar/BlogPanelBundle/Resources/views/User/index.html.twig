@@ -1,1 +1,246 @@
-{{ form(searchForm) }}
+{% extends "AnarBlogPanelBundle:Desktop:index.html.twig" %}
+
+{% block csses %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/css/bootstrap-switch-metro-rtl.css') }}">
+    <style>
+        .select{
+            width: 100%;
+        }
+
+        .select2-arrow b{
+            background-position: 5px 4px !important;
+        }
+    </style>
+{% endblock csses %}
+
+{% block Container %}
+
+<div class="col-md-11 col-sm-11 margin-left-45 tab_content_box margin-top-25 margin-bottom-25">
+    <div class="row">
+        <div class="col-md-6 col-sm-6 pull-right tittle_tab_content">
+            <i class="fa fa-list-alt"></i>
+            <span>کاربر</span>
+        </div>
+        <div class="col-md-1 col-sm-1 pull-left text-left">
+            <i onclick="location.href = '{{ path("anar_blog_panel_home") }}'" class="glyphicon glyphicon-remove cursor_pointer" style="cursor: pointer"></i>
+        </div>
+    </div>
+    <hr id="cutter">
+    <div class="row">
+        <div class="col-md-8 col-sm-8 pull-right">
+            {#{{ form(searchForm) }}#}
+            {{ form_start(searchForm, { 'attr': {'class': 'search_user'}}) }}
+            <div class="row">
+                {{ form_label(searchForm.username, '', {'label_attr': {'class': 'col-md-2 col-sm-2 pull-right control-label text-left'} }) }}
+                <div class="col-md-9 col-sm-9">
+                    {{ form_widget(searchForm.username, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                {{ form_label(searchForm.email, '', {'label_attr': {'class': 'col-md-2 col-sm-2 pull-right control-label text-left'} }) }}
+                <div class="col-md-9 col-sm-9">
+                    {{ form_widget(searchForm.email, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                {{ form_label(searchForm.fname, '', {'label_attr': {'class': 'col-md-2 col-sm-2 pull-right control-label text-left'} }) }}
+                <div class="col-md-9 col-sm-9">
+                    {{ form_widget(searchForm.fname, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                {{ form_label(searchForm.lname, '', {'label_attr': {'class': 'col-md-2 col-sm-2 pull-right control-label text-left'} }) }}
+                <div class="col-md-9 col-sm-9">
+                    {{ form_widget(searchForm.lname, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                {{ form_label(searchForm.staffCode, '', {'label_attr': {'class': 'col-md-2 col-sm-2 pull-right control-label text-left'} }) }}
+                <div class="col-md-9 col-sm-9">
+                    {{ form_widget(searchForm.staffCode, {'attr': {'class': 'form-control'}}) }}
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                {{ form_label(searchForm.grade, '', {'label_attr': {'class': 'col-md-2 col-sm-2 pull-right control-label text-left'} }) }}
+                <div class="col-md-9 col-sm-9">
+                    {{ form_widget(searchForm.grade, {'attr': {'class': 'select'}}) }}
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                {{ form_label(searchForm.enabled, '', {'label_attr': {'class': 'col-md-2 col-sm-2 pull-right control-label text-left'} }) }}
+                <div class="col-md-9 col-sm-9">
+                    <div class="make-switch">
+                        {{ form_widget(searchForm.enabled, {'attr': {'class': 'toggle'}}) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                {{ form_label(searchForm.expired, '', {'label_attr': {'class': 'col-md-2 col-sm-2 pull-right control-label text-left'} }) }}
+                <div class="col-md-9 col-sm-9">
+                    <div class="make-switch">
+                        {{ form_widget(searchForm.expired, {'attr': {'class': 'toggle'}}) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                <div class="form-group">
+                    <label class="col-md-2 col-sm-2 pull-right control-label text-left"></label>
+                    <div class="col-md-9 col-sm-9">
+                        {{ form_widget(searchForm.submit, {'attr': {'class': 'btn R_butt_blue search_submit','data-toggle': 'modal', 'href': '#show-users'}}) }}
+                    </div>
+                </div>
+            </div>
+            {{ form_end(searchForm) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 margin-top-20">
+            <div class="row">
+                <p class="text-center">لیست کاربران <span class="user_total_count">({{ group.users|length }})</span> </p>
+            </div>
+            <table class="records_list">
+                <tr class="text-center">
+                    <td class="col-md-1 col-sm-1">{{ "username"|trans }}</td>
+                    <td class="col-md-3 col-sm-3">{{ "email"|trans }}</td>
+                    <td class="col-md-1 col-sm-1">{{ "fname"|trans }}</td>
+                    <td class="col-md-2 col-sm-2">{{ "lname"|trans }}</td>
+                    <td class="col-md-2 col-sm-2">{{ "staffcode"|trans }}</td>
+                    <td class="col-md-1 col-sm-1">{{ "enabled"|trans }}</td>
+                    <td class="col-md-2 col-sm-2"></td>
+                </tr>
+                {% set i = 1 %}
+                {% for user in group.users %}
+                    <tr data-id="{{ user.id }}" {% if i % 2 == 0 %} class="t2 users_data text-center" {% else %} class="t1 users_data text-center" {% endif %}>
+                        <td class="col-md-1 col-sm-1">{{ user.username }}</td>
+                        <td class="col-md-3 col-sm-3">{{ user.email }}</td>
+                        <td class="col-md-1 col-sm-1">{{ user.fname }}</td>
+                        <td class="col-md-2 col-sm-2">{{ user.lname }}</td>
+                        <td class="col-md-2 col-sm-2">{{ user.staffCode }}</td>
+                        <td class="col-md-1 col-sm-1 {% if user.enabled %}active{% endif %}">{{ user.enabled }}</td>
+                        <td class="col-md-2 col-sm-2">
+                            <span class="R_butt_red delete_user" data-id="{{ user.id }}">حذف</span>
+                        </td>
+                    </tr>
+                    {% set i = i + 1 %}
+                {% endfor %}
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="show-users">
+    <div class="modal-dialog" style="width: 75%">
+        <div class="modal-content">
+            <div class="modal-header" style="padding: 15px 15px 35px">
+                <button type="button" class="close pull-left" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title pull-right">کاربران یافت شده</h4>
+            </div>
+            <div class="modal-body">
+                {#<table class="records_list">#}
+                    {#<tr class="text-center">#}
+                        {#<td class="col-md-1 col-sm-1">{{ "username"|trans }}</td>#}
+                        {#<td class="col-md-3 col-sm-3">{{ "email"|trans }}</td>#}
+                        {#<td class="col-md-1 col-sm-1">{{ "fname"|trans }}</td>#}
+                        {#<td class="col-md-2 col-sm-2">{{ "lname"|trans }}</td>#}
+                        {#<td class="col-md-2 col-sm-2">{{ "staffcode"|trans }}</td>#}
+                        {#<td class="col-md-1 col-sm-1">{{ "enabled"|trans }}</td>#}
+                        {#<td class="col-md-2 col-sm-2"></td>#}
+                    {#</tr>#}
+                    {#{% set i = 1 %}#}
+                    {#{% for user in group.users %}#}
+                        {#<tr data-id="{{ user.id }}" {% if i % 2 == 0 %} class="t2 users_data text-center" {% else %} class="t1 users_data text-center" {% endif %}>#}
+                            {#<td class="col-md-1 col-sm-1">{{ user.username }}</td>#}
+                            {#<td class="col-md-3 col-sm-3">{{ user.email }}</td>#}
+                            {#<td class="col-md-1 col-sm-1">{{ user.fname }}</td>#}
+                            {#<td class="col-md-2 col-sm-2">{{ user.lname }}</td>#}
+                            {#<td class="col-md-2 col-sm-2">{{ user.staffCode }}</td>#}
+                            {#<td class="col-md-1 col-sm-1 {% if user.enabled %}active{% endif %}">{{ user.enabled }}</td>#}
+                            {#<td class="col-md-2 col-sm-2">#}
+                                {#<span class="R_butt_red delete_user" data-id="{{ user.id }}">حذف</span>#}
+                            {#</td>#}
+                        {#</tr>#}
+                        {#{% set i = i + 1 %}#}
+                    {#{% endfor %}#}
+                {#</table>#}
+            </div>
+            <div class="modal-footer text-left">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+{% endblock Container %}
+
+{% block scripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/anarsuperpanel/js/bootstrap-switch.min.js') }}"></script>
+    <script>
+        $('.current_ancestor').removeClass('minus').addClass('open');
+        $('.current_ancestor .menu-items i').attr('class','fa fa-minus-square-o');
+        $(".select").select2({
+            placeholder: "انتخاب کنید"
+        });
+
+        $('.search_submit').click(function(e){
+            e.preventDefault();
+            var search_path = Routing.generate('anar_blog_panel_group_user_search',{ 'groupId': {{ group.id }} });
+            $.ajax({
+                url: search_path,
+                type: "post",
+                data: $('.search_user').serialize(),
+                success: function(data){
+                    var add_path = Routing.generate('anar_blog_panel_group_user_add',{ 'groupId': {{ group.id }}, 'userId': data.response['users']['id'] });
+                    var html_str = ''+
+                            '<table class="records_list">' +
+                                '<tr class="text-center">' +
+                                '<td class="col-md-1 col-sm-1">{{ "username"|trans }}</td>' +
+                                '<td class="col-md-3 col-sm-3">{{ "email"|trans }}</td>'+
+                                '<td class="col-md-1 col-sm-1">{{ "fname"|trans }}</td>'+
+                                '<td class="col-md-2 col-sm-2">{{ "lname"|trans }}</td>'+
+                                '<td class="col-md-2 col-sm-2">{{ "staffcode"|trans }}</td>'+
+                                '<td class="col-md-1 col-sm-1">{{ "enabled"|trans }}</td>'+
+                                '<td class="col-md-2 col-sm-2"></td>'+
+                                '</tr>' +
+                                '<tr class="t1">' +
+                                    '<td class="col-md-1 col-sm-1 text-center">' + data.response['users']['username'] + '</td>' +
+                                    '<td class="col-md-3 col-sm-3 text-center">' + data.response['users']['email'] + '</td>' +
+                                    '<td class="col-md-1 col-sm-1 text-center">' + data.response['users']['fname'] + '</td>' +
+                                    '<td class="col-md-2 col-sm-2 text-center">' + data.response['users']['lname'] + '</td>' +
+                                    '<td class="col-md-2 col-sm-2 text-center">' + data.response['users']['staffcode'] + '</td>' +
+                                    '<td class="col-md-1 col-sm-1 text-center">' + data.response['users']['enabled'] + '</td>' +
+                                    '<td class="col-md-2 col-sm-2 text-center">' +
+                                        '<span class="R_butt_green" onclick="location.href = ' + add_path + '">اضافه کردن</span>' +
+                                    '</td>' +
+                                '</tr>' +
+                            '</table> ';
+                    $('.modal-body').html(html_str);
+                },
+                error: function(data){
+
+                }
+            });
+        });
+
+        $('.delete_user').click(function(){
+            var user_id = $(this).attr('data-id');
+            var delete_path = Routing.generate('anar_blog_panel_group_user_delete',{'groupId': {{ group.id }}, 'userId': user_id});
+            $.ajax({
+                url: delete_path,
+                type: "post",
+                data:{
+                    "token": '{{ token }}'
+                },
+                error: function(message){
+                    Alert.render("message : "+message.status['message']);
+                },
+                success: function(data){
+                    Alert.render('کاربر با موفقیت حذف شد!');
+                    $('tr[data-id=' + user_id + ']').remove();
+                }
+            });
+        });
+    </script>
+{% endblock scripts %}

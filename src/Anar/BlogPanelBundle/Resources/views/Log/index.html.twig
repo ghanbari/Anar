@@ -1,5 +1,53 @@
-{% for log in logs %}
-    {{ log.message }} <br >
-    {{ log.ip }} <br >
-    {{ log.createdAt|date }} <br >
-{% endfor %}
+{% extends "AnarBlogPanelBundle:Desktop:index.html.twig" %}
+
+{% block csses %}
+{% endblock csses %}
+
+{% block Container %}
+
+<div class="col-md-11 col-sm-11 margin-left-45 tab_content_box margin-top-25 margin-bottom-25">
+    <div class="row">
+        <div class="col-md-6 col-sm-6 pull-right tittle_tab_content">
+            <i class="fa fa-list-alt"></i>
+            <span>کاربر</span>
+        </div>
+        <div class="col-md-1 col-sm-1 pull-left text-left">
+            <i onclick="location.href = '{{ path("anar_blog_panel_home") }}'" class="glyphicon glyphicon-remove cursor_pointer" style="cursor: pointer"></i>
+        </div>
+    </div>
+    <hr id="cutter">
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <table class="records_list">
+                <tr class="text-center">
+                    <td>{{ "message"|trans }}</td>
+                    <td>{{ "ip"|trans }}</td>
+                    <td>{{ "createAt"|trans }}</td>
+                </tr>
+                {% set i = 1 %}
+                {% for log in logs %}
+                    <tr {% if i % 2 == 0 %} class="t2 log_data text-center" {% else %} class="t1 log_data text-center" {% endif %}>
+                        <td>
+                            {{ log.message }}
+                        </td>
+                        <td>
+                            {{ log.ip }}
+                        </td>
+                        <td>
+                            {{ log.createdAt|date }}
+                        </td>
+                    </tr>
+                    {% set i = i + 1 %}
+                {% endfor %}
+            </table>
+        </div>
+        <div class="col-md-12 col-sm-12 text-center">
+            {{ knp_pagination_render(logs) }}
+        </div>
+    </div>
+</div>
+
+{% endblock Container %}
+
+{% block scripts %}
+{% endblock scripts %}
