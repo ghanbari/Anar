@@ -32,6 +32,7 @@ class AppKernel extends Kernel
             new Anar\ProfessorBundle\AnarProfessorBundle(),
             new Anar\ContentBundle\AnarContentBundle(),
             new Anar\MenuBundle\AnarMenuBundle(),
+            new Anar\HomeBundle\AnarHomeBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

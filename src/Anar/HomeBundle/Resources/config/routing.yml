@@ -1,0 +1,10 @@
+anar_home_homepage_path:
+    path:     /
+    defaults: { _controller: AnarHomeBundle:Home:show, blogName: "%master_blog%" }
+    host:     "{blogName}.%router.request_context.host%"
+    requirements: { blogName: "[a-z]{4,100}" }
+
+anar_home_homepage:
+    path:     /{blogName}
+    defaults: { _controller: AnarHomeBundle:Home:show, blogName: "%master_blog%" }
+    requirements: { blogName: "[a-z]{4,100}" }

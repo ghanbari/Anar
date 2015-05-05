@@ -3,7 +3,6 @@
 namespace Anar\EngineBundle\Uploader\Naming;
 
 use Anar\EngineBundle\Doctrine\BlogManager;
-use Symfony\Component\VarDumper\VarDumper;
 use Vich\UploaderBundle\Mapping\PropertyMapping;
 use Vich\UploaderBundle\Naming\DirectoryNamerInterface;
 

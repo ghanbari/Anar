@@ -1,4 +1,0 @@
-services:
-    anar_engine.manager.blog:
-        class: Anar\EngineBundle\Doctrine\BlogManager
-        arguments: ['@doctrine', '@request_stack', '@security.token_storage']

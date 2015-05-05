@@ -1,0 +1,4 @@
+services:
+#    anar_home.example:
+#        class: Anar\HomeBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

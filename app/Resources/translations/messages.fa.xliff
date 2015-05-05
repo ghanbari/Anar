@@ -788,6 +788,46 @@
         <source>you.can.use.this.username</source>
         <target state="new">شما می توانید این نام کاربری را استفاده نمایید</target>
       </trans-unit>
+        <trans-unit id="1">
+            <source>logs</source>
+            <target>گزارشات</target>
+        </trans-unit>
+        <trans-unit id="2">
+            <source>message</source>
+            <target>پیام</target>
+        </trans-unit>
+        <trans-unit id="3">
+            <source>FOOTER_I</source>
+            <target>پانویس 1</target>
+        </trans-unit>
+        <trans-unit id="4">
+            <source>FOOTER_II</source>
+            <target>پانویس 2</target>
+        </trans-unit>
+        <trans-unit id="5">
+            <source>FOOTER_III</source>
+            <target>پانویس 3</target>
+        </trans-unit>
+        <trans-unit id="6">
+            <source>FOOTER_IV</source>
+            <target>پانویس 4</target>
+        </trans-unit>
+        <trans-unit id="7">
+            <source>FOOTER_V</source>
+            <target>پانویس 5</target>
+        </trans-unit>
+        <trans-unit id="8">
+            <source>FOOTER_VI</source>
+            <target>پانویس 6</target>
+        </trans-unit>
+        <trans-unit id="9">
+            <source>SIDEBAR_I</source>
+            <target>نوارکناری 1</target>
+        </trans-unit>
+        <trans-unit id="10">
+            <source>SIDEBAR_II</source>
+            <target>نوار کناری 2</target>
+        </trans-unit>
     </body>
   </file>
 </xliff>

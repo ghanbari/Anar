@@ -4,11 +4,12 @@ namespace Anar\EngineBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Knp\Menu\NodeInterface;
 
 /**
  * Blog
  */
-class Blog
+class Blog implements NodeInterface
 {
     /**
      * @var integer
@@ -583,5 +584,20 @@ class Blog
     public function getTheme()
     {
         return $this->theme;
+    }
+
+    /**
+     * Get the options for the factory to create the item for this node
+     *
+     * @return array
+     */
+    public function getOptions()
+    {
+        return array(
+            'route' => 'anar_home_homepage',
+            'routeParameters' => array(
+                'blogName' => $this->name,
+            )
+        );
     }
 }

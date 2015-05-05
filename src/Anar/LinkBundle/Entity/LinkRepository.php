@@ -6,7 +6,7 @@ use Doctrine\ORM\EntityRepository;
 
 class LinkRepository extends EntityRepository
 {
-    public function getLinksQueryBuilderFilterByBlog($blogId)
+    public function getFilterByBlogQueryBuilder($blogId)
     {
         $qb = $this->createQueryBuilder('l');
         $qb

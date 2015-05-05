@@ -1,0 +1,12 @@
+{% set blog = blogManager.getBlog() %}
+
+<body>{{ knp_menu_render('AnarHomeBundle:Builder:headerMenu') }}
+{{ knp_menu_render('AnarHomeBundle:Builder:organizationStructureMenu') }}<br>
+
+{{ render(controller('AnarHomeBundle:Home:latestArticle', {'blogId': blog.id})) }}
+{% if blog.parent is not null %}
+    {{ render(controller('AnarHomeBundle:Home:latestArticle', {'blogId': blog.parent.id})) }}
+{% endif %}
+{{ render(controller('AnarHomeBundle:Home:latestArticle')) }}
+
+</body>

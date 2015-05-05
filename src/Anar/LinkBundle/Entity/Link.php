@@ -376,14 +376,14 @@ class Link
     public static function getAvailablePosition()
     {
         return array(
-            self::FOOTER_I,
-            self::FOOTER_II,
-            self::FOOTER_III,
-            self::FOOTER_IV,
-            self::FOOTER_V,
-            self::FOOTER_VI,
-            self::SIDEBAR_I,
-            self::SIDEBAR_II,
+            self::FOOTER_I => self::FOOTER_I,
+            self::FOOTER_II => self::FOOTER_II,
+            self::FOOTER_III => self::FOOTER_III,
+            self::FOOTER_IV => self::FOOTER_IV,
+            self::FOOTER_V => self::FOOTER_V,
+            self::FOOTER_VI => self::FOOTER_VI,
+            self::SIDEBAR_I => self::SIDEBAR_I,
+            self::SIDEBAR_II => self::SIDEBAR_II,
         );
     }
 

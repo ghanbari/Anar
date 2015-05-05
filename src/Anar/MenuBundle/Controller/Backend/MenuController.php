@@ -203,6 +203,11 @@ class MenuController extends Controller implements AdminInterface
                     'code' => 404,
                     'message' => $translator->trans('not.found')
                 );
+            } elseif (is_null($entity->getParent())) {
+                $status = array(
+                    'code' => 400,
+                    'message' => $translator->trans('item.can.not.delete')
+                );
             } else {
                 $em->remove($entity);
                 $em->flush();
@@ -222,135 +227,5 @@ class MenuController extends Controller implements AdminInterface
             'status' => $status,
             'response' => array()
         )))->setStatusCode($status['code']);
-    }
-
-    /**
-     * @param $name
-     * @return JsonResponse
-     */
-    public function checkNameAction($name)
-    {
-        $translator = $this->get('translator');
-        if ($this->getRepository()->findOneByName($name)) {
-            $status = array(
-                'code' => 403,
-                'message' => $translator->trans('name.is.exists'),
-            );
-        } else {
-            if (is_string($name) and preg_match('/^[a-z]{4,100}$/', $name)) {
-                $status = array(
-                    'code' => 200,
-                    'message' => $translator->trans('you.can.use.this.name'),
-                );
-            } else {
-                $status = array(
-                    'code' => 400,
-                    'message' => $translator->trans('name.not.have.valid.character'),
-                );
-            }
-        }
-
-        return (new JsonResponse(array(
-            'status' => $status,
-            'response' => array(
-                'username' => $name
-            )
-        )))->setStatusCode($status['code']);
-    }
-
-    /**
-     * Return admin's list of given menu.
-     *
-     * @param int $id Menu id.
-     * @return JsonResponse
-     */
-    public function adminsListAction($id)
-    {
-        $manager = $this->getDoctrine()->getManager();
-        $menu = $manager->find('AnarMenuBundle:Menu', $id);
-
-        if (!$menu) {
-            $status = array(
-                'code' => 400,
-                'message' => $this->get('translator')->trans('menu.is.not.exists'),
-            );
-        } else {
-            $dql = "SELECT PARTIAL u.{id, username, email, fname, lname, staffCode} FROM AnarMenuBundle:User u JOIN u.groups g JOIN g.menu b JOIN g.roles r WHERE b.id = :menuId AND r.role = 'ROLE_ADMIN' ";
-            $users = $manager->createQuery($dql)->setParameter('menuId', $id)->getArrayResult();
-            $status = array(
-                'code' => 200,
-                'message' => 'OK',
-            );
-        }
-
-        return (new JsonResponse(array(
-            'status' => $status,
-            'response' => array(
-                'users' => $status['code'] == 200 ? $users : array()
-            )
-        )))->setStatusCode($status['code']);
-    }
-
-    public function deleteUserFromAdminsListAction(Request $request, $id)
-    {
-        $manager = $this->getDoctrine()->getManager();
-        $translator = $this->get('translator');
-
-        $menu = $manager->find('AnarMenuBundle:Menu', $id);
-
-        if (!$menu) {
-            return new JsonResponse(array(
-                'status' => array(
-                    'code' => 400,
-                    'message' => $translator->trans('menu.is.not.exists'),
-                ),
-                'response' => array()
-            ));
-        }
-
-        $userId = $request->request->get('userId', null);
-
-        if (is_null($userId)) {
-            return new JsonResponse(array());
-        }
-
-        $user = $manager->find('AnarMenuBundle:User', $userId);
-
-        if (!$user) {
-            return new JsonResponse(array(
-                'status' => array(
-                    'code' => 400,
-                    'message' => $translator->trans('user.is.not.exists'),
-                ),
-                'response' => array()
-            ));
-        }
-
-        $dql = "SELECT g FROM AnarMenuBundle:Group g JOIN g.users u JOIN g.menu b JOIN g.roles r WHERE b.id = :menuId AND r.role = 'ROLE_ADMIN' AND u.id = :userId";
-        try {
-            $group = $manager->createQuery($dql)->setParameter('menuId', $id)->setParameter('userId', $userId)->getSingleResult();
-            $user->removeGroup($group);
-            $manager->flush();
-            $status = array(
-                'code' => 200,
-                'message' => 'OK',
-            );
-        } catch (NonUniqueResultException $e) {
-            $status = array(
-                'code' => 500,
-                'message' => $translator->trans('system.error'),
-            );
-        } catch (NoResultException $e) {
-            $status = array(
-                'code' => 500,
-                'message' => $translator->trans('system.error'),
-            );
-        }
-
-        return (new JsonResponse(array(
-            'status' => $status,
-            'response' => array()
-        )))->setStatusCode($status['code']);
-
     }
 }

@@ -21,6 +21,16 @@ class BlogManager
     private static $blogs = null;
 
     /**
+     * @var array
+     */
+    private static $themes = array();
+
+    /**
+     * @var null
+     */
+    private static $root = null;
+
+    /**
      * @var Registry
      */
     private $doctrine;
@@ -36,15 +46,30 @@ class BlogManager
     private $tokenStorage;
 
     /**
+     * @var \Anar\EngineBundle\Entity\Language
+     */
+    private $language;
+
+    /**
      * @param Registry $doctrine
      * @param RequestStack $requestStack
      * @param TokenStorage $tokenStorage
      */
-    public function __construct(Registry $doctrine, RequestStack $requestStack, $tokenStorage)
+    public function __construct(Registry $doctrine, RequestStack $requestStack, $tokenStorage, LanguageManager $languageManager)
     {
         $this->doctrine = $doctrine;
         $this->requestStack = $requestStack;
         $this->tokenStorage = $tokenStorage;
+        $this->language = $languageManager->getLanguage();
+    }
+
+    public function getRoot()
+    {
+        if (is_null(static::$root)) {
+            $blogRepo = $this->doctrine->getRepository('AnarEngineManager:Blog');
+            static::$root = $blogRepo->findOneByParent(null);
+        }
+        return static::$root;
     }
 
     /**
@@ -107,5 +132,30 @@ class BlogManager
         }
 
         return static::$blogs;
+    }
+
+    public function getTheme($path)
+    {
+        if (!isset(static::$themes[$path])) {
+            $theme = $this->getBlog()->getTheme();
+            $directions = $theme->getDirection();
+            $paths = explode(':', $path);
+
+            if (count($paths) != 3) {
+                return;
+            }
+
+            static::$themes[$path] = array_shift($paths).':';
+
+            if (in_array($this->language->getDirection(), $directions)) {
+                static::$themes[$path] .= $theme->getName().'/'.ucfirst($this->language->getDirection()).'/'.array_shift($paths);
+            } else {
+                static::$themes[$path] .= $theme->getName().'/'. ucfirst(array_pop($theme->getDirection())).'/'.array_shift($paths);
+            }
+
+            static::$themes[$path] .= ':'.array_shift($paths);
+        }
+
+        return static::$themes[$path];
     }
 }

@@ -2,5 +2,5 @@ imports:
     - { resource: services/user.yml }
     - { resource: services/iptraceable.yml }
     - { resource: services/logger.yml }
-    - { resource: services/blog.yml }
+    - { resource: services/manager.yml }
     - { resource: services/uploader.yml }

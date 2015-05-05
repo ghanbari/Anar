@@ -1,4 +1,5 @@
 Anar\EngineBundle\Entity\Language:
+    repositoryClass: LanguageRepository
     type: entity
     table: sys_language
     id:

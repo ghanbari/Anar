@@ -3,7 +3,6 @@
 namespace Anar\EngineBundle\Entity;
 
 use Gedmo\Tree\Entity\Repository\NestedTreeRepository;
-use Symfony\Component\VarDumper\VarDumper;
 
 /**
  * BlogRepository

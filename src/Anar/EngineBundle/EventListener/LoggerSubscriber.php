@@ -2,17 +2,17 @@
 
 namespace Anar\EngineBundle\EventListener;
 
-use Anar\EngineBundle\Entity\Admin;
-use Anar\EngineBundle\Entity\Log;
-use Anar\EngineBundle\Entity\User;
-use Doctrine\ORM\Event\LifecycleEventArgs;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
+use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
+use Symfony\Bundle\FrameworkBundle\Translation\Translator;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
+use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\Common\EventSubscriber;
+use Anar\EngineBundle\Entity\Admin;
+use Anar\EngineBundle\Entity\User;
+use Anar\EngineBundle\Entity\Log;
 use Doctrine\ORM\Events;
-use Symfony\Component\Translation\DataCollectorTranslator;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 
 class LoggerSubscriber extends ContainerAware implements EventSubscriber
 {
@@ -36,7 +36,7 @@ class LoggerSubscriber extends ContainerAware implements EventSubscriber
      * @param DataCollectorTranslator $translator
      * @param TokenStorage $tokenStorage
      */
-    public function __construct(RequestStack $requestStack, DataCollectorTranslator $translator, TokenStorage $tokenStorage)
+    public function __construct(RequestStack $requestStack, Translator $translator, TokenStorage $tokenStorage)
     {
         $this->requestStack = $requestStack;
         $this->translator = $translator;
@@ -115,8 +115,8 @@ class LoggerSubscriber extends ContainerAware implements EventSubscriber
 
         $now = new \DateTime();
         $entityName = strtolower(trim(substr(get_class($entity), strrpos(get_class($entity), '\\')+1)));
-        $message = 'مدیر ' . $this->tokenStorage->getToken()->getUsername() . ' در ساعت ' . $now->format('H:i:s') .
-            ' در تاریخ ' . $now->format('Y/m/d') . '، ' . $this->translator->trans($entityName, array(), null, 'fa') .
+        $message = 'مدیر ' . $this->tokenStorage->getToken()->getUsername() .
+            '، ' . $this->translator->trans($entityName, array(), null, 'fa') .
             ' با شناسه ' . $entity->getId() . ' را ' . $this->translator->trans($event, array(), null, 'fa') . ' کرد.';
 
         $log = new Log();

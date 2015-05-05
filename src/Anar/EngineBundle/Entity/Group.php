@@ -62,12 +62,18 @@ class Group implements GroupInterface
     private $users;
 
     /**
+     * @var boolean
+     */
+    private $locked;
+
+    /**
      * @param $name
      * @param array $roles
      * @param boolean $default
      */
     public function __construct($name='', $roles=array(), $default=false)
     {
+        $this->locked = false;
         $this->name = $name;
         $this->default = $default;
         $this->translations = new ArrayCollection();
@@ -403,5 +409,29 @@ class Group implements GroupInterface
     public function getUpdatedBy()
     {
         return $this->updatedBy;
+    }
+
+    /**
+     * Set locked
+     *
+     * @param boolean $locked
+     *
+     * @return Group
+     */
+    public function setLocked($locked)
+    {
+        $this->locked = $locked;
+
+        return $this;
+    }
+
+    /**
+     * Get locked
+     *
+     * @return boolean
+     */
+    public function isLocked()
+    {
+        return $this->locked;
     }
 }

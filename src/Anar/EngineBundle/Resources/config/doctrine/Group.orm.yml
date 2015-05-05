@@ -21,6 +21,8 @@ Anar\EngineBundle\Entity\Group:
             type: string
             gedmo:
                 - translatable
+        locked:
+            type: boolean
         createdAt:
             type: datetime
             gedmo:

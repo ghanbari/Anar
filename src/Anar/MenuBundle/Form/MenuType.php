@@ -31,7 +31,7 @@ class MenuType extends AbstractType
             ))
             ->add('parent', 'entity', array(
                 'label' => 'parent',
-                'required' => false,
+                'required' => true,
                 'class' => 'Anar\MenuBundle\Entity\Menu',
                 'property' => 'name',
             ))

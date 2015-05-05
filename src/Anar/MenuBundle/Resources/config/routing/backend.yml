@@ -1,7 +1,7 @@
 anar_menu_backend_index:
     path:     /
     defaults: { _controller: "AnarMenuBundle:Backend/Menu:index" }
-    
+
 anar_menu_backend_new:
     path:     /new
     defaults: { _controller: "AnarMenuBundle:Backend/Menu:new" }

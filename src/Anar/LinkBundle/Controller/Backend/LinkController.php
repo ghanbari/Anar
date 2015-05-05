@@ -28,7 +28,7 @@ class LinkController extends Controller implements AdminInterface
         $paginator = $this->get('knp_paginator');
         $settings = $this->get('vbee.manager.setting');
 
-        $qb = $linkRepo->getLinksQueryBuilderFilterByBlog($blog->getId());
+        $qb = $linkRepo->getFilterByBlogQueryBuilder($blog->getId());
         $links = $paginator->paginate($qb, $page, $settings->get('blogpanel.item_per_page'));
         $token = $this->get('security.csrf.token_manager')->refreshToken('link_delete');
 
@@ -68,6 +68,8 @@ class LinkController extends Controller implements AdminInterface
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+            $blog = $this->get('anar_engine.manager.blog')->getBlog();
+            $link->setBlog($blog);
             $em = $this->getDoctrine()->getManager();
             $em->persist($link);
             $em->flush();

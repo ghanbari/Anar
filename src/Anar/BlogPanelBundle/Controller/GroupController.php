@@ -14,7 +14,8 @@ class GroupController extends Controller implements AdminInterface
     public function indexAction()
     {
         $blog = $this->get('anar_engine.manager.blog')->getBlog();
-        $groups = $blog->getGroups();
+        $groupRepo = $this->getDoctrine()->getRepository('AnarEngineBundle:Group');
+        $groups = $groupRepo->getAllFilterByBlog($blog->getId());
 
         $token = $this->get('security.csrf.token_manager')->refreshToken('group_delete');
 
@@ -97,7 +98,7 @@ class GroupController extends Controller implements AdminInterface
         $blog = $this->get('anar_engine.manager.blog')->getBlog();
         $group = $em->getRepository('AnarEngineBundle:Group')->find($groupId);
 
-        if (!$group) {
+        if (!$group or $group->isLocked()) {
             $this->addFlash('error', $this->get('translator')->trans('group.is.not.exists'));
             return $this->redirectToRoute('anar_blog_panel_group_index');
         }
@@ -126,7 +127,7 @@ class GroupController extends Controller implements AdminInterface
     {
         $blog = $this->get('anar_engine.manager.blog')->getBlog();
         $form = $this->createForm(new GroupType($blog), $group, array(
-            'action' => $this->generateUrl('anar_blog_panel_group_update', array('id' => $group->getId())),
+            'action' => $this->generateUrl('anar_blog_panel_group_update', array('groupId' => $group->getId())),
             'method' => 'PUT',
         ));
 
@@ -146,7 +147,7 @@ class GroupController extends Controller implements AdminInterface
         $blog = $this->get('anar_engine.manager.blog')->getBlog();
         $group = $em->getRepository('AnarEngineBundle:Group')->find($groupId);
 
-        if (!$group) {
+        if (!$group or $group->isLocked()) {
             $this->addFlash('error', $this->get('translator')->trans('group.is.not.exists'));
             return $this->redirectToRoute('anar_blog_panel_group_index');
         }
@@ -185,7 +186,7 @@ class GroupController extends Controller implements AdminInterface
             $em = $this->getDoctrine()->getManager();
             $group = $em->getRepository('AnarEngineBundle:Group')->find($groupId);
 
-            if (!$group) {
+            if (!$group or $group->isLocked()) {
                 $status = array(
                     'code' => 404,
                     'messages' => $translator->trans('group.is.not.exists')

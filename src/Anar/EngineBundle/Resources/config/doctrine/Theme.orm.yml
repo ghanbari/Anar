@@ -1,4 +1,5 @@
 Anar\EngineBundle\Entity\Theme:
+    repositoryClass: ThemeRepository
     type: entity
     table: sys_theme
     id:

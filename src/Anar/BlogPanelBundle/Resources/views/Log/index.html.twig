@@ -22,7 +22,7 @@
                 <tr class="text-center">
                     <td>{{ "message"|trans }}</td>
                     <td>{{ "ip"|trans }}</td>
-                    <td>{{ "createAt"|trans }}</td>
+                    <td>{{ "created.at"|trans }}</td>
                 </tr>
                 {% set i = 1 %}
                 {% for log in logs %}
@@ -34,7 +34,7 @@
                             {{ log.ip }}
                         </td>
                         <td>
-                            {{ log.createdAt|date }}
+                            {{ log.createdAt|date('H:i:s') }} {{ log.createdAt|date('Y/m/d') }}
                         </td>
                     </tr>
                     {% set i = i + 1 %}
