@@ -20,10 +20,11 @@ class HomeController extends Controller
             $groupedLinks[$link->getPosition()][] = $link;
         }
 
+        $groupedLinks = array();
         return $this->render(
             $blogManager->getTheme('AnarHomeBundle:Home:show.html.twig'),
             array(
-                'links' => $links,
+                'links' => $groupedLinks,
             )
         );
     }

@@ -66,7 +66,7 @@ class BlogManager
     public function getRoot()
     {
         if (is_null(static::$root)) {
-            $blogRepo = $this->doctrine->getRepository('AnarEngineManager:Blog');
+            $blogRepo = $this->doctrine->getRepository('AnarEngineBundle:Blog');
             static::$root = $blogRepo->findOneByParent(null);
         }
         return static::$root;
