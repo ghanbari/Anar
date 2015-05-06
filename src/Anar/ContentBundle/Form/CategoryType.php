@@ -2,12 +2,23 @@
 
 namespace Anar\ContentBundle\Form;
 
+use Anar\EngineBundle\Entity\Blog;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CategoryType extends AbstractType
 {
+    /**
+     * @var Blog
+     */
+    private $blog;
+
+    public function __construct(Blog $blog)
+    {
+        $this->blog = $blog;
+    }
+
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -42,6 +53,12 @@ class CategoryType extends AbstractType
                 'class' => 'Anar\ContentBundle\Entity\Category',
                 'property' => 'title',
                 'placeholder' => 'placeholder',
+                'query_builder' => function ($er) {
+                    $qb = $er->createQueryBuilder('c');
+
+                    return $qb->where($qb->expr()->eq('c.blog', '?1'))
+                        ->setParameter(1, $this->blog->getId());
+                }
             ))
         ;
     }

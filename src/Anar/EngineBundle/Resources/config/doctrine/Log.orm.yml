@@ -40,5 +40,5 @@ Anar\EngineBundle\Entity\Log:
             joinColumn:
                 name: blog_id
                 referencedColumnName: id
-                onDelete: cascade
+                onDelete: "SET NULL"
                 nullable: true

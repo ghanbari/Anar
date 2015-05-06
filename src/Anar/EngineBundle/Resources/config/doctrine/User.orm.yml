@@ -21,7 +21,7 @@ Anar\EngineBundle\Entity\User:
             targetEntity: Group
             inversedBy: users
             joinTable:
-                name: user_group
+                name: users_groups
                 joinColumns:
                     user_id:
                         referencedColumnName: id
@@ -37,3 +37,4 @@ Anar\EngineBundle\Entity\User:
                 name: grade_id
                 referencedColumnName: id
                 onDelete: restrict
+                nullable: false

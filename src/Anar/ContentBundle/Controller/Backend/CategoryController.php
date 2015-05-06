@@ -93,7 +93,8 @@ class CategoryController extends Controller implements AdminInterface
      */
     private function createCreateForm(Category $category)
     {
-        $form = $this->createForm(new CategoryType(), $category, array(
+        $blog = $this->get('anar_engine.manager.blog')->getBlog();
+        $form = $this->createForm(new CategoryType($blog), $category, array(
             'action' => $this->generateUrl('anar_content_backend_category_create'),
             'method' => 'POST',
         ));
@@ -135,7 +136,8 @@ class CategoryController extends Controller implements AdminInterface
     */
     private function createEditForm(Category $category)
     {
-        $form = $this->createForm(new CategoryType(), $category, array(
+        $blog = $this->get('anar_engine.manager.blog')->getBlog();
+        $form = $this->createForm(new CategoryType($blog), $category, array(
             'action' => $this->generateUrl('anar_content_backend_category_update', array('id' => $category->getId())),
             'method' => 'PUT',
         ));

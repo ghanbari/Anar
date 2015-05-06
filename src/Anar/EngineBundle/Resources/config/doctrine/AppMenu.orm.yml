@@ -8,7 +8,8 @@ Anar\EngineBundle\Entity\AppMenu:
     fields:
         name: ~
         route: ~
-        icon: ~
+        icon:
+            nullable: true
     manyToOne:
         app:
             targetEntity: Anar\EngineBundle\Entity\App

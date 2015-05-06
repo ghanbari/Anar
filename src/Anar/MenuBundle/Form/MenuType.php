@@ -2,12 +2,23 @@
 
 namespace Anar\MenuBundle\Form;
 
+use Anar\EngineBundle\Entity\Blog;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class MenuType extends AbstractType
 {
+    /**
+     * @var Blog
+     */
+    private $blog;
+
+    public function __construct(Blog $blog)
+    {
+        $this->blog = $blog;
+    }
+
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -34,6 +45,12 @@ class MenuType extends AbstractType
                 'required' => true,
                 'class' => 'Anar\MenuBundle\Entity\Menu',
                 'property' => 'name',
+                'query_builder' => function ($er) {
+                    $qb = $er->createQueryBuilder('m');
+
+                    return $qb->where($qb->expr()->eq('m.blog', '?1'))
+                        ->setParameter(1, $this->blog->getId());
+                }
             ))
         ;
     }

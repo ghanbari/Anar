@@ -4,7 +4,7 @@ Anar\EngineBundle\Entity\App:
     repositoryClass: Anar\EngineBundle\Entity\AppRepository
     gedmo:
         translation:
-#            locale: currentLocale
+            locale: currentLocale
             entity: AppTranslation
     id:
         id:
@@ -21,11 +21,13 @@ Anar\EngineBundle\Entity\App:
         type: ~
         createdAt:
             type: datetime
+            column: created_at
             gedmo:
                 timestampable:
                     on: create
         updatedAt:
             type: datetime
+            column: updated_at
             gedmo:
                 timestampable:
                     on: update

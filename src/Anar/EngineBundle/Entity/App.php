@@ -56,6 +56,11 @@ class App
     private $roles;
 
     /**
+     * @var string
+     */
+    private $currentLocale;
+
+    /**
      * @param string $name Bundle name.
      * @param string $title Application name.
      * @param string $type Application type.
@@ -299,5 +304,21 @@ class App
     public function getRoles()
     {
         return $this->roles;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCurrentLocale()
+    {
+        return $this->currentLocale;
+    }
+
+    /**
+     * @param string $currentLocale
+     */
+    public function setCurrentLocale($currentLocale)
+    {
+        $this->currentLocale = $currentLocale;
     }
 }

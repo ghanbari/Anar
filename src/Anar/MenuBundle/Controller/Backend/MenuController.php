@@ -32,11 +32,12 @@ class MenuController extends Controller implements AdminInterface
     public function indexAction()
     {
         $repo = $this->getRepository();
+        $blog = $this->get('anar_engine.manager.blog')->getBlog();
 
         return $this->render(
             'AnarMenuBundle:Menu:index.html.twig',
             array(
-                'tree' => json_encode($repo->getTreeForJstree()),
+                'tree' => json_encode($repo->getTreeForJstreeFilterByBlog($blog->getId())),
                 'token' => $this->get('security.csrf.token_manager')->refreshToken('menu_delete'),
             )
         );
@@ -96,7 +97,8 @@ class MenuController extends Controller implements AdminInterface
      */
     private function createCreateForm(Menu $entity)
     {
-        $form = $this->createForm(new MenuType(), $entity, array(
+        $blog = $this->get('anar_engine.manager.blog')->getBlog();
+        $form = $this->createForm(new MenuType($blog), $entity, array(
             'action' => $this->generateUrl('anar_menu_backend_create'),
             'method' => 'POST',
         ));
@@ -141,7 +143,8 @@ class MenuController extends Controller implements AdminInterface
      */
     private function createEditForm(Menu $entity)
     {
-        $form = $this->createForm(new MenuType(), $entity, array(
+        $blog = $this->get('anar_engine.manager.blog')->getBlog();
+        $form = $this->createForm(new MenuType($blog), $entity, array(
             'action' => $this->generateUrl('anar_menu_backend_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));

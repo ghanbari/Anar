@@ -24,9 +24,17 @@ class Builder extends ContainerAware
         $factory = $this->container->get('knp_menu.factory');
         $translator = $this->container->get('translator');
 
+        $menuHeaders = $this->headerMenu();
+
         $loader = new NodeLoader($factory);
         $menu = $factory->createItem($translator->trans('subset'));
         $menu->addChild($loader->load($blog));
+
+        foreach ($menuHeaders->getChildren() as $menuHeader) {
+            $menuHeader->setParent();
+            $menu->addChild($menuHeader);
+        }
+
         return $menu;
     }
 }

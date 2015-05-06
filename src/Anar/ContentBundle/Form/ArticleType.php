@@ -91,6 +91,12 @@ class ArticleType extends AbstractType
                 'class' => 'Anar\ContentBundle\Entity\Category',
                 'property' => 'title',
                 'choices' => $categories,
+                'query_builder' => function ($er) {
+                    $qb = $er->createQueryBuilder('c');
+
+                    return $qb->where($qb->expr()->eq('c.blog', '?1'))
+                        ->setParameter(1, $this->blog->getId());
+                }
             ))
         ;
     }

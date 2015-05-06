@@ -15,15 +15,11 @@ Anar\EngineBundle\Entity\Blog:
                 minMessage: string.between.4_255.character
                 maxMessage: string.between.4_255.character
         description:
+            - Type: string
             - Length:
                 max: 500
                 maxMessage: string.lower.than.500.character
         name:
-            - NotBlank:
-                message: string.betwwen.4_100.character.with.lower.english.character
-            - Type:
-                type: string
-                message: string.betwwen.4_100.character.with.lower.english.character
             - Regex:
                 pattern: '/^[a-z]{4,100}$/'
                 message: string.betwwen.4_100.character.with.lower.english.character
@@ -60,6 +56,11 @@ Anar\EngineBundle\Entity\User:
         - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: username
 
     properties:
+        username:
+            - NotBlank: ~
+            - Type: string
+            - Regex:
+                pattern: "/^[a-z0-9_]{2,255}$/i"
         fname:
             - NotBlank: ~
             - Type: string
@@ -80,4 +81,72 @@ Anar\EngineBundle\Entity\User:
                 type: numeric
         grade:
             - NotNull: ~
-            - Type: Anar\EngineBundle\Entity\Grade
+            - Type:
+                type: 'Anar\EngineBundle\Entity\Grade'
+                message: 'select.a.item'
+        groups:
+            - All:
+                constraints:
+                    - Type:
+                        type: 'Anar\EngineBundle\Entity\Group'
+                        message: 'value.is.not.valid'
+
+Anar\EngineBundle\Entity\App:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: name
+    properties:
+        name:
+            - NotBlank: ~
+            - Type: string
+            - Length:
+                max: 255
+        title:
+            - NotBlank: ~
+            - Type: string
+            - Length:
+                max: 255
+        type:
+            - NotBlank: ~
+            - Type: string
+            - Length:
+                max: 255
+
+Anar\EngineBundle\Entity\Theme:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: name
+    properties:
+        name:
+            - NotBlank: ~
+            - Type: string
+            - Length:
+                max: 255
+        direction:
+            - Type: array
+            - Count:
+                min: 1
+
+Anar\EngineBundle\Entity\Group:
+    properties:
+        default:
+            - Type: boolean
+        name:
+            - NotBlank: ~
+            - Type: string
+            - Length:
+                max: 255
+        locked:
+            - False: ~
+        blog:
+            - NotBlank: ~
+            - Type: 'Anar\EngineBundle\Entity\Blog'
+        roles:
+            - NotNull:
+                message: 'select.a.item'
+            - Count:
+                min: 1
+                minMessage: 'select.a.item'
+            - All:
+                constraints:
+                    - Type:
+                        type: 'Anar\EngineBundle\Entity\Role'
+                        message: 'select.a.item'

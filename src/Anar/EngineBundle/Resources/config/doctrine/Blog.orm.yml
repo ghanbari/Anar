@@ -30,6 +30,7 @@ Anar\EngineBundle\Entity\Blog:
             length: 100
         onTree:
             type: boolean
+            column: on_tree
             options:
                 default: true
         active:
@@ -37,29 +38,31 @@ Anar\EngineBundle\Entity\Blog:
             options:
                 default: true
         lft:
-            type: integer
+            type: smallint
             gedmo:
                 - treeLeft
         rgt:
-            type: integer
+            type: smallint
             gedmo:
                 - treeRight
         root:
-            type: integer
+            type: smallint
             nullable: true
             gedmo:
                 - treeRoot
         lvl:
-            type: integer
+            type: smallint
             gedmo:
                 - treeLevel
         createdAt:
             type: datetime
+            column: created_at
             gedmo:
                 timestampable:
                     on: create
         updatedAt:
             type: datetime
+            column: updated_at
             gedmo:
                 timestampable:
                     on: update
@@ -78,7 +81,8 @@ Anar\EngineBundle\Entity\Blog:
             joinColumn:
                 name: theme_id
                 referencedColumnName: id
-                onDelete: "set null"
+                onDelete: restrict
+                nullable: false
     oneToMany:
         children:
             targetEntity: Blog

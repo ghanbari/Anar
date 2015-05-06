@@ -13,15 +13,14 @@ use Gedmo\Tree\Entity\Repository\NestedTreeRepository;
 class MenuRepository extends NestedTreeRepository
 {
     /**
+     * @param int $blogId blog id.
      * @param int|null $parent parent id
-     * @param boolean|null $active menu status
-     * @param boolean|null $onTree whether show menu on tree
      * @param array $selected selected menus
      * @return array
      */
-    public function getTreeForJstree($parent = null, $active=null, $onTree=null, $locale='fa', array $selected=array())
+    public function getTreeForJstreeFilterByBlog($blogId, $parent = null, $locale='fa', array $selected=array())
     {
-        $menus = $this->getTreeQuery($parent, $active, $onTree, $locale)->getArrayResult();
+        $menus = $this->getTreeQuery($blogId, $parent, $locale)->getArrayResult();
 
         $tree = array();
         foreach ($menus as $menu) {
@@ -45,31 +44,23 @@ class MenuRepository extends NestedTreeRepository
     /**
      * return query that show menu's tree.
      *
+     * @param int $blogId blog id.
      * @param null|int $parent
-     * @param null|bool $active
-     * @param null|bool $onTree
      * @param string $locale
      * @return \Doctrine\ORM\Query
      */
-    public function getTreeQuery($parent = null, $active=null, $onTree=null, $locale='fa')
+    public function getTreeQuery($blogId, $parent = null, $locale='fa')
     {
-        $qb = $this->createQueryBuilder('b')->select('b', 'p');
-        $qb->leftJoin('b.parent', 'p');
+        $qb = $this->createQueryBuilder('m')->select('m', 'p');
+        $qb->leftJoin('m.parent', 'p');
+        $qb->where($qb->expr()->eq('m.blog', '?1'))
+            ->setParameter(1, $blogId);
 
         if (!is_null($parent)) {
-            $qb->where($qb->expr()->eq('b.parent', ':parent'));
+            $qb->andWhere($qb->expr()->eq('m.parent', ':parent'));
             $qb->setParameter('parent', $parent);
         }
 
-        if (!is_null($active)) {
-            $qb = $qb->andWhere($qb->expr()->eq('b.active', ':active'))
-                ->setParameter('active', $active);
-        }
-
-        if (!is_null($onTree)) {
-            $qb->andWhere($qb->expr()->eq('b.onTree', ':onTree'))
-                ->setParameter('onTree', $onTree);
-        }
         $query = $qb->getQuery();
 
         $query->setHint(

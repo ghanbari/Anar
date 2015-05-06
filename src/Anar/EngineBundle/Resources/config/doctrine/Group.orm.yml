@@ -25,21 +25,25 @@ Anar\EngineBundle\Entity\Group:
             type: boolean
         createdAt:
             type: datetime
+            column: created_at
             gedmo:
                 timestampable:
                     on: create
         updatedAt:
             type: datetime
+            column: updated_at
             gedmo:
                 timestampable:
                     on: update
         createdBy:
             nullable: true
+            column: created_by
             gedmo:
                 blameable:
                     on: create
         updatedBy:
             nullable: true
+            column: updated_by
             gedmo:
                 blameable:
                     on: update

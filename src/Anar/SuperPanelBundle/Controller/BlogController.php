@@ -92,13 +92,13 @@ class BlogController extends Controller
     /**
      * Creates a form to create a Blog entity.
      *
-     * @param Blog $entity The entity
+     * @param Blog $blog The entity
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(Blog $entity)
+    private function createCreateForm(Blog $blog)
     {
-        $form = $this->createForm(new BlogType(), $entity, array(
+        $form = $this->createForm(new BlogType(), $blog, array(
             'action' => $this->generateUrl('anar_super_panel_blog_create'),
             'method' => 'POST',
         ));
@@ -137,14 +137,14 @@ class BlogController extends Controller
     /**
     * Creates a form to edit a Blog entity.
     *
-    * @param Blog $entity The entity
+    * @param Blog $blog The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(Blog $entity)
+    private function createEditForm(Blog $blog)
     {
-        $form = $this->createForm(new BlogType(), $entity, array(
-            'action' => $this->generateUrl('anar_super_panel_blog_update', array('id' => $entity->getId())),
+        $form = $this->createForm(new BlogType(), $blog, array(
+            'action' => $this->generateUrl('anar_super_panel_blog_update', array('id' => $blog->getId())),
             'method' => 'PUT',
         ));
 
@@ -199,19 +199,24 @@ class BlogController extends Controller
 
         if ($this->isCsrfTokenValid('blog_delete', $request->request->get('token'))) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('AnarEngineBundle:Blog')->find($id);
+            $blog = $em->getRepository('AnarEngineBundle:Blog')->find($id);
 
-            if (!$entity) {
+            if (!$blog) {
                 $status = array(
                     'code' => 404,
-                    'message' => $translator->trans('not.found')
+                    'message' => $translator->trans('not.found'),
+                );
+            } elseif (is_null($blog->getParent())) {
+                $status = array(
+                    'code' => 400,
+                    'message' => $translator->trans('you.can.not.delete.this.item'),
                 );
             } else {
-                $em->remove($entity);
+                $em->remove($blog);
                 $em->flush();
                 $status = array(
                     'code' => 200,
-                    'message' => $translator->trans('blog.is.deleted')
+                    'message' => $translator->trans('blog.is.deleted'),
                 );
             }
         } else {
