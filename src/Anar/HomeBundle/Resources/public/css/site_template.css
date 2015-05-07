@@ -229,3 +229,8 @@ html ul.topnav li ul[class^=menu_level] li ul.sub2nav li.have_sub a:hover {
     bottom: 0;
 }
 
+
+
+.slide_show{
+    width: 100%;
+}
