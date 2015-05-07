@@ -16,11 +16,11 @@ class HomeController extends Controller
         $links = $qb->andWhere($qb->expr()->like('l.position', ':position'))
             ->setParameter('position', '%FOOTER%')->getQuery()->getResult();
 
+        $groupedLinks = array();
         foreach ($links as $link) {
             $groupedLinks[$link->getPosition()][] = $link;
         }
 
-        $groupedLinks = array();
         return $this->render(
             $blogManager->getTheme('AnarHomeBundle:Home:show.html.twig'),
             array(

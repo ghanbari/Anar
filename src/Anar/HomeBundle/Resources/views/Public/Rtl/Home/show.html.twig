@@ -1,12 +1,308 @@
 {% set blog = blogManager.getBlog() %}
 
-<body>{{ knp_menu_render('AnarHomeBundle:Builder:headerMenu') }}
-{{ knp_menu_render('AnarHomeBundle:Builder:organizationStructureMenu') }}<br>
+<html>
+<head>
+    <title>{{ blog.getTitle() }}</title>
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarhome/site_template.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/css/addFonts.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/css/icons.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarblogpanel/css/common.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('static/bootstrap/dist/css/bootstrap.min.css') }}">
 
-{{ render(controller('AnarHomeBundle:Home:latestArticle', {'blogId': blog.id})) }}
-{% if blog.parent is not null %}
-    {{ render(controller('AnarHomeBundle:Home:latestArticle', {'blogId': blog.parent.id})) }}
-{% endif %}
-{{ render(controller('AnarHomeBundle:Home:latestArticle')) }}
+    <style>
+        .custom_dropDown_1{
+            top: 41px;
+            right: 198px;
+            width: 75px;
+            background: #191919;
+        }
 
+        .custom_dropDown_1 li{
+            border-bottom: 1px solid #242424;
+        }
+
+        .custom_dropDown_1 li a{
+            color: #818181;
+            padding: 10px;
+        }
+
+        .custom_dropDown_1 li a:hover{
+            background: #B12133;
+            color: #ffffff;
+        }
+        .custom_dropDown_2{
+            top: 41px;
+            right: 220px;
+            left: auto;
+            width: 75px;
+            background: #191919;
+        }
+
+        .custom_dropDown_2 li{
+            border-bottom: 1px solid #242424;
+        }
+
+        .custom_dropDown_2 li a{
+            color: #818181;
+            padding: 10px;
+        }
+
+        .custom_dropDown_2 li a:hover{
+            background: #B12133;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+{{ knp_menu_render('AnarHomeBundle:Builder:organizationStructureMenu', {'branch_class': 'have_sub', 'leaf_class': 'leaf'}) }}
+{#<ul class="topnav">#}
+    {#<li><a href="#">خانه</a></li>#}
+    {#<li>#}
+        {#<a href="#">خانه</a>#}
+        {#<ul class="subnav have_sub">#}
+            {#<li class="have_sub">#}
+                {#<a class="have_sub_link" href="#">زیر منو1</a>#}
+                {#<ul class="sub2nav">#}
+                    {#<li>#}
+                        {#<a href="#">test1</a>#}
+                        {#<ul class="sub2nav">#}
+                            {#<li><a>test3</a></li>#}
+                            {#<li><a>test3</a></li>#}
+                        {#</ul>#}
+                    {#</li>#}
+                    {#<li>#}
+                        {#<a href="#">test1</a>#}
+                        {#<ul class="sub2nav">#}
+                            {#<li><a>test3</a></li>#}
+                            {#<li><a>test3</a></li>#}
+                        {#</ul>#}
+                    {#</li>#}
+                    {#<li>#}
+                        {#<a href="#">test1</a>#}
+                        {#<ul class="sub2nav">#}
+                            {#<li><a>test3</a></li>#}
+                            {#<li><a>test3</a></li>#}
+                        {#</ul>#}
+                    {#</li>#}
+                    {#<li>#}
+                        {#<a href="#">test1</a>#}
+                        {#<ul class="sub2nav">#}
+                            {#<li><a>test3</a></li>#}
+                            {#<li><a>test3</a></li>#}
+                        {#</ul>#}
+                    {#</li>#}
+                    {#<li>#}
+                        {#<a href="#">test1</a>#}
+                        {#<ul class="sub2nav">#}
+                            {#<li><a>test3</a></li>#}
+                            {#<li><a>test3</a></li>#}
+                        {#</ul>#}
+                    {#</li>#}
+                    {#<li><a href="#">test1</a> </li>#}
+                {#</ul>#}
+            {#</li>#}
+            {#<li><a href="#">زیر منو2</a></li>#}
+        {#</ul>#}
+    {#</li>#}
+    {#<li>#}
+        {#<a href="#">خانه</a>#}
+        {#<ul class="subnav">#}
+            {#<li><a href="#">زیر منو1</a></li>#}
+            {#<li><a href="#">زیر منو2</a></li>#}
+        {#</ul>#}
+    {#</li>#}
+    {#<li><a href="#">درباره ما</a></li>#}
+    {#<li><a href="#">تبلیغات</a></li>#}
+    {#<li><a href="#">تماس با ما</a></li>#}
+{#</ul>#}
+
+{#<div class="nav_bar">#}
+    {#<div class="nav_bar_menu">#}
+        {#<div class="nav_bar_item_parent">#}
+            {#<div class="nav_bar_item " id="aaa" data-toggle="dropdown" data-hover="dropdown">خانه</div>#}
+
+        {#</div>#}
+        {#<div class="nav_bar_item_parent">#}
+            {#<div class="nav_bar_item " id="aaa" data-toggle="dropdown" data-hover="dropdown">خانه</div>#}
+            {#<ul class="dropdown-menu custom_dropDown_2" role="menu" aria-labelledby="aaa">#}
+                {#<li><a class="text-right" href="">سوالات من</a></li>#}
+                {#<li><a class="text-right" href="">جوابهای من</a></li>#}
+                {#<li><a class="text-right" href="">سوالات دنبالی</a></li>#}
+                {#<li><a class="text-right" href="">تجارب من</a></li>#}
+                {#<li><a class="text-right" href="">دیدگاه های من</a></li>#}
+                {#<li><a class="text-right" href="">تجارب دنبالی</a></li>#}
+                {#<li><a class="text-right" href="">نظرسنجی</a></li>#}
+                {#<li><a class="text-right" href="">ویدیوها</a></li>#}
+                {#<li><a class="text-right" href="">خبرها</a></li>#}
+            {#</ul>#}
+        {#</div>#}
+        {#<div class="nav_bar_item_parent">#}
+            {#<div class="nav_bar_item " id="aaa" data-toggle="dropdown" data-hover="dropdown">خانه</div>#}
+            {#<ul class="dropdown-menu custom_dropDown_1" role="menu" aria-labelledby="aaa">#}
+                {#<li><a class="text-right" href="">سوالات من</a></li>#}
+                {#<li><a class="text-right" href="">جوابهای من</a></li>#}
+                {#<li><a class="text-right" href="">سوالات دنبالی</a></li>#}
+                {#<li><a class="text-right" href="">تجارب من</a></li>#}
+                {#<li><a class="text-right" href="">دیدگاه های من</a></li>#}
+                {#<li><a class="text-right" href="">تجارب دنبالی</a></li>#}
+                {#<li><a class="text-right" href="">نظرسنجی</a></li>#}
+                {#<li><a class="text-right" href="">ویدیوها</a></li>#}
+                {#<li><a class="text-right" href="">خبرها</a></li>#}
+            {#</ul>#}
+        {#</div>#}
+    {#</div>#}
+{#</div>#}
+<div class="col-md-12 margin-top-10">
+    <div class="col-md-8 col-sm-8 pull-right">
+        <div id="carousel-example-captions" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carousel-example-captions" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-example-captions" data-slide-to="1"></li>
+                <li data-target="#carousel-example-captions" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner" style="max-height: 400px" role="listbox">
+                <div class="item active">
+                    <img style="width: 100%; height: 400px" src="{{ asset('bundles/anarhome/images/1.jpg') }}" alt="First slide image">
+                    <div class="carousel-caption">
+                        <h3>First slide label</h3>
+                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <img style="width: 100%; height: 400px" src="{{ asset('bundles/anarhome/images/2.jpg') }}" alt="Second slide image">
+                    <div class="carousel-caption">
+                        <h3>Second slide label</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <img style="width: 100%; height: 400px" src="{{ asset('bundles/anarhome/images/3.jpg') }}" alt="Third slide image">
+                    <div class="carousel-caption">
+                        <h3>Third slide label</h3>
+                        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                    </div>
+                </div>
+            </div>
+            <a class="left carousel-control" href="#carousel-example-captions" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-captions" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+    <div class="col-md-4 col-sm-4">
+        <div class="article-header" data-action="1">مطلب تست</div>
+        <div class="article-content open" data-action="1">{{ render(controller('AnarHomeBundle:Home:latestArticle', {'blogId': blog.id})) }}</div>
+        {% if blog.parent is not null %}
+            <div class="article-header" data-action="2">مطلب تست</div>
+            <div class="article-content" data-action="2">{{ render(controller('AnarHomeBundle:Home:latestArticle', {'blogId': blog.parent.id})) }}</div>
+        {% endif %}
+        <div class="article-header" data-action="3">مطلب تست</div>
+        <div class="article-content" data-action="3">{{ render(controller('AnarHomeBundle:Home:latestArticle')) }}</div>
+    </div>
+</div>
+
+<div class="footer">
+    <div class="col-md-12 col-sm-12">
+        <div class="row">
+            <div class="col-md-3 col-sm-3 text-center link_column">
+                {% if links['FOOTER_I'] is defined %}
+                    {% for link in links['FOOTER_I'] %}
+                        <div class="first_column_links">
+                            <a href="{{ link.url }}"> {{ link.title }}</a>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="col-md-3 col-sm-3 text-center link_column">
+                {% if links['FOOTER_II'] is defined %}
+                    {% for link in links['FOOTER_II'] %}
+                        <div class="second_column_links">
+                            <a href="{{ link.url }}"> {{ link.title }}</a>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="col-md-3 col-sm-3 text-center link_column">
+                {% if links['FOOTER_III'] is defined %}
+                    {% for link in links['FOOTER_III'] %}
+                        <div class="third_column_links">
+                            <a href="{{ link.url }}"> {{ link.title }}</a>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="col-md-3 col-sm-3 text-center link_column">
+                {% if links['FOOTER_IV'] is defined %}
+                    {% for link in links['FOOTER_IV'] %}
+                        <div class="third_column_links">
+                            <a href="{{ link.url }}"> {{ link.title }}</a>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{#{% if blog.parent is not null %}#}
+    {#{{ render(controller('AnarHomeBundle:Home:latestArticle', {'blogId': blog.parent.id})) }}-----------------------------#}
+{#{% endif %}#}
+{#{{ render(controller('AnarHomeBundle:Home:latestArticle')) }}#}
+
+
+
+
+
+
+<script src="{{ asset('static/jquery/dist/jquery.min.js') }}"></script>
+<script src="{{ asset('static/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+
+<script>
+    $(document).ready(function(){
+        $('ul:not([class])').addClass('topnav');
+        $("ul.subnav").parent().prepend("<span class='margin-top-5'></span>"); //Only shows drop down trigger when js is enabled (Adds empty span tag after ul.subnav*)
+        $("ul.sub2nav").parent().prepend("<i class='margin-top-5 fa fa-angle-left' style='color: white'></i>"); //Only shows drop down trigger when js is enabled (Adds empty span tag after ul.subnav*)
+
+        $("ul.topnav li.have_sub").hover(function() { //When trigger is clicked...
+
+            //Following events are applied to the subnav itself (moving subnav up and down)
+            $("> ul[class^=menu_level]", $(this)).slideDown('fast').show(); //Drop down the subnav on click
+            $(this).addClass('active');
+
+        }, function(){	//On Hover Out
+            $("> ul[class^=menu_level]",$(this)).slideUp('fast'); //When the mouse hovers out of the subnav, move it back up
+            $(this).removeClass('active');
+        });
+
+        $('.have_sub_link').hover(function(){
+            $(this).parent().find('ul.sub2nav').slideDown('fast'); //When the mouse hovers out of the sub2nav, move it back up
+            $(this).parent().hover(function(){
+
+            },function(){
+                $(this).parent().find("ul.sub2nav").slideUp('fast');
+            });
+        });
+
+    });
+
+    $('.article-header').click(function(){
+        var data_action = $(this).attr('data-action');
+        $('.open').slideUp('fast');
+        $('.open').removeClass('open');
+        $('.article-content[data-action = '+ data_action +']').slideToggle('fast');
+        $('.article-content[data-action = '+ data_action +']').addClass('open');
+    });
+
+    $('.carousel').carousel({
+        interval: 2000
+    });
+</script>
 </body>
+</html>
