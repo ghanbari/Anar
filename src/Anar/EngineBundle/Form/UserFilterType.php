@@ -15,19 +15,42 @@ class UserFilterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username', 'text', array('required' => false))
-            ->add('email', 'email', array('required' => false))
-            ->add('fname', 'text', array('required' => false))
-            ->add('lname', 'text', array('required' => false))
-            ->add('staffCode', 'number', array('required' => false))
+            ->add('username', 'text', array(
+                'required' => false,
+                'label' => 'username',
+            ))
+            ->add('email', 'email', array(
+                'required' => false,
+                'label' => 'email',
+            ))
+            ->add('fname', 'text', array(
+                'required' => false,
+                'label' => 'fname',
+            ))
+            ->add('lname', 'text', array(
+                'required' => false,
+                'label' => 'lname',
+            ))
+            ->add('staffCode', 'number', array(
+                'required' => false,
+                'label' => 'staff.code',
+            ))
             ->add('grade', 'entity', array(
+                'label' => 'grade',
                 'class' => 'AnarEngineBundle:Grade',
                 'property' => 'name',
                 'placeholder' => 'placeholder',
                 'required' => false,
             ))
-            ->add('enabled', 'checkbox', array('required' => false, 'data' => true))
-            ->add('expired', 'checkbox', array('required' => false));
+            ->add('enabled', 'checkbox', array(
+                'required' => false,
+                'data' => true,
+                'label' => 'enabled',
+            ))
+            ->add('expired', 'checkbox', array(
+                'required' => false,
+                'label' => 'expired',
+            ));
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

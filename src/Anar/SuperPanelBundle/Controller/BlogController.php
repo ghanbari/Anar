@@ -176,6 +176,10 @@ class BlogController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
+            $blogPanel = $em->getRepository('AnarEngineBundle:App')->findOneByName('AnarBlogPanelBundle');
+            if (!$blog->getApps()->contains($blogPanel)) {
+                $blog->addApp($blogPanel);
+            }
             $em->flush();
 
             $this->addFlash('info', $this->get('translator')->trans('blog.was.edited.successfully'));

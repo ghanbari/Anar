@@ -1,0 +1,39 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Image list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Image</th>
+                <th>Description</th>
+                <th>Createdby</th>
+                <th>Updatedby</th>
+                <th>Createdat</th>
+                <th>Updatedat</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for image in images %}
+            <tr>
+                <td>{{ image.image }}</td>
+                <td>{{ image.description }}</td>
+                <td>{{ image.createdBy }}</td>
+                <td>{{ image.updatedBy }}</td>
+                <td>{% if image.createdAt %}{{ image.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if image.updatedAt %}{{ image.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+
+    </ul>
+    {% endblock %}

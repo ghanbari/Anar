@@ -46,9 +46,9 @@ class BlogManager
     private $tokenStorage;
 
     /**
-     * @var \Anar\EngineBundle\Entity\Language
+     * @var LanguageManager
      */
-    private $language;
+    private $languageManager;
 
     /**
      * @param Registry $doctrine
@@ -60,7 +60,7 @@ class BlogManager
         $this->doctrine = $doctrine;
         $this->requestStack = $requestStack;
         $this->tokenStorage = $tokenStorage;
-        $this->language = $languageManager->getLanguage();
+        $this->languageManager = $languageManager;
     }
 
     public function getRoot()
@@ -134,7 +134,7 @@ class BlogManager
         return static::$blogs;
     }
 
-    public function getTheme($path)
+    public function getTheme($path, $controllerPrefix='')
     {
         if (!isset(static::$themes[$path])) {
             $theme = $this->getBlog()->getTheme();
@@ -145,10 +145,10 @@ class BlogManager
                 return;
             }
 
-            static::$themes[$path] = array_shift($paths).':';
+            static::$themes[$path] = array_shift($paths).':'.$controllerPrefix.'/';
 
-            if (in_array($this->language->getDirection(), $directions)) {
-                static::$themes[$path] .= $theme->getName().'/'.ucfirst($this->language->getDirection()).'/'.array_shift($paths);
+            if (in_array($this->languageManager->getLanguage()->getDirection(), $directions)) {
+                static::$themes[$path] .= $theme->getName().'/'.ucfirst($this->languageManager->getLanguage()->getDirection()).'/'.array_shift($paths);
             } else {
                 static::$themes[$path] .= $theme->getName().'/'. ucfirst(array_pop($theme->getDirection())).'/'.array_shift($paths);
             }

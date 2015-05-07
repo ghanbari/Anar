@@ -60,14 +60,18 @@ class GroupController extends Controller implements AdminInterface
     {
         $blog = $this->get('anar_engine.manager.blog')->getBlog();
         $group = new Group();
+        $group->setBlog($blog);
         $form = $this->createCreateForm($group);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $roleRepo = $em->getRepository('AnarEngineBundle:Role');
+            if ($group->isDefault()) {
+                $groupRepo = $em->getRepository('AnarEngineBundle:Group');
+                $groupRepo->resetDefaultForBlog($blog->getId());
+            }
             $group->setRoles($roleRepo->getRolesHierachy($group->getRoles()));
-            $group->setBlog($blog);
             $em->persist($group);
             $em->flush();
 
@@ -189,20 +193,25 @@ class GroupController extends Controller implements AdminInterface
             if (!$group or $group->isLocked()) {
                 $status = array(
                     'code' => 404,
-                    'messages' => $translator->trans('group.is.not.exists')
+                    'messages' => $translator->trans('group.is.not.exists'),
+                );
+            } elseif ($group->isDefault()) {
+                $status = array(
+                    'code' => 400,
+                    'messages' => $translator->trans('you.can.not.delete.default.group'),
                 );
             } else {
                 $em->remove($group);
                 $em->flush();
                 $status = array(
                     'code' => 200,
-                    'message' => $translator->trans('group.is.deleted')
+                    'message' => $translator->trans('group.is.deleted'),
                 );
             }
         } else {
             $status = array(
                 'code' => 400,
-                'message' => $translator->trans('token.is.invalid')
+                'message' => $translator->trans('token.is.invalid'),
             );
         }
 

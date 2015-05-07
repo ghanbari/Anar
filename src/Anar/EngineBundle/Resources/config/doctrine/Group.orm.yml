@@ -2,6 +2,9 @@ Anar\EngineBundle\Entity\Group:
     repositoryClass: GroupRepository
     table: groups
     type: entity
+    uniqueConstraints:
+        groups_name_unique_idx:
+            columns: [blog_id, name]
     gedmo:
         translation:
             locale: currentLocale

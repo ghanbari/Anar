@@ -3,6 +3,7 @@
 namespace Anar\HomeBundle\Menu;
 
 use Knp\Menu\Loader\NodeLoader;
+use Anar\EngineBundle\Menu\Loader\NodeLoader as BlogNodeLoader;
 use Symfony\Component\DependencyInjection\ContainerAware;
 
 class Builder extends ContainerAware
@@ -26,7 +27,7 @@ class Builder extends ContainerAware
 
         $menuHeaders = $this->headerMenu();
 
-        $loader = new NodeLoader($factory);
+        $loader = new BlogNodeLoader($factory, 'title');
         $menu = $factory->createItem($translator->trans('subset'));
         $menu->addChild($loader->load($blog));
 

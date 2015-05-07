@@ -126,6 +126,8 @@ Anar\EngineBundle\Entity\Theme:
                 min: 1
 
 Anar\EngineBundle\Entity\Group:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: [blog, name]
     properties:
         default:
             - Type: boolean
@@ -135,7 +137,7 @@ Anar\EngineBundle\Entity\Group:
             - Length:
                 max: 255
         locked:
-            - False: ~
+            - 'False': ~
         blog:
             - NotBlank: ~
             - Type: 'Anar\EngineBundle\Entity\Blog'

@@ -1,0 +1,43 @@
+Anar\SlideShowBundle\Entity\Image:
+    type: entity
+    table: slide_show_image
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        image: ~
+        description:
+            nullable: true
+        createdBy:
+            column: created_by
+            gedmo:
+                blameable:
+                    on: create
+        updatedBy:
+            column: updated_by
+            gedmo:
+                blameable:
+                    on: update
+        createdAt:
+            type: datetime
+            column: created_at
+            gedmo:
+                timestampable:
+                    on: create
+        updatedAt:
+            type: datetime
+            column: updated_at
+            gedmo:
+                timestampable:
+                    on: update
+    manyToOne:
+        blog:
+            targetEntity: Anar\EngineBundle\Entity\Blog
+            joinColumn:
+                name: blog_id
+                referencedColumnName: id
+                onDelete: cascade
+    lifecycleCallbacks: {  }

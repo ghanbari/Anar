@@ -4,3 +4,10 @@ imports:
     - { resource: services/logger.yml }
     - { resource: services/manager.yml }
     - { resource: services/uploader.yml }
+
+services:
+    anar_engine.listener.check_applications:
+        class: Anar\EngineBundle\EventListener\HasApplicationListener
+        arguments: ['@anar_engine.manager.blog', '@doctrine']
+        tags:
+            - { name: kernel.event_listener, event: kernel.controller, method: onKernelController }

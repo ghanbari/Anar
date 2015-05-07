@@ -69,10 +69,12 @@ class MenuController extends Controller implements AdminInterface
     public function createAction(Request $request)
     {
         $menu = new Menu();
+        $blog = $this->get('anar_engine.manager.blog')->getBlog();
         $form = $this->createCreateForm($menu);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+            $menu->setBlog($blog);
             $em = $this->getDoctrine()->getManager();
             $em->persist($menu);
             $em->flush();

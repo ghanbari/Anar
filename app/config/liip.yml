@@ -1,0 +1,11 @@
+liip_imagine:
+    resolvers:
+       default:
+          web_path:
+              web_root: %kernel.root_dir%/../web
+              cache_prefix: images
+    filter_sets:
+        cache: ~
+        slideshow:
+            filters:
+                thumbnail: { size: [1920, 445], mode: outbound }

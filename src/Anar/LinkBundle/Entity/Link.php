@@ -11,8 +11,6 @@ class Link
     const FOOTER_II  = 'FOOTER_II';
     const FOOTER_III = 'FOOTER_III';
     const FOOTER_IV  = 'FOOTER_IV';
-    const FOOTER_V   = 'FOOTER_V';
-    const FOOTER_VI  = 'FOOTER_VI';
     const SIDEBAR_I  = 'SIDEBAR_I';
     const SIDEBAR_II = 'SIDEBAR_II';
 
@@ -380,8 +378,6 @@ class Link
             self::FOOTER_II => self::FOOTER_II,
             self::FOOTER_III => self::FOOTER_III,
             self::FOOTER_IV => self::FOOTER_IV,
-            self::FOOTER_V => self::FOOTER_V,
-            self::FOOTER_VI => self::FOOTER_VI,
             self::SIDEBAR_I => self::SIDEBAR_I,
             self::SIDEBAR_II => self::SIDEBAR_II,
         );

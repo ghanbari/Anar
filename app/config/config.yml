@@ -3,6 +3,7 @@ imports:
     - { resource: security.yml }
     - { resource: services.yml }
     - { resource: knp.yml }
+    - { resource: liip.yml }
     - { resource: fos.yml }
     - { resource: jms.yml }
     - { resource: stof.yml }

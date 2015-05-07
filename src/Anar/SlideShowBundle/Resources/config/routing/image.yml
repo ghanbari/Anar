@@ -1,0 +1,17 @@
+anar_slide_show_backend_index:
+    path:     /
+    defaults: { _controller: "AnarSlideShowBundle:Backend/Image:index" }
+
+anar_slide_show_backend_new:
+    path:     /new
+    defaults: { _controller: "AnarSlideShowBundle:Backend/Image:new" }
+
+anar_slide_show_backend_create:
+    path:     /create
+    defaults: { _controller: "AnarSlideShowBundle:Backend/Image:create" }
+    methods:  POST
+
+anar_slide_show_backend_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AnarSlideShowBundle:Backend/Image:delete" }
+    methods:  [POST, DELETE]

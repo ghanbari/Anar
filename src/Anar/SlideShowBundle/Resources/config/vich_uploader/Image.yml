@@ -1,0 +1,4 @@
+Anar\SlideShowBundle\Entity\Image:
+    imageFile:
+        filename_property: image
+        mapping: anar_professor_profile_avatar
