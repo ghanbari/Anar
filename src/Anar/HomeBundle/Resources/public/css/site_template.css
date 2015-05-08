@@ -1,236 +1,109 @@
-body{
-    margin: 0;
-    padding: 0;
-    font-family: "homa" !important;
-    direction: rtl;
-    background: #E6E8EA !important;
+nav{
+    margin: 0 0 -10px;
 }
 
-.nav_bar{
-    background: #2A2A2A;
-    color: #ffffff;
-
-}
-
-.nav_bar_menu{
-    margin-right: 15%;
-    width: 70%;
-    display: table;
-}
-
-.nav_bar_item_parent{
-    display: inline-block;
-}
-
-.nav_bar_item{
-    padding: 10px 15px;
-    list-style: none;
-    border-left: 1px solid #c5c5c5;
-    border-right: 1px solid #737373;
-    cursor: pointer;
-    display: inline-block;
-    text-align: center;
-    border-top: 3px solid #2A2A2A;
-}
-
-.nav_bar_item.active{
-    padding: 10px 15px;
-    background: -webkit-linear-gradient(#656565, #2A2A2A); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(#656565, #2A2A2A); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(#656565, #2A2A2A); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#656565, #2A2A2A); /* Standard syntax */
-    border-left: 1px solid #c5c5c5;
-    border-right: 1px solid #737373;
-    border-top: 3px solid #B12133;
-    cursor: pointer;
-    display: inline-block;
-    text-align: center;
-}
-
-.nav_bar_item:hover{
-    background: -webkit-linear-gradient(#656565, #2A2A2A); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(#656565, #2A2A2A); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(#656565, #2A2A2A); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#656565, #2A2A2A); /* Standard syntax */
-    border-top: 3px solid #B12133;
-    color: #ffffff;
-}
-
-
-
-
-
-
-
-ul.topnav {
-    list-style: none;
-    text-align: right;
-    padding: 0 20px;
-    margin: 0;
-    float: left;
-    width: 100%;
-    background: #2A2A2A;
-    font-size: 1.2em;
-    /*background: url(topnav_bg.gif) repeat-x;*/
-}
-ul.topnav li {
-    float: right;
-    margin-right: 15px;
-    position: relative; /*--Declare X and Y axis base for sub navigation--*/
-    border-top: 5px solid #2A2A2A;
-}
-ul.topnav li.active {
-    float: right;
-    margin-right: 15px;
-    position: relative; /*--Declare X and Y axis base for sub navigation--*/
-    background: -webkit-linear-gradient(#656565, #2A2A2A); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(#656565, #2A2A2A); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(#656565, #2A2A2A); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#656565, #2A2A2A); /* Standard syntax */
-    border-top: 5px solid #B12133;
-}
-ul.topnav li:hover {
-    background: -webkit-linear-gradient(#656565, #2A2A2A); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(#656565, #2A2A2A); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(#656565, #2A2A2A); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#656565, #2A2A2A); /* Standard syntax */
-    border-top: 5px solid #B12133;
-    color: #ffffff;
-}
-ul.topnav li a{
-    padding: 10px 25px;
-    color: #fff;
-    display: inline-block;
-    text-decoration: none;
-}
-ul.topnav li ul[class^=menu_level] {
-    list-style: none;
-    position: absolute; /*--Important - Keeps subnav from affecting main navigation flow--*/
-    right: 170px;
-    top: 0;
-    background: #333;
-    margin: 0;
-    padding: 0;
-    display: none;
-    float: left;
-    width: 170px;
-    border: 1px solid #111;
-    z-index: 1000;
-}
-ul.topnav li ul.menu_level_1 {
-    list-style: none;
-    position: absolute; /*--Important - Keeps subnav from affecting main navigation flow--*/
-    right: 0 !important;
-    top: 40px !important;
-    background: #333;
-    margin: 0;
-    padding: 0;
-    display: none;
-    float: left;
-    width: 170px;
-    border: 1px solid #111;
-    z-index: 1000;
-}
-ul.topnav li ul[class^=menu_level] li{
-    margin: 0; padding: 0;
-    border-top: 1px solid #252525; /*--Create bevel effect--*/
-    border-bottom: 1px solid #444; /*--Create bevel effect--*/
-    clear: both;
-    width: 170px;
-}
-ul.topnav li ul[class^=menu_level] li:hover{
-    background: #2A2A2A;
-    border-top: 1px solid #B12133;
-}
-html ul.topnav li ul[class^=menu_level] li a {
-    float: left;
-    width: 100%;
-    background: #333 url(../anarhome/images/dropdown_linkbg.gif) no-repeat 10px center;
-    padding-left: 20px;
-}
-ul.topnav li ul[class^=menu_level].have_sub li.have_sub:hover{
-    background: #222;
-}
-ul.topnav li ul[class^=menu_level].have_sub li.have_sub a:hover{
-    background: #222;
-}
-ul.topnav li ul.sub2nav li:hover{
-    background: #222;
-}
-ul.topnav li ul.sub2nav.have_sub li.have_sub:hover{
-    background: #222;
-}
-ul.topnav li ul.sub2nav.have_sub li.have_sub a:hover{
-    background: #222;
-}
-html ul.topnav li ul[class^=menu_level].have_sub li.have_sub a {
-    float: left;
-    width: 84%;
-    background: #333 url(../anarhome/images/dropdown_linkbg.gif) no-repeat 10px center;
-    padding-left: 20px;
-}
-html ul.topnav li ul.sub2nav.have_sub li.have_sub a {
-    float: left;
-    width: 84%;
-    background: #333 url(../anarhome/images/dropdown_linkbg.gif) no-repeat 10px center;
-    padding-left: 20px;
-}
-html ul.topnav li ul[class^=menu_level].have_sub li.have_sub i {
-    float: left;
-    padding: 10px;
-}
-html ul.topnav li ul.sub2nav.have_sub li.have_sub i {
-    float: left;
-    padding: 10px;
-}
-html ul.topnav li ul[class^=menu_level] li a:hover { /*--Hover effect for subnav links--*/
-    background: #2A2A2A;
-}
-html ul.topnav li ul[class^=menu_level] li ul.sub2nav li a {
-    float: left;
-    width: 100%;
-    display: inline-block;
-    background: #333;
-    padding-left: 20px;
-}
-
-a.have_sub_link:hover{
-    background: #2A2A2A;
-}
-html ul.topnav li ul[class^=menu_level] li ul.sub2nav li.have_sub a:hover {
-    background: #2A2A2A;
-}
-
-.article-header{
-    background: #222;
-    padding: 3px 15px;
-    color: white;
-    cursor: pointer;
-}
-
-.article-content{
-    background: #ffffff;
-    padding: 15px;
-    box-shadow: 0 0 2px #aaa;
+nav ul ul {
     display: none;
 }
 
-.article-content.open{
+nav ul li:hover > ul {
     display: block;
 }
 
-.footer{
-    position: absolute;
-    background: #2A2A2A;
-    color: white;
-    padding: 15px;
-    width: 100%;
-    border-top: 3px solid #B12133;
-    bottom: 0;
+
+nav ul {
+    /*box-shadow: 0px 0px 9px rgba(0,0,0,0.15);*/
+    padding: 0 20px;
+    list-style: none;
+    position: relative;
+    display: inline-table;
+}
+nav ul:after {
+    content: "";
+    clear: both;
+    display: block;
 }
 
+nav ul li {
+    float: right;
+}
 
+nav > ul > li > a{
+    border-top: 2px solid #ffffff;
+}
 
-.slide_show{
-    width: 100%;
+nav > ul > li > a:hover{
+    border-top: 2px solid #0DA3E2;
+}
+
+nav ul li.current > a {
+    background: #FCFCFC;
+    border-top: 2px solid #0DA3E2;
+    color: #0DA3E2;
+}
+
+nav ul li.current > a::after {
+    top: 0;
+    width: 0;
+    height: 0;
+    right: 28%;
+    z-index: 2;
+    content: " ";
+    display: block;
+    margin-right: -3px;
+    position: absolute;
+    border-right: 8px solid transparent;
+    border-left: 8px solid transparent;
+    border-top: 6px solid #0DA3E2;
+}
+
+nav > ul > li:hover {
+    background: #ffffff;
+}
+
+nav ul li:hover a {
+    color: #000000;
+    text-decoration: none;
+}
+
+nav ul li a {
+    display: block;
+    padding: 25px 40px;
+    color: #4d4d4d;
+    text-decoration: none;
+}
+
+nav ul ul {
+    background: #ffffff;
+    border-top: 2px solid #0DA3E2;
+    box-shadow: 0 0 2px #aaa;
+    border-radius: 0;
+    padding: 0;
+    position: absolute;
+    top: 100%;
+}
+nav ul ul li {
+    float: none;
+    border-bottom: 1px solid #dcdcdc;
+    position: relative;
+}
+nav ul ul li a {
+    padding: 7px 40px;
+    color: #fff;
+}
+nav ul ul li a:hover {
+    background: #F7F7F7;
+    text-decoration: none;
+}
+
+nav ul ul ul {
+    position: absolute;
+    right: 100%;
+    top:0;
+}
+
+.footer a{
+    color: white !important;
+    font-size: 12pt;
+    text-decoration: none;
 }
