@@ -144,6 +144,7 @@
 
 .records_list tr:first-child td{
     padding: 10px;
+    font-size: 13px;
 }
 
 .records_list tr:first-child td a{

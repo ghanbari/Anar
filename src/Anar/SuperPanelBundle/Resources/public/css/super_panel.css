@@ -161,3 +161,15 @@
 .display-none{
     display: none;
 }
+
+.last_login{
+    padding: 0 15px;
+}
+
+.last_login span{
+    padding-left: 10px;
+}
+
+.last_login time{
+    line-height: 92px !important;
+}

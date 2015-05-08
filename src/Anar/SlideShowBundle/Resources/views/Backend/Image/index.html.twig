@@ -1,39 +1,53 @@
-{% extends '::base.html.twig' %}
+{% extends "AnarBlogPanelBundle:Desktop:index.html.twig" %}
 
-{% block body -%}
-    <h1>Image list</h1>
+{% block csses %}
 
-    <table class="records_list">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Image</th>
-                <th>Description</th>
-                <th>Createdby</th>
-                <th>Updatedby</th>
-                <th>Createdat</th>
-                <th>Updatedat</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for image in images %}
-            <tr>
-                <td>{{ image.image }}</td>
-                <td>{{ image.description }}</td>
-                <td>{{ image.createdBy }}</td>
-                <td>{{ image.updatedBy }}</td>
-                <td>{% if image.createdAt %}{{ image.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if image.updatedAt %}{{ image.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>
-                </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+{% endblock %}
 
-        <ul>
-
-    </ul>
-    {% endblock %}
+{% block Container %}
+<div class="col-md-11 col-sm-11 margin-left-45 tab_content_box margin-top-25 margin-bottom-25">
+    <div class="row">
+        <div class="col-md-6 col-sm-6 pull-right tittle_tab_content">
+            <i class="fa fa-list-alt"></i>
+            <span>لیست عکس ها</span>
+        </div>
+        <div class="col-md-1 col-sm-1 pull-left text-left">
+            <i onclick="location.href = '{{ path("anar_blog_panel_home") }}'" class="glyphicon glyphicon-remove cursor_pointer" style="cursor: pointer"></i>
+        </div>
+    </div>
+    <hr id="cutter">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 margin-top-10">
+            <table class="records_list">
+                <tr class="text-center">
+                    <td class="col-md-1 col-sm-1">{{ 'Id'|trans }}</td>
+                    <td class="col-md-2 col-sm-2">{{ 'Image'|trans }}</td>
+                    <td class="col-md-2 col-sm-2">{{ 'Description'|trans }}</td>
+                    <td class="col-md-2 col-sm-2">{{ 'Createdby'|trans }}</td>
+                    <td class="col-md-1 col-sm-1">{{ 'Updatedby'|trans }}</td>
+                    <td class="col-md-1 col-sm-1">{{ 'Createdat'|trans }}</td>
+                    <td class="col-md-1 col-sm-1">{{ 'Updatedat'|trans }}</td>
+                    <td class="col-md-2 col-sm-2"></td>
+                </tr>
+                {% set i = 0 %}
+                {% for image in images %}
+                    <tr data-id="{{ image.id }}" class="text-center {% if i % 2 == 0 %}t1{% else %}t2{% endif %}">
+                        <td>{{ image.id }}</td>
+                        <td>{{ image.image }}</td>
+                        <td>{{ image.description }}</td>
+                        <td>{{ image.createdBy }}</td>
+                        <td>{{ image.updatedBy }}</td>
+                        <td>{% if image.createdAt %}{{ image.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        <td>{% if image.updatedAt %}{{ image.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        <td>
+                            <button data-id="{{ image.id }}" style="padding: 5px" class="R_butt_green edit_plan btn">ویرایش</button>
+                            <button data-id="{{ image.id }}" style="padding: 5px" class="R_butt_red delete_plan btn">حذف</button>
+                        </td>
+                    </tr>
+                    {% set i = i + 1 %}
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

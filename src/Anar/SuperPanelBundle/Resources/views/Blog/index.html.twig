@@ -1,7 +1,6 @@
 {% extends "AnarSuperPanelBundle:Desktop:home.html.twig" %}
 
 {% block csses %}
-    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/css/super_panel.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('static/jstree/dist/themes/default/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/plugins/Alert/alert.css') }}">
 {% endblock csses %}
@@ -59,11 +58,17 @@
 {% endblock %}
 
 {% block scripts %}
-    {{ parent() }}
     <script src="{{ asset('static/jstree/dist/jstree.min.js') }}"></script>
     <script src="{{ asset('bundles/anarsuperpanel/plugins/Alert/alert.js') }}"></script>
 
     <script>
+        var errors = [];
+        {% for message in app.session.getFlashBag().get('error') %}
+            errors.push('{{ message }}');
+        {% endfor %}
+
+        console.log(errors);
+
 
         $("#jstree_div").jstree({
             'core' : {
@@ -109,8 +114,7 @@
                             type: "post",
                             data: {'token': '{{ token }}'},
                             error: function(message){
-                                alert(123456);
-                                Alert.render("message : "+message);
+                                Alert.render("message : " + message.status['message']);
                             },
                             success: function(data){
                                 for(var i = 0; i < data.response['users'].length; i++){
@@ -141,8 +145,7 @@
                             type: "post",
                             data: {'token': '{{ token }}'},
                             error: function(message){
-                                alert(123456);
-                                Alert.render("message : "+message);
+                                Alert.render(JSON.parse(message.responseText).status.message);
                             },
                             success: function(data){
                                 if(data.status['code'] == 200){
@@ -169,11 +172,6 @@
                     }
                 }
             };
-
-//            if ($(node).hasClass("folder")) {
-//                // Delete the "delete" menu item
-//                delete items.deleteItem;
-//            }
 
             return items;
         }

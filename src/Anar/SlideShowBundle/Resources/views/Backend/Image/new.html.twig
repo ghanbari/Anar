@@ -1,12 +1,71 @@
-{% extends '::base.html.twig' %}
+{% extends "AnarBlogPanelBundle:Desktop:index.html.twig" %}
 
-{% block body -%}
-    <h1>Image creation</h1>
-
-    {{ form(form) }}
-
-        <ul class="record_actions">
-    <li>
-    </li>
-</ul>
+{% block csses %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarblogpanel/plugins/bootstrap-fileupload/bootstrap-fileupload.css') }}">
 {% endblock %}
+
+{% block Container %}
+<div class="col-md-11 col-sm-11 margin-left-45 tab_content_box margin-top-25 margin-bottom-25">
+    <div class="row">
+        <div class="col-md-6 col-sm-6 pull-right tittle_tab_content">
+            <i class="fa fa-list-alt"></i>
+            <span>ساخت عکس</span>
+        </div>
+        <div class="col-md-1 col-sm-1 pull-left text-left">
+            <i onclick="location.href = '{{ path("anar_blog_panel_home") }}'" class="glyphicon glyphicon-remove cursor_pointer" style="cursor: pointer"></i>
+        </div>
+    </div>
+    <hr id="cutter">
+    <div class="row">
+        <div class="col-md-8 col-sm-8 pull-right margin-top-10">
+            {{ form_start(form, { 'attr': {'class': 'image_form'}}) }}
+            <div class="row">
+                <div class="form-group">
+                    {{ form_label(form.imageFile, '', {'label_attr': {'class': 'col-md-2 col-sm-2 pull-right control-label text-left'} }) }}
+                    <div class="col-md-9 col-sm-9">
+                        <div class="fileupload fileupload-new" data-provides="fileupload">
+                            <div id="photo_show" class="fileupload-new thumbnail" style="width: 184px; height: 142px;">
+                                <img src="{{ vich_uploader_asset(image, 'imageFile') }}" alt="" />
+                            </div>
+                            <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                            <div>
+                                <span class="btn backgroundBlue colorWhite btn-file">
+                                <span class="fileupload-new"><i class="fa fa-paper-clip"></i> انتخاب تصویر </span>
+                                <span class="fileupload-exists"><i class="fa fa-undo"></i> تغییر</span>
+                                    {{ form_widget(form.imageFile) }}
+                                </span>
+                                <a href="#" class="btn backgroundRed colorWhite fileupload-exists" data-dismiss="fileupload"><i class="fa fa-trash-o"></i> حذف</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9 col-sm-9">
+                        {{ form_widget(form.imageFile,{ 'attr' : {'class':'form-control'} }) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                <div class="form-group">
+                    {{ form_label(form.description, '', {'label_attr': {'class': 'col-md-2 col-sm-2 pull-right control-label text-left'} }) }}
+                    <div class="col-md-9 col-sm-9">
+                        {{ form_widget(form.description,{ 'attr' : {'class':'form-control'} }) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                <div class="form-group">
+                    <div class="col-md-2 col-sm-2 pull-right control-label text-left"></div>
+                    <div class="col-md-9 col-sm-9">
+                        {{ form_widget(form.submit,{ 'attr' : {'class':'R_butt_blue btn'} }) }}
+                    </div>
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="{{ asset('bundles/anarblogpanel/plugins/bootstrap-fileupload/bootstrap-fileupload.js') }}"></script>
+{% endblock scripts %}

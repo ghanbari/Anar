@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/css/addFonts.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/css/icons.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/css/super_panel.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/css/commonStyles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('static/bootstrap/dist/css/bootstrap.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('static/bootstrap/dist/css/bootstrap-theme.css') }}">
@@ -24,8 +25,8 @@
 <body>
 {% block top_fixed_superpanel_box %}
 <div id="sp-topBar">
-    <span>{{ 'last login:' }}<time dir="ltr"></time></span>
-    <a class="btn btn-xs btn-danger" href="">{{ 'logout'|trans }}</a>
+    {#<span>{{ 'last login:' }}<time dir="ltr"></time></span>#}
+    <a class="btn btn-xs btn-danger" href="{{ path('anar_super_panel_logout') }}">{{ 'logout'|trans }}</a>
 </div>
 <div id="sp-headerWrap">
     <div id="sp-logo"></div>
@@ -52,10 +53,14 @@
     </div>
     <div id="sp-desktopWrap">
         <div id="sp-clockWrap">
-            <time></time>
+            <time class="sp-clockWrap-time"></time>
             <hr>
             <i class="fa fa-calendar"></i>
-            <span></span>
+            <span class="sp-clockWrap-span"></span>
+            <div class="last_login pull-left">
+                <span>آخرین لاگین</span>
+                <time style="font-size: 12pt" dir="ltr"></time>
+            </div>
         </div>
         <div class="sp-shower">
             <i class="sp-iconLabel fa fa-file"><span></span></i>
@@ -74,49 +79,40 @@
 <script src="{{ asset('static/jquery/dist/jquery.min.js') }}"></script>
 <script src="{{ asset('static/jquery-ui/jquery-ui.min.js') }}"></script>
 <script src="{{ asset('static/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('plugins/nicescroll/jquery.nicescroll.min.js') }}"></script>
+{#<script src="{{ asset('plugins/nicescroll/jquery.nicescroll.min.js') }}"></script>#}
 {#<script src="{{ asset('plugins/tinyNotice/tinyNotice.js') }}"></script>#}
-<script src="{{ asset('scripts/commonActions.js') }}"></script>
+{#<script src="{{ asset('scripts/commonActions.js') }}"></script>#}
 <script src="{{ asset('bundles/anarsuperpanel/js/select2.min.js') }}"></script>
+<script src="{{ asset('bundles/anarsuperpanel/js/jalali.js') }}"></script>
 <script src="{{ asset('bundles/anarsuperpanel/plugins/Alert/alert.js') }}"></script>
-
+<script>
+    var basePath = '{{ app.request.getUriForPath('') }}';
+</script>
+<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+<script src="{{ asset('bundles/anarsuperpanel/js/routes.js') }}"></script>
 {#<script src="{{ asset('bundles/anarsuperpanel/js/privateActions.js') }}"></script>#}
 
 {% block scripts %}
     <script>
-        var basePath = '{{ app.request.getUriForPath('') }}';
+        var time = {{ time }};
+        var timeData = new Date(time*1000);
+
+        var t_dt = Date.jalaliConverter.gregorianToJalali([timeData.getFullYear(),(timeData.getMonth())+1,(timeData.getDate())]);
+        t_dt = t_dt.toString();
+        t_dt = t_dt.replace(',',' / ').replace(',',' / ');
+        var myDate = $('.sp-clockWrap-span');
+        myDate.html(t_dt);
         function renderTime(){
+            {#var time = {{ time }};#}
+//            var currentTime1 = new Date(time*1000);
+//            var currentTime = jQuery.extend({}, currentTime1);
+//            console.log(currentTime);
+//            console.log(typeof currentTime);
             var currentTime = new Date();
+//            console.log(typeof currentTime);
             var h = currentTime.getHours();
             var m = currentTime.getMinutes();
             var s = currentTime.getSeconds();
-            var month = new Array(12);
-            month[0] = "Jan";
-            month[1] = "Feb";
-            month[2] = "Mar";
-            month[3] = "Apr";
-            month[4] = "May";
-            month[5] = "June";
-            month[6] = "July";
-            month[7] = "Aug";
-            month[8] = "Sep";
-            month[9] = "Oct";
-            month[10] = "Nov";
-            month[11] = "Dec";
-            var weekday = new Array(7);
-            weekday[0]=  "Sun";
-            weekday[1] = "Mon";
-            weekday[2] = "Tue";
-            weekday[3] = "Wed";
-            weekday[4] = "Thu";
-            weekday[5] = "Fri";
-            weekday[6] = "Sat";
-
-            var rooz_hafte = weekday[currentTime.getDay()];
-            var mah = month[currentTime.getMonth()];
-            var sal = currentTime.getFullYear();
-            var rooz = currentTime.getDate();
-
             if (h < 10){
                 h = "0" + h;
             }
@@ -127,17 +123,41 @@
                 s = "0" + s;
             }
 
-            var myClock = $('#sp-clockWrap time');
-            var myDate = $('#sp-clockWrap span');
+            var myClock = $('.sp-clockWrap-time');
             myClock.html(h + ":" + m + ":" + s);
-            myDate.html(rooz_hafte + " " + mah + " " + rooz + " " + sal);
             setTimeout('renderTime()', 1000);
         }
         renderTime();
+//        var hour = timeData.getHours();
+//        var min = timeData.getMinutes();
+//        var sec = timeData.getSeconds();
+//        function renderTime(){
+//            alert(hour + '+' + min + '+' + sec);
+//
+//            if (hour < 10){
+//                hour = "0" + hour;
+//            }
+//            if (min < 10){
+//                min = "0" + min;
+//            }
+//            if (sec < 10){
+//                sec = "0" + sec;
+//            }
+//
+//            var myClock = $('.sp-clockWrap-time');
+//            myClock.html(hour + ":" + min + ":" + sec);
+//            setTimeout('renderTime()', 1000);
+//        }
+//        renderTime();
+
+        var lastLoginTime = "{{ lastLogin }}";
+        var lastLoginTimeData = new Date(lastLoginTime*1000);
+        var t1_dt = Date.jalaliConverter.gregorianToJalali([lastLoginTimeData.getFullYear(),(lastLoginTimeData.getMonth())+1,(lastLoginTimeData.getDate())]);
+        t1_dt = t1_dt.toString();
+        t1_dt = t1_dt.replace(',',' / ').replace(',',' / ');
+        $(".last_login time").text(t1_dt + " - " + lastLoginTimeData.getHours()+" : "+lastLoginTimeData.getMinutes()+" : "+lastLoginTimeData.getSeconds());
     </script>
 
-    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
-    <script src="{{ asset('bundles/anarsuperpanel/js/routes.js') }}"></script>
 {% endblock scripts %}
 </body>
 </html>
