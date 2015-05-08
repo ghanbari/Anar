@@ -68,8 +68,6 @@ class LinkController extends Controller implements AdminInterface
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $blog = $this->get('anar_engine.manager.blog')->getBlog();
-            $link->setBlog($blog);
             $em = $this->getDoctrine()->getManager();
             $em->persist($link);
             $em->flush();
@@ -94,7 +92,8 @@ class LinkController extends Controller implements AdminInterface
      */
     private function createCreateForm(Link $link)
     {
-        $form = $this->createForm(new LinkType(), $link, array(
+        $blog = $this->get('anar_engine.manager.blog')->getBlog();
+        $form = $this->createForm(new LinkType($blog), $link, array(
             'action' => $this->generateUrl('anar_link_backend_create'),
             'method' => 'POST',
         ));
@@ -139,7 +138,8 @@ class LinkController extends Controller implements AdminInterface
     */
     private function createEditForm(Link $link)
     {
-        $form = $this->createForm(new LinkType(), $link, array(
+        $blog = $this->get('anar_engine.manager.blog')->getBlog();
+        $form = $this->createForm(new LinkType($blog), $link, array(
             'action' => $this->generateUrl('anar_link_backend_update', array('id' => $link->getId())),
             'method' => 'PUT',
         ));

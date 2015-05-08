@@ -1,5 +1,11 @@
+anar_link_backend_category:
+    resource: "@AnarLinkBundle/Resources/config/routing/backend/category.yml"
+    prefix:   /blogpanel/link/category
+    options:
+        i18n: false
+
 anar_link_backend:
-    resource: "@AnarLinkBundle/Resources/config/routing/backend.yml"
+    resource: "@AnarLinkBundle/Resources/config/routing/backend/link.yml"
     prefix:   /blogpanel/link
     options:
         i18n: false

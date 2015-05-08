@@ -23,7 +23,7 @@
                     <td>{{ 'title'|trans }}</td>
                     <td>{{ 'description'|trans }}</td>
                     <td>{{ 'url'|trans }}</td>
-                    <td>{{ 'position'|trans }}</td>
+                    <td>{{ 'category'|trans }}</td>
                     <td></td>
                 </tr>
                 {% set i = 0 %}
@@ -32,7 +32,7 @@
                         <td>{{ link.title }}</td>
                         <td>{{ link.description }}</td>
                         <td>{{ link.url }}</td>
-                        <td>{{ link.position }}</td>
+                        <td>{{ link.category.name }}</td>
                         <td>
                             <button data-id="{{ link.id }}" style="padding: 5px" class="R_butt_green edit_link btn">ویرایش</button>
                             <button data-id="{{ link.id }}" style="padding: 5px" class="R_butt_red delete_link btn">حذف</button>

@@ -97,52 +97,7 @@
 <!-- BEGIN FOOTER -->
 <div class="footer">
     <div class="container">
-        <div class="row">
-            <div class="col-md-3 col-sm-3 text-left link_columns space-mobile">
-                {% if links['FOOTER_I'] is defined %}
-                    {% for link in links['FOOTER_I'] %}
-                        <div class="first_column_links">
-                            <a href="{{ link.url }}">
-                                <i class="fa fa-angle-left"></i>{{ link.title }}
-                            </a>
-                        </div>
-                    {% endfor %}
-                {% endif %}
-            </div>
-            <div class="col-md-3 col-sm-3 text-left link_columns space-mobile">
-                {% if links['FOOTER_II'] is defined %}
-                    {% for link in links['FOOTER_II'] %}
-                        <div class="second_column_links">
-                            <a href="{{ link.url }}">
-                                <i class="fa fa-angle-left"></i> {{ link.title }}
-                            </a>
-                        </div>
-                    {% endfor %}
-                {% endif %}
-            </div>
-            <div class="col-md-3 col-sm-3 link_columns text-left">
-                {% if links['FOOTER_III'] is defined %}
-                    {% for link in links['FOOTER_III'] %}
-                        <div class="third_column_links">
-                            <a href="{{ link.url }}">
-                                <i class="fa fa-angle-left"></i>{{ link.title }}
-                            </a>
-                        </div>
-                    {% endfor %}
-                {% endif %}
-            </div>
-            <div class="col-md-3 col-sm-3 link_columns text-left">
-                {% if links['FOOTER_IV'] is defined %}
-                    {% for link in links['FOOTER_IV'] %}
-                        <div class="forth_column_links">
-                            <a href="{{ link.url }}">
-                                <i class="fa fa-angle-left"></i> {{ link.title }}
-                            </a>
-                        </div>
-                    {% endfor %}
-                {% endif %}
-            </div>
-        </div>
+        {{ render(controller('AnarLinkBundle:Frontend/Link:render', {'positions':['FOOTER_I', 'FOOTER_II', 'FOOTER_III', 'FOOTER_IV']})) }}
     </div>
 </div>
 <!-- END FOOTER -->

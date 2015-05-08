@@ -7,13 +7,6 @@ namespace Anar\LinkBundle\Entity;
  */
 class Link
 {
-    const FOOTER_I   = 'FOOTER_I';
-    const FOOTER_II  = 'FOOTER_II';
-    const FOOTER_III = 'FOOTER_III';
-    const FOOTER_IV  = 'FOOTER_IV';
-    const SIDEBAR_I  = 'SIDEBAR_I';
-    const SIDEBAR_II = 'SIDEBAR_II';
-
     /**
      * @var integer
      */
@@ -38,11 +31,6 @@ class Link
      * @var string
      */
     private $icon;
-
-    /**
-     * @var string
-     */
-    private $position;
 
     /**
      * @var \DateTime
@@ -70,17 +58,12 @@ class Link
     private $translations;
 
     /**
-     * @var \Anar\EngineBundle\Entity\Blog
-     */
-    private $blog;
-
-    /**
      * @var string
      */
     private $currentLocale;
 
     /**
-     * @var \Anar\LinkBundle\Entity\LinkCategory
+     * @var Category
      */
     private $category;
 
@@ -329,30 +312,6 @@ class Link
     }
 
     /**
-     * Set blog
-     *
-     * @param \Anar\EngineBundle\Entity\Blog $blog
-     *
-     * @return Link
-     */
-    public function setBlog(\Anar\EngineBundle\Entity\Blog $blog = null)
-    {
-        $this->blog = $blog;
-
-        return $this;
-    }
-
-    /**
-     * Get blog
-     *
-     * @return \Anar\EngineBundle\Entity\Blog
-     */
-    public function getBlog()
-    {
-        return $this->blog;
-    }
-
-    /**
      * @return string
      */
     public function getCurrentLocale()
@@ -369,41 +328,26 @@ class Link
     }
 
     /**
-     * @return array
-     */
-    public static function getAvailablePosition()
-    {
-        return array(
-            self::FOOTER_I => self::FOOTER_I,
-            self::FOOTER_II => self::FOOTER_II,
-            self::FOOTER_III => self::FOOTER_III,
-            self::FOOTER_IV => self::FOOTER_IV,
-            self::SIDEBAR_I => self::SIDEBAR_I,
-            self::SIDEBAR_II => self::SIDEBAR_II,
-        );
-    }
-
-    /**
-     * Set position
+     * Set category
      *
-     * @param string $position
+     * @param Category $category
      *
      * @return Link
      */
-    public function setPosition($position)
+    public function setCategory(Category $category = null)
     {
-        $this->position = $position;
+        $this->category = $category;
 
         return $this;
     }
 
     /**
-     * Get position
+     * Get category
      *
-     * @return string
+     * @return Category
      */
-    public function getPosition()
+    public function getCategory()
     {
-        return $this->position;
+        return $this->category;
     }
 }

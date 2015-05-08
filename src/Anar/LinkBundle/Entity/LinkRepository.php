@@ -10,10 +10,28 @@ class LinkRepository extends EntityRepository
     {
         $qb = $this->createQueryBuilder('l');
         $qb
-            ->select('l')
-            ->where($qb->expr()->eq('l.blog', ':blogId'))
+            ->select(array('l', 'c'))
+            ->join('l.category', 'c')
+            ->where($qb->expr()->eq('c.blog', ':blogId'))
             ->setParameter('blogId', $blogId);
 
         return $qb;
+    }
+
+    public function getAllFilterByPosition($blogId, array $positions=array())
+    {
+        $qb = $this->createQueryBuilder('l');
+        $qb
+            ->select(array('l', 'c'))
+            ->join('l.category', 'c')
+            ->where($qb->expr()->eq('c.blog', ':blogId'))
+            ->setParameter('blogId', $blogId);
+
+        if (!empty($positions)) {
+            $qb->andWhere($qb->expr()->in('c.position', ':positions'))
+                ->setParameter('positions', $positions);
+        }
+
+        return $qb->getQuery()->getResult();
     }
 }

@@ -1,27 +1,16 @@
-Anar\LinkBundle\Entity\Link:
+Anar\LinkBundle\Entity\Category:
     type: entity
-    table: link
-    repositoryClass: LinkRepository
-    gedmo:
-        translation:
-            entity: LinkTranslation
-            locale: currentLocale
+    table: link_category
+    repositoryClass: CategoryRepository
     id:
         id:
             type: integer
+            id: true
             generator:
                 strategy: AUTO
     fields:
-        title:
-            gedmo:
-                - translatable
-        description:
-            nullable: true
-            gedmo:
-                - translatable
-        url: ~
-        icon:
-            nullable: true
+        name: ~
+        position: ~
         createdAt:
             type: datetime
             gedmo:
@@ -41,15 +30,14 @@ Anar\LinkBundle\Entity\Link:
                 blameable:
                     on: update
     manyToOne:
-        category:
-            targetEntity: Category
-            inversedBy: links
+        blog:
+            targetEntity: Anar\EngineBundle\Entity\Blog
             joinColumn:
-                name: category_id
+                name: blog_id
                 referencedColumnName: id
                 onDelete: cascade
     oneToMany:
-        translations:
-            targetEntity: LinkTranslation
-            mappedBy: object
-            cascade: ["persist"]
+        links:
+            targetEntity: Link
+            mappedBy: category
+    lifecycleCallbacks: {  }

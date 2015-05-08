@@ -1,0 +1,26 @@
+anar_link_backend_category_index:
+    path:     /
+    defaults: { _controller: "AnarLinkBundle:Backend/Category:index" }
+
+anar_link_backend_category_new:
+    path:     /new
+    defaults: { _controller: "AnarLinkBundle:Backend/Category:new" }
+
+anar_link_backend_category_create:
+    path:     /create
+    defaults: { _controller: "AnarLinkBundle:Backend/Category:create" }
+    methods:  POST
+
+anar_link_backend_category_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AnarLinkBundle:Backend/Category:edit" }
+
+anar_link_backend_category_update:
+    path:     /{id}/update
+    defaults: { _controller: "AnarLinkBundle:Backend/Category:update" }
+    methods:  [POST, PUT]
+
+anar_link_backend_category_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AnarLinkBundle:Backend/Category:delete" }
+    methods:  [POST, DELETE]

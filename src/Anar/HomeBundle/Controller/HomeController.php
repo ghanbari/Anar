@@ -2,7 +2,6 @@
 
 namespace Anar\HomeBundle\Controller;
 
-use Doctrine\ORM\QueryBuilder;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class HomeController extends Controller
@@ -10,23 +9,8 @@ class HomeController extends Controller
     public function showAction()
     {
         $blogManager = $this->get('anar_engine.manager.blog');
-        $linkRepo = $this->getDoctrine()->getRepository('AnarLinkBundle:Link');
-        /** @var QueryBuilder $qb */
-        $qb = $linkRepo->getFilterByBlogQueryBuilder($blogManager->getBlog()->getId());
-        $links = $qb->andWhere($qb->expr()->like('l.position', ':position'))
-            ->setParameter('position', '%FOOTER%')->getQuery()->getResult();
 
-        $groupedLinks = array();
-        foreach ($links as $link) {
-            $groupedLinks[$link->getPosition()][] = $link;
-        }
-
-        return $this->render(
-            $blogManager->getTheme('AnarHomeBundle:Home:show.html.twig'),
-            array(
-                'links' => $groupedLinks,
-            )
-        );
+        return $this->render($blogManager->getTheme('AnarHomeBundle:Home:show.html.twig'));
     }
 
     public function latestArticleAction($blogId = null, $limit = 10)

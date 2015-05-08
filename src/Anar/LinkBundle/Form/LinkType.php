@@ -9,6 +9,17 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class LinkType extends AbstractType
 {
+
+    private $blog;
+
+    /**
+     * @param $blog
+     */
+    public function __construct($blog)
+    {
+        $this->blog = $blog;
+    }
+
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -31,10 +42,16 @@ class LinkType extends AbstractType
                 'required' => true,
                 'label' => 'url',
             ))
-            ->add('position', 'choice', array(
-                'label' => 'position.in.page',
+            ->add('category', 'entity', array(
+                'class' => 'Anar\LinkBundle\Entity\Category',
+                'property' => 'name',
+                'label' => 'category',
                 'required' => true,
-                'choices' => Link::getAvailablePosition(),
+                'query_builder' => function ($er) {
+                    return $er->createQueryBuilder('c')
+                        ->where('c.blog = ?1')
+                        ->setParameter(1, $this->blog->getId());
+                }
             ))
         ;
     }
