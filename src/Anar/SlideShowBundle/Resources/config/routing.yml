@@ -1,3 +1,4 @@
 anar_slide_show_backend:
     resource: "@AnarSlideShowBundle/Resources/config/routing/image.yml"
     prefix:   /blogpanel/slideshow/image
+    options: { i18n: false }

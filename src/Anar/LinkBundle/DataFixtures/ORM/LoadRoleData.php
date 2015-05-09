@@ -18,21 +18,36 @@ class LoadRoleData extends AbstractFixture implements OrderedFixtureInterface
     {
         $app = $this->getReference('AnarLinkBundle');
 
-        $index = new Role('لیست لینک ها', 'ANAR_LINK_BACKEND_LINK_INDEX', $app);
-        $new = new Role('افزودن لینک', 'ANAR_LINK_BACKEND_LINK_NEW', $app);
-        $create = new Role('افزودن لینک', 'ANAR_LINK_BACKEND_LINK_CREATE', $app, $new);
-        $edit = new Role('ویرایش لینک', 'ANAR_LINK_BACKEND_LINK_EDIT', $app);
-        $update = new Role('ویرایش لینک', 'ANAR_LINK_BACKEND_LINK_UPDATE', $app, $edit);
-        $delete = new Role('حذف لینک', 'ANAR_LINK_BACKEND_LINK_DELETE', $app);
+        $linkIndex = new Role('لیست لینک ها', 'ANAR_LINK_BACKEND_LINK_INDEX', $app);
+        $linkNew = new Role('افزودن لینک', 'ANAR_LINK_BACKEND_LINK_NEW', $app);
+        $linkCreate = new Role('افزودن لینک', 'ANAR_LINK_BACKEND_LINK_CREATE', $app, $linkNew);
+        $linkEdit = new Role('ویرایش لینک', 'ANAR_LINK_BACKEND_LINK_EDIT', $app);
+        $linkUpdate = new Role('ویرایش لینک', 'ANAR_LINK_BACKEND_LINK_UPDATE', $app, $linkEdit);
+        $linkDelete = new Role('حذف لینک', 'ANAR_LINK_BACKEND_LINK_DELETE', $app);
 
-        $manager->persist($index);
-        $manager->persist($new);
-        $manager->persist($create);
-        $manager->persist($edit);
-        $manager->persist($update);
-        $manager->persist($delete);
-        $this->setReference('linkIndex', $index);
-        $this->setReference('linkNew', $new);
+        $categoryIndex = new Role('لیست لینک ها', 'ANAR_CATEGORY_BACKEND_CATEGORY_INDEX', $app);
+        $categoryNew = new Role('افزودن لینک', 'ANAR_CATEGORY_BACKEND_CATEGORY_NEW', $app);
+        $categoryCreate = new Role('افزودن لینک', 'ANAR_CATEGORY_BACKEND_CATEGORY_CREATE', $app, $categoryNew);
+        $categoryEdit = new Role('ویرایش لینک', 'ANAR_CATEGORY_BACKEND_CATEGORY_EDIT', $app);
+        $categoryUpdate = new Role('ویرایش لینک', 'ANAR_CATEGORY_BACKEND_CATEGORY_UPDATE', $app, $categoryEdit);
+        $categoryDelete = new Role('حذف لینک', 'ANAR_CATEGORY_BACKEND_CATEGORY_DELETE', $app);
+
+        $manager->persist($linkIndex);
+        $manager->persist($linkNew);
+        $manager->persist($linkCreate);
+        $manager->persist($linkEdit);
+        $manager->persist($linkUpdate);
+        $manager->persist($linkDelete);
+        $manager->persist($categoryIndex);
+        $manager->persist($categoryNew);
+        $manager->persist($categoryCreate);
+        $manager->persist($categoryEdit);
+        $manager->persist($categoryUpdate);
+        $manager->persist($categoryDelete);
+        $this->setReference('linkIndex', $linkIndex);
+        $this->setReference('linkNew', $linkNew);
+        $this->setReference('categoryIndex', $categoryIndex);
+        $this->setReference('categoryNew', $categoryNew);
 
         $manager->flush();
     }
