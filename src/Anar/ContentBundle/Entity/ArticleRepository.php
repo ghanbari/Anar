@@ -12,27 +12,45 @@ use Doctrine\ORM\EntityRepository;
  */
 class ArticleRepository extends EntityRepository
 {
-    public function getQueryFilterByBlog($blogId)
+    public function getFilterByBlogQueryBuilder($blogId)
     {
         $qb = $this->createQueryBuilder('a');
 
         return $qb->select('a')
             ->where($qb->expr()->eq('a.blog', ':blogId'))
-            ->setParameter('blogId', $blogId)
-            ->getQuery();
+            ->setParameter('blogId', $blogId);
+    }
+
+    public function getFilterByBlogQuery($blogId)
+    {
+        return $this->getFilterByBlogQueryBuilder($blogId)->getQuery();
     }
 
     public function getFilterByBlog($blogId, $limit=10, $offset=1)
     {
-        return $this->getQueryFilterByBlog($blogId)
+        return $this->getFilterByBlogQuery($blogId)
             ->setMaxResults($limit)
             ->setFirstResult($offset)
             ->getResult();
     }
 
+    public function getAllJoinBlogFilterByBlog($blogId, $order, $limit=10, $offset=1)
+    {
+        $qb = $this->getFilterByBlogQueryBuilder($blogId)
+            ->select(array('a', 'b'))
+            ->join('a.blog', 'b')
+            ->setMaxResults($limit)
+            ->setFirstResult($offset);
+
+        foreach ($order as $field => $dir) {
+            $qb->addOrderBy($field, $dir);
+        }
+        return $qb->getQuery()->getResult();
+    }
+
     public function getAllFilterByBlog($blogId)
     {
-        return $this->getQueryFilterByBlog($blogId)
+        return $this->getFilterByBlogQuery($blogId)
             ->getResult();
     }
 }

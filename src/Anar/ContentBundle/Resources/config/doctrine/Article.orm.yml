@@ -2,6 +2,9 @@ Anar\ContentBundle\Entity\Article:
     type: entity
     table: content_article
     repositoryClass: Anar\ContentBundle\Entity\ArticleRepository
+    uniqueConstraints:
+        content_article_unique_idx:
+            columns: [blog_id, slug]
     gedmo:
         translation:
             entity: ArticleTranslation

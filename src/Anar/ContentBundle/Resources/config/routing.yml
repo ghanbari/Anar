@@ -9,3 +9,15 @@ anar_content_backend_category:
     prefix:   /blogpanel/content/category
     options:
         i18n: false
+
+anar_content_frontend:
+    resource: "@AnarContentBundle/Resources/config/routing/frontend.yml"
+    defaults: { blogName: "%master_blog%" }
+    host:     "{blogName}.%router.request_context.host%"
+    requirements: { blogName: "[a-z]{4,100}" }
+
+anar_content_frontend_path:
+    resource: "@AnarContentBundle/Resources/config/routing/frontend.yml"
+    prefix:   /{blogName}
+    defaults: { blogName: "%master_blog%" }
+    requirements: { blogName: "[a-z]{4,100}" }

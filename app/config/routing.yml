@@ -8,6 +8,7 @@ anar_engine_bundle:
 
 _liip_imagine:
     resource: "@LiipImagineBundle/Resources/config/routing.xml"
+    options: { i18n: false }
 
 anar_slide_show:
     resource: "@AnarSlideShowBundle/Resources/config/routing.yml"

@@ -6,7 +6,7 @@ use Doctrine\ORM\EntityRepository;
 
 class CategoryRepository extends EntityRepository
 {
-    public function getQueryFilterByBlog($blogId)
+    public function getFilterByBlogQuery($blogId)
     {
         $qb = $this->createQueryBuilder('c');
 
@@ -18,7 +18,7 @@ class CategoryRepository extends EntityRepository
 
     public function getFilterByBlog($blogId, $limit = 10, $offset = 1)
     {
-        return $this->getQueryFilterByBlog($blogId)
+        return $this->getFilterByBlogQuery($blogId)
             ->setMaxResults($limit)
             ->setFirstResult($offset)
             ->getResult();
@@ -26,7 +26,7 @@ class CategoryRepository extends EntityRepository
 
     public function getAllFilterByBlog($blogid)
     {
-        return $this->getQueryFilterByBlog($blogid)
+        return $this->getFilterByBlogQuery($blogid)
             ->getResult();
     }
 }

@@ -1,11 +1,18 @@
-<div class="col-md-4 col-sm-4">
-    {% for article in articles %}
-    <div class="service-box-heading">
-        <em><i class="fa fa-check red"></i></em>
-        {#<a href="{{ path('anar_content_article_frontend_show') }}">#}
-            <span>{{ article.title[0:25] }} {% if article.title|length > 25 %}...{% endif %}</span>
-        {#</a>#}
+{% for article in articles %}
+    <div class="col-md-4 col-sm-4">
+        <div class="service-box-heading">
+            {% if article.blog.id == blogManager.getBlog().id %}
+                {% set color = 'green' %}
+            {% elseif article.blog.id == blogManager.getBlog().parent.id %}
+                {% set color = 'blue' %}
+            {% else %}
+                {% set color = 'red' %}
+            {% endif %}
+            <em><i class="fa fa-check {{ color }}"></i></em>
+            {#<a href="{{ path('anar_content_article_frontend_show') }}">#}
+                <span>{{ article.title[0:35] }} {% if article.title|length > 35 %}...{% endif %}</span>
+            {#</a>#}
+        </div>
+        <p style="text-align: justify">{{ article.abstract[0:200]|raw }}  {% if article.abstract|length > 200 %}...{% endif %}</p>
     </div>
-    <p style="text-align: justify">{{ article.abstract[0:200]|raw }}  {% if article.abstract|length > 200 %}...{% endif %}</p>
-    {% endfor %}
-</div>
+{% endfor %}

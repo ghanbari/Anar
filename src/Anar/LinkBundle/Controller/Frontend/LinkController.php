@@ -22,7 +22,7 @@ class LinkController extends Controller implements ApplicationInterface
             $groupedLinks[$link->getCategory()->getPosition()][$link->getCategory()->getName()][] = $link;
         }
 
-        sort($groupedLinks, SORT_STRING);
+        ksort($groupedLinks, SORT_STRING);
 
         return $this->render($template?:'AnarLinkBundle:Frontend/Link:footer.html.twig', array('links' => $groupedLinks));
     }

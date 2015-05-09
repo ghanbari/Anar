@@ -24,7 +24,7 @@ class CategoryController extends Controller implements AdminInterface
         $blog = $this->get('anar_engine.manager.blog')->getBlog();
         $doctrine = $this->getDoctrine();
 
-        $query = $doctrine->getRepository('AnarContentBundle:Category')->getQueryFilterByBlog($blog->getId());
+        $query = $doctrine->getRepository('AnarContentBundle:Category')->getFilterByBlogQuery($blog->getId());
 
         $categories = $this->get('knp_paginator')->paginate(
             $query,
