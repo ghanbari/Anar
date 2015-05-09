@@ -1,0 +1,8 @@
+<body>
+{% for article in articles %}
+    {{ article.slug }}<br>
+    {% if article.category %}
+        {{ article.category.slug }}
+    {% endif %}
+{% endfor %}
+</body>

@@ -1,3 +1,0 @@
-anar_content_frontend_article_index:
-    path:     /{page}
-    defaults: { _controller: AnarContentBundle:Frontend/Article:index }

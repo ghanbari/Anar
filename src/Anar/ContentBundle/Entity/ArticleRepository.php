@@ -26,6 +26,27 @@ class ArticleRepository extends EntityRepository
         return $this->getFilterByBlogQueryBuilder($blogId)->getQuery();
     }
 
+    public function getAllFullJoinFilterByBlogQuery($blogId)
+    {
+        return $this->getFilterByBlogQueryBuilder($blogId)
+            ->select(array('a', 'c', 'author', 'editor'))
+            ->leftJoin('a.author', 'author')
+            ->leftJoin('a.editor', 'editor')
+            ->leftJoin('a.category', 'c')
+            ->getQuery();
+    }
+
+    public function getAllFullJoinFilterByBlogAndCategoryQuery($blogId, $categorySlug)
+    {
+        $qb = $this->getFilterByBlogQueryBuilder($blogId);
+        return $qb->select(array('a', 'c', 'author', 'editor'))
+            ->leftJoin('a.author', 'author')
+            ->leftJoin('a.editor', 'editor')
+            ->leftJoin('a.category', 'c')
+            ->andWhere($qb->expr()->eq('c.slug', ':slug'))
+            ->setParameter('slug', $categorySlug)
+            ->getQuery();
+    }
     public function getFilterByBlog($blogId, $limit=10, $offset=1)
     {
         return $this->getFilterByBlogQuery($blogId)

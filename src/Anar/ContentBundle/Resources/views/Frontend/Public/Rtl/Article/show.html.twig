@@ -1,0 +1,4 @@
+{{ article.abstract|raw }}
+    {% if article.category %}
+        {{ article.category.slug }}
+    {% endif %}

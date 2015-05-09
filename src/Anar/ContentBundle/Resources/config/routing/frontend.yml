@@ -1,0 +1,32 @@
+anar_content_frontend_article_index:
+    path:     /content/article/{page}
+    defaults: { _controller: AnarContentBundle:Frontend/Article:index, page: 1 }
+    host:     "{blogName}.%router.request_context.host%"
+    requirements: { page: \d+ }
+
+anar_content_frontend_article_index_path:
+    path:     /{blogName}/content/article/{page}
+    defaults: { _controller: AnarContentBundle:Frontend/Article:index, page: 1 }
+    requirements: { page: \d+ }
+
+anar_content_frontend_article_show:
+    path:     /content/article/{slug}
+    defaults: { _controller: AnarContentBundle:Frontend/Article:show }
+    host:     "{blogName}.%router.request_context.host%"
+    requirements: { slug: "[a-zA-Z0-9_]{4,255}" }
+
+anar_content_frontend_article_show_path:
+    path:     /{blogName}/content/article/{slug}
+    defaults: { _controller: AnarContentBundle:Frontend/Article:show }
+    requirements: { slug: "[a-zA-Z0-9_]{4,255}" }
+
+anar_content_frontend_category_index:
+    path:     /content/{slug}/category/{page}
+    defaults: { _controller: AnarContentBundle:Frontend/Category:index, page: 1 }
+    host:     "{blogName}.%router.request_context.host%"
+    requirements: { page: \d+, slug: "[a-zA-Z0-9_]{4,255}" }
+
+anar_content_frontend_category_index_path:
+    path:     /{blogName}/content/{slug}/category/{page}
+    defaults: { _controller: AnarContentBundle:Frontend/Category:index, page: 1 }
+    requirements: { page: \d+, slug: "[a-zA-Z0-9_]{4,255}" }
