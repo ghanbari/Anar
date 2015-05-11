@@ -20,7 +20,8 @@
     "jquery-ui": "~1.11.3",
     "jstree": "~3.0.9",
     "ckeditor": "~4.4.7",
-    "fontawesome": "~4.3.0"
+    "fontawesome": "~4.3.0",
+    "isotope": "~2.2.0"
   },
   "devDependencies": {}
 }

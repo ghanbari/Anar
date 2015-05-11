@@ -36,6 +36,14 @@
     </div>
     <hr id="cutter">
     <div class="row">
+        {% if form.vars.errors|length > 0 %}
+            <div class="col-md-12 col-sm-12">
+                <div class="alert alert-danger alert-dismissable">
+                    {{ form_errors(form) }}
+                    <i class="glyphicon glyphicon-remove cursor_pointer pull-left" data-dismiss="alert"></i>
+                </div>
+            </div>
+        {% endif %}
         <div class="col-md-8 col-sm-8" style="padding-right: 0">
             {{ form_start(form) }}
                 <div class="row">
@@ -118,28 +126,28 @@
         </div>
         <div class="col-md-4 col-sm-4" style="padding-right: 0">
             <div class="row" style="min-height: 38px">
-                <span class=""></span>
+                <span class="">{{ form_errors(form.title) }}</span>
             </div>
             <div class="row margin-top-10" style="min-height: 38px">
-                <span class=""></span>
+                <span class="">{{ form_errors(form.description) }}</span>
             </div>
             <div class="row margin-top-10 form_fields_message" style="min-height: 38px">
-                <span class=""></span>
+                <span class="">{{ form_errors(form.name) }}</span>
             </div>
             <div class="row margin-top-10" style="min-height: 38px">
-                <span class=""></span>
+                <span class="">{{ form_errors(form.theme) }}</span>
             </div>
             <div class="row margin-top-10" style="min-height: 38px">
-                <span class=""></span>
+                <span class="">{{ form_errors(form.onTree) }}</span>
             </div>
             <div class="row margin-top-10" style="min-height: 38px">
-                <span class=""></span>
+                <span class="">{{ form_errors(form.active) }}</span>
             </div>
             <div class="row margin-top-10" style="min-height: 38px">
-                <span class=""></span>
+                <span class="">{{ form_errors(form.parent) }}</span>
             </div>
             <div class="row margin-top-10" style="min-height: 38px">
-                <span class=""></span>
+                <span class="">{{ form_errors(form.apps) }}</span>
             </div>
         </div>
     </div>
@@ -157,17 +165,21 @@
         placeholder: "انتخاب کنید"
     });
 
+    $('.close_error').click(function(){
+        $(this).parent().remove();
+    });
+
     function check_name(){
         var name_val = $('.name_input').val();
         var checkPath = Routing.generate('anar_super_panel_blog_check_name',{'name': name_val});
         $.ajax({
             url: checkPath,
             error: function(jqXHR, textStatus, errorThrown){
-                $('.form_fields_message span').addClass('_error');
+                $('.form_fields_message span').removeClass('_success').addClass('_error');
                 $('.form_fields_message span').html(JSON.parse(jqXHR['responseText']).status.message);
             },
             success: function(data){
-                $('.form_fields_message span').addClass('_success');
+                $('.form_fields_message span').removeClass('_error').addClass('_success');
                 $('.form_fields_message span').html(data.status['message']);
             }
         })

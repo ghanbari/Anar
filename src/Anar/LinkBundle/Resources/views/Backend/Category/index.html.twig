@@ -1,44 +1,84 @@
-{% extends '::base.html.twig' %}
+{% extends "AnarBlogPanelBundle:Desktop:index.html.twig" %}
 
-{% block body -%}
-    <h1>LinkCategory list</h1>
+{% block csses %}
 
-    <table class="records_list">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Createdat</th>
-                <th>Updatedat</th>
-                <th>Createdby</th>
-                <th>Updatedby</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for category in categories %}
-            <tr>
-                <td>{{ category.name }}</td>
-                <td>{{ category.position }}</td>
-                <td>{% if category.createdAt %}{{ category.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if category.updatedAt %}{{ category.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ category.createdBy }}</td>
-                <td>{{ category.updatedBy }}</td>
-                <td>
-                <ul>
-                </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+{% endblock %}
 
-        <ul>
-        <li>
-            <a href="{{ path('anar_link_backend_category_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
-    {% endblock %}
+{% block Container %}
+<div class="col-md-11 col-sm-11 margin-left-45 tab_content_box margin-top-25 margin-bottom-25">
+    <div class="row">
+        <div class="col-md-6 col-sm-6 pull-right tittle_tab_content">
+            <i class="fa fa-list-alt"></i>
+            <span>لیست دسته بندی لینک ها</span>
+        </div>
+        <div class="col-md-1 col-sm-1 pull-left text-left">
+            <i onclick="location.href = '{{ path("anar_blog_panel_home") }}'" class="glyphicon glyphicon-remove cursor_pointer" style="cursor: pointer"></i>
+        </div>
+    </div>
+    <hr id="cutter">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 margin-top-10">
+            <table class="records_list">
+                <tr class="text-center">
+                    <td>{{ 'id'|trans }}</td>
+                    <td>{{ 'Name'|trans }}</td>
+                    <td>{{ 'Position'|trans }}</td>
+                    <td>{{ 'Createdat'|trans }}</td>
+                    <td>{{ 'Updatedat'|trans }}</td>
+                    <td>{{ 'Createdby'|trans }}</td>
+                    <td>{{ 'Updatedby'|trans }}</td>
+                    <td class="col-md-2 col-sm-2"></td>
+                </tr>
+                {% set i = 0 %}
+                {% for category in categories %}
+                    <tr data-id="{{ category.id }}" class="text-center {% if i % 2 == 0 %}t1{% else %}t2{% endif %}">
+                        <td>{{ category.id }}</td>
+                        <td>{{ category.name }}</td>
+                        {#<td>{{ category.description }}</td>#}
+                        <td>{{ category.position }}</td>
+                        <td>{% if category.createdAt %}{{ category.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        <td>{% if category.updatedAt %}{{ category.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        <td>{{ category.createdBy }}</td>
+                        <td>{{ category.updatedBy }}</td>
+                        <td>
+                            <button data-id="{{ category.id }}" style="padding: 5px" class="R_butt_green edit_category btn">ویرایش</button>
+                            <button data-id="{{ category.id }}" style="padding: 5px" class="R_butt_red delete_category btn">حذف</button>
+                        </td>
+                    </tr>
+                    {% set i = i + 1 %}
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        $('.delete_category').click(function(){
+            var id = $(this).attr('data-id');
+            var path = Routing.generate('anar_link_backend_category_delete',{ 'id': id });
+            $.ajax({
+                url: path,
+                type: "post",
+                data: {
+                    token: '{{ token }}'
+                },
+                success: function(data){
+                    Alert.render(data.status.message);
+                    $('tr[data-id='+ id +']').remove();
+                },
+                error: function(data){
+                    Alert.render(JSON.parse(data.responseText).status.message);
+                }
+            });
+        });
+
+        $('.edit_category').click(function(){
+            var id = $(this).attr('data-id');
+            var path = Routing.generate('anar_link_backend_category_edit',{ 'id': id });
+            location.href = path;
+        });
+    </script>
+{% endblock scripts %}

@@ -121,7 +121,7 @@ class BlogController extends Controller
         $blog = $em->getRepository('AnarEngineBundle:Blog')->find($id);
 
         if (!$blog) {
-            $this->add('error', $this->get('translator')->trans('blog.is.not.exists'));
+            $this->addFlash('error', $this->get('translator')->trans('blog.is.not.exists'));
             return $this->redirectToRoute('anar_super_panel_blog_index');
         }
 
