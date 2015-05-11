@@ -10,12 +10,17 @@ class ProfileController extends Controller
     {
         $blogManager = $this->get('anar_engine.manager.blog');
         $profileRepo = $this->getDoctrine()->getRepository('AnarProfessorBundle:Profile');
-        $planRepo = $this->getDoctrine()->getRepository('AnarProfessorBundle:Plan');
         $profile = $profileRepo->findOneByBlog($blogManager->getBlog());
-        $plans = $planRepo->findOneByProfile($blogManager->getBlog());
 
         if (is_null($profile)) {
             throw $this->createNotFoundException();
+        }
+
+        $planRepo = $this->getDoctrine()->getRepository('AnarProfessorBundle:Plan');
+        $plans = $planRepo->findByProfile($blogManager->getBlog());
+        $groupedPlans = array();
+        foreach ($plans as $plan) {
+            $groupedPlans[$plan->getDayNumber][] = $plan;
         }
 
         return $this->render(
