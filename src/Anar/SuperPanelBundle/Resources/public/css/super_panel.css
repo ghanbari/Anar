@@ -173,3 +173,13 @@
 .last_login time{
     line-height: 92px !important;
 }
+
+.alert.alert-danger ul{
+    width: 90%;
+    display: inline-block;
+}
+
+.alert.alert-danger ul li{
+    list-style: none;
+    display: inline-block;
+}

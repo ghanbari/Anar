@@ -111,6 +111,13 @@ body{
 	padding:15px 18px 15px 5px;
 	position:relative;
 }
+
+
+#rp-menuWrap #rp-nowRoleShowerWrap a{
+	text-decoration: none;
+    color: white;
+    font-size: 12pt;
+}
 #rp-nowRoleShowerWrap i.fa-bars{
 	display:none;
 }
