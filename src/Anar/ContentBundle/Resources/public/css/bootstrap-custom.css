@@ -721,7 +721,19 @@ embed, iframe {
 }
 
 .blog-listing.p-normal article .entry-content {
-    padding: 6% 10%
+    padding: 6% 10%;
+    position: relative;
+}
+
+
+.blog-listing.p-normal article .entry-content .entry-info {
+    bottom: 0;
+    width: 100%;
+}
+
+.blog-listing.p-normal article .entry-content .entry-info {
+    bottom: 0;
+    width: 100%;
 }
 
 .blog-listing.p-high article .entry-content {

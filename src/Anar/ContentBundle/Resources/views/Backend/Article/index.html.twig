@@ -22,7 +22,7 @@
                 <tr class="text-center">
                     <td>{{ 'id'|trans }}</td>
                     <td>{{ 'title'|trans }}</td>
-                    <td>{{ 'slug'|trans }}</td>
+                    {#<td>{{ 'slug'|trans }}</td>#}
                     <td>{{ 'visit'|trans }}</td>
                     <td>{{ 'enabled'|trans }}</td>
                     <td>{{ 'publication.start.date'|trans }}</td>
@@ -36,15 +36,15 @@
                 {% for article in articles %}
                     <tr data-id="{{ article.id }}" class="text-center {% if i % 2 == 0 %}t1{% else %}t2{% endif %}">
                         <td>{{ app.request.attributes.get('page') * loop.index }}</td>
-                        <td>{{ article.title }}</td>
-                        <td>{{ article.slug }}</td>
+                        <td>{{ article.title[0:20] }}</td>
+                        {#<td>{{ article.slug }}</td>#}
                         <td>{{ article.visit }}</td>
                         <td>{{ article.enabled }}</td>
-                        <td>{% if article.publicationStartDate %}{{ article.publicationStartDate|date('Y-m-d H:i:s') }}{% endif %}</td>
-                        <td>{% if article.publicationEndDate %}{{ article.publicationEndDate|date('Y-m-d H:i:s') }}{% endif %}</td>
-                        <td>{{ article.image }}</td>
-                        <td>{% if article.createdAt %}{{ article.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                        <td>{% if article.updatedAt %}{{ article.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        <td>{% if article.publicationStartDate %}{{ article.publicationStartDate|date('m/d') }}{% endif %}</td>
+                        <td>{% if article.publicationEndDate %}{{ article.publicationEndDate|date('m/d') }}{% endif %}</td>
+                        <td>{% if vich_uploader_asset(article,'imageFile')|length > 0 %}<img style="width: 50px;height: 50px" src="{{ vich_uploader_asset(article,'imageFile') }}">{% endif %}</td>
+                        <td>{% if article.createdAt %}{{ article.createdAt|date('m-d H:i') }}{% endif %}</td>
+                        <td>{% if article.updatedAt %}{{ article.updatedAt|date('m-d H:i') }}{% endif %}</td>
                         <td>
                             <button data-id="{{ article.id }}" style="padding: 5px" class="R_butt_green edit_article btn">ویرایش</button>
                             <button data-id="{{ article.id }}" style="padding: 5px" class="R_butt_red delete_article btn">حذف</button>

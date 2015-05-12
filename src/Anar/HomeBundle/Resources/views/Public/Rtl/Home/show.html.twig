@@ -15,6 +15,7 @@
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <link href="{{ asset('static/fontawesome/css/font-awesome.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('bundles/anarhome/css/bootstrap-rtl.min.css') }}" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="{{ asset('bundles/anarcontent/css/bootstrap-custom.css') }}">
     <link href="{{ asset('bundles/anarsuperpanel/css/addFonts.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('bundles/anarhome/css/site_template.css') }}" rel="stylesheet" type="text/css"/>
     <!-- END GLOBAL MANDATORY STYLES -->
@@ -35,7 +36,13 @@
     <!-- END THEME STYLES -->
 
     <link rel="shortcut icon" href="favicon.ico" />
+    <style>
+        nav{
+            margin: 0 0 -20px;
+        }
+    </style>
     {% block other_css %}
+
     {% endblock other_css %}
 </head>
 <!-- END HEAD -->

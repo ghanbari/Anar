@@ -108,7 +108,7 @@ nav ul li:hover span {
 nav ul li a {
     display: block;
     padding: 25px 40px;
-    color: #4d4d4d;
+    color: #0DA3E2;
     text-decoration: none;
 }
 
@@ -239,4 +239,8 @@ nav ul ul ul {
     .col-md-4{
         width: 32% !important;
     }
+}
+
+h1, h2, h3, h4, h5, h6{
+    font-family: "Yekan" !important;
 }

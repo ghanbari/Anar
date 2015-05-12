@@ -155,6 +155,7 @@
 .records_list .t1{
     background: #ffffff;
     color: #828282;
+    font-size: 10pt;
 }
 
 .records_list .t1 td{
@@ -164,6 +165,7 @@
 .records_list .t2{
     background: #f7f7f7;
     color: #828282;
+    font-size: 10pt;
 }
 
 .records_list .t2 td{
