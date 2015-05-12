@@ -1,1 +1,143 @@
-{{ profile.email }}
+{% extends "AnarHomeBundle:Public/Rtl/Home:show.html.twig" %}
+
+{% block other_css %}
+
+{% endblock other_css %}
+
+
+{% block slider %}
+{% endblock slider %}
+
+{% block container %}
+
+<div class="row margin-top-25">
+    <div class="show_profile_white">
+        <div class="col-md-12 col-sm-12 profile_nav1">
+            <a href="#1" data-action="1" class="profile_tab_element active" id="1">مشخصات فردی</a>
+            <a href="#2" class="profile_tab_element" data-action="2" id="2">بیوگرافی</a>
+            <a href="#3" class="profile_tab_element" data-action="3" id="3">برنامه هفتگی</a>
+            <a href="{{ path('anar_professor_frontend_dissertation_show',{'blogName': blog.name}) }}" class="profile_tab_element" data-action="4" id="4">پایان نامه ها</a>
+        </div>
+        <div class="col-md-12 col-sm-12 profile_tab_content margin-left-25 display-block" data-action="1">
+            <div class="row">
+                <div class="col-md-9 col-sm-9">
+                    <div class="row">
+                        <div class="col-md-12">
+                            {{ profile.telephone }}
+                        </div>
+                    </div>
+                    <div class="row margin-top-10">
+                        <div class="col-md-12">
+                            {{ profile.email }}
+                        </div>
+                    </div>
+                    <div class="row margin-top-10">
+                        <div class="col-md-12">
+                            {{ profile.birthday|date }}
+                        </div>
+                    </div>
+                    <div class="row margin-top-10">
+                        <div class="col-md-12">
+                            {{ profile.website }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-3">
+                    <img src="{{ vich_uploader_asset(profile, 'avatarFile') }}" style="width: 100%">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-sm-12 profile_tab_content" data-action="2">
+            <div class="row margin-top-25">
+                <div class="col-md-12">
+                    <div class="bio_header">زندگی نامه</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="bio_content">{{ profile.bio }}</div>
+                </div>
+            </div>
+            <div class="row margin-top-25">
+                <div class="col-md-12">
+                    <div class="bio_header">مهارت ها</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="bio_content">{{ profile.skill }}</div>
+                </div>
+            </div>
+            <div class="row margin-top-25">
+                <div class="col-md-12">
+                    <div class="bio_header">علاقه مندی ها</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="bio_content">{{ profile.favorite }}</div>
+                </div>
+            </div>
+            <div class="row margin-top-25">
+                <div class="col-md-12">
+                    <div class="bio_header">مقالات</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="bio_content">{{ profile.article }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-sm-12 profile_tab_content" data-action="3">
+            <div class="row">
+                {#<script>#}
+                    {#{% if plans[0] is defined %}#}
+                        {#var saturday = [];#}
+                        {#{% for item in plans[0] %}#}
+                            {#saturday.append({'title', '{{ item.title}}');#}
+                        {#{% endfor %}#}
+                    {#{% endif %}#}
+                {#</script>#}
+                {% for weekday in plans|keys %}
+                <div class="col-md-6 col-sm-6 margin-top-20">
+                    <div class="row">
+                        <div class="col-md-2 col-sm-2 text-right">{% if weekday == 0 %}شنبه{% elseif weekday == 1 %}یکشنبه{% elseif weekday == 2 %}دوشنبه{% elseif weekday == 3 %}سه شنبه{% elseif weekday == 4 %}چهارشنبه{% elseif weekday == 5 %}پنجشنبه{% elseif weekday == 6 %}جمعه{% endif %}</div>
+                        <div class="col-md-10 col-sm-10">
+                            <table class="table table-hover table-striped">
+                                {% for plan in plans[weekday] %}
+                                <tr>
+                                    <td>{{ plan.title }}</td>
+                                    <td><span>{{ plan.startTime|date('H:i') }}</span>الی<span>{{ plan.endTime|date('H:i') }}</span></td>
+                                </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock container %}
+
+{% block other_scripts %}
+    <script>
+        var active = $('a:target').attr('data-action');
+        $('.profile_tab_element.active').removeClass('active');
+        $('a:target').addClass('active');
+        $('.profile_tab_content').css('display','none');
+        $('.profile_tab_content[data-action = '+ active +']').css('display','block');
+
+        $('.profile_tab_element').click(function(){
+            var data_action = $(this).attr('data-action');
+            $('.profile_tab_content').css('display','none');
+            $('.profile_tab_content[data-action = '+ data_action +']').css('display','block');
+            $('.profile_tab_element.active').removeClass('active');
+            $(this).addClass('active');
+        });
+    </script>
+{% endblock other_scripts %}
+

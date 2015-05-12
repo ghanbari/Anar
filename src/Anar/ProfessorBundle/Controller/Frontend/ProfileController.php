@@ -17,17 +17,19 @@ class ProfileController extends Controller
         }
 
         $planRepo = $this->getDoctrine()->getRepository('AnarProfessorBundle:Plan');
-        $plans = $planRepo->findByProfile($blogManager->getBlog());
+        $plans = $planRepo->findByProfile($profile->getId());
         $groupedPlans = array();
         foreach ($plans as $plan) {
-            $groupedPlans[$plan->getDayNumber][] = $plan;
+            $groupedPlans[$plan->getDayNumber()][] = $plan;
         }
+
+        ksort($groupedPlans);
 
         return $this->render(
             $blogManager->getTheme('AnarProfessorBundle:Profile:show.html.twig', 'Frontend'),
             array(
                 'profile' => $profile,
-                'plans' =>$plans
+                'plans' => $groupedPlans
             )
         );
     }

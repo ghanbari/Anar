@@ -41,6 +41,14 @@
     </div>
     <hr id="cutter">
     <div class="row">
+        {% if form.vars.errors|length > 0 %}
+            <div class="col-md-12 col-sm-12">
+                <div class="alert alert-danger alert-dismissable">
+                    {{ form_errors(form) }}
+                    <i class="glyphicon glyphicon-remove cursor_pointer pull-left" data-dismiss="alert"></i>
+                </div>
+            </div>
+        {% endif %}
         <div class="col-md-8 col-sm-8 pull-right margin-top-10">
             <script>
                 var university = '{{ form_widget(form.educations.vars.prototype.university,{ 'attr' : {'class':'form-control'} }) }}';
@@ -207,6 +215,38 @@
                 </div>
             </div>
             {{ form_end(form) }}
+        </div>
+        <div class="col-md-4 col-sm-4">
+            <div class="row" style="min-height: 38px">
+                <span class="">{{ form_errors(form.telephone) }}</span>
+            </div>
+            <div class="row margin-top-10" style="min-height: 38px">
+                <span class="">{{ form_errors(form.email) }}</span>
+            </div>
+            <div class="row margin-top-10 form_fields_message" style="min-height: 38px">
+                <span class="">{{ form_errors(form.birthday) }}</span>
+            </div>
+            <div class="row margin-top-10" style="min-height: 38px">
+                <span class="">{{ form_errors(form.website) }}</span>
+            </div>
+            <div class="row margin-top-10" style="min-height: 180px">
+                <span class="">{{ form_errors(form.avatarFile) }}</span>
+            </div>
+            <div class="row margin-top-10" style="min-height: 38px">
+                <span class="">{{ form_errors(form.bio) }}</span>
+            </div>
+            <div class="row margin-top-10" style="min-height: 38px">
+                <span class="">{{ form_errors(form.jobStartedAt) }}</span>
+            </div>
+            <div class="row margin-top-10" style="min-height: 38px">
+                <span class="">{{ form_errors(form.skill) }}</span>
+            </div>
+            <div class="row margin-top-10" style="min-height: 38px">
+                <span class="">{{ form_errors(form.favorite) }}</span>
+            </div>
+            <div class="row margin-top-10" style="min-height: 38px">
+                <span class="">{{ form_errors(form.article) }}</span>
+            </div>
         </div>
     </div>
 </div>

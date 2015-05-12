@@ -244,3 +244,60 @@ nav ul ul ul {
 h1, h2, h3, h4, h5, h6{
     font-family: "Yekan" !important;
 }
+
+.show_profile_white{
+    background: #ffffff;
+    min-height: 650px;
+    margin-bottom: 50px;
+    padding: 15px;
+    box-shadow: 0 0 2px #aaa;
+}
+
+.profile_nav1 > a {
+    text-decoration: none;
+    background: #a9a9a9;
+    display: inline-block;
+    color: white;
+    padding: 7px 20px;
+    font-size: 13pt;
+    margin: 0 5px;
+    border-radius: 7px 7px 0 0;
+    cursor: pointer;
+}
+
+.profile_nav1 > a.active {
+    background: #0DA3E2;
+}
+.profile_nav1 {
+    border-bottom: solid 3px #0DA3E2;
+}
+
+.margin-top-10{
+    margin-top: 10px;
+}
+
+.profile_tab_content{
+    display: none;
+    -webkit-transition: 0.5 all;
+    -moz-transition: 0.5 all;
+    -ms-transition: 0.5 all;
+    -o-transition: 0.5 all;
+    transition: 0.5 all;
+}
+
+.profile_tab_content.display-block{
+    display: block;
+}
+
+.bio_header{
+    padding: 15px;
+    background: #5F5F5F;
+    color: white;
+}
+
+.bio_content{
+    background: #ffffff;
+    padding: 15px;
+    color: #4c4c4c;
+    box-shadow: 0 0 2px #aaa;
+}
