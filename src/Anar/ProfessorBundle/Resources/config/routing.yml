@@ -15,3 +15,7 @@ anar_professor_backend_plan:
     prefix:   /blogpanel/professor/plan
     options:
         i18n: false
+
+anar_professor_frontend_profile:
+    resource: "@AnarProfessorBundle/Resources/config/routing/frontend/profile.yml"
+    requirements: { blogName: "[a-z]{4,100}" }

@@ -1,0 +1,19 @@
+anar_professor_frontend_profile_show:
+    path:     /professor/profile
+    defaults: { _controller: AnarProfessorBundle:Frontend/Profile:show }
+    host:     "{blogName}.%router.request_context.host%"
+
+anar_professor_frontend_profile_show_path:
+    path:     /{blogName}/professor/profile
+    defaults: { _controller: AnarProfessorBundle:Frontend/Profile:show }
+
+anar_professor_frontend_dissertation_show:
+    path:     /professor/dissertation/{page}
+    defaults: { _controller: AnarProfessorBundle:Frontend/StudentsDissertation:show, page: 1 }
+    host:     "{blogName}.%router.request_context.host%"
+    requirements: { page: \d+ }
+
+anar_professor_frontend_dissertation_show_path:
+    path:     /{blogName}/professor/dissertation/{page}
+    defaults: { _controller: AnarProfessorBundle:Frontend/StudentsDissertation:show, page: 1 }
+    requirements: { page: \d+ }

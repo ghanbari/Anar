@@ -2,10 +2,12 @@
 
 namespace Anar\ContentBundle\Entity;
 
+use Knp\Menu\NodeInterface;
+
 /**
  * Category
  */
-class Category
+class Category implements NodeInterface
 {
     /**
      * @var integer
@@ -76,6 +78,26 @@ class Category
      * @var string
      */
     private $currentLocale;
+
+    /**
+     * @var integer
+     */
+    private $lft;
+
+    /**
+     * @var integer
+     */
+    private $rgt;
+
+    /**
+     * @var integer
+     */
+    private $root;
+
+    /**
+     * @var integer
+     */
+    private $lvl;
 
     /**
      * Constructor
@@ -429,5 +451,128 @@ class Category
     public function setCurrentLocale($currentLocale)
     {
         $this->currentLocale = $currentLocale;
+    }
+
+    /**
+     * Set lft
+     *
+     * @param integer $lft
+     *
+     * @return Category
+     */
+    public function setLft($lft)
+    {
+        $this->lft = $lft;
+
+        return $this;
+    }
+
+    /**
+     * Get lft
+     *
+     * @return integer
+     */
+    public function getLft()
+    {
+        return $this->lft;
+    }
+
+    /**
+     * Set rgt
+     *
+     * @param integer $rgt
+     *
+     * @return Category
+     */
+    public function setRgt($rgt)
+    {
+        $this->rgt = $rgt;
+
+        return $this;
+    }
+
+    /**
+     * Get rgt
+     *
+     * @return integer
+     */
+    public function getRgt()
+    {
+        return $this->rgt;
+    }
+
+    /**
+     * Set root
+     *
+     * @param integer $root
+     *
+     * @return Category
+     */
+    public function setRoot($root)
+    {
+        $this->root = $root;
+
+        return $this;
+    }
+
+    /**
+     * Get root
+     *
+     * @return integer
+     */
+    public function getRoot()
+    {
+        return $this->root;
+    }
+
+    /**
+     * Set lvl
+     *
+     * @param integer $lvl
+     *
+     * @return Category
+     */
+    public function setLvl($lvl)
+    {
+        $this->lvl = $lvl;
+
+        return $this;
+    }
+
+    /**
+     * Get lvl
+     *
+     * @return integer
+     */
+    public function getLvl()
+    {
+        return $this->lvl;
+    }
+
+    /**
+     * Get the name of the node
+     *
+     * Each child of a node must have a unique name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->getTitle();
+    }
+
+    /**
+     * Get the options for the factory to create the item for this node
+     *
+     * @return array
+     */
+    public function getOptions()
+    {
+        return array(
+            'route' => 'anar_content_frontend_category_index',
+            'routeParameters' => array(
+                'slug' => $this->getSlug()
+            ),
+        );
     }
 }
