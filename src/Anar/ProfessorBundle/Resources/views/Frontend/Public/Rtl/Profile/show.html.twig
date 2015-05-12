@@ -14,40 +14,38 @@
     <div class="show_profile_white">
         <div class="col-md-12 col-sm-12 profile_nav1">
             <a href="#1" data-action="1" class="profile_tab_element active" id="1">مشخصات فردی</a>
-            <a href="#2" class="profile_tab_element" data-action="2" id="2">بیوگرافی</a>
+            {#<a href="#2" class="profile_tab_element" data-action="2" id="2">بیوگرافی</a>#}
             <a href="#3" class="profile_tab_element" data-action="3" id="3">برنامه هفتگی</a>
             <a href="{{ path('anar_professor_frontend_dissertation_show',{'blogName': blog.name}) }}" class="profile_tab_element" data-action="4" id="4">پایان نامه ها</a>
         </div>
-        <div class="col-md-12 col-sm-12 profile_tab_content margin-left-25 display-block" data-action="1">
+        <div class="col-md-12 col-sm-12 profile_tab_content margin-left-25 margin-top-25 display-block" data-action="1">
             <div class="row">
-                <div class="col-md-9 col-sm-9">
-                    <div class="row">
-                        <div class="col-md-12">
-                            {{ profile.telephone }}
-                        </div>
-                    </div>
-                    <div class="row margin-top-10">
-                        <div class="col-md-12">
-                            {{ profile.email }}
-                        </div>
-                    </div>
-                    <div class="row margin-top-10">
-                        <div class="col-md-12">
-                            {{ profile.birthday|date }}
-                        </div>
-                    </div>
-                    <div class="row margin-top-10">
-                        <div class="col-md-12">
-                            {{ profile.website }}
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-3">
+                <div class="col-md-4 col-sm-4">
                     <img src="{{ vich_uploader_asset(profile, 'avatarFile') }}" style="width: 100%">
                 </div>
+                <div class="col-md-8 col-sm-8">
+                    <div>
+                        <h3 style="display: inline-block">نام و نام خانوادگی: </h3>
+                        <h3 style="display: inline-block">امید نعمت اللهی</h3>
+                    </div>
+                    <div>
+                        <h4 style="display: inline-block; margin-top: 0.5em">شماره تماس: </h4>
+                        <h4 style="display: inline-block; margin-top: 0.5em">{{ profile.telephone }}</h4>
+                    </div>
+                    <div>
+                        <h4 style="display: inline-block; margin-top: 0.5em">نمابر: </h4>
+                        <h4 style="display: inline-block; margin-top: 0.5em">{{ profile.email }}</h4>
+                    </div>
+                    <div>
+                        <h4 style="display: inline-block; margin-top: 0.5em">تاریخ تولد: </h4>
+                        <h4 style="display: inline-block; margin-top: 0.5em">{{ profile.birthday|date('Y/m/d') }}</h4>
+                    </div>
+                    <div>
+                        <h4 style="display: inline-block; margin-top: 0.5em">وب سایت: </h4>
+                        <h4 style="display: inline-block; margin-top: 0.5em">{{ profile.website }}</h4>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="col-md-12 col-sm-12 profile_tab_content" data-action="2">
             <div class="row margin-top-25">
                 <div class="col-md-12">
                     <div class="bio_header">زندگی نامه</div>

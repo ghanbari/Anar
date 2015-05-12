@@ -242,7 +242,7 @@ nav ul ul ul {
 }
 
 h1, h2, h3, h4, h5, h6{
-    font-family: "Yekan" !important;
+    font-family: "Roya" !important;
 }
 
 .show_profile_white{
@@ -300,4 +300,12 @@ h1, h2, h3, h4, h5, h6{
     padding: 15px;
     color: #4c4c4c;
     box-shadow: 0 0 2px #aaa;
+}
+
+.profile-container{
+    background: #F7F7F7;
+    box-shadow: 0 0 3px #aaa;
+    padding: 15px;
+    margin-top: 25px;
+    text-align: center;
 }
