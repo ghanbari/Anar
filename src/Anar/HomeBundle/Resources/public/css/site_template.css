@@ -1,9 +1,14 @@
+body{
+    background: #F0F0F0 !important;
+}
+
 nav{
     margin: 0 0 -10px;
 }
 
 nav ul ul {
     display: none;
+    width: 170px;
 }
 
 nav ul li:hover > ul {
@@ -32,7 +37,15 @@ nav > ul > li > a{
     border-top: 2px solid #ffffff;
 }
 
+nav > ul > li > span{
+    border-top: 2px solid #ffffff;
+}
+
 nav > ul > li > a:hover{
+    border-top: 2px solid #0DA3E2;
+}
+
+nav > ul > li > span:hover{
     border-top: 2px solid #0DA3E2;
 }
 
@@ -42,7 +55,28 @@ nav ul li.current > a {
     color: #0DA3E2;
 }
 
+nav ul li.current > span {
+    background: #FCFCFC;
+    border-top: 2px solid #0DA3E2;
+    color: #0DA3E2;
+}
+
 nav ul li.current > a::after {
+    top: 0;
+    width: 0;
+    height: 0;
+    right: 50%;
+    z-index: 2;
+    content: " ";
+    display: block;
+    margin-right: -3px;
+    position: absolute;
+    border-right: 8px solid transparent;
+    border-left: 8px solid transparent;
+    border-top: 6px solid #0DA3E2;
+}
+
+nav ul li.current > span::after {
     top: 0;
     width: 0;
     height: 0;
@@ -66,7 +100,19 @@ nav ul li:hover a {
     text-decoration: none;
 }
 
+nav ul li:hover span {
+    color: #0DA3E2;
+    text-decoration: none;
+}
+
 nav ul li a {
+    display: block;
+    padding: 25px 40px;
+    color: #4d4d4d;
+    text-decoration: none;
+}
+
+nav ul li span {
     display: block;
     padding: 25px 40px;
     color: #4d4d4d;
@@ -88,7 +134,7 @@ nav ul ul li {
     position: relative;
 }
 nav ul ul li a {
-    padding: 7px 40px;
+    padding: 7px 20px;
     color: #fff;
 }
 nav ul ul li a:hover {
@@ -159,4 +205,38 @@ nav ul ul ul {
 
 .links a{
     margin-bottom: 5px;
+}
+
+.margin-top-25{
+    margin-top: 25px;
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+    .col-md-8{
+        width: 64% !important;
+    }
+
+    .col-md-4{
+        width: 32% !important;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+    .col-md-8{
+        width: 64% !important;
+    }
+
+    .col-md-4{
+        width: 32% !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    .col-md-8{
+        width: 64% !important;
+    }
+
+    .col-md-4{
+        width: 32% !important;
+    }
 }

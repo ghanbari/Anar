@@ -904,6 +904,17 @@ Content and content elements.
 	display: inline-block;
 }
 
+.service-box .service-box-heading a {
+	color: #444;
+	font-size: 21px;
+	line-height: 25px;
+	font-weight: 400;
+	margin-bottom: 10px;
+	margin-right: 10px;
+	display: inline-block;
+    text-decoration: none;
+}
+
 .service-box .service-box-heading [class^="icon-"],
 .service-box [class*=" icon-"] {
   display: inline-block;

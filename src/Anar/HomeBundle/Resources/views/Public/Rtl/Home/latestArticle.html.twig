@@ -10,7 +10,7 @@
             {% endif %}
             <em><i class="fa fa-check {{ color }}"></i></em>
             {#<a href="{{ path('anar_content_article_frontend_show') }}">#}
-                <span>{{ article.title[0:25] }} {% if article.title|length > 25 %}...{% endif %}</span>
+                <a href="{{ path('anar_content_frontend_article_show',{'slug': article.slug}) }}"> {{ article.title[0:25] }} {% if article.title|length > 25 %}...{% endif %}</a>
             {#</a>#}
         </div>
         <p style="text-align: justify">{{ article.abstract[0:200]|raw }}  {% if article.abstract|length > 200 %}...{% endif %}</p>
