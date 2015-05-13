@@ -129,7 +129,7 @@
             {% endfor %}
             {% for article in articles %}
                 {% if article.image is not null %}
-                    {% if imageCount > 5 %}
+                    {% if imageCount > (articles|length / 2) %}
                         {% if loop.index % 2 == 0 %}
                             {% set imageCount = imageCount - 1 %}
                             {% set size = 8 %}
@@ -178,7 +178,7 @@
                             </p>
                         </div>
                         <h2 class="post-title"><a href="{{ path('anar_content_frontend_article_show',{'slug': article.slug }) }}"
-                                                  rel="bookmark" title="Exploring the New Blog Theme">{{ article.slug }}</a></h2>
+                                                  rel="bookmark" title="Exploring the New Blog Theme">{{ article.title }}</a></h2>
 
                         <div class="post-content">
                             <p>{{ article.abstract|raw }}</p>
