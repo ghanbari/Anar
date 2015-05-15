@@ -7,17 +7,6 @@
 
 {% block container %}
 
-{% for message in app.session.getFlashBag().get('info') %}
-    {{ message|trans }}
-{% endfor %}
-
-{% for message in app.session.getFlashBag().get('errors') %}
-    {{ message|trans }}
-{% endfor %}
-
-{% for message in app.session.getFlashBag().get('warning') %}
-    {{ message|trans }}
-{% endfor %}
 
 
 <div class="col-md-10 col-sm-10 col-md-offset-1 col-sm-offset-1 tab_content_box margin-top-25 margin-bottom-25">
@@ -32,6 +21,30 @@
     </div>
     <hr id="cutter">
     <div class="row">
+        {% for message in app.session.getFlashBag().get('info') %}
+        <div class="col-md-12 col-sm-12">
+            <div class="alert alert-success alert-dismissable">
+                {{ message|trans }}
+                <i class="glyphicon glyphicon-remove cursor_pointer pull-left" data-dismiss="alert"></i>
+            </div>
+        </div>
+        {% endfor %}
+        {% for message in app.session.getFlashBag().get('errors') %}
+        <div class="col-md-12 col-sm-12">
+            <div class="alert alert-danger alert-dismissable">
+                {{ message|trans }}
+                <i class="glyphicon glyphicon-remove cursor_pointer pull-left" data-dismiss="alert"></i>
+            </div>
+        </div>
+        {% endfor %}
+        {% for message in app.session.getFlashBag().get('warning') %}
+        <div class="col-md-12 col-sm-12">
+            <div class="alert alert-warning alert-dismissable">
+                {{ message|trans }}
+                <i class="glyphicon glyphicon-remove cursor_pointer pull-left" data-dismiss="alert"></i>
+            </div>
+        </div>
+        {% endfor %}
         <div class="col-md-12 col-sm-12 margin-top-10">
             <button type="button" class="btn-primary-costum" onclick="location.href = '{{ path("anar_super_panel_blog_new") }}'">
                 <i class="fa fa-plus"></i> ایجاد وبلاگ جدید
@@ -62,6 +75,7 @@
     <script src="{{ asset('bundles/anarsuperpanel/plugins/Alert/alert.js') }}"></script>
 
     <script>
+
         var errors = [];
         {% for message in app.session.getFlashBag().get('error') %}
             errors.push('{{ message }}');
