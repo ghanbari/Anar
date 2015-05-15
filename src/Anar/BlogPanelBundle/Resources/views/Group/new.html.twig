@@ -1,6 +1,7 @@
 {% extends "AnarBlogPanelBundle:Desktop:index.html.twig" %}
 
 {% block csses %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/css/bootstrap-switch-metro-rtl.css') }}">
     <style>
         .select{
             width: 100%;
@@ -26,6 +27,14 @@
     </div>
     <hr id="cutter">
     <div class="row">
+        {% if form.vars.errors|length > 0 %}
+            <div class="col-md-12 col-sm-12">
+                <div class="alert alert-danger alert-dismissable">
+                    {{ form_errors(form) }}
+                    <i class="glyphicon glyphicon-remove cursor_pointer pull-left" data-dismiss="alert"></i>
+                </div>
+            </div>
+        {% endif %}
         <div class="col-md-8 col-sm-8 pull-right margin-top-10">
             {{ form_start(form, { 'attr': {'class': 'create_group'}}) }}
             <div class="row">
@@ -64,12 +73,23 @@
             </div>
             {{ form_end(form) }}
         </div>
+        <div class="col-md-4 col-sm-4" style="padding-right: 0">
+            <div class="row" style="min-height: 38px">
+                <span class="_error">{{ form_errors(form.name) }}</span>
+            </div>
+            <div class="row margin-top-10 form_fields_message" style="min-height: 38px">
+                <span class="_error">{{ form_errors(form.default) }}</span>
+            </div>
+            <div class="row margin-top-10" style="min-height: 38px">
+                <span class="_error">{{ form_errors(form.roles) }}</span>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock Container %}
 
 {% block scripts %}
-    {{ parent() }}
+    <script src="{{ asset('bundles/anarsuperpanel/js/bootstrap-switch.min.js') }}"></script>
     <script>
         $('.current_ancestor').removeClass('minus').addClass('open');
         $('.current_ancestor .menu-items i').attr('class','fa fa-minus-square-o');

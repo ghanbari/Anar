@@ -27,47 +27,54 @@
     </div>
     <hr id="cutter">
     <div class="row">
-        <div class="col-md-8 col-sm-8 pull-right">
-            {#{{ form(searchForm) }}#}
+        {% if searchForm.vars.errors|length > 0 %}
+            <div class="col-md-12 col-sm-12">
+                <div class="alert alert-danger alert-dismissable">
+                    {{ form_errors(searchForm) }}
+                    <i class="glyphicon glyphicon-remove cursor_pointer pull-left" data-dismiss="alert"></i>
+                </div>
+            </div>
+        {% endif %}
+        <div class="col-md-9 col-sm-9 pull-right">
             {{ form_start(searchForm, { 'attr': {'class': 'search_user'}}) }}
             <div class="row">
-                {{ form_label(searchForm.username, '', {'label_attr': {'class': 'col-md-2 col-sm-2 pull-right control-label text-left'} }) }}
+                {{ form_label(searchForm.username, '', {'label_attr': {'class': 'col-md-3 col-sm-3 pull-right control-label text-left'} }) }}
                 <div class="col-md-9 col-sm-9">
                     {{ form_widget(searchForm.username, {'attr': {'class': 'form-control'}}) }}
                 </div>
             </div>
             <div class="row margin-top-10">
-                {{ form_label(searchForm.email, '', {'label_attr': {'class': 'col-md-2 col-sm-2 pull-right control-label text-left'} }) }}
+                {{ form_label(searchForm.email, '', {'label_attr': {'class': 'col-md-3 col-sm-3 pull-right control-label text-left'} }) }}
                 <div class="col-md-9 col-sm-9">
                     {{ form_widget(searchForm.email, {'attr': {'class': 'form-control'}}) }}
                 </div>
             </div>
             <div class="row margin-top-10">
-                {{ form_label(searchForm.fname, '', {'label_attr': {'class': 'col-md-2 col-sm-2 pull-right control-label text-left'} }) }}
+                {{ form_label(searchForm.fname, '', {'label_attr': {'class': 'col-md-3 col-sm-3 pull-right control-label text-left'} }) }}
                 <div class="col-md-9 col-sm-9">
                     {{ form_widget(searchForm.fname, {'attr': {'class': 'form-control'}}) }}
                 </div>
             </div>
             <div class="row margin-top-10">
-                {{ form_label(searchForm.lname, '', {'label_attr': {'class': 'col-md-2 col-sm-2 pull-right control-label text-left'} }) }}
+                {{ form_label(searchForm.lname, '', {'label_attr': {'class': 'col-md-3 col-sm-3 pull-right control-label text-left'} }) }}
                 <div class="col-md-9 col-sm-9">
                     {{ form_widget(searchForm.lname, {'attr': {'class': 'form-control'}}) }}
                 </div>
             </div>
             <div class="row margin-top-10">
-                {{ form_label(searchForm.staffCode, '', {'label_attr': {'class': 'col-md-2 col-sm-2 pull-right control-label text-left'} }) }}
+                {{ form_label(searchForm.staffCode, '', {'label_attr': {'class': 'col-md-3 col-sm-3 pull-right control-label text-left'} }) }}
                 <div class="col-md-9 col-sm-9">
                     {{ form_widget(searchForm.staffCode, {'attr': {'class': 'form-control'}}) }}
                 </div>
             </div>
             <div class="row margin-top-10">
-                {{ form_label(searchForm.grade, '', {'label_attr': {'class': 'col-md-2 col-sm-2 pull-right control-label text-left'} }) }}
+                {{ form_label(searchForm.grade, '', {'label_attr': {'class': 'col-md-3 col-sm-3 pull-right control-label text-left'} }) }}
                 <div class="col-md-9 col-sm-9">
                     {{ form_widget(searchForm.grade, {'attr': {'class': 'select'}}) }}
                 </div>
             </div>
             <div class="row margin-top-10">
-                {{ form_label(searchForm.enabled, '', {'label_attr': {'class': 'col-md-2 col-sm-2 pull-right control-label text-left'} }) }}
+                {{ form_label(searchForm.enabled, '', {'label_attr': {'class': 'col-md-3 col-sm-3 pull-right control-label text-left'} }) }}
                 <div class="col-md-9 col-sm-9">
                     <div class="make-switch">
                         {{ form_widget(searchForm.enabled, {'attr': {'class': 'toggle'}}) }}
@@ -75,7 +82,7 @@
                 </div>
             </div>
             <div class="row margin-top-10">
-                {{ form_label(searchForm.expired, '', {'label_attr': {'class': 'col-md-2 col-sm-2 pull-right control-label text-left'} }) }}
+                {{ form_label(searchForm.expired, '', {'label_attr': {'class': 'col-md-3 col-sm-3 pull-right control-label text-left'} }) }}
                 <div class="col-md-9 col-sm-9">
                     <div class="make-switch">
                         {{ form_widget(searchForm.expired, {'attr': {'class': 'toggle'}}) }}
@@ -84,13 +91,39 @@
             </div>
             <div class="row margin-top-10">
                 <div class="form-group">
-                    <label class="col-md-2 col-sm-2 pull-right control-label text-left"></label>
+                    <label class="col-md-3 col-sm-3 pull-right control-label text-left"></label>
                     <div class="col-md-9 col-sm-9">
                         {{ form_widget(searchForm.submit, {'attr': {'class': 'btn R_butt_blue search_submit','data-toggle': 'modal', 'href': '#show-users'}}) }}
                     </div>
                 </div>
             </div>
             {{ form_end(searchForm) }}
+        </div>
+        <div class="col-md-3 col-sm-3" style="padding-right: 0">
+            <div class="row" style="min-height: 38px">
+                <span class="_error">{{ form_errors(searchForm.username) }}</span>
+            </div>
+            <div class="row margin-top-10 form_fields_message" style="min-height: 38px">
+                <span class="_error">{{ form_errors(searchForm.email) }}</span>
+            </div>
+            <div class="row margin-top-10" style="min-height: 38px">
+                <span class="_error">{{ form_errors(searchForm.fname) }}</span>
+            </div>
+            <div class="row margin-top-10" style="min-height: 38px">
+                <span class="_error">{{ form_errors(searchForm.lname) }}</span>
+            </div>
+            <div class="row margin-top-10" style="min-height: 38px">
+                <span class="_error">{{ form_errors(searchForm.staffCode) }}</span>
+            </div>
+            <div class="row margin-top-10" style="min-height: 38px">
+                <span class="_error">{{ form_errors(searchForm.grade) }}</span>
+            </div>
+            <div class="row margin-top-10" style="min-height: 38px">
+                <span class="_error">{{ form_errors(searchForm.enabled) }}</span>
+            </div>
+            <div class="row margin-top-10" style="min-height: 38px">
+                <span class="_error">{{ form_errors(searchForm.expired) }}</span>
+            </div>
         </div>
     </div>
     <div class="row">

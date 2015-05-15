@@ -29,6 +29,14 @@
     </div>
     <hr id="cutter">
     <div class="row">
+        {% if form.vars.errors|length > 0 %}
+            <div class="col-md-12 col-sm-12">
+                <div class="alert alert-danger alert-dismissable">
+                    {{ form_errors(form) }}
+                    <i class="glyphicon glyphicon-remove cursor_pointer pull-left" data-dismiss="alert"></i>
+                </div>
+            </div>
+        {% endif %}
         <div class="col-md-12 col-sm-12 pull-right margin-top-10">
             {{ form_start(form, { 'attr': {'class': 'article_form'}}) }}
             <div class="row">
@@ -37,6 +45,9 @@
                     <div class="col-md-5 col-sm-5 pull-right">
                         {{ form_widget(form.title,{ 'attr' : {'class':'form-control'} }) }}
                     </div>
+                    <div class="col-md-5 col-sm-5">
+                        <span class="_error">{{ form_errors(form.title) }}</span>
+                    </div>
                 </div>
             </div>
             <div class="row margin-top-10">
@@ -44,6 +55,9 @@
                     {{ form_label(form.slug, '', {'label_attr': {'class': 'col-md-2 col-sm-2 pull-right control-label text-left'} }) }}
                     <div class="col-md-5 col-sm-5 pull-right">
                         {{ form_widget(form.slug,{ 'attr' : {'class':'form-control'} }) }}
+                    </div>
+                    <div class="col-md-5 col-sm-5">
+                        <span class="_error">{{ form_errors(form.slug) }}</span>
                     </div>
                 </div>
             </div>
@@ -56,12 +70,24 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-2 col-sm-2"></div>
+                <div class="col-md-9 col-sm-9">
+                    <span class="_error">{{ form_errors(form.abstract) }}</span>
+                </div>
+            </div>
             <div class="row margin-top-10">
                 <div class="form-group">
                     {{ form_label(form.article, '', {'label_attr': {'class': 'col-md-2 col-sm-2 pull-right control-label text-left'} }) }}
                     <div class="col-md-9 col-sm-9 pull-right">
                         {{ form_widget(form.article,{ 'attr' : {'class':'form-control'} }) }}
                     </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2 col-sm-2"></div>
+                <div class="col-md-9 col-sm-9">
+                    <span class="_error">{{ form_errors(form.article) }}</span>
                 </div>
             </div>
             <hr style="margin: 30px 0">
@@ -71,6 +97,9 @@
                     <div class="col-md-5 col-sm-5 pull-right">
                         {{ form_widget(form.category,{ 'attr' : {'class':'select'} }) }}
                     </div>
+                    <div class="col-md-5 col-sm-5">
+                        <span class="_error">{{ form_errors(form.category) }}</span>
+                    </div>
                 </div>
             </div>
             <div class="row margin-top-10">
@@ -79,6 +108,9 @@
                     <div class="col-md-5 col-sm-5 pull-right">
                         {{ form_widget(form.publicationStartDate,{ 'attr' : {'class':'form-control s_d'} }) }}
                     </div>
+                    <div class="col-md-5 col-sm-5">
+                        <span class="_error">{{ form_errors(form.publicationStartDate) }}</span>
+                    </div>
                 </div>
             </div>
             <div class="row margin-top-10">
@@ -86,6 +118,9 @@
                     {{ form_label(form.publicationEndDate, '', {'label_attr': {'class': 'col-md-2 col-sm-2 pull-right control-label text-left'} }) }}
                     <div class="col-md-5 col-sm-5 pull-right">
                         {{ form_widget(form.publicationEndDate,{ 'attr' : {'class':'form-control s_d'} }) }}
+                    </div>
+                    <div class="col-md-5 col-sm-5">
+                        <span class="_error">{{ form_errors(form.publicationEndDate) }}</span>
                     </div>
                 </div>
             </div>
@@ -109,6 +144,9 @@
                         </div>
                         {{ form_widget(form.imageFile,{ 'attr' : {'class':'form-control'} }) }}
                     </div>
+                    <div class="col-md-5 col-sm-5">
+                        <span class="_error">{{ form_errors(form.imageFile) }}</span>
+                    </div>
                 </div>
             </div>
             <div class="row margin-top-10">
@@ -118,6 +156,9 @@
                         <div class="make-switch">
                             {{ form_widget(form.enabled,{ 'attr' : {'class':'toggle'} }) }}
                         </div>
+                    </div>
+                    <div class="col-md-5 col-sm-5">
+                        <span class="_error">{{ form_errors(form.enabled) }}</span>
                     </div>
                 </div>
             </div>

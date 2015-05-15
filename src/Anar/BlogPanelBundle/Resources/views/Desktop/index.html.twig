@@ -118,10 +118,14 @@
         </div>
 
         <div id="rp-clockWrap">
-            <time></time>
+            <time class="sp-clockWrap-time"></time>
             <hr>
             <i class="fa fa-calendar"></i>
-            <span></span>
+            <span class="rp-clockWrap-span"></span>
+            <div class="last_login pull-left">
+                <span>آخرین لاگین</span>
+                <time style="font-size: 12pt" dir="ltr"></time>
+            </div>
         </div>
 
         <div id="rp-conections" class="rp-goToDown">
@@ -165,6 +169,7 @@
 <script src="{{ asset('static/jquery/dist/jquery.min.js') }}"></script>
 <script src="{{ asset('static/jquery-ui/jquery-ui.min.js') }}"></script>
 <script src="{{ asset('static/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('bundles/anarsuperpanel/js/jalali.js') }}"></script>
 <script src="{{ asset('bundles/anarsuperpanel/plugins/Alert/alert.js') }}"></script>
 <script src="{{ asset('bundles/anarsuperpanel/js/select2.min.js') }}"></script>
 <script>
@@ -173,7 +178,7 @@
 <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
 <script src="{{ asset('bundles/anarblogpanel/js/routes.js') }}"></script>
 
-<script src="{{ asset('bundles/anarblogpanel/js/privateActions.js') }}"></script>
+{#<script src="{{ asset('bundles/anarblogpanel/js/privateActions.js') }}"></script>#}
 {#<script src="{{ asset('plugins/datepicker/pwt-date.js') }}"></script>#}
 {#<script src="{{ asset('plugins/datepicker/pwt-datepicker.js') }}"></script>#}
 
@@ -184,47 +189,58 @@
 {#----------------------/commonScripts----------------------#}
 {#----------------------PrivateScripts----------------------#}
 <script>
+    $("#rp-nowRoleShowerWrap").find("i.fa-bars").click(function() {
+        $("#rp-menuWrap").find("ul").slideToggle(300);
+    });
+
+    $("#rp-toolbarWrap > ul > li").mouseenter(function() {
+        $(this).find("ul").fadeIn(200);
+    }).mouseleave(function() {
+        $(this).find("ul").fadeOut(200);
+    });
+    function renderTime(){
+        var currentTime = new Date();
+        var h = currentTime.getHours();
+        var m = currentTime.getMinutes();
+        var s = currentTime.getSeconds();
+        if (h < 10){
+            h = "0" + h;
+        }
+        if (m < 10){
+            m = "0" + m;
+        }
+        if (s < 10){
+            s = "0" + s;
+        }
+
+        var myClock = $('.sp-clockWrap-time');
+        myClock.html(h + ":" + m + ":" + s);
+        setTimeout('renderTime()', 1000);
+    }
+    renderTime();
+
 //    var currentNode = '';
     $('.branch').addClass('minus');
     $(document).on('click','.menu-items', function(e){
         var elm = $(e.target);
         var parent = elm.parent();
         if(parent.hasClass('minus')){
-//            $('.open .menu_level_1').slideToggle(600);
+            $('.open .menu_level_1').slideUp(600);
+            $('.menu_level_1', parent).slideDown(600);
             $('.open').removeClass('open').addClass('minus');
             parent.removeClass('minus').addClass('open');
             $('.fa.fa-minus-square-o').attr('class','fa fa-plus-square-o');
-//            $('.menu_level_1', parent).slideToggle(600);
             $('.menu-items i', parent).attr('class','fa fa-minus-square-o');
         }
         else if(parent.hasClass('open')) {
-            parent.removeClass('open').addClass('minus');
-//            $('.menu_level_1', parent).slideToggle(600);
+            $('.menu_level_1', parent).slideUp(600);
             $('.menu-items i', parent).attr('class','fa fa-plus-square-o');
+            parent.removeClass('open').addClass('minus');
         }
     });
 </script>
 
 {% block scripts %}
-<script>
-    {#// variables#}
-    var serverTimestamp = 1408024511582;
-    var TodayDate = " چهارشنبه 1393/7/4";
-    var desktop_NumOfRoles = 245;
-    var desktop_NumOfUser = 305;
-
-    {#&#123;&#35;//app address&#35;&#125;#}
-    {#var ajaxUrlContents = "{{ path('pomegranate_content_backend_article_index') }}";#}
-    {#var ajaxUrlLinks = "{{ path('pomegranate_link_backend_index') }}";#}
-    {#var ajaxUrlProf = "{{ path('professor_profile_backend_home') }}";#}
-    {#var ajaxUrlComments = "{{ path('pomegranate_contact_backend_index') }}";#}
-    {#var ajaxUrlPlea = "../apps/com-plea.html";#}
-    {#var ajaxUrlRolesSetting = "../apps/com-rolesSetting.html";#}
-    {#var ajaxUrlUserPermations = "../apps/com-userPermations.html";#}
-
-
-</script>
-{#----------------------/PrivateScripts----------------------#}
 {% endblock scripts %}
 </body>
 </html>
