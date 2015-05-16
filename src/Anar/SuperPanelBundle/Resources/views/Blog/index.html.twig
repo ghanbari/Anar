@@ -131,6 +131,12 @@
                                 Alert.render("message : " + message.status['message']);
                             },
                             success: function(data){
+                                if(data.response['users'].length == 0){
+                                    Alert.render('این وبلاگ هیچ مدیری ندارد!')
+                                }
+                                if(data == ''){
+                                    Alert.render('برای این وبلاگ مدیری ست نشده است!');
+                                }
                                 for(var i = 0; i < data.response['users'].length; i++){
                                     var j = i + 1;
                                     var manager_table = '' +
