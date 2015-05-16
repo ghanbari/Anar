@@ -47,7 +47,7 @@
             {{ form_start(form) }}
             <div class="row">
                 <div class="form-group">
-                    <label class="col-md-2 col-sm-2 control-label text-left">{{ form_label(form.email) }}</label>
+                    <label class="col-md-3 col-sm-3 control-label text-left">{{ form_label(form.email) }}</label>
                     <div class="col-md-9 col-sm-9">
                         {{ form_widget(form.email,{ 'attr' : {'class':'form-control'} }) }}
                     </div>
@@ -55,7 +55,7 @@
             </div>
             <div class="row margin-top-10">
                 <div class="form-group">
-                    <label class="col-md-2 col-sm-2 control-label text-left">{{ form_label(form.username) }}</label>
+                    <label class="col-md-3 col-sm-3 control-label text-left">{{ form_label(form.username) }}</label>
                     <div class="col-md-9 col-sm-9">
                         {{ form_widget(form.username,{ 'attr' : {'class':'form-control username_input','onblur':'check_name()'} }) }}
                     </div>
@@ -63,7 +63,7 @@
             </div>
             <div class="row margin-top-10">
                 <div class="form-group">
-                    <label class="col-md-2 col-sm-2 control-label text-left">{{ form_label(form.plainPassword.first) }}</label>
+                    <label class="col-md-3 col-sm-3 control-label text-left">{{ form_label(form.plainPassword.first) }}</label>
                     <div class="col-md-9 col-sm-9">
                         {{ form_widget(form.plainPassword.first,{ 'attr' : {'class':'form-control'} }) }}
                     </div>
@@ -71,7 +71,7 @@
             </div>
             <div class="row margin-top-10">
                 <div class="form-group">
-                    <label class="col-md-2 col-sm-2 control-label text-left">{{ form_label(form.plainPassword.second) }}</label>
+                    <label class="col-md-3 col-sm-3 control-label text-left">{{ form_label(form.plainPassword.second) }}</label>
                     <div class="col-md-9 col-sm-9">
                         {{ form_widget(form.plainPassword.second,{ 'attr' : {'class':'form-control'} }) }}
                     </div>
@@ -79,7 +79,7 @@
             </div>
             <div class="row margin-top-10">
                 <div class="form-group">
-                    <label class="col-md-2 col-sm-2 control-label text-left">{{ form_label(form.fname) }}</label>
+                    <label class="col-md-3 col-sm-3 control-label text-left">{{ form_label(form.fname) }}</label>
                     <div class="col-md-9 col-sm-9">
                         {{ form_widget(form.fname,{ 'attr' : {'class':'form-control'} }) }}
                     </div>
@@ -87,7 +87,7 @@
             </div>
             <div class="row margin-top-10">
                 <div class="form-group">
-                    <label class="col-md-2 col-sm-2 control-label text-left">{{ form_label(form.lname) }}</label>
+                    <label class="col-md-3 col-sm-3 control-label text-left">{{ form_label(form.lname) }}</label>
                     <div class="col-md-9 col-sm-9">
                         {{ form_widget(form.lname,{ 'attr' : {'class':'form-control'} }) }}
                     </div>
@@ -95,7 +95,7 @@
             </div>
             <div class="row margin-top-10">
                 <div class="form-group">
-                    <label class="col-md-2 col-sm-2 control-label text-left">{{ form_label(form.faname) }}</label>
+                    <label class="col-md-3 col-sm-3 control-label text-left">{{ form_label(form.faname) }}</label>
                     <div class="col-md-9 col-sm-9">
                         {{ form_widget(form.faname,{ 'attr' : {'class':'form-control'} }) }}
                     </div>
@@ -103,7 +103,7 @@
             </div>
             <div class="row margin-top-10">
                 <div class="form-group">
-                    <label class="col-md-2 col-sm-2 control-label text-left">{{ form_label(form.staffCode) }}</label>
+                    <label class="col-md-3 col-sm-3 control-label text-left">{{ form_label(form.staffCode) }}</label>
                     <div class="col-md-9 col-sm-9">
                         {{ form_widget(form.staffCode,{ 'attr' : {'class':'form-control'} }) }}
                     </div>
@@ -111,14 +111,14 @@
             </div>
             <div class="row margin-top-10">
                 <div class="form-group">
-                    <label class="col-md-2 col-sm-2 control-label text-left">{{ form_label(form.grade) }}</label>
+                    <label class="col-md-3 col-sm-3 control-label text-left">{{ form_label(form.grade) }}</label>
                     <div class="col-md-9 col-sm-9">
                         {{ form_widget(form.grade,{ 'attr' : {'class':'select'} }) }}
                     </div>
                 </div>
             </div>
             <div class="row margin-top-10">
-                <div class="col-md-2 col-sm-2"></div>
+                <div class="col-md-3 col-sm-3"></div>
                 <div class="col-md-9 col-sm-9">
                     <button type="submit" class="btn btn-submit-blog">ذخیره</button>
                     <a class="btn btn-submit-blog" href="{{ path('anar_super_panel_user_index') }}">بازگشت</a>
@@ -127,28 +127,31 @@
             {{ form_end(form) }}
         </div>
         <div class="col-md-4 col-sm-4" style="padding-right: 0">
-            <div class="row" style="min-height: 38px">
+            <div class="row" style="min-height: 34px; padding-top: 7px">
                 <span class="_error">{{ form_errors(form.email) }}</span>
             </div>
-            <div class="row margin-top-10 form_fields_message" style="min-height: 38px">
+            <div class="row margin-top-10 form_fields_message" style="min-height: 34px; padding-top: 7px">
                 <span class="_error">{{ form_errors(form.username) }}</span>
             </div>
-            <div class="row margin-top-10" style="min-height: 38px">
+            <div class="row margin-top-10" style="min-height: 34px; padding-top: 7px">
                 <span class="_error">{{ form_errors(form.plainPassword.first) }}</span>
             </div>
-            <div class="row margin-top-10" style="min-height: 38px">
+            <div class="row margin-top-10" style="min-height: 34px; padding-top: 7px">
                 <span class="_error">{{ form_errors(form.plainPassword.second) }}</span>
             </div>
-            <div class="row margin-top-10" style="min-height: 38px">
+            <div class="row margin-top-10" style="min-height: 34px; padding-top: 7px">
                 <span class="_error">{{ form_errors(form.fname) }}</span>
             </div>
-            <div class="row margin-top-10" style="min-height: 38px">
+            <div class="row margin-top-10" style="min-height: 34px; padding-top: 7px">
                 <span class="_error">{{ form_errors(form.lname) }}</span>
             </div>
-            <div class="row margin-top-10" style="min-height: 38px">
+            <div class="row margin-top-10" style="min-height: 34px; padding-top: 7px">
+                <span class="_error">{{ form_errors(form.faname) }}</span>
+            </div>
+            <div class="row margin-top-10" style="min-height: 34px; padding-top: 7px">
                 <span class="_error">{{ form_errors(form.staffCode) }}</span>
             </div>
-            <div class="row margin-top-10" style="min-height: 38px">
+            <div class="row margin-top-10" style="min-height: 34px; padding-top: 7px">
                 <span class="_error">{{ form_errors(form.grade) }}</span>
             </div>
         </div>
