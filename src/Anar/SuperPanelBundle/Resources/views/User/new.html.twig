@@ -49,7 +49,7 @@
                 <div class="form-group">
                     <label class="col-md-3 col-sm-3 control-label text-left">{{ form_label(form.email) }}</label>
                     <div class="col-md-9 col-sm-9">
-                        {{ form_widget(form.email,{ 'attr' : {'class':'form-control'} }) }}
+                        {{ form_widget(form.email,{ 'attr' : {'class':'form-control email_input'} }) }}
                     </div>
                 </div>
             </div>
@@ -57,7 +57,7 @@
                 <div class="form-group">
                     <label class="col-md-3 col-sm-3 control-label text-left">{{ form_label(form.username) }}</label>
                     <div class="col-md-9 col-sm-9">
-                        {{ form_widget(form.username,{ 'attr' : {'class':'form-control username_input','onblur':'check_name()'} }) }}
+                        {{ form_widget(form.username,{ 'attr' : {'class':'form-control username_input'} }) }}
                     </div>
                 </div>
             </div>
@@ -126,11 +126,11 @@
             </div>
             {{ form_end(form) }}
         </div>
-        <div class="col-md-4 col-sm-4" style="padding-right: 0">
-            <div class="row" style="min-height: 34px; padding-top: 7px">
+        <div class="col-md-4 col-sm-4">
+            <div class="row email_fields_message" style="min-height: 34px; padding-top: 7px">
                 <span class="_error">{{ form_errors(form.email) }}</span>
             </div>
-            <div class="row margin-top-10 form_fields_message" style="min-height: 34px; padding-top: 7px">
+            <div class="row margin-top-10 username_fields_message" style="min-height: 34px; padding-top: 7px">
                 <span class="_error">{{ form_errors(form.username) }}</span>
             </div>
             <div class="row margin-top-10" style="min-height: 34px; padding-top: 7px">
@@ -166,22 +166,51 @@
         placeholder: "انتخاب کنید"
     });
 
-    function check_name(){
-        var name_val = $('.username_input').val();
-        var checkPath = Routing.generate('anar_super_panel_user_check_username',{'username': name_val});
-        $.ajax({
-            url: checkPath,
-            type: "post",
-            error: function(jqXHR, textStatus, errorThrown){
-                alert((jqXHR['responseText']).status.message);
-                $('.form_fields_message span').removeClass('_success').addClass('_error');
-                $('.form_fields_message span').html(JSON.parse(jqXHR['responseText']).status.message);
-            },
-            success: function(data){
-                $('.form_fields_message span').removeClass('_error').addClass('_success');
-                $('.form_fields_message span').html(data.status['message']);
-            }
-        })
-    }
+    $('.username_input').blur(function(){
+        if($(this).val() == ''){
+            $(this).focus();
+        }
+        else{
+            var name_val = $(this).val();
+            var checkPath = Routing.generate('anar_super_panel_user_check_username',{'username': name_val});
+            $.ajax({
+                url: checkPath,
+                type: "post",
+                error: function(jqXHR){
+//                alert((jqXHR['responseText']).status.message);
+                    $('.username_fields_message span').removeClass('_success').addClass('_error');
+                    $('.username_fields_message span').html(JSON.parse(jqXHR['responseText']).status.message);
+                },
+                success: function(data){
+                    $('.username_fields_message span').removeClass('_error').addClass('_success');
+                    $('.username_fields_message span').html(data.status['message']);
+                }
+            });
+        }
+    });
+
+
+    $('.email_input').blur(function(){
+        if($(this).val() == ''){
+            $(this).focus();
+        }
+        else{
+            var email_val = $(this).val();
+            var checkPath = "{{ path('anar_super_panel_user_check_email') }}";
+            $.ajax({
+                url: checkPath,
+                type: "post",
+                data: {'email': email_val},
+                error: function(jqXHR){
+                    $('.email_fields_message span').removeClass('_success').addClass('_error');
+                    $('.email_fields_message span').html(JSON.parse(jqXHR['responseText']).status.message);
+                },
+                success: function(data){
+                    $('.email_fields_message span').removeClass('_error').addClass('_success');
+                    $('.email_fields_message span').html(data.status['message']);
+                }
+            });
+        }
+    });
 </script>
 {% endblock %}
