@@ -19,6 +19,10 @@ anar_super_panel_user_check_username:
     path: /check/{username}
     defaults: { _controller: AnarSuperPanelBundle:User:checkUsername }
 
+anar_super_panel_user_check_email:
+    path: /check/{email}
+    defaults: { _controller: AnarSuperPanelBundle:User:checkEmail }
+
 anar_super_panel_user_new:
     path:     /new
     defaults: { _controller: "AnarSuperPanelBundle:User:new" }

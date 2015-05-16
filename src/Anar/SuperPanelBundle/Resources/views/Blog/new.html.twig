@@ -132,7 +132,7 @@
                 <span class="">{{ form_errors(form.description) }}</span>
             </div>
             <div class="row margin-top-10 form_fields_message" style="min-height: 38px">
-                <span class="">{{ form_errors(form.name) }}</span>
+                <span class="">{% if action == 'create' %}{{ form_errors(form.name) }}{% endif %}</span>
             </div>
             <div class="row margin-top-10" style="min-height: 38px">
                 <span class="">{{ form_errors(form.theme) }}</span>

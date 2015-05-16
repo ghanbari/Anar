@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Anar\EngineBundle\Entity\User;
 use Anar\SuperPanelBundle\Form\UserType;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Validator\Constraints\Email;
 
 /**
  * User controller.
@@ -330,10 +331,10 @@ class UserController extends Controller
     public function checkUsernameAction($username)
     {
         $translator = $this->get('translator');
-        if (!$this->get('fos_user.user_manager')->findUserByUsername($username)) {
+        if ($this->get('fos_user.user_manager')->findUserByUsername($username)) {
             $status = array(
-                'code' => 200,
-                'message' => $translator->trans('you.can.use.this.name'),
+                'code' => 403,
+                'message' => $translator->trans('name.is.exists'),
             );
         } else {
             if (is_string($username) and preg_match('/^[a-z0-9_]{2,255}$/i', $username)) {
@@ -345,6 +346,42 @@ class UserController extends Controller
                 $status = array(
                     'code' => 400,
                     'message' => $translator->trans('username.not.have.valid.character'),
+                );
+            }
+        }
+
+        return (new JsonResponse(array(
+            'status' => $status,
+            'response' => array()
+        )))->setStatusCode($status['code']);
+    }
+
+    /**
+     * check whether username is exists.
+     *
+     * @param @email
+     * @return JsonResponse
+     */
+    public function checkEmailAction($email)
+    {
+        $translator = $this->get('translator');
+        $emailConstraint = new Email();
+        $errors = $this->get('validator')->validateValue($email, $emailConstraint);
+        if ($this->get('fos_user.user_manager')->findUserByEmail($email)) {
+            $status = array(
+                'code' => 403,
+                'message' => $translator->trans('email.is.exists'),
+            );
+        } else {
+            if (is_string($email) and count($errors) == 0) {
+                $status = array(
+                    'code' => 200,
+                    'message' => $translator->trans('you.can.use.this.email'),
+                );
+            } else {
+                $status = array(
+                    'code' => 400,
+                    'message' => $translator->trans('email.is.not.valid'),
                 );
             }
         }

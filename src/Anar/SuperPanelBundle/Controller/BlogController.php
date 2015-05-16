@@ -148,7 +148,24 @@ class BlogController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->remove('name');
+        $form->remove('name')->remove('parent');
+        $form->add('parent', 'entity', array(
+            'class' => 'AnarEngineBundle:Blog',
+            'property' => 'title',
+            'label' => 'parent',
+            'required' => true,
+            'placeholder' => 'placeholder',
+            'query_builder' => function ($er) use ($blog) {
+                /** @var QueryBuilder $qb */
+                $qb = $er->createQueryBuilder('b');
+                return $qb->where($qb->expr()->orX(
+                    $qb->expr()->lt('b.lft', '?1'),
+                    $qb->expr()->gt('b.rgt', '?2')
+                ))->setParameter(1, $blog->getLft())
+                    ->setParameter(2, $blog->getRgt());
+            }
+        ));
+
         $form->add('submit', 'submit', array('label' => 'update'));
 
         return $form;
