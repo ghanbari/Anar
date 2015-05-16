@@ -16,11 +16,11 @@ anar_super_panel_user_search:
     methods: [POST]
 
 anar_super_panel_user_check_username:
-    path: /check/{username}
+    path:     /check/{username}
     defaults: { _controller: AnarSuperPanelBundle:User:checkUsername }
 
 anar_super_panel_user_check_email:
-    path: /check/{email}
+    path:     /check/email
     defaults: { _controller: AnarSuperPanelBundle:User:checkEmail }
 
 anar_super_panel_user_new:

@@ -362,10 +362,11 @@ class UserController extends Controller
      * @param @email
      * @return JsonResponse
      */
-    public function checkEmailAction($email)
+    public function checkEmailAction(Request $request)
     {
         $translator = $this->get('translator');
         $emailConstraint = new Email();
+        $email = $request->request->get('email');
         $errors = $this->get('validator')->validateValue($email, $emailConstraint);
         if ($this->get('fos_user.user_manager')->findUserByEmail($email)) {
             $status = array(
