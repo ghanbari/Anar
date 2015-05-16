@@ -168,7 +168,8 @@
 
     $('.username_input').blur(function(){
         if($(this).val() == ''){
-            $(this).focus();
+            $('.username_fields_message span').removeClass('_success').addClass('_error');
+            $('.username_fields_message span').html("این فیلد نمی تواند خالی باشد!");
         }
         else{
             var name_val = $(this).val();
@@ -192,7 +193,8 @@
 
     $('.email_input').blur(function(){
         if($(this).val() == ''){
-            $(this).focus();
+            $('.email_fields_message span').removeClass('_success').addClass('_error');
+            $('.email_fields_message span').html("این فیلد نمی تواند خالی باشد!");
         }
         else{
             var email_val = $(this).val();
