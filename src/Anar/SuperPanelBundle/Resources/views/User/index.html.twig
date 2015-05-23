@@ -261,7 +261,6 @@
                             '</td>' +
                         '</tr>';
                     $('.records_list').append(users_find);
-                    Alert.render("aaa" + JSON.stringify(data.response['users']['username']));
                 }
                 else{
                     Alert.render(data.status['code']);
@@ -299,10 +298,11 @@
             url: permission_path,
             type: "post",
             error: function(message){
-                Alert.render("message : "+message.status['message']);
+                Alert.render("message : " + message.status['message']);
             },
             success: function(data){
                 update_token = data.response.token;
+                $("#jstree_div").jstree('destroy');
                 $("#jstree_div").jstree({
                     'core' : {
                         'data' : data.response['tree'],
@@ -319,6 +319,7 @@
                     },
                     "plugins": ["themes", "html_data", "ui", "crrm","checkbox"]
                 });
+                alert(JSON.stringify(data.response['tree']));
                 $('#blog_list').modal("show");
             }
         });

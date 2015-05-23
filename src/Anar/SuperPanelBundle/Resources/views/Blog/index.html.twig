@@ -159,42 +159,47 @@
                     "label": "حذف",
                     "icon": "glyphicon glyphicon-remove",
                     action: function () {
-                        var check_path = Routing.generate('anar_super_panel_blog_delete',{'id': node.id});
-                        $.ajax({
-                            url: check_path,
-                            type: "post",
-                            data: {'token': '{{ token }}'},
-                            error: function(message){
-                                Alert.render(JSON.parse(message.responseText).status.message);
-                            },
-                            success: function(data){
-                                if(data.status['code'] == 200){
-                                    Alert.render(JSON.stringify(data.status['message']));
-                                    var check_path1 = "{{ path('anar_super_panel_blog_index',{'_format': 'json'}) }}";
-                                    $.ajax({
-                                        url: check_path1,
-                                        type: "get",
-                                        error: function (xhr, ajaxOptions, thrownError) {
-                                            alert(xhr.status);
-                                            alert(thrownError);
-                                        },
-                                        success: function(data1){
-                                            $('#jstree_div').jstree("destroy");
-                                            location.reload();
-                                        }
-                                    })
+                        if(confirm('آیا از حذف این وبلاگ اطمینان دارید؟')){
+                            var check_path = Routing.generate('anar_super_panel_blog_delete',{'id': node.id});
+                            $.ajax({
+                                url: check_path,
+                                type: "post",
+                                data: {'token': '{{ token }}'},
+                                error: function(message){
+                                    Alert.render(JSON.parse(message.responseText).status.message);
+                                },
+                                success: function(data){
+                                    if(data.status['code'] == 200){
+                                        Alert.render(JSON.stringify(data.status['message']));
+                                        var check_path1 = "{{ path('anar_super_panel_blog_index',{'_format': 'json'}) }}";
+                                        $.ajax({
+                                            url: check_path1,
+                                            type: "get",
+                                            error: function (xhr, ajaxOptions, thrownError) {
+                                                alert(xhr.status);
+                                                alert(thrownError);
+                                            },
+                                            success: function(data1){
+                                                $('#jstree_div').jstree("destroy");
+                                                location.reload();
+                                            }
+                                        })
+                                    }
+                                    else{
+                                        Alert.render(data.status['message']);
+                                    }
                                 }
-                                else{
-                                    Alert.render(data.status['message']);
-                                }
-                            }
-                        });
+                            });
+                        }
                     }
                 }
             };
 
             return items;
         }
+        $(document).on('click','.delete_blog_btn', function(){
+
+        });
 
         $(document).on('click','.delete_user',function(){
             var id = $(this).attr('data-id');
