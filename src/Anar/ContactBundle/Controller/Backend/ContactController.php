@@ -2,19 +2,18 @@
 
 namespace Anar\ContactBundle\Controller\Backend;
 
+use Anar\BlogPanelBundle\Interfaces\AdminInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use Anar\ContactBundle\Entity\Contact;
-use Anar\ContactBundle\Form\ContactType;
 
 /**
  * Contact controller.
  *
  */
-class ContactController extends Controller
+class ContactController extends Controller implements AdminInterface
 {
-
     /**
      * Lists all Contact entities.
      *
@@ -46,7 +45,7 @@ class ContactController extends Controller
 
         if ($this->isCsrfTokenValid('contact_delete', $request->request->get('token'))) {
             $em = $this->getDoctrine()->getManager();
-            $contact = $em->getRepository('AnarContentBundle:Contact')->find($id);
+            $contact = $em->getRepository('AnarContactBundle:Contact')->find($id);
 
             if (!$contact) {
                 $status = array(

@@ -16,6 +16,7 @@ class LoadMasterBlogApp extends AbstractFixture implements OrderedFixtureInterfa
         $masterBlog->addApp($this->getReference('AnarSlideShowBundle'));
         $masterBlog->addApp($this->getReference('AnarContentBundle'));
         $masterBlog->addApp($this->getReference('AnarMenuBundle'));
+        $masterBlog->addApp($this->getReference('AnarContactBundle'));
         $manager->flush();
     }
 

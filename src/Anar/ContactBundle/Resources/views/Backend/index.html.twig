@@ -17,17 +17,12 @@
         <tbody>
         {% for contact in contacts %}
             <tr>
-                <td><a href="{{ path('anar_contact_backend_show', { 'id': contact.id }) }}">{{ contact.id }}</a></td>
                 <td>{{ contact.name }}</td>
                 <td>{{ contact.email }}</td>
                 <td>{{ contact.website }}</td>
                 <td>{{ contact.message }}</td>
                 <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('anar_contact_backend_show', { 'id': contact.id }) }}">show</a>
-                    </li>
-                </ul>
+                    "{{ token }}"
                 </td>
             </tr>
         {% endfor %}
