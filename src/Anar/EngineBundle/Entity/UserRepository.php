@@ -52,6 +52,16 @@ class UserRepository extends EntityRepository
             $qb->setParameter('lname', $filters['lname']);
         }
 
+        if (!empty($filters['grade'])) {
+            $qb->andWhere($qb->expr()->eq('u.grade', ':grade'))
+                ->setParameter('grade', $filters['grade']);
+        }
+
+        if (!empty($filters['staffCode'])) {
+            $qb->andWhere($qb->expr()->eq('u.staffCode', ':staffCode'))
+                ->setParameter('staffCode', $filters['staffCode']);
+        }
+
         return $qb->getQuery();
     }
 

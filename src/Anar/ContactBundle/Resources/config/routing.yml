@@ -1,0 +1,14 @@
+anar_contact_backend:
+    resource: "@AnarContactBundle/Resources/config/routing/backend.yml"
+    prefix:   /blogpanel/contact
+    options:
+        i18n: false
+
+anar_contact_frontend_host:
+    resource: "@AnarContactBundle/Resources/config/routing/frontend.yml"
+    host:     "{blogName}.%router.request_context.host%"
+    prefix:   /contact
+
+anar_contact_frontend_path:
+    resource: "@AnarContactBundle/Resources/config/routing/frontend.yml"
+    prefix:   /{blogName}/contact

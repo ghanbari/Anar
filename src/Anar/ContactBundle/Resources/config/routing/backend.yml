@@ -1,0 +1,9 @@
+anar_contact_backend_index:
+    path:     /{page}
+    defaults: { _controller: "AnarContactBundle:Backend/Contact:index", page: 1 }
+    requirements: { page: \d+ }
+
+anar_contact_backend_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AnarContactBundle:Backend/Contact:delete" }
+    methods:  [POST, DELETE]

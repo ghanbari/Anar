@@ -20,13 +20,15 @@ class BlogType extends AbstractType
                 'required' => true,
                 'attr' => array(
                     'pattern' => '.{4,255}',
+                    'placeholder' => 'title.your.site.wordage.between.4-255.word',
                 ),
             ))
-            ->add('description', 'text', array(
+            ->add('description', 'textarea', array(
                 'label' => 'description',
                 'required' => false,
                 'attr' => array(
                     'maxlength' => 500,
+                    'placeholder' => 'max.500.letter',
                 ),
             ))
             ->add('name', 'text', array(
@@ -34,6 +36,7 @@ class BlogType extends AbstractType
                 'required' => true,
                 'attr' => array(
                     'pattern' => '^[a-z]{4,100}$',
+                    'placeholder' => 'lowercase.a-z.between.4-100',
                 ),
             ))
             ->add('theme', 'entity', array(

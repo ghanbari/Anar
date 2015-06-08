@@ -15,6 +15,7 @@ Anar\EngineBundle\Entity\Log:
                     on: create
         createdBy:
             type: string
+            nullable: true
             gedmo:
                 blameable:
                     on: create

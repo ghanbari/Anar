@@ -4,6 +4,6 @@ vich_uploader:
     mappings:
         anar_professor_profile_avatar:
             uri_prefix:         %router.request_context.base_url%/uploads
-            upload_destination: %kernel.root_dir%/../web/uploads
+            upload_destination: %kernel.web_dir%/uploads
             namer:              vich_uploader.namer_uniqid
             directory_namer:    anar_engine.uploader.naming.directory_namer

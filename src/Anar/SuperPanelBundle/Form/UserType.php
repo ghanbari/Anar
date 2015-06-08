@@ -20,6 +20,7 @@ class UserType extends AbstractType
                 'required' => true,
                 'attr' => array(
                     'maxlength' => 255,
+                    'placeholder' => 'first.name',
                 ),
             ))
             ->add('lname', 'text', array(
@@ -27,6 +28,7 @@ class UserType extends AbstractType
                 'required' => true,
                 'attr' => array(
                     'maxlength' => 255,
+                    'placeholder' => 'last.name',
                 ),
             ))
             ->add('faname', 'text', array(
@@ -34,6 +36,7 @@ class UserType extends AbstractType
                 'required' => false,
                 'attr' => array(
                     'maxlength' => 255,
+                    'placeholder' => 'father.name',
                 ),
             ))
             ->add('staffCode', 'number', array(
@@ -41,6 +44,7 @@ class UserType extends AbstractType
                 'required' => true,
                 'attr' => array(
                     'pattern' => '\d+',
+                    'placeholder' => 'staff.number',
                 ),
             ))
             ->add('grade', 'entity', array(
@@ -49,6 +53,13 @@ class UserType extends AbstractType
                 'label' => 'grade',
                 'required' => true,
                 'placeholder' => 'placeholder',
+            ))
+            ->add('username', 'text', array(
+                'label' => 'username',
+                'attr' => array(
+                    'pattern' => '^[a-z0-9_]{2,255}$',
+                    'placeholder' => 'username.consist.of.2-255.character.a-z0-9_',
+                )
             ))
         ;
     }

@@ -1,0 +1,25 @@
+Anar\ContactBundle\Entity\Contact:
+    type: entity
+    table: contact
+    repositoryClass: Anar\ContactBundle\Entity\ContactRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name: ~
+        email:
+            nullable: true
+        website:
+            nullable: true
+        message: ~
+    manyToOne:
+        blog:
+            targetEntity: Anar\EngineBundle\Entity\Blog
+            joinColumn:
+                name: blog_id
+                referencedColumnName: id
+                nullable: false
+    lifecycleCallbacks: {  }

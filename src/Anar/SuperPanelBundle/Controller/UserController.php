@@ -124,7 +124,7 @@ class UserController extends Controller
             'action' => $this->generateUrl('anar_super_panel_user_search')
         ));
 
-        $form->add('Search', 'submit');
+        $form->add('Search', 'submit', array('label' => 'search'));
         return $form;
     }
 
@@ -362,7 +362,7 @@ class UserController extends Controller
      * @param @email
      * @return JsonResponse
      */
-    public function checkEmailAction(Request $request)
+    public function isEmailValidAction(Request $request)
     {
         $translator = $this->get('translator');
         $emailConstraint = new Email();

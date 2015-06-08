@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2015-05-07T23:09:16Z" source-language="en" target-language="fa" datatype="plaintext" original="not.available">
+  <file date="2015-05-16T21:52:02Z" source-language="en" target-language="fa" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -41,6 +41,8 @@
       </trans-unit>
       <trans-unit id="5ccbf9c9c5fc1bc34df8238a97094968f38f5165" resname="category">
         <jms:reference-file line="88">ContentBundle/Form/ArticleType.php</jms:reference-file>
+        <jms:reference-file line="22">LinkBundle/Form/CategoryType.php</jms:reference-file>
+        <jms:reference-file line="48">LinkBundle/Form/LinkType.php</jms:reference-file>
         <source>category</source>
         <target state="new">دسته بندی</target>
       </trans-unit>
@@ -74,41 +76,41 @@
         <target state="new">پیش فرض</target>
       </trans-unit>
       <trans-unit id="cb329146a0dd0d566b0628744d67936558741ffa" resname="description">
-        <jms:reference-file line="26">SuperPanelBundle/Form/BlogType.php</jms:reference-file>
+        <jms:reference-file line="27">SuperPanelBundle/Form/BlogType.php</jms:reference-file>
         <jms:reference-file line="37">ContentBundle/Form/CategoryType.php</jms:reference-file>
-        <jms:reference-file line="28">LinkBundle/Form/LinkType.php</jms:reference-file>
+        <jms:reference-file line="39">LinkBundle/Form/LinkType.php</jms:reference-file>
         <source>description</source>
         <target state="new">توضیحات</target>
       </trans-unit>
       <trans-unit id="7a1255f0bbc3632172c6083239a8824b8736113b" resname="display.in.menu">
-        <jms:reference-file line="47">SuperPanelBundle/Form/BlogType.php</jms:reference-file>
+        <jms:reference-file line="50">SuperPanelBundle/Form/BlogType.php</jms:reference-file>
         <source>display.in.menu</source>
         <target state="new">نمایش در منو</target>
       </trans-unit>
       <trans-unit id="a88b7dcd1a9e3e17770bbaa6d7515b31a2d7e85d" resname="email">
         <jms:reference-file line="28">ProfessorBundle/Form/ProfileType.php</jms:reference-file>
-        <jms:reference-file line="24">EngineBundle/Form/UserFilterType.php</jms:reference-file>
+        <jms:reference-file line="27">EngineBundle/Form/UserFilterType.php</jms:reference-file>
         <source>email</source>
         <target state="new">ایمیل</target>
       </trans-unit>
       <trans-unit id="3ea3f9802accf8817bacd6f3df46a73b93ccddec" resname="enabled">
         <jms:reference-file line="67">ContentBundle/Form/ArticleType.php</jms:reference-file>
-        <jms:reference-file line="48">EngineBundle/Form/UserFilterType.php</jms:reference-file>
+        <jms:reference-file line="63">EngineBundle/Form/UserFilterType.php</jms:reference-file>
         <source>enabled</source>
         <target state="new">فعال؟</target>
       </trans-unit>
       <trans-unit id="45a6f9adb1df3a78aafc71391c7d3bfa7680229b" resname="expired">
-        <jms:reference-file line="52">EngineBundle/Form/UserFilterType.php</jms:reference-file>
+        <jms:reference-file line="67">EngineBundle/Form/UserFilterType.php</jms:reference-file>
         <source>expired</source>
         <target state="new">منقضی شده</target>
       </trans-unit>
       <trans-unit id="f2115eded7c0557558b0fd5ca53ab7dd6508ac6c" resname="facilities">
-        <jms:reference-file line="69">SuperPanelBundle/Form/BlogType.php</jms:reference-file>
+        <jms:reference-file line="68">SuperPanelBundle/Form/BlogType.php</jms:reference-file>
         <source>facilities</source>
         <target state="new">امکانات</target>
       </trans-unit>
       <trans-unit id="4da07db05d17b9c86960089692d682837ee292f7" resname="father.name">
-        <jms:reference-file line="33">SuperPanelBundle/Form/UserType.php</jms:reference-file>
+        <jms:reference-file line="35">SuperPanelBundle/Form/UserType.php</jms:reference-file>
         <source>father.name</source>
         <target state="new">نام پدر</target>
       </trans-unit>
@@ -117,13 +119,29 @@
         <source>favorite</source>
         <target state="new">علایق</target>
       </trans-unit>
+      <trans-unit id="8a68c6c14003add64f78948306d4bad5bfc2398f" resname="find.user.with.this.email">
+        <source>find.user.with.this.email</source>
+        <target>نمایش بده کاربرانی با این ایمیل</target>
+      </trans-unit>
+      <trans-unit id="31d11be4a30f9c7142dd9549cdbbcd037893fa72" resname="find.user.with.this.username">
+        <source>find.user.with.this.username</source>
+        <target>نمایش بده کاربرانی با این نام کاربری</target>
+      </trans-unit>
+      <trans-unit id="90b4a78a5e87ca8735b199399a672d74d25ce5f4" resname="find.users.with.this.code">
+        <source>find.users.with.this.code</source>
+        <target>نمایش بده کاربرانی با این شماره پرسنلی</target>
+      </trans-unit>
+      <trans-unit id="8738094611e08255c3ee772138a41b1751cf7e40" resname="find.users.with.this.fname.and.lname">
+        <source>find.users.with.this.fname.and.lname</source>
+        <target>نمایش بده کاربرانی با این نام و نام خانوادگی</target>
+      </trans-unit>
       <trans-unit id="407004ca4b2231ca02e81ecb048f2d7d21524fcf" resname="first.name">
         <jms:reference-file line="19">SuperPanelBundle/Form/UserType.php</jms:reference-file>
         <source>first.name</source>
         <target state="new">نام</target>
       </trans-unit>
       <trans-unit id="6dbff8baa2167c52eeb72d407642eb430ca0b271" resname="fname">
-        <jms:reference-file line="28">EngineBundle/Form/UserFilterType.php</jms:reference-file>
+        <jms:reference-file line="34">EngineBundle/Form/UserFilterType.php</jms:reference-file>
         <source>fname</source>
         <target state="new">نام</target>
       </trans-unit>
@@ -138,10 +156,10 @@
         <target state="new">از تاریخ</target>
       </trans-unit>
       <trans-unit id="39a6bd435eb632f802d806b2b41b9326f1b16b51" resname="grade">
-        <jms:reference-file line="49">SuperPanelBundle/Form/UserType.php</jms:reference-file>
+        <jms:reference-file line="53">SuperPanelBundle/Form/UserType.php</jms:reference-file>
         <jms:reference-file line="54">ProfessorBundle/Form/EducationType.php</jms:reference-file>
         <jms:reference-file line="33">ProfessorBundle/Form/StudentsDissertationType.php</jms:reference-file>
-        <jms:reference-file line="39">EngineBundle/Form/UserFilterType.php</jms:reference-file>
+        <jms:reference-file line="54">EngineBundle/Form/UserFilterType.php</jms:reference-file>
         <source>grade</source>
         <target state="new">مقطع تحصیلی</target>
       </trans-unit>
@@ -151,19 +169,27 @@
         <target>تصویر</target>
       </trans-unit>
       <trans-unit id="9c1b5ca04a38c4387ad45098a75b7bb3eab327f7" resname="is.active">
-        <jms:reference-file line="53">SuperPanelBundle/Form/BlogType.php</jms:reference-file>
+        <jms:reference-file line="54">SuperPanelBundle/Form/BlogType.php</jms:reference-file>
         <source>is.active</source>
         <target state="new">فعال؟</target>
       </trans-unit>
       <trans-unit id="a52f641322a1f1443d4b4131a3a791df04b97cd6" resname="last.name">
-        <jms:reference-file line="26">SuperPanelBundle/Form/UserType.php</jms:reference-file>
+        <jms:reference-file line="27">SuperPanelBundle/Form/UserType.php</jms:reference-file>
         <source>last.name</source>
         <target state="new">نام خانوادگی</target>
       </trans-unit>
       <trans-unit id="1e94a445606170417df751409060dee8e956d3ce" resname="lname">
-        <jms:reference-file line="32">EngineBundle/Form/UserFilterType.php</jms:reference-file>
+        <jms:reference-file line="41">EngineBundle/Form/UserFilterType.php</jms:reference-file>
         <source>lname</source>
         <target state="new">نام خانوادگی</target>
+      </trans-unit>
+      <trans-unit id="3708f1e20543ceead2489402d9d2a55f07abcfb4" resname="lowercase.a-z.between.4-100">
+        <source>lowercase.a-z.between.4-100</source>
+        <target>آدرس وب سایت شما، رشته ای شامل فقط حروف کوچک a-z به طول 4-100 حرف</target>
+      </trans-unit>
+      <trans-unit id="af5e8d7568b8d672add366c324ba5c0061a37545" resname="max.500.letter">
+        <source>max.500.letter</source>
+        <target>حداکثر 500 کاراکتر</target>
       </trans-unit>
       <trans-unit id="ad8167df4b75bd9f2e165ea9f6053195cf7652b5" resname="monday">
         <jms:reference-file line="47">ProfessorBundle/Form/PlanType.php</jms:reference-file>
@@ -171,13 +197,13 @@
         <target state="new">دو شنبه</target>
       </trans-unit>
       <trans-unit id="6ae999552a0d2dca14d62e2bc8b764d377b1dd6c" resname="name">
-        <jms:reference-file line="33">SuperPanelBundle/Form/BlogType.php</jms:reference-file>
+        <jms:reference-file line="35">SuperPanelBundle/Form/BlogType.php</jms:reference-file>
         <jms:reference-file line="33">BlogPanelBundle/Form/GroupType.php</jms:reference-file>
         <source>name</source>
         <target state="new">نام</target>
       </trans-unit>
       <trans-unit id="d8fd39d0bbdd2dcf322d8b11390a4c5825b11495" resname="parent">
-        <jms:reference-file line="61">SuperPanelBundle/Form/BlogType.php</jms:reference-file>
+        <jms:reference-file line="60">SuperPanelBundle/Form/BlogType.php</jms:reference-file>
         <jms:reference-file line="51">ContentBundle/Form/CategoryType.php</jms:reference-file>
         <source>parent</source>
         <target state="new">والد</target>
@@ -190,6 +216,11 @@
       <trans-unit id="ff55435345834a3fe224936776c2aa15f6ed5358" resname="placeholder">
         <source>placeholder</source>
         <target>لطفا یک گزینه انتخاب کنید</target>
+      </trans-unit>
+      <trans-unit id="90be16585da21a822a011b262db668a8ccf504d0" resname="position">
+        <jms:reference-file line="29">LinkBundle/Form/CategoryType.php</jms:reference-file>
+        <source>position</source>
+        <target state="new">موقعیت</target>
       </trans-unit>
       <trans-unit id="31ce1aabee3857f6fa13667934d3e143b6246c42" resname="position.in.page">
         <jms:reference-file line="35">LinkBundle/Form/LinkType.php</jms:reference-file>
@@ -216,6 +247,10 @@
         <source>saturday</source>
         <target state="new">شنبه</target>
       </trans-unit>
+      <trans-unit id="3559d7accf00360971961ca18989adc0614089c0" resname="search">
+        <source>search</source>
+        <target>جست و جو</target>
+      </trans-unit>
       <trans-unit id="34b33e00b199d35ff4cda21df27122784573256b" resname="skill">
         <jms:reference-file line="71">ProfessorBundle/Form/ProfileType.php</jms:reference-file>
         <source>skill</source>
@@ -228,10 +263,14 @@
         <target state="new">شناسه</target>
       </trans-unit>
       <trans-unit id="149218a3c46acd1bed832f3dce1cff0af8d3ada4" resname="staff.code">
-        <jms:reference-file line="40">SuperPanelBundle/Form/UserType.php</jms:reference-file>
-        <jms:reference-file line="36">EngineBundle/Form/UserFilterType.php</jms:reference-file>
+        <jms:reference-file line="43">SuperPanelBundle/Form/UserType.php</jms:reference-file>
+        <jms:reference-file line="48">EngineBundle/Form/UserFilterType.php</jms:reference-file>
         <source>staff.code</source>
         <target state="new">کد پرسنلی</target>
+      </trans-unit>
+      <trans-unit id="cc648e3335c92bb55e841f07f9e245e20203b1b5" resname="staff.number">
+        <source>staff.number</source>
+        <target>شماره پرسنلی</target>
       </trans-unit>
       <trans-unit id="1390470c09daf4c6179c197e6aebe9821c9ca92d" resname="sunday">
         <jms:reference-file line="46">ProfessorBundle/Form/PlanType.php</jms:reference-file>
@@ -244,7 +283,7 @@
         <target state="new">تلفن</target>
       </trans-unit>
       <trans-unit id="dc151a5a2b81059b41f6ee78dbae34c114ce1528" resname="theme">
-        <jms:reference-file line="42">SuperPanelBundle/Form/BlogType.php</jms:reference-file>
+        <jms:reference-file line="45">SuperPanelBundle/Form/BlogType.php</jms:reference-file>
         <source>theme</source>
         <target state="new">پوسته</target>
       </trans-unit>
@@ -263,12 +302,16 @@
         <jms:reference-file line="19">SuperPanelBundle/Form/BlogType.php</jms:reference-file>
         <jms:reference-file line="30">ContentBundle/Form/CategoryType.php</jms:reference-file>
         <jms:reference-file line="45">ContentBundle/Form/ArticleType.php</jms:reference-file>
-        <jms:reference-file line="21">LinkBundle/Form/LinkType.php</jms:reference-file>
+        <jms:reference-file line="32">LinkBundle/Form/LinkType.php</jms:reference-file>
         <jms:reference-file line="25">Backend/StudentsDissertation/index.html.twig</jms:reference-file>
         <jms:reference-file line="27">ProfessorBundle/Form/StudentsDissertationType.php</jms:reference-file>
         <jms:reference-file line="22">ProfessorBundle/Form/PlanType.php</jms:reference-file>
         <source>title</source>
         <target state="new">عنوان</target>
+      </trans-unit>
+      <trans-unit id="e4ea15832443ce323afdd7f76c49960cbe6522e4" resname="title.your.site.wordage.between.4-255.word">
+        <source>title.your.site.wordage.between.4-255.word</source>
+        <target>عنوان وبسایت شما، عبارتی به طول 4 - 255 حرف</target>
       </trans-unit>
       <trans-unit id="e9aa025cd33f497fbe0b2c613b61f404c2f861ad" resname="to.date">
         <jms:reference-file line="47">ProfessorBundle/Form/EducationType.php</jms:reference-file>
@@ -285,6 +328,10 @@
         <source>university</source>
         <target state="new">دانشگاه</target>
       </trans-unit>
+      <trans-unit id="0a25ba5991316bdda4a9b3abcee2106016df28a0" resname="update">
+        <source>update</source>
+        <target>بروزرسانی</target>
+      </trans-unit>
       <trans-unit id="ecdd26018915843579edebb9246ba586fd254ce9" resname="updatedAt">
         <jms:reference-file line="29">Backend/StudentsDissertation/index.html.twig</jms:reference-file>
         <source>updatedAt</source>
@@ -296,14 +343,19 @@
         <target state="new">بروزرسانی شده توسط</target>
       </trans-unit>
       <trans-unit id="81736358b1645103ae83247b10c5f82af641ddfc" resname="url">
-        <jms:reference-file line="32">LinkBundle/Form/LinkType.php</jms:reference-file>
+        <jms:reference-file line="43">LinkBundle/Form/LinkType.php</jms:reference-file>
         <source>url</source>
         <target state="new">ادرس سایت</target>
       </trans-unit>
       <trans-unit id="249ba36000029bbe97499c03db5a9001f6b734ec" resname="username">
+        <jms:reference-file line="58">SuperPanelBundle/Form/UserType.php</jms:reference-file>
         <jms:reference-file line="20">EngineBundle/Form/UserFilterType.php</jms:reference-file>
         <source>username</source>
         <target state="new">نام کاربری</target>
+      </trans-unit>
+      <trans-unit id="8e31686036966a3f3f0a38a55eed99f236cfa38f" resname="username.consist.of.2-255.character.a-z0-9_">
+        <source>username.consist.of.2-255.character.a-z0-9_</source>
+        <target>نام کاربری شامل حروف a-z، 0-9 و _</target>
       </trans-unit>
       <trans-unit id="3ab3e0b020a6d41f3d259ddd3ed8ff273843839b" resname="website">
         <jms:reference-file line="42">ProfessorBundle/Form/ProfileType.php</jms:reference-file>

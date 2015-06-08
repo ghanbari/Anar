@@ -18,22 +18,37 @@ class UserFilterType extends AbstractType
             ->add('username', 'text', array(
                 'required' => false,
                 'label' => 'username',
+                'attr' => array(
+                    'placeholder' => 'find.user.with.this.username',
+                )
             ))
             ->add('email', 'email', array(
                 'required' => false,
                 'label' => 'email',
+                'attr' => array(
+                    'placeholder' => 'find.user.with.this.email',
+                )
             ))
             ->add('fname', 'text', array(
                 'required' => false,
                 'label' => 'fname',
+                'attr' => array(
+                    'placeholder' => 'find.users.with.this.fname.and.lname',
+                )
             ))
             ->add('lname', 'text', array(
                 'required' => false,
                 'label' => 'lname',
+                'attr' => array(
+                    'placeholder' => 'find.users.with.this.fname.and.lname',
+                )
             ))
             ->add('staffCode', 'number', array(
                 'required' => false,
                 'label' => 'staff.code',
+                'attr' => array(
+                    'placeholder' => 'find.users.with.this.code',
+                )
             ))
             ->add('grade', 'entity', array(
                 'label' => 'grade',

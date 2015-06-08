@@ -18,8 +18,8 @@ class LoadAppMenuData extends AbstractFixture implements OrderedFixtureInterface
     {
         $slideshow = $this->getReference('AnarSlideShowBundle');
 
-        $slideshowIndex = new AppMenu('image.management', $slideshow, $this->getReference('slideshowIndex'), 'anar_slide_show_backend_index', 'fa fa-file-image-o');
-        $slideshowNew = new AppMenu('image.create', $slideshow, $this->getReference('slideshowNew'), 'anar_slide_show_backend_new', 'fa fa-photo');
+        $slideshowIndex = new AppMenu('image.management', $slideshow, $this->getReference('slideshowIndex'), 'anar_slide_show_backend_index', 'fa fa-picture-o');
+        $slideshowNew = new AppMenu('image.create', $slideshow, $this->getReference('slideshowNew'), 'anar_slide_show_backend_new', 'fa fa-cloud-upload');
 
         $manager->persist($slideshowIndex);
         $manager->persist($slideshowNew);

@@ -17,7 +17,7 @@ anar_super_panel_user_search:
 
 anar_super_panel_user_check_email:
     path:     /check/email
-    defaults: { _controller: AnarSuperPanelBundle:User:checkEmail }
+    defaults: { _controller: AnarSuperPanelBundle:User:isEmailValid }
 
 anar_super_panel_user_check_username:
     path:     /check/{username}
