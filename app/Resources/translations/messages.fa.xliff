@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2015-05-16T21:52:02Z" source-language="en" target-language="fa" datatype="plaintext" original="not.available">
+  <file date="2015-06-08T22:16:08Z" source-language="en" target-language="fa" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -134,6 +134,10 @@
         <source>abstract</source>
         <target>چکیده</target>
       </trans-unit>
+      <trans-unit id="565cecd7e8f5c6063935b41db41797aa37d53b04" resname="article">
+        <source>article</source>
+        <target>مقاله</target>
+      </trans-unit>
       <trans-unit id="8bd31d7c74a66f4ee4bf99dbc282ec36733a6763" resname="article.create">
         <source>article.create</source>
         <target>نوشتن مقاله</target>
@@ -250,6 +254,20 @@
         <source>city</source>
         <target>شهر</target>
       </trans-unit>
+      <trans-unit id="1a73af9e7ae00182733b2292511b814be66f065f" resname="contact">
+        <source>contact</source>
+        <target>تماس با ما</target>
+      </trans-unit>
+      <trans-unit id="e5d23443a127960efa4d797352535be72410f08d" resname="contact.is.deleted">
+        <jms:reference-file line="60">Controller/Backend/ContactController.php</jms:reference-file>
+        <source>contact.is.deleted</source>
+        <target state="new">پیام با موفقیت حذف شد</target>
+      </trans-unit>
+      <trans-unit id="a112406410114c16e02d3e356215a3f1b5012b1a" resname="contact.is.not.exists">
+        <jms:reference-file line="53">Controller/Backend/ContactController.php</jms:reference-file>
+        <source>contact.is.not.exists</source>
+        <target state="new">پیام موجود نیست</target>
+      </trans-unit>
       <trans-unit id="040f06fd774092478d450774f5ba30c5da78acc8" resname="content">
         <source>content</source>
         <target>محتوا</target>
@@ -332,6 +350,7 @@
         <target>مدیریت پایان نامه ها</target>
       </trans-unit>
       <trans-unit id="a88b7dcd1a9e3e17770bbaa6d7515b31a2d7e85d" resname="email">
+        <jms:reference-file line="23">ContactBundle/Form/ContactType.php</jms:reference-file>
         <jms:reference-file line="137">views/User/index.html.twig</jms:reference-file>
         <jms:reference-file line="233">views/User/index.html.twig</jms:reference-file>
         <source>email</source>
@@ -595,15 +614,22 @@
         <target state="new">منو با موفقیت بروزرسانی شد</target>
       </trans-unit>
       <trans-unit id="6f9b9af3cd6e8b8a73c2cdced37fe9f59226e27d" resname="message">
+        <jms:reference-file line="31">ContactBundle/Form/ContactType.php</jms:reference-file>
         <jms:reference-file line="23">views/Log/index.html.twig</jms:reference-file>
         <source>message</source>
         <target>پیام</target>
+      </trans-unit>
+      <trans-unit id="fa33a7d8f4695437720d222fc7645c04e9bac7d7" resname="message.was.sended">
+        <jms:reference-file line="50">Controller/Frontend/ContactController.php</jms:reference-file>
+        <source>message.was.sended</source>
+        <target state="new">پیام با موفقیت ارسال شد</target>
       </trans-unit>
       <trans-unit id="ad8167df4b75bd9f2e165ea9f6053195cf7652b5" resname="monday">
         <source>monday</source>
         <target>دو شنبه</target>
       </trans-unit>
       <trans-unit id="6ae999552a0d2dca14d62e2bc8b764d377b1dd6c" resname="name">
+        <jms:reference-file line="19">ContactBundle/Form/ContactType.php</jms:reference-file>
         <jms:reference-file line="30">MenuBundle/Form/MenuType.php</jms:reference-file>
         <jms:reference-file line="24">views/Group/index.html.twig</jms:reference-file>
         <source>name</source>
@@ -706,14 +732,26 @@
         <source>publication.end.date</source>
         <target>تاریخ اتمام انتشار</target>
       </trans-unit>
+      <trans-unit id="5a1ce3d0e4206b6acaf395c16893dbc462fedd4e" resname="publication.end.in.date">
+        <source>publication.end.in.date</source>
+        <target>تاریخ اتمام انتشار</target>
+      </trans-unit>
       <trans-unit id="5a37f614ef88ac44cb4efaf9f6484e0118ec7793" resname="publication.start.date">
         <jms:reference-file line="28">Backend/Article/index.html.twig</jms:reference-file>
         <source>publication.start.date</source>
         <target>تاریخ شروع انتشار</target>
       </trans-unit>
+      <trans-unit id="b05be4f35a58539886f0b59a271408e5eb42bff9" resname="publication.start.from.date">
+        <source>publication.start.from.date</source>
+        <target>تاریخ شروع انتشار</target>
+      </trans-unit>
       <trans-unit id="db99845855b2ecbfecca9a095062b96c3e27703f" resname="remove">
         <source>remove</source>
         <target>حذف</target>
+      </trans-unit>
+      <trans-unit id="037c883f00c362bc76dbfb07f6042d289ce6aa21" resname="roles">
+        <source>roles</source>
+        <target>نقش ها</target>
       </trans-unit>
       <trans-unit id="9155ef5fde64a89f06048015eb7c1b09f8db67ed" resname="saturday">
         <source>saturday</source>
@@ -724,6 +762,11 @@
         <jms:reference-file line="246">BlogPanelBundle/Controller/GroupController.php</jms:reference-file>
         <source>search</source>
         <target state="new">جستوجو</target>
+      </trans-unit>
+      <trans-unit id="37ed539c0cef13959abd980bebf30f4922f606e3" resname="send">
+        <jms:reference-file line="75">Controller/Frontend/ContactController.php</jms:reference-file>
+        <source>send</source>
+        <target state="new">ارسال</target>
       </trans-unit>
       <trans-unit id="3cc1d5a427a45820b04fe30f78a972b784952460" resname="settings">
         <jms:reference-file line="42">views/Desktop/home.html.twig</jms:reference-file>
@@ -798,6 +841,7 @@
         <target>تا تاریخ</target>
       </trans-unit>
       <trans-unit id="c5d2f48b3f3fa29c46432ae820738f442eedbf15" resname="token.is.invalid">
+        <jms:reference-file line="66">Controller/Backend/ContactController.php</jms:reference-file>
         <jms:reference-file line="315">SuperPanelBundle/Controller/UserController.php</jms:reference-file>
         <jms:reference-file line="430">SuperPanelBundle/Controller/UserController.php</jms:reference-file>
         <jms:reference-file line="246">SuperPanelBundle/Controller/BlogController.php</jms:reference-file>
@@ -937,6 +981,7 @@
         <target>بازدید</target>
       </trans-unit>
       <trans-unit id="3ab3e0b020a6d41f3d259ddd3ed8ff273843839b" resname="website">
+        <jms:reference-file line="27">ContactBundle/Form/ContactType.php</jms:reference-file>
         <jms:reference-file line="37">MenuBundle/Form/MenuType.php</jms:reference-file>
         <source>website</source>
         <target state="new">آدرس سایت</target>
