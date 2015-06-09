@@ -1,0 +1,18 @@
+Anar\MenuBundle\Entity\Menu:
+    properties:
+        name:
+            - NotBlank: ~
+            - Type: string
+            - Length:
+                max: 255
+        url:
+            - NotBlank: ~
+            - Type: string
+            - Length:
+                max: 255
+        parent:
+            - NotNull: ~
+            - Type: Menu
+        blog:
+            - NotNull: ~
+            - Type: Anar\EngineBundle\Entity\Blog

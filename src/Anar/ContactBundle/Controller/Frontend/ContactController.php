@@ -22,9 +22,9 @@ class ContactController extends Controller
     {
         $contact = new Contact();
         $form   = $this->createCreateForm($contact);
-        $blog = $this->get('anar_engine.manager.blog');
+        $blogManager = $this->get('anar_engine.manager.blog');
 
-        return $this->render($blog->getTheme('AnarContactBundle:Contact:new.html.twig', 'Frontend'), array(
+        return $this->render($blogManager->getTheme('AnarContactBundle:Contact:new.html.twig', 'Frontend'), array(
             'contact' => $contact,
             'form'    => $form->createView(),
         ));
@@ -36,22 +36,23 @@ class ContactController extends Controller
      */
     public function createAction(Request $request)
     {
+        $blogManager = $this->get('anar_engine.manager.blog');
         $contact = new Contact();
+        $contact->setBlog($blogManager->getBlog());
+
         $form = $this->createCreateForm($contact);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $blog = $this->get('anar_engine.manager.blog')->getBlog();
-            $contact->setBlog($blog);
             $em = $this->getDoctrine()->getManager();
             $em->persist($contact);
             $em->flush();
 
             $this->addFlash('info', $this->get('translator')->trans('message.was.sended'));
-            return $this->redirect($this->generateUrl('anar_contact_frontend_create', array('blogName' => $blog->getName())));
+            return $this->redirect($this->generateUrl('anar_contact_frontend_create', array('blogName' => $blogManager->getBlog()->getName())));
         }
 
-        return $this->render('AnarContactBundle:Contact:new.html.twig', array(
+        return $this->render($blogManager->getTheme('AnarContactBundle:Contact:new.html.twig', 'Frontend'), array(
             'contact' => $contact,
             'form'    => $form->createView(),
         ));

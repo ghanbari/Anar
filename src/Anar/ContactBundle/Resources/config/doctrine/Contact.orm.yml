@@ -14,7 +14,8 @@ Anar\ContactBundle\Entity\Contact:
             nullable: true
         website:
             nullable: true
-        message: ~
+        message:
+            type: text
     manyToOne:
         blog:
             targetEntity: Anar\EngineBundle\Entity\Blog

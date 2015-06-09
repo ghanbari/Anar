@@ -1,0 +1,40 @@
+Anar\LinkBundle\Entity\Link:
+    properties:
+        title:
+            - NotBlank: ~
+            - Type: string
+            - Length:
+                max: 255
+        description:
+            - Type: string
+            - Length:
+                max: 255
+        url:
+            - NotBlank: ~
+            - Type: string
+            - Length:
+                max: 255
+        icon:
+            - Type: string
+            - Length:
+                max: 255
+        category:
+            - NotNull: ~
+            - Type: Category
+
+Anar\LinkBundle\Entity\Category:
+    properties:
+        name:
+            - NotBlank: ~
+            - Type: string
+            - Length:
+                max: 255
+        position:
+            - NotBlank: ~
+            - Type: string
+            - Expression: "value in this.getAvailablePosition()"
+            - Length:
+                max: 255
+        blog:
+            - NotBlank: ~
+            - Type: Anar\EngineBundle\Entity\Blog
