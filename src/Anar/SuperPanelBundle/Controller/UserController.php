@@ -70,12 +70,9 @@ class UserController extends Controller
         if ($form->isSubmitted()) {
             $userRepository = $this->getDoctrine()->getRepository('AnarEngineBundle:User');
             $usersQuery = $userRepository->getUsersQueryFilterBy($form->getData());
-            $paginator = $this->get('knp_paginator');
-            $itemPerPage = $this->getSetting()->get('superpanel.item_per_page', 10);
-            $pagination = $paginator->paginate($usersQuery, $page, $itemPerPage);
             $users = array();
 
-            foreach ($pagination->getItems() as $user) {
+            foreach ($usersQuery->setMaxResults(300)->getResult() as $user) {
                 $users[] = array(
                     'id' => $user->getId(),
                     'username' => $user->getUsername(),
@@ -95,13 +92,6 @@ class UserController extends Controller
                 ),
                 'response' => array(
                     'users' => $users,
-                    'pagination' => array(
-                        'count' => $pagination->getTotalItemCount(),
-                        'data' => $this->renderView(
-                            $pagination->getTemplate(),
-                            $this->get('knp_paginator.helper.processor')->render($pagination)
-                        )
-                    )
                 )
             )))->setStatusCode($statusCode);
         } else {
