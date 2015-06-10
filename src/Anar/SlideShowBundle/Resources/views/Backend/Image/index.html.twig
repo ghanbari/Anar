@@ -64,8 +64,7 @@
                         <td>{% if image.createdAt %}{{ image.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
                         <td>{% if image.updatedAt %}{{ image.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
                         <td>
-                            <button data-id="{{ image.id }}" style="padding: 5px" class="R_butt_green edit_plan btn">ویرایش</button>
-                            <button data-id="{{ image.id }}" style="padding: 5px" class="R_butt_red delete_plan btn">حذف</button>
+                            <button data-id="{{ image.id }}" style="padding: 5px" class="R_butt_red delete_pic btn">حذف</button>
                         </td>
                     </tr>
                     {% set i = i + 1 %}
@@ -75,3 +74,28 @@
     </div>
 </div>
 {% endblock %}
+
+{% block scripts %}
+
+    <script>
+        $('.delete_pic').click(function(){
+            var id = $(this).attr('data-id');
+            var path = Routing.generate('anar_slide_show_backend_delete',{ 'id': id });
+            $.ajax({
+                url: path,
+                type: "post",
+                data: {
+                    token: '{{ token }}'
+                },
+                success: function(data){
+                    Alert.render('حذف با موفقیت انجام شد!');
+                    $('tr[data-id='+ id +']').remove();
+                },
+                error: function(data){
+                    Alert.render(data.responseText.status.message);
+                }
+            });
+        });
+    </script>
+
+{% endblock scripts %}
