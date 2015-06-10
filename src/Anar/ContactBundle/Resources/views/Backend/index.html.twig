@@ -1,33 +1,87 @@
-{% extends '::base.html.twig' %}
+{% extends "AnarBlogPanelBundle:Desktop:index.html.twig" %}
 
-{% block body -%}
-    <h1>Contact list</h1>
+{% block csses %}
 
-    <table class="records_list">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Website</th>
-                <th>Message</th>
-                <th>Actions</th>
+{% endblock %}
+
+{% block Container %}
+<div class="col-md-11 col-sm-11 margin-left-45 tab_content_box margin-top-25 margin-bottom-25">
+    <div class="row">
+        <div class="col-md-6 col-sm-6 pull-right tittle_tab_content">
+            <i class="fa fa-list-alt"></i>
+            <span>لیست پیغام ها</span>
+        </div>
+        <div class="col-md-1 col-sm-1 pull-left text-left">
+            <i onclick="location.href = '{{ path("anar_blog_panel_home") }}'" class="glyphicon glyphicon-remove cursor_pointer" style="cursor: pointer"></i>
+        </div>
+    </div>
+    <hr id="cutter">
+    <div class="row">
+        <table class="records_list">
+            <tr class="text-center">
+                <td>Name</td>
+                <td>Email</td>
+                <td>Website</td>
+                <td></td>
             </tr>
-        </thead>
-        <tbody>
-        {% for contact in contacts %}
-            <tr>
-                <td>{{ contact.name }}</td>
-                <td>{{ contact.email }}</td>
-                <td>{{ contact.website }}</td>
-                <td>{{ contact.message }}</td>
-                <td>
-                    "{{ token }}"
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-        <ul>
-    </ul>
-    {% endblock %}
+            {% set i = 0 %}
+            {% for contact in contacts %}
+                <tr data-id="{{ contact.id }}" class="text-center {% if i % 2 == 0 %}t1{% else %}t2{% endif %}">
+                    <td>{{ contact.name }}</td>
+                    <td>{{ contact.email }}</td>
+                    <td>{{ contact.website }}</td>
+                    <td>
+                        <button data-id="{{ contact.id }}" style="padding: 5px" class="R_butt_blue observation btn">مشاهده</button>
+                        <button data-id="{{ contact.id }}" style="padding: 5px" class="R_butt_red delete_message btn">حذف</button>
+                    </td>
+                    {#<td>#}
+                        {#"{{ token }}"#}
+                    {#</td>#}
+                </tr>
+                <tr data-id="{{ contact.id }}" class="text-center text-message {% if i % 2 == 0 %}t1{% else %}t2{% endif %}">
+                    <td colspan="4">
+                        <div class="col-md-6 col-md-offset-3 col-sm-offset-3 display-none message-container"> {{ contact.message }}</div>
+                    </td>
+                </tr>
+                {% set i = i + 1 %}
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+
+{% endblock Container %}
+
+{% block scripts %}
+
+<script>
+
+    $('.observation').click(function(){
+        var data_id = $(this).attr('data-id');
+        $('tr.text-message[data-id = ' + data_id + '] .message-container').slideToggle(600);
+    });
+
+    $('.delete_message').click(function(){
+        var id = $(this).attr('data-id');
+        var path = '{{ path('anar_contact_backend_delete',{ 'id': '__id__' }) }}';
+        path = path.replace('__id__',id);
+//        var path = Routing.generate('anar_contact_backend_delete',{ 'id': id });
+        $.ajax({
+            url: path,
+            type: "post",
+            data: {
+                token: '{{ token }}'
+            },
+            success: function(data){
+                Alert.render('حذف با موفقیت انجام شد!');
+                $('tr[data-id='+ id +']').remove();
+            },
+            error: function(data){
+                Alert.render(data.status['message']);
+            }
+        });
+    });
+
+</script>
+
+{% endblock scripts %}

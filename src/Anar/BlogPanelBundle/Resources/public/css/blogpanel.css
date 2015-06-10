@@ -216,3 +216,10 @@
     cursor: pointer;
     border-radius: 5px;
 }
+
+.message-container{
+    background: white;
+    padding: 10px;
+    box-shadow: 0 0 3px #aaa;
+    border: 1px #999 solid;
+}

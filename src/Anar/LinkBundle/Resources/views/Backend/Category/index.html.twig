@@ -17,6 +17,30 @@
     </div>
     <hr id="cutter">
     <div class="row">
+        {% for message in app.session.getFlashBag().get('info') %}
+            <div class="col-md-12 col-sm-12">
+                <div class="alert alert-success alert-dismissable">
+                    {{ message|trans }}
+                    <i class="glyphicon glyphicon-remove cursor_pointer pull-left" data-dismiss="alert"></i>
+                </div>
+            </div>
+        {% endfor %}
+        {% for message in app.session.getFlashBag().get('errors') %}
+            <div class="col-md-12 col-sm-12">
+                <div class="alert alert-danger alert-dismissable">
+                    {{ message|trans }}
+                    <i class="glyphicon glyphicon-remove cursor_pointer pull-left" data-dismiss="alert"></i>
+                </div>
+            </div>
+        {% endfor %}
+        {% for message in app.session.getFlashBag().get('warning') %}
+            <div class="col-md-12 col-sm-12">
+                <div class="alert alert-warning alert-dismissable">
+                    {{ message|trans }}
+                    <i class="glyphicon glyphicon-remove cursor_pointer pull-left" data-dismiss="alert"></i>
+                </div>
+            </div>
+        {% endfor %}
         <div class="col-md-12 col-sm-12 margin-top-10">
             <table class="records_list">
                 <tr class="text-center">
