@@ -256,23 +256,28 @@ class GroupController extends Controller implements AdminInterface
         if ($form->isSubmitted()) {
             $userRepository = $this->getDoctrine()->getRepository('AnarEngineBundle:User');
             $usersQuery = $userRepository->getUsersQueryFilterBy($form->getData());
-            $users = $usersQuery->setMaxResults(100)->getResult();
+            $users = array();
+
+            foreach ($usersQuery->setMaxResults(100)->getResult() as $user) {
+                $users[] = array(
+                    'id' => $user->getId(),
+                    'username' => $user->getUsername(),
+                    'email' => $user->getEmail(),
+                    'fname' => $user->getFname(),
+                    'lname' => $user->getLname(),
+                    'staffCode' => $user->getStaffCode(),
+                    'grade' => $user->getGrade()->getName(),
+                    'image' => '',
+                );
+            }
+
             return new JsonResponse(array(
                 'status' => array(
                     'code' => $statusCode = (count($users) == 0) ? 404 : 200,
                     'message' => (count($users) == 0) ? $this->get('translator')->trans('not.found') : 'OK'
                 ),
                 'response' => array(
-                    'users' => (count($users) != 0) ? array(
-                        'id' => $users[0]->getId(),
-                        'username' => $users[0]->getUsername(),
-                        'email' => $users[0]->getEmail(),
-                        'fname' => $users[0]->getFname(),
-                        'lname' => $users[0]->getLname(),
-                        'staffCode' => $users[0]->getStaffCode(),
-                        'grade' => $users[0]->getGrade()->getName(),
-                        'image' => '',
-                    ) : array(),
+                    'users' => $users,
                 )
             ), $statusCode);
         } else {
