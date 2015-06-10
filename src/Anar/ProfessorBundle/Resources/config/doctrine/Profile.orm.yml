@@ -13,10 +13,8 @@ Anar\ProfessorBundle\Entity\Profile:
         telephone:
             length: 15
             nullable: true
-            unique: true
         email:
             nullable: true
-            unique: true
         birthday:
             type: date
             nullable: true

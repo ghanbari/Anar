@@ -1019,6 +1019,10 @@
         <source>you.can.use.this.username</source>
         <target state="new">شما می توانید این نام کاربری را استفاده نمایید</target>
       </trans-unit>
+        <trans-unit id="1">
+            <source>contact.index</source>
+            <target>پیام ها</target>
+        </trans-unit>
     </body>
   </file>
 </xliff>

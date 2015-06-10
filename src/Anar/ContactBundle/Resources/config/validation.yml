@@ -1,0 +1,25 @@
+Anar\ContactBundle\Entity\Contact:
+    properties:
+        name:
+            - NotBlank: ~
+            - Type: string
+            - Length:
+                max: 255
+        email:
+            - Type: string
+            - Email: ~
+            - Length:
+                max: 255
+        website:
+            - Url: ~
+            - Length:
+                max: 255
+        message:
+            - NotBlank: ~
+            - Type: string
+            - Length:
+                max: 255
+        blog:
+            - NotNull: ~
+            - Type:
+                type: Anar\EngineBundle\Entity\Blog

@@ -1,0 +1,116 @@
+Anar\ProfessorBundle\Entity\Profile:
+    properties:
+        telephone:
+            - Type: string
+            - Length:
+                min: 11
+                max: 15
+        email:
+            - Email: ~
+            - Length:
+                max: 255
+        birthday:
+            - Date:~
+        website:
+            - Url: ~
+        avatar:
+            - Type: string
+            - Length:
+                max: 255
+        bio:
+            - Type: string
+            - Length:
+                max: 10000
+        jobStartedAt:
+            - Date: ~
+        skill:
+            - Type: string
+            - Length:
+                max: 10000
+        favorite:
+            - Type: string
+            - Length:
+                max: 10000
+        article:
+            - Type: string
+            - Length:
+                max: 10000
+        blog:
+            - NotNull: ~
+            - Type: Anar\EngineBundle\Entity\Blog
+        educations:
+            - All:
+                - Type: Anar\ProfessorBundle\Entity\Education
+                - Count:
+                    max: 10
+
+Anar\ProfessorBundle\Entity\Education:
+    properties:
+        university:
+            - NotBlank: ~
+            - Type: string
+            - Length:
+                max: 255
+        city:
+            - NotBlank: ~
+            - Type: string
+            - Length:
+                max: 255
+        country:
+            - NotBlank: ~
+            - Type: string
+            - Length:
+                max: 255
+        startDate:
+            - Date: ~
+        endDate:
+            - Date: ~
+        grade:
+            - NotNull: ~
+            - Type: Anar\EngineBundle\Entity\Grade
+        profile:
+            - NotNull: ~
+            - Type: Profile
+
+Anar\ProfessorBundle\Entity\Plan:
+    properties:
+        title:
+            - NotBlank: ~
+            - Type: string
+            - Length:
+                max: 255
+        startTime:
+            - Time: ~
+        endTime:
+            - Time: ~
+        dayNumber:
+            - Range:
+                min: 0
+                max: 6
+        profile:
+            - NotNull: ~
+            - Type: Profile
+
+Anar\ProfessorBundle\Entity\StudentsDissertation:
+    properties:
+        author:
+            - NotBlank: ~
+            - Type: string
+            - Length:
+                max: 255
+        title:
+            - NotBlank: ~
+            - Type: string
+            - Length:
+                max: 255
+        abstract:
+            - NotBlank: ~
+            - Type: string
+            - Length:
+                max: 1000
+        grade:
+            - NotNull: ~
+            - Type: Anar\EngineBundle\Entity\Grade
+        profile:
+            - NotNull: ~
+            - Type: Profile

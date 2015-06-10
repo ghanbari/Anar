@@ -156,7 +156,6 @@ class BlogController extends Controller
             'required' => true,
             'placeholder' => 'placeholder',
             'query_builder' => function ($er) use ($blog) {
-                /** @var QueryBuilder $qb */
                 $qb = $er->createQueryBuilder('b');
                 return $qb->where($qb->expr()->orX(
                     $qb->expr()->lt('b.lft', '?1'),
