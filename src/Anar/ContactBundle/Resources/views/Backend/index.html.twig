@@ -77,7 +77,7 @@
                 $('tr[data-id='+ id +']').remove();
             },
             error: function(data){
-                Alert.render(data.status['message']);
+                Alert.render(JSON.parse(data.responseText).status.message);
             }
         });
     });
