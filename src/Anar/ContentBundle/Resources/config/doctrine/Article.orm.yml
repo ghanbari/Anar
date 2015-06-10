@@ -47,6 +47,8 @@ Anar\ContentBundle\Entity\Article:
             nullable: true
         image:
             nullable: true
+        attach:
+            nullable: true
         createdAt:
             type: datetime
             gedmo:

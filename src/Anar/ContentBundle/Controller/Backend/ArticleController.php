@@ -62,11 +62,11 @@ class ArticleController extends Controller implements AdminInterface
     {
         $blog = $this->get('anar_engine.manager.blog')->getBlog();
         $article = new Article();
+        $article->setBlog($blog);
         $form = $this->createCreateForm($article);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $article->setBlog($blog);
             $em = $this->getDoctrine()->getManager();
             $em->persist($article);
             $em->flush();
@@ -165,7 +165,7 @@ class ArticleController extends Controller implements AdminInterface
             $em->flush();
 
             $this->addFlash('info', $this->get('translator')->trans('article.was.edited.successfully'));
-            $this->redirectToRoute('anar_content_backend_article_index');
+            return $this->redirectToRoute('anar_content_backend_article_index');
         }
 
         return $this->render('AnarContentBundle:Backend/Article:new.html.twig', array(

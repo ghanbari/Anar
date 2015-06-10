@@ -121,19 +121,19 @@
       </trans-unit>
       <trans-unit id="8a68c6c14003add64f78948306d4bad5bfc2398f" resname="find.user.with.this.email">
         <source>find.user.with.this.email</source>
-        <target>نمایش بده کاربرانی با این ایمیل</target>
+        <target>نام خانوادگی کاربر مورد نظر</target>
       </trans-unit>
       <trans-unit id="31d11be4a30f9c7142dd9549cdbbcd037893fa72" resname="find.user.with.this.username">
         <source>find.user.with.this.username</source>
-        <target>نمایش بده کاربرانی با این نام کاربری</target>
+        <target>نام کاربری، کاربر مورد نظر</target>
       </trans-unit>
       <trans-unit id="90b4a78a5e87ca8735b199399a672d74d25ce5f4" resname="find.users.with.this.code">
         <source>find.users.with.this.code</source>
-        <target>نمایش بده کاربرانی با این شماره پرسنلی</target>
+        <target>شماره پرسنلی کاربر مورد نظر</target>
       </trans-unit>
       <trans-unit id="8738094611e08255c3ee772138a41b1751cf7e40" resname="find.users.with.this.fname.and.lname">
         <source>find.users.with.this.fname.and.lname</source>
-        <target>نمایش بده کاربرانی با این نام و نام خانوادگی</target>
+        <target>نام و نام خانوادگی، کاربران مورد نظر</target>
       </trans-unit>
       <trans-unit id="407004ca4b2231ca02e81ecb048f2d7d21524fcf" resname="first.name">
         <jms:reference-file line="19">SuperPanelBundle/Form/UserType.php</jms:reference-file>
@@ -372,6 +372,10 @@
         <source>week.day</source>
         <target state="new">روز هفته</target>
       </trans-unit>
+        <trans-unit id="1">
+            <source>word.between.4_255</source>
+            <target>لغتی به طول 4 - 255 کاراکتز شامل حروف a-z, A-Z, 0-9 و _</target>
+        </trans-unit>
     </body>
   </file>
 </xliff>

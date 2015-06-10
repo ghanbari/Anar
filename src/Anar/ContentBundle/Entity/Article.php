@@ -105,6 +105,16 @@ class Article
     protected $imageFile;
 
     /**
+     * @var string
+     */
+    protected $attach;
+
+    /**
+     * @var File
+     */
+    protected $attachFile;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -551,5 +561,48 @@ class Article
     public function getImageFile()
     {
         return $this->imageFile;
+    }
+
+    /**
+     * Set attach
+     *
+     * @param string $attach
+     *
+     * @return Article
+     */
+    public function setAttach($attach)
+    {
+        $this->attach = $attach;
+
+        return $this;
+    }
+
+    /**
+     * Get attach
+     *
+     * @return string
+     */
+    public function getAttach()
+    {
+        return $this->attach;
+    }
+
+    /**
+     * @return File
+     */
+    public function getAttachFile()
+    {
+        return $this->attachFile;
+    }
+
+    /**
+     * @param File $attachFile
+     */
+    public function setAttachFile($attachFile)
+    {
+        if ($attachFile) {
+            $this->attachFile = $attachFile;
+            $this->updatedAt = new \DateTime();
+        }
     }
 }

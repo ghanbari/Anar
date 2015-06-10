@@ -266,8 +266,7 @@ class GroupController extends Controller implements AdminInterface
                     'fname' => $user->getFname(),
                     'lname' => $user->getLname(),
                     'staffCode' => $user->getStaffCode(),
-                    'grade' => $user->getGrade()->getName(),
-                    'image' => '',
+                    'enabled' => $user->getEnabled(),
                 );
             }
 
