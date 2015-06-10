@@ -57,6 +57,18 @@
             </div>
             {{ form_end(form) }}
         </div>
+        <div class="col-md-4 col-sm-4" style="padding-right: 0">
+            <div class="row" style="min-height: 38px">
+                <div class="col-md-12">
+                    <span class="_error">{{ form_errors(form.name) }}</span>
+                </div>
+            </div>
+            <div class="row margin-top-10 form_fields_message" style="min-height: 38px">
+                <div class="col-md-12">
+                    <span class="_error">{{ form_errors(form.position) }}</span>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

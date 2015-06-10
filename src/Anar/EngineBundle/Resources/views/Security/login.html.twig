@@ -24,33 +24,39 @@
 </head>
 
 <body>
-<div id="formWrap">
-<form name="login-form" action="{{ path(app.request.attributes.get('_route')~'_check')  }}" method="post" class="login" role="form"  autocomplete="off">
-    <p>
-      <label for="_username"></label>
-      <input name="_username" type="text" id="login" value="{{ last_username }}" onfocus="this.value=''" autocomplete="off" placeholder="username">
-    </p>
+    <div id="formWrap">
+        <form name="login-form" action="{{ path(app.request.attributes.get('_route')~'_check')  }}" method="post" class="login" role="form"  autocomplete="off">
+            <p>
+              <label for="_username"></label>
+              <input name="_username" type="text" id="login" value="{{ last_username }}" onfocus="this.value=''" autocomplete="off" placeholder="username">
+            </p>
 
-    <p>
-      <label for="_password"></label>
-      <input name="_password" type="password" id="password"  onfocus="this.value=''" autocomplete="off" placeholder="password">
-    </p>
-    
-    <p class="login-submit">
-      <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-      <button type="submit" class="login-button">Login</button>
-    </p>
-    
-    <label class="remeber ">
-        <input type="checkbox" id="remember_me" name="_remember_me" value="on"> Remember me
-    </label>
-  </form> 
- </div>       
-  <section class="about">
-      <img src="{{ asset('bundles/anarengine/images/logo.png') }}" alt="Pomegranate Notification system" style="margin: 5px auto;"><br>
+            <p>
+              <label for="_password"></label>
+              <input name="_password" type="password" id="password"  onfocus="this.value=''" autocomplete="off" placeholder="password">
+            </p>
+
+            <p class="login-submit">
+              <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+              <button type="submit" class="login-button">Login</button>
+            </p>
+
+            <label class="remeber ">
+                <input type="checkbox" id="remember_me" name="_remember_me" value="on"> Remember me
+            </label>
+        </form>
+        {% if error is defined and error is not empty%}
+        <div class="login_form_errors">
+            <img src="{{ asset('bundles/anarsuperpanel/images/superPanelLogoMini.png') }}">
+            <span>{{ error }}!</span>
+        </div>
+        {% endif %}
+    </div>
+    <section class="about">
+        <img src="{{ asset('bundles/anarengine/images/logo.png') }}" alt="Pomegranate Notification system" style="margin: 5px auto;"><br>
     <p class="about-author">
-      &copy; 2014&ndash;2015 <br>  <a href="#" target="_blank">Pomegranate Notification system</a>
-  </section>
+        &copy; 2014&ndash;2015 <br>  <a href="#" target="_blank">Pomegranate Notification system</a>
+    </section>
 
 
     {#----------------------commonScripts----------------------#}
@@ -62,13 +68,6 @@
     {#----------------------/commonScripts----------------------#}
     {#----------------------PrivateScripts----------------------#}
     <!--[if lt IE 9]><script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-    {% if error is defined and error is not empty%}
-        <script type="text/javascript">
-            $(document).ready(function() {       
-$.tinyNotice("server error","نام کاربری یا رمز عبور اشتباه است ! <br> message : {{ error }}","error",6000); 
-            });
-        </script>           
-    {% endif %}
     {#----------------------/PrivateScripts----------------------#}
 </body>
 </html>
