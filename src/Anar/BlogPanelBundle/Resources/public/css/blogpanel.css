@@ -48,9 +48,25 @@
     color: red;
 }
 
+._error ul{
+    margin-top: 10px;
+}
+
+._error ul li{
+    list-style: none;
+}
+
 ._success{
     font-size: 10pt;
     color: #6dc437;
+}
+
+._success ul{
+    margin-top: 10px;
+}
+
+._success ul li{
+    list-style: none;
 }
 
 .display-none{
@@ -222,4 +238,35 @@
     padding: 10px;
     box-shadow: 0 0 3px #aaa;
     border: 1px #999 solid;
+}
+
+.alert-danger ul{
+    width: 80%;
+    display: inline-block;
+}
+
+.alert-danger ul li{
+    list-style: none;
+}
+
+.alert-success ul{
+    width: 80%;
+    display: inline-block;
+}
+
+.alert-success ul li{
+    list-style: none;
+}
+
+.alert-warning ul{
+    width: 80%;
+    display: inline-block;
+}
+
+.alert-warning ul li{
+    list-style: none;
+}
+
+.cursor_pointer{
+    cursor: pointer;
 }

@@ -247,17 +247,17 @@
                     $('.users_data').remove();
                     $('.users_pagination').remove();
                     var users_find = '' +
-                        '<tr data-id="' + data.response['users']['id'] + '" class="t1">' +
-                            '<td class="col-md-1 col-sm-1 text-center">' + data.response['users']['username'] + '</td>' +
-                            '<td class="col-md-2 col-sm-2 text-center">' + data.response['users']['email'] + '</td>' +
-                            '<td class="col-md-1 col-sm-1 text-center">' + data.response['users']['fname'] + '</td>' +
-                            '<td class="col-md-2 col-sm-2 text-center">' + data.response['users']['lname'] + '</td>' +
-                            '<td class="col-md-2 col-sm-2 text-center">' + data.response['users']['staffCode'] + '</td>' +
-                            '<td class="col-md-1 col-sm-1 text-center">' + data.response['users']['grade'] + '</td>' +
+                        '<tr data-id="' + data.response['users']['id'] + '" class="t1 users_data">' +
+                            '<td class="col-md-1 col-sm-1 text-center">' + data.response['users'][0]['username'] + '</td>' +
+                            '<td class="col-md-2 col-sm-2 text-center">' + data.response['users'][0]['email'] + '</td>' +
+                            '<td class="col-md-1 col-sm-1 text-center">' + data.response['users'][0]['fname'] + '</td>' +
+                            '<td class="col-md-2 col-sm-2 text-center">' + data.response['users'][0]['lname'] + '</td>' +
+                            '<td class="col-md-2 col-sm-2 text-center">' + data.response['users'][0]['staffCode'] + '</td>' +
+                            '<td class="col-md-1 col-sm-1 text-center">' + data.response['users'][0]['grade'] + '</td>' +
                             '<td class="col-md-3 col-sm-3 text-center">' +
                                 '<span class="R_butt_green" onclick="location.href = ' + edit_path + '">ویرایش</span>' +
-                                '<span style="margin-right: 5px" data-id="' + data.response['users']['id'] + '" class="R_butt_red delete_user">حذف</span>' +
-                                '<span style="margin-right: 5px" data-id="' + data.response['users']['id'] + '" class="R_butt_blue blogs">وبلاگ ها</span>' +
+                                '<span style="margin-right: 5px" data-id="' + data.response['users'][0]['id'] + '" class="R_butt_red delete_user">حذف</span>' +
+                                '<span style="margin-right: 5px" data-id="' + data.response['users'][0]['id'] + '" class="R_butt_blue blogs">وبلاگ ها</span>' +
                             '</td>' +
                         '</tr>';
                     $('.records_list').append(users_find);

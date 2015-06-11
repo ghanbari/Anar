@@ -10,6 +10,11 @@
         .select2-arrow b{
             background-position: 5px 4px !important;
         }
+
+        textarea{
+            resize: none;
+            height: 90px !important;
+        }
     </style>
 
 {% endblock csses %}
@@ -79,13 +84,13 @@
             </div>
             {{ form_end(form) }}
         </div>
-        <div class="col-md-4 col-sm-4" style="padding-right: 0">
+        <div class="col-md-4 col-sm-4 margin-top-10" style="padding-right: 0">
             <div class="row" style="min-height: 38px">
                 <div class="col-md-12">
                     <span class="_error">{{ form_errors(form.title) }}</span>
                 </div>
             </div>
-            <div class="row margin-top-10 form_fields_message" style="min-height: 38px">
+            <div class="row margin-top-10 form_fields_message" style="min-height: 80px">
                 <div class="col-md-12">
                     <span class="_error">{{ form_errors(form.description) }}</span>
                 </div>

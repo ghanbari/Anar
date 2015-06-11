@@ -143,10 +143,21 @@
                             </div>
                         </div>
                         {{ form_widget(form.imageFile,{ 'attr' : {'class':'form-control'} }) }}
-                        {{ form_widget(form.attachFile,{ 'attr' : {'class':'form-control'} }) }}
+                        {#{{ form_widget(form.attachFile,{ 'attr' : {'class':'form-control'} }) }}#}
                     </div>
                     <div class="col-md-5 col-sm-5">
                         <span class="_error">{{ form_errors(form.imageFile) }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                <div class="form-group">
+                    {{ form_label(form.attachFile, '', {'label_attr': {'class': 'col-md-2 col-sm-2 pull-right control-label text-left'} }) }}
+                    <div class="col-md-5 col-sm-5 pull-right">
+                        {{ form_widget(form.attachFile,{ 'attr' : {'class':'form-control'} }) }}
+                    </div>
+                    <div class="col-md-5 col-sm-5">
+                        <span class="_error">{{ form_errors(form.attachFile) }}</span>
                     </div>
                 </div>
             </div>

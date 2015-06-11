@@ -29,6 +29,14 @@
     </div>
     <hr id="cutter">
     <div class="row">
+        {% if form.vars.errors|length > 0 %}
+            <div class="col-md-12 col-sm-12">
+                <div class="alert alert-danger alert-dismissable">
+                    {{ form_errors(form) }}
+                    <i class="glyphicon glyphicon-remove cursor_pointer pull-left" data-dismiss="alert"></i>
+                </div>
+            </div>
+        {% endif %}
         <div class="col-md-8 col-sm-8 pull-right margin-top-10">
             {{ form_start(form, { 'attr': {'class': 'link_category_form'}}) }}
             <div class="row">
