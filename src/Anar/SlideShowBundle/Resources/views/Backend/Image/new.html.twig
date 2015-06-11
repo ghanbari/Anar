@@ -68,4 +68,10 @@
 
 {% block scripts %}
     <script src="{{ asset('bundles/anarblogpanel/plugins/bootstrap-fileupload/bootstrap-fileupload.js') }}"></script>
+
+    <script>
+
+        $('.current_ancestor').removeClass('minus').addClass('open');
+        $('.current_ancestor .menu-items i').attr('class','fa fa-minus-square-o');
+    </script>
 {% endblock scripts %}
