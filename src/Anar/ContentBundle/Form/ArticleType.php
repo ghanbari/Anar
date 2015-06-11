@@ -8,6 +8,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Doctrine\Bundle\DoctrineBundle\Registry;
+use Symfony\Component\Validator\Constraints\File;
+use Symfony\Component\Validator\Constraints\Image;
 
 class ArticleType extends AbstractType
 {
@@ -52,7 +54,8 @@ class ArticleType extends AbstractType
                 'label' => 'slug',
                 'required' => true,
                 'attr' => array(
-                    'pattern' => '[a-zA-Z0-9_]{4,255}'
+                    'pattern' => '[a-zA-Z0-9_]{4,255}',
+                    'placeholder' => 'word.between.4_255'
                 )
             ))
             ->add('abstract', 'textarea', array(
@@ -83,6 +86,24 @@ class ArticleType extends AbstractType
             ->add('imageFile', 'file', array(
                 'required' => false,
                 'label' => 'image',
+                'constraints' => new Image(),
+            ))
+            ->add('attachFile', 'file', array(
+                'required' => false,
+                'label' => 'attachment',
+                'constraints' => new File(array(
+                    'maxSize' => '100M',
+                    'mimeTypes' => array(
+                        'application/zip',
+                        'application/x-rar-compressed',
+                        'application/pdf',
+                        'application/x-pdf',
+                        'application/msword',
+                        'application/vnd.ms-excel',
+                        'vnd.ms-powerpoint',
+                        'application/gzip',
+                    ),
+                )),
             ))
             ->add('category', 'entity', array(
                 'label' => 'category',

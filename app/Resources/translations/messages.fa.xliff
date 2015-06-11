@@ -1023,6 +1023,10 @@
             <source>contact.index</source>
             <target>پیام ها</target>
         </trans-unit>
+        <trans-unit id="2">
+            <source>group</source>
+            <target>گروه</target>
+        </trans-unit>
     </body>
   </file>
 </xliff>

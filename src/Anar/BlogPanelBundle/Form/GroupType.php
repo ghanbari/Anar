@@ -46,7 +46,7 @@ class GroupType extends AbstractType
                 'property' => 'name',
                 'label' => 'roles',
                 'multiple' => true,
-                'required' => false,
+                'required' => true,
                 'query_builder' => function ($er) {
                     $qb = $er->createQueryBuilder('r');
                     return $qb->join('r.app', 'a')

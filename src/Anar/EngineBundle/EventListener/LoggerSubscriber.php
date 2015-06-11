@@ -115,7 +115,7 @@ class LoggerSubscriber extends ContainerAware implements EventSubscriber
 
         $now = new \DateTime();
         $entityName = strtolower(trim(substr(get_class($entity), strrpos(get_class($entity), '\\')+1)));
-        $message = 'مدیر ' . $this->tokenStorage->getToken()->getUsername() .
+        $message = $this->tokenStorage->getToken()->getUsername() .
             '، ' . $this->translator->trans($entityName, array(), null, 'fa') .
             ' با شناسه ' . $entity->getId() . ' را ' . $this->translator->trans($event, array(), null, 'fa') . ' کرد.';
 
