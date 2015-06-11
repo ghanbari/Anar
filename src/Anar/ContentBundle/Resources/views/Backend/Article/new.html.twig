@@ -117,7 +117,7 @@
                 <div class="form-group">
                     {{ form_label(form.publicationEndDate, '', {'label_attr': {'class': 'col-md-2 col-sm-2 pull-right control-label text-left'} }) }}
                     <div class="col-md-5 col-sm-5 pull-right">
-                        {{ form_widget(form.publicationEndDate,{ 'attr' : {'class':'form-control s_d'} }) }}
+                        {{ form_widget(form.publicationEndDate,{ 'attr' : {'class':'form-control end_date'} }) }}
                     </div>
                     <div class="col-md-5 col-sm-5">
                         <span class="_error">{{ form_errors(form.publicationEndDate) }}</span>
@@ -179,7 +179,6 @@
 {% endblock %}
 
 {% block scripts %}
-    {{ parent() }}
     <script src="{{ asset('bundles/anarsuperpanel/js/bootstrap-switch.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/anarblogpanel/plugins/DatePicker/pwt-date.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/anarblogpanel/plugins/DatePicker/pwt-datepicker.js') }}"></script>
@@ -187,7 +186,9 @@
     <script src="{{ asset('bundles/anarblogpanel/plugins/bootstrap-fileupload/bootstrap-fileupload.js') }}"></script>
 
     <script>
+
         $('.s_d').val('').pDatepicker();
+        $('.end_date').val('').pDatepicker().val('');
 
         CKEDITOR.replace('article_abstract',{
             language: 'fa',

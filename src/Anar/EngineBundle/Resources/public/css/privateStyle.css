@@ -315,3 +315,26 @@ label {
 .lt-ie9 .about {
     background: #313131;
 }
+
+.login_form_errors{
+    background: #373737;
+    direction: rtl;
+    border: 1px solid #000000;
+    box-shadow: 0 0 3px #000;
+    padding: 15px;
+    text-align: center;
+    color: red;
+    width: 300px;
+    margin: 15px auto;
+    font-family: Roya;
+}
+
+.login_form_errors img{
+    height: 35px;
+    width: 30px;
+}
+
+.login_form_errors span{
+    vertical-align: 12px;
+    margin-right: 10px;
+}
