@@ -1,7 +1,6 @@
 Anar\ProfessorBundle\Entity\Profile:
     properties:
         telephone:
-            - Type: string
             - Length:
                 min: 11
                 max: 15
@@ -10,7 +9,7 @@ Anar\ProfessorBundle\Entity\Profile:
             - Length:
                 max: 255
         birthday:
-            - Date:~
+            - Date: ~
         website:
             - Url: ~
         avatar:
@@ -41,8 +40,6 @@ Anar\ProfessorBundle\Entity\Profile:
         educations:
             - All:
                 - Type: Anar\ProfessorBundle\Entity\Education
-                - Count:
-                    max: 10
 
 Anar\ProfessorBundle\Entity\Education:
     properties:
@@ -70,7 +67,7 @@ Anar\ProfessorBundle\Entity\Education:
             - Type: Anar\EngineBundle\Entity\Grade
         profile:
             - NotNull: ~
-            - Type: Profile
+            - Type: Anar\ProfessorBundle\Entity\Profile
 
 Anar\ProfessorBundle\Entity\Plan:
     properties:
@@ -89,7 +86,7 @@ Anar\ProfessorBundle\Entity\Plan:
                 max: 6
         profile:
             - NotNull: ~
-            - Type: Profile
+            - Type: Anar\ProfessorBundle\Entity\Profile
 
 Anar\ProfessorBundle\Entity\StudentsDissertation:
     properties:
@@ -113,4 +110,4 @@ Anar\ProfessorBundle\Entity\StudentsDissertation:
             - Type: Anar\EngineBundle\Entity\Grade
         profile:
             - NotNull: ~
-            - Type: Profile
+            - Type: Anar\ProfessorBundle\Entity\Profile

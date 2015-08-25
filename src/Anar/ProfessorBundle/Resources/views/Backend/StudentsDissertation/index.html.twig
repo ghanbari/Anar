@@ -17,6 +17,30 @@
     </div>
     <hr id="cutter">
     <div class="row">
+        {% for message in app.session.getFlashBag().get('info') %}
+            <div class="col-md-12 col-sm-12">
+                <div class="alert alert-success alert-dismissable">
+                    {{ message|trans }}
+                    <i class="glyphicon glyphicon-remove cursor_pointer pull-left" data-dismiss="alert"></i>
+                </div>
+            </div>
+        {% endfor %}
+        {% for message in app.session.getFlashBag().get('errors') %}
+            <div class="col-md-12 col-sm-12">
+                <div class="alert alert-danger alert-dismissable">
+                    {{ message|trans }}
+                    <i class="glyphicon glyphicon-remove cursor_pointer pull-left" data-dismiss="alert"></i>
+                </div>
+            </div>
+        {% endfor %}
+        {% for message in app.session.getFlashBag().get('warning') %}
+            <div class="col-md-12 col-sm-12">
+                <div class="alert alert-warning alert-dismissable">
+                    {{ message|trans }}
+                    <i class="glyphicon glyphicon-remove cursor_pointer pull-left" data-dismiss="alert"></i>
+                </div>
+            </div>
+        {% endfor %}
         <div class="col-md-12 col-sm-12 margin-top-10">
             <table class="records_list">
                 <tr class="text-center">
@@ -39,8 +63,8 @@
                     <tr data-id="{{ dissertation.id }}" class="text-center {% if i % 2 == 0 %}t1{% else %}t2{% endif %}">
                         <td>{{ dissertation.author }}</td>
                         <td>{{ dissertation.title }}</td>
-                        <td>{% if dissertation.createdAt %}{{ dissertation.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                        <td>{% if dissertation.updatedAt %}{{ dissertation.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        <td class="date time createdAt" data-time="{% if dissertation.createdAt %}{{ dissertation.createdAt|date('U') }}{% endif %}"></td>
+                        <td class="date time updatedAt" data-time="{% if dissertation.updatedAt %}{{ dissertation.updatedAt|date('U') }}{% endif %}"></td>
                         <td>{{ dissertation.createdBy }}</td>
                         <td>{{ dissertation.updatedBy }}</td>
                         <td>
@@ -63,10 +87,18 @@
 
 
 {% block scripts %}
-{{ parent() }}
+    {{ parent() }}
+    <script src="{{ asset('static/persian-date/dist/0.1.8/persian-date-0.1.8.min.js') }}"></script>
     <script>
-        $('.current_ancestor').removeClass('minus').addClass('open');
-        $('.current_ancestor .menu-items i').attr('class','fa fa-minus-square-o');
+        $(document).ready(function () {
+            $('.current_ancestor').removeClass('minus').addClass('open');
+            $('.current_ancestor .menu-items i').attr('class','fa fa-minus-square-o');
+
+            $('.time').each(function (index, item) {
+                $(item).text(persianDate.unix($(item).data('time')).format('HH:mm YY/MM/DD'));
+            });
+        });
+
         $('.delete_dissertation').click(function(){
             var id = $(this).attr('data-id');
             var path = Routing.generate('anar_professor_backend_students_dissertation_delete',{ 'id': id });

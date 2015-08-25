@@ -27,15 +27,9 @@
                 {% set i = 1 %}
                 {% for log in logs %}
                     <tr {% if i % 2 == 0 %} class="t2 log_data text-center" {% else %} class="t1 log_data text-center" {% endif %}>
-                        <td>
-                            {{ log.message }}
-                        </td>
-                        <td>
-                            {{ log.ip }}
-                        </td>
-                        <td>
-                            {{ log.createdAt|date('H:i:s') }} {{ log.createdAt|date('Y/m/d') }}
-                        </td>
+                        <td>{{ log.message }}</td>
+                        <td>{{ log.ip }}</td>
+                        <td class="date time" data-time="{{ log.createdAt|date('U') }}"></td>
                     </tr>
                     {% set i = i + 1 %}
                 {% endfor %}
@@ -50,8 +44,15 @@
 {% endblock Container %}
 
 {% block scripts %}
+    {{ parent() }}
+    <script src="{{ asset('static/persian-date/dist/0.1.8/persian-date-0.1.8.min.js') }}"></script>
     <script>
-        $('.current_ancestor').removeClass('minus').addClass('open');
-        $('.current_ancestor .menu-items i').attr('class','fa fa-minus-square-o');
+        $(document).ready(function() {
+            $('.current_ancestor').removeClass('minus').addClass('open');
+            $('.current_ancestor .menu-items i').attr('class','fa fa-minus-square-o');
+            $('.date').each(function (index, item) {
+                $(item).text(persianDate.unix($(item).data('time')).format('HH:mm YY/MM/DD'));
+            });
+        });
     </script>
 {% endblock scripts %}

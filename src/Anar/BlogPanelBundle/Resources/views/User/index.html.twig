@@ -82,14 +82,6 @@
                 </div>
             </div>
             <div class="row margin-top-10">
-                {{ form_label(searchForm.expired, '', {'label_attr': {'class': 'col-md-3 col-sm-3 pull-right control-label text-left'} }) }}
-                <div class="col-md-9 col-sm-9">
-                    <div class="make-switch">
-                        {{ form_widget(searchForm.expired, {'attr': {'class': 'toggle'}}) }}
-                    </div>
-                </div>
-            </div>
-            <div class="row margin-top-10">
                 <div class="form-group">
                     <label class="col-md-3 col-sm-3 pull-right control-label text-left"></label>
                     <div class="col-md-9 col-sm-9">
@@ -121,9 +113,6 @@
             <div class="row margin-top-10" style="min-height: 38px">
                 <span class="_error">{{ form_errors(searchForm.enabled) }}</span>
             </div>
-            <div class="row margin-top-10" style="min-height: 38px">
-                <span class="_error">{{ form_errors(searchForm.expired) }}</span>
-            </div>
         </div>
     </div>
     <div class="row">
@@ -131,7 +120,7 @@
             <div class="row">
                 <p class="text-center">لیست کاربران <span class="user_total_count">({{ group.users|length }})</span> </p>
             </div>
-            <table class="records_list">
+            <table class="records_list group_users_list">
                 <tr class="text-center">
                     <td class="col-md-1 col-sm-1">{{ "username"|trans }}</td>
                     <td class="col-md-3 col-sm-3">{{ "email"|trans }}</td>
@@ -149,7 +138,7 @@
                         <td class="col-md-1 col-sm-1">{{ user.fname }}</td>
                         <td class="col-md-2 col-sm-2">{{ user.lname }}</td>
                         <td class="col-md-2 col-sm-2">{{ user.staffCode }}</td>
-                        <td class="col-md-1 col-sm-1 {% if user.enabled %}active{% endif %}">{{ user.enabled }}</td>
+                        <td class="col-md-1 col-sm-1"><i class="{% if user.enabled %}fa fa-check{% else %}fa fa-ban{% endif %}"></i></td>
                         <td class="col-md-2 col-sm-2">
                             <span class="R_butt_red delete_user" data-id="{{ user.id }}">حذف</span>
                         </td>
@@ -169,37 +158,9 @@
                 <button type="button" class="close pull-left" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title pull-right">کاربران یافت شده</h4>
             </div>
-            <div class="modal-body">
-                {#<table class="records_list">#}
-                    {#<tr class="text-center">#}
-                        {#<td class="col-md-1 col-sm-1">{{ "username"|trans }}</td>#}
-                        {#<td class="col-md-3 col-sm-3">{{ "email"|trans }}</td>#}
-                        {#<td class="col-md-1 col-sm-1">{{ "fname"|trans }}</td>#}
-                        {#<td class="col-md-2 col-sm-2">{{ "lname"|trans }}</td>#}
-                        {#<td class="col-md-2 col-sm-2">{{ "staff.code"|trans }}</td>#}
-                        {#<td class="col-md-1 col-sm-1">{{ "enabled"|trans }}</td>#}
-                        {#<td class="col-md-2 col-sm-2"></td>#}
-                    {#</tr>#}
-                    {#{% set i = 1 %}#}
-                    {#{% for user in group.users %}#}
-                        {#<tr data-id="{{ user.id }}" {% if i % 2 == 0 %} class="t2 users_data text-center" {% else %} class="t1 users_data text-center" {% endif %}>#}
-                            {#<td class="col-md-1 col-sm-1">{{ user.username }}</td>#}
-                            {#<td class="col-md-3 col-sm-3">{{ user.email }}</td>#}
-                            {#<td class="col-md-1 col-sm-1">{{ user.fname }}</td>#}
-                            {#<td class="col-md-2 col-sm-2">{{ user.lname }}</td>#}
-                            {#<td class="col-md-2 col-sm-2">{{ user.staffCode }}</td>#}
-                            {#<td class="col-md-1 col-sm-1 {% if user.enabled %}active{% endif %}">{{ user.enabled }}</td>#}
-                            {#<td class="col-md-2 col-sm-2">#}
-                                {#<span class="R_butt_red delete_user" data-id="{{ user.id }}">حذف</span>#}
-                            {#</td>#}
-                        {#</tr>#}
-                        {#{% set i = i + 1 %}#}
-                    {#{% endfor %}#}
-                {#</table>#}
-            </div>
+            <div class="modal-body"></div>
             <div class="modal-footer text-left">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">بازگشت</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -225,34 +186,41 @@
                 type: "post",
                 data: $('.search_user').serialize(),
                 success: function(data){
-                    var add_path = Routing.generate('anar_blog_panel_group_user_add',{ 'groupId': {{ group.id }}, 'userId': data.response['users']['id'] });
-                    var html_str = ''+
-                            '<table class="records_list">' +
-                                '<tr class="text-center">' +
-                                '<td class="col-md-1 col-sm-1">{{ "username"|trans }}</td>' +
-                                '<td class="col-md-3 col-sm-3">{{ "email"|trans }}</td>'+
-                                '<td class="col-md-1 col-sm-1">{{ "fname"|trans }}</td>'+
-                                '<td class="col-md-2 col-sm-2">{{ "lname"|trans }}</td>'+
-                                '<td class="col-md-2 col-sm-2">{{ "staff.code"|trans }}</td>'+
-                                '<td class="col-md-1 col-sm-1">{{ "enabled"|trans }}</td>'+
-                                '<td class="col-md-2 col-sm-2"></td>'+
-                                '</tr>' +
+                    var html_str =
+                            '<table class="records_list search_result">' +
+                            '<tr class="text-center">' +
+                            '<td class="col-md-1 col-sm-1">{{ "username"|trans }}</td>' +
+                            '<td class="col-md-3 col-sm-3">{{ "email"|trans }}</td>'+
+                            '<td class="col-md-1 col-sm-1">{{ "fname"|trans }}</td>'+
+                            '<td class="col-md-2 col-sm-2">{{ "lname"|trans }}</td>'+
+                            '<td class="col-md-2 col-sm-2">{{ "staff.code"|trans }}</td>'+
+                            '<td class="col-md-1 col-sm-1">{{ "enabled"|trans }}</td>'+
+                            '<td class="col-md-2 col-sm-2"></td>'+
+                            '</tr>';
+                    for (var i =0; i<data.response.users.length; i++) {
+                        if (data.response['users'][i]['enabled']) {
+                            var icon = 'fa fa-check';
+                        } else {
+                            var icon = 'fa fa-ban';
+                        }
+                        html_str +=
                                 '<tr class="t1">' +
-                                    '<td class="col-md-1 col-sm-1 text-center">' + data.response['users']['username'] + '</td>' +
-                                    '<td class="col-md-3 col-sm-3 text-center">' + data.response['users']['email'] + '</td>' +
-                                    '<td class="col-md-1 col-sm-1 text-center">' + data.response['users']['fname'] + '</td>' +
-                                    '<td class="col-md-2 col-sm-2 text-center">' + data.response['users']['lname'] + '</td>' +
-                                    '<td class="col-md-2 col-sm-2 text-center">' + data.response['users']['staffcode'] + '</td>' +
-                                    '<td class="col-md-1 col-sm-1 text-center">' + data.response['users']['enabled'] + '</td>' +
-                                    '<td class="col-md-2 col-sm-2 text-center">' +
-                                        '<span class="R_butt_green" onclick="location.href = ' + add_path + '">اضافه کردن</span>' +
-                                    '</td>' +
-                                '</tr>' +
-                            '</table> ';
+                                '<td class="col-md-1 col-sm-1 text-center">' + data.response['users'][i]['username'] + '</td>' +
+                                '<td class="col-md-3 col-sm-3 text-center">' + data.response['users'][i]['email'] + '</td>' +
+                                '<td class="col-md-1 col-sm-1 text-center">' + data.response['users'][i]['fname'] + '</td>' +
+                                '<td class="col-md-2 col-sm-2 text-center">' + data.response['users'][i]['lname'] + '</td>' +
+                                '<td class="col-md-2 col-sm-2 text-center">' + data.response['users'][i]['staffCode'] + '</td>' +
+                                '<td class="col-md-1 col-sm-1 text-center"><i class="' + icon + '"></i></td>' +
+                                '<td class="col-md-2 col-sm-2 text-center">' +
+                                '<span class="R_butt_green add_to_group" data-group="{{ group.id }}" data-user="' + data.response['users'][i]['id'] + '">اضافه کردن</span>' +
+                                '</td>' +
+                                '</tr>';
+                    }
+                    html_str += '</table>';
                     $('.modal-body').html(html_str);
                 },
-                error: function(data){
-
+                error: function(message){
+                    Alert.render("message : " + JSON.parse(message.responseText).status.message);
                 }
             });
         });
@@ -272,6 +240,32 @@
                 success: function(data){
                     Alert.render('کاربر با موفقیت حذف شد!');
                     $('tr[data-id=' + user_id + ']').remove();
+                }
+            });
+        });
+
+        $(document).on('click', 'span.add_to_group', function(e) {
+            var groupId = $(this).data('group');
+            var userId = $(this).data('user');
+            var add_path = Routing.generate('anar_blog_panel_group_user_add',{ 'groupId': groupId, 'userId': userId });
+            $.ajax({
+                data: {token: '{{ token }}'},
+                url: add_path,
+                type: 'post',
+                success: function (data) {
+                    if (data.status.code == 200) {
+                        var userId = $(e.target).parent().parent().find('span').data('user');
+                        var remove = '<span class="R_butt_red delete_user" data-id="' + userId + '">حذف</span>';
+                        var tr = '<tr class="t1 users_data text-center" data-id=' + userId + '>' + $(e.target).parent().parent().html() + '</tr>';
+                        tr = tr.replace(/<span .*>.*<\/span>/, remove);
+                        $('.group_users_list > tbody').append(tr);
+                    } else{
+                        Alert.render(data.status['code']);
+                        Alert.render(data.status['message']);
+                    }
+                },
+                error: function(message){
+                    Alert.render("message : " + JSON.parse(message.responseText).status.message);
                 }
             });
         });

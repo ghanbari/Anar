@@ -31,7 +31,7 @@ class BlogListener
         $blogMenu = new Menu();
         $blogMenu->setBlog($blog);
         $blogMenu->setUrl('');
-        $blogMenu->setName($blog->getName());
+        $blogMenu->setName($blog->getTitle());
 
         $blogPanel = $em->getRepository('AnarEngineBundle:App')->findOneByName('AnarBlogPanelBundle');
         $blog->addApp($blogPanel);

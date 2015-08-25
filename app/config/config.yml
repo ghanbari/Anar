@@ -39,6 +39,7 @@ twig:
     strict_variables: "%kernel.debug%"
     globals:
         blogManager: '@anar_engine.manager.blog'
+        master_blog: '%master_blog%'
     form_themes:
         # other form themes
         - 'VichUploaderBundle:Form:fields.html.twig'

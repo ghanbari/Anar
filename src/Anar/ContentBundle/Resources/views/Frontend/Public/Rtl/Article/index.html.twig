@@ -174,7 +174,9 @@
                                 <time class="post-meta-time updated" datetime="{{ article.createdAt|date }}"></time>
                             <span class="post-meta-author vcard"> توسط <a
                                         href="" rel="author" class="fn">{{ article.author.fname }} {{ article.author.lname }}</a></span>
-                            <span class="fa fa-paperclip pull-right"></span>
+                            {% if article.attach is not empty %}
+                                <a href="{{ vich_uploader_asset(article, 'attachFile') }}"><span class="fa fa-paperclip pull-right"></span></a>
+                            {% endif %}
                             </p>
                         </div>
                         <h2 class="post-title"><a href="{{ path('anar_content_frontend_article_show',{'slug': article.slug }) }}"

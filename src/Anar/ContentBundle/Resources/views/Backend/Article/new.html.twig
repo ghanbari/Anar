@@ -106,7 +106,8 @@
                 <div class="form-group">
                     {{ form_label(form.publicationStartDate, '', {'label_attr': {'class': 'col-md-2 col-sm-2 pull-right control-label text-left'} }) }}
                     <div class="col-md-5 col-sm-5 pull-right">
-                        {{ form_widget(form.publicationStartDate,{ 'attr' : {'class':'form-control s_d'} }) }}
+                        {{ form_widget(form.publicationStartDate,{ 'attr' : {'class':'form-control', 'style': 'display:none;'} }) }}
+                        <input class="form-control startDate" />
                     </div>
                     <div class="col-md-5 col-sm-5">
                         <span class="_error">{{ form_errors(form.publicationStartDate) }}</span>
@@ -117,7 +118,8 @@
                 <div class="form-group">
                     {{ form_label(form.publicationEndDate, '', {'label_attr': {'class': 'col-md-2 col-sm-2 pull-right control-label text-left'} }) }}
                     <div class="col-md-5 col-sm-5 pull-right">
-                        {{ form_widget(form.publicationEndDate,{ 'attr' : {'class':'form-control end_date'} }) }}
+                        {{ form_widget(form.publicationEndDate,{ 'attr' : {'class':'form-control', 'style': 'display:none;'} }) }}
+                        <input class="form-control endDate" />
                     </div>
                     <div class="col-md-5 col-sm-5">
                         <span class="_error">{{ form_errors(form.publicationEndDate) }}</span>
@@ -130,7 +132,7 @@
                     <div class="col-md-5 col-sm-5 pull-right">
                         <div class="fileupload fileupload-new" data-provides="fileupload">
                             <div id="photo_show" class="fileupload-new thumbnail" style="width: 184px; height: 142px;">
-                                <img src="" alt="" />
+                                <img src="{{ vich_uploader_asset(article, 'imageFile') }}" alt="" />
                             </div>
                             <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
                             <div>
@@ -143,7 +145,6 @@
                             </div>
                         </div>
                         {{ form_widget(form.imageFile,{ 'attr' : {'class':'form-control'} }) }}
-                        {#{{ form_widget(form.attachFile,{ 'attr' : {'class':'form-control'} }) }}#}
                     </div>
                     <div class="col-md-5 col-sm-5">
                         <span class="_error">{{ form_errors(form.imageFile) }}</span>
@@ -194,13 +195,41 @@
     <script src="{{ asset('bundles/anarsuperpanel/js/bootstrap-switch.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/anarblogpanel/plugins/DatePicker/pwt-date.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/anarblogpanel/plugins/DatePicker/pwt-datepicker.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('static/persian-date/dist/0.1.8/persian-date-0.1.8.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('static/ckeditor/ckeditor.js') }}"></script>
     <script src="{{ asset('bundles/anarblogpanel/plugins/bootstrap-fileupload/bootstrap-fileupload.js') }}"></script>
-
     <script>
+        $(document).ready(function () {
 
-        $('.s_d').val('').pDatepicker();
-        $('.end_date').val('').pDatepicker().val('');
+            var convertUnixToDate = function (unix) {
+                var date = new Date(unix);
+                var year = date.getFullYear();
+                var month = (parseInt(date.getMonth())+1) < 10 ? '0' + String(parseInt(date.getMonth())+1) : String(parseInt(date.getMonth())+1);
+                var day = (date.getDate()) < 10 ? '0' + date.getDate() : date.getDate();
+                return year + '/' + month + '/' + day;
+            };
+
+            $('.startDate').pDatepicker({
+                altField: "#article_publicationStartDate",
+                altFieldFormatter: convertUnixToDate
+            });
+
+            $('.startDate').val(persianDate.unix({{ form.publicationStartDate.vars.data|date('U') }}).format('YYYY/MM/DD'));
+            $('#article_publicationStartDate').val(convertUnixToDate({{ form.publicationStartDate.vars.data|date('U') * 1000 }}));
+
+            $('.endDate').pDatepicker({
+                altField: "#article_publicationEndDate",
+                altFieldFormatter: convertUnixToDate
+            });
+
+            {% if form.publicationEndDate.vars.value != '' %}
+                $('.endDate').val(persianDate.unix({{ form.publicationEndDate.vars.data|date('U') }}).format('YYYY/MM/DD'));
+                $('#article_publicationEndDate').val(convertUnixToDate({{ form.publicationEndDate.vars.data|date('U') * 1000 }}));
+            {% else %}
+                $('.endDate').val('');
+                $('#article_publicationEndDate').val('');
+            {% endif %}
+        });
 
         CKEDITOR.replace('article_abstract',{
             language: 'fa',

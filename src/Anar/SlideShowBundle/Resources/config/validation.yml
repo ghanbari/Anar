@@ -1,7 +1,6 @@
 Anar\SlideShowBundle\Entity\Image:
     properties:
         image:
-            - NotBlank: ~
             - Type: string
             - Length:
                 max: 255

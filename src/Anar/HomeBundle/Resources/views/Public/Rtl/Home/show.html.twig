@@ -7,7 +7,7 @@
 <!-- BEGIN HEAD -->
 <head>
     <meta charset="utf-8" />
-    {% block title %}<title>{{ blog.getName() }}</title>{% endblock %}
+    {% block title %}<title>{{ blog.title }}</title>{% endblock %}
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta content="" name="description" />
     <meta content="" name="author" />
@@ -61,7 +61,7 @@
             </button>
             <!-- END RESPONSIVE MENU TOGGLER -->
             <!-- BEGIN LOGO (you can use logo image instead of text)-->
-            <a class="navbar-brand logo-v1" href="index.html">
+            <a class="navbar-brand logo-v1" href="{{ path('anar_home_homepage', {'blogName': master_blog}) }}">
                 <img src="{{ asset('bundles/anarhome/images/Azad_logo.png') }}" style="width: 45px" id="logoimg" alt="">
             </a>
             <!-- END LOGO -->
@@ -95,7 +95,9 @@
             {% if blog.parent is not null and blog.parent.parent is not null %}
                 {{ render(controller('AnarHomeBundle:Home:latestArticle', {'blogId': blog.parent.id, 'limit': 3})) }}
             {% endif %}
-            {{ render(controller('AnarHomeBundle:Home:latestArticle', {'limit': 3})) }}
+            {% if blog.parent is not null %}
+                {{ render(controller('AnarHomeBundle:Home:latestArticle', {'limit': 3})) }}
+            {% endif %}
 
 
         </div>

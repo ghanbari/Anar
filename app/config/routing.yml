@@ -1,12 +1,3 @@
-#anar_message:
-#    resource: "@AnarMessageBundle/Resources/config/routing.yml"
-
-anar_contact:
-    resource: "@AnarContactBundle/Resources/config/routing.yml"
-#
-#anar_complaint:
-#    resource: "@AnarComplaintBundle/Resources/config/routing.yml"
-
 logout:
     path: /logout
     options: { i18n: false }
@@ -18,6 +9,15 @@ anar_engine_bundle:
 _liip_imagine:
     resource: "@LiipImagineBundle/Resources/config/routing.xml"
     options: { i18n: false }
+
+#anar_message:
+#    resource: "@AnarMessageBundle/Resources/config/routing.yml"
+
+anar_contact:
+    resource: "@AnarContactBundle/Resources/config/routing.yml"
+
+#anar_complaint:
+#    resource: "@AnarComplaintBundle/Resources/config/routing.yml"
 
 anar_slide_show:
     resource: "@AnarSlideShowBundle/Resources/config/routing.yml"

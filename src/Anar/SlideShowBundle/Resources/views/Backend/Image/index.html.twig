@@ -45,24 +45,24 @@
             <table class="records_list">
                 <tr class="text-center">
                     <td class="col-md-1 col-sm-1">{{ 'id'|trans }}</td>
-                    <td class="col-md-2 col-sm-2">{{ 'Image'|trans }}</td>
+                    <td class="col-md-1 col-sm-1">{{ 'Image'|trans }}</td>
                     <td class="col-md-2 col-sm-2">{{ 'Description'|trans }}</td>
                     <td class="col-md-2 col-sm-2">{{ 'Createdby'|trans }}</td>
-                    <td class="col-md-1 col-sm-1">{{ 'Updatedby'|trans }}</td>
-                    <td class="col-md-1 col-sm-1">{{ 'Createdat'|trans }}</td>
-                    <td class="col-md-1 col-sm-1">{{ 'Updatedat'|trans }}</td>
-                    <td class="col-md-2 col-sm-2"></td>
+                    <td class="col-md-1 col-sm-1">{{ 'updatedby'|trans }}</td>
+                    <td class="col-md-2 col-sm-2">{{ 'Createdat'|trans }}</td>
+                    <td class="col-md-2 col-sm-2">{{ 'Updatedat'|trans }}</td>
+                    <td class="col-md-1 col-sm-1"></td>
                 </tr>
                 {% set i = 0 %}
                 {% for image in images %}
                     <tr data-id="{{ image.id }}" class="text-center {% if i % 2 == 0 %}t1{% else %}t2{% endif %}">
                         <td>{{ image.id }}</td>
-                        <td>{{ image.image }}</td>
+                        <td><img style="width: 80px;height: 80px;" src="{{ vich_uploader_asset(image, 'imageFile') }}" /></td>
                         <td>{{ image.description }}</td>
                         <td>{{ image.createdBy }}</td>
                         <td>{{ image.updatedBy }}</td>
-                        <td>{% if image.createdAt %}{{ image.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                        <td>{% if image.updatedAt %}{{ image.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        <td class="date time createdAt" data-time="{% if image.createdAt %}{{ image.createdAt|date('U') }}{% endif %}"></td>
+                        <td class="date time updatedAt" data-time="{% if image.updatedAt %}{{ image.updatedAt|date('U') }}{% endif %}"></td>
                         <td>
                             <button data-id="{{ image.id }}" style="padding: 5px" class="R_butt_red delete_pic btn">حذف</button>
                         </td>
@@ -76,10 +76,17 @@
 {% endblock %}
 
 {% block scripts %}
-
+    {{ parent() }}
+    <script src="{{ asset('static/persian-date/dist/0.1.8/persian-date-0.1.8.min.js') }}"></script>
     <script>
-        $('.current_ancestor').removeClass('minus').addClass('open');
-        $('.current_ancestor .menu-items i').attr('class','fa fa-minus-square-o');
+        $(document).ready(function() {
+            $('.current_ancestor').removeClass('minus').addClass('open');
+            $('.current_ancestor .menu-items i').attr('class','fa fa-minus-square-o');
+            $('.date').each(function (index, item) {
+                $(item).text(persianDate.unix($(item).data('time')).format('HH:mm YY/MM/DD'));
+            });
+        });
+
         $('.delete_pic').click(function(){
             var id = $(this).attr('data-id');
             var path = Routing.generate('anar_slide_show_backend_delete',{ 'id': id });

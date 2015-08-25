@@ -75,7 +75,7 @@
 
 {% block Sidebar %}
 <div id="rp-menuWrap">
-    <div id="rp-nowRoleShowerWrap"><i class="fa fa-bars"></i><i class="fa fa-desktop"></i>&nbsp;<a href="{{ path('anar_home_homepage') }}">{{ blog.getTitle() }}</a>
+    <div id="rp-nowRoleShowerWrap"><i class="fa fa-bars"></i><i class="fa fa-desktop"></i>&nbsp;<a href="{{ path('anar_home_homepage', {'blogName': blog.name}) }}">{{ blog.getTitle() }}</a>
     </div>
         {% set options = {'leaf_class': 'leaf', 'branch_class': 'branch', 'template': 'AnarBlogPanelBundle:Menu:BlogMenu.html.twig'} %}
         {{ knp_menu_render('AnarBlogPanelBundle:Builder:adminMenu', options) }}
@@ -96,25 +96,25 @@
         <div class="rp-shower">
             <i class="rp-iconLabel fa fa-file"><span></span></i>
             <span class="rp-showerTitr">کل مطالب</span>
-            <span class="rp-showerNumber" id="desktop_NumOfUser">980</span>
+            <span class="rp-showerNumber" id="desktop_NumOfUser">{{ articleCount }}</span>
         </div>
 
         <div class="rp-shower">
             <i class="rp-iconLabel fa fa-copy"><span></span></i>
             <span class="rp-showerTitr">مطالب منقضی</span>
-            <span class="rp-showerNumber" id="desktop_NumOfUser">150</span>
+            <span class="rp-showerNumber" id="desktop_NumOfUser">{{ expiredArticleCount }}</span>
         </div>
 
         <div class="rp-shower rp-goToDown">
             <i class="rp-iconLabel fa fa-check-circle-o"><span></span></i>
             <span class="rp-showerTitr">جعبه عناوین</span>
-            <span class="rp-showerNumber" id="desktop_NumOfUser">12</span>
+            <span class="rp-showerNumber" id="desktop_NumOfUser">0</span>
         </div>
 
         <div class="rp-shower">
             <i class="rp-iconLabel fa fa-chain"><span></span></i>
             <span class="rp-showerTitr">پیوندها</span>
-            <span class="rp-showerNumber" id="desktop_NumOfUser">32</span>
+            <span class="rp-showerNumber" id="desktop_NumOfUser">{{ linkCount }}</span>
         </div>
 
         <div id="rp-clockWrap">

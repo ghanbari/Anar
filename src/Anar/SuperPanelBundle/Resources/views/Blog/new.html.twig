@@ -4,6 +4,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/css/super_panel.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/css/bootstrap-switch-metro-rtl.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/css/select2_metro_rtl.css') }}">
+    <link rel="stylesheet" href="{{ asset('static/jQuery-Multiple-Select/css/bootstrap-multiselect.css') }}" type="text/css">
     <style>
         .select{
             width: 100%;
@@ -160,6 +161,7 @@
 {% block scripts %}
 <script src="{{ asset('bundles/anarsuperpanel/js/bootstrap-switch.min.js') }}"></script>
 <script src="{{ asset('bundles/anarsuperpanel/js/select2.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('static/jQuery-Multiple-Select/js/bootstrap-multiselect.js') }}"></script>
 <script>
     $(".select").select2({
         placeholder: "انتخاب کنید"
@@ -184,5 +186,13 @@
             }
         })
     }
+    $(document).ready(function() {
+        $('#anar_enginebundle_blog_apps').multiselect({
+            buttonWidth: '500px',
+            numberDisplayed: 10
+        });
+    });
+
+
 </script>
 {% endblock %}

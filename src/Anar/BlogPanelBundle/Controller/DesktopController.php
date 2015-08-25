@@ -14,6 +14,7 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorage;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Csrf\CsrfToken;
 use Symfony\Component\Security\Csrf\CsrfTokenManager;
+use Symfony\Component\VarDumper\VarDumper;
 
 class DesktopController
 {
@@ -105,12 +106,21 @@ class DesktopController
             }
         }
 
+        $linkCount = $this->doctrine->getRepository('AnarLinkBundle:Link')->count($this->blogManager->getBlog()->getId());
+        $articleCount = $this->doctrine->getRepository('AnarContentBundle:Article')->count($this->blogManager->getBlog()->getId());
+        $expiredArticleCount = $this->doctrine->getRepository('AnarContentBundle:Article')->countExpiredArticle($this->blogManager->getBlog()->getId());
+
         $token = $this->csrfTokenManager->refreshToken('blogChange');
 
         // TODO: fix CSRF attack on change blog.
         return $this->templating->renderResponse(
             'AnarBlogPanelBundle:Desktop:index.html.twig',
-            array('token' => $token,)
+            array(
+                'token' => $token,
+                'linkCount' => $linkCount,
+                'articleCount' => $articleCount,
+                'expiredArticleCount' => $expiredArticleCount,
+            )
         );
     }
 }

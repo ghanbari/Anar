@@ -98,8 +98,8 @@
                             url: check_path,
                             type: "post",
                             data: {'token': '{{ token }}'},
-                            error: function(message){
-                                Alert.render("message : "+message);
+                            error: function(res){
+                                Alert.render(JSON.parse(res.responseText).status.message);
                             },
                             success: function(data){
                                 if(data.status['code'] == 200){
@@ -128,11 +128,6 @@
                     }
                 }
             };
-
-//            if ($(node).hasClass("folder")) {
-//                // Delete the "delete" menu item
-//                delete items.deleteItem;
-//            }
 
             return items;
         }

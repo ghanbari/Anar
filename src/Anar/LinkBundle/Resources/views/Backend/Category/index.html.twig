@@ -59,9 +59,9 @@
                         <td>{{ category.id }}</td>
                         <td>{{ category.name }}</td>
                         {#<td>{{ category.description }}</td>#}
-                        <td>{{ category.position }}</td>
-                        <td>{% if category.createdAt %}{{ category.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                        <td>{% if category.updatedAt %}{{ category.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        <td>{{ category.position|trans }}</td>
+                        <td class="date time createdAt" data-time="{% if category.createdAt %}{{ category.createdAt|date('U') }}{% endif %}"></td>
+                        <td class="date time updatedAt" data-time="{% if category.updatedAt %}{{ category.updatedAt|date('U') }}{% endif %}"></td>
                         <td>{{ category.createdBy }}</td>
                         <td>{{ category.updatedBy }}</td>
                         <td>
@@ -79,9 +79,17 @@
 {% endblock %}
 
 {% block scripts %}
+    {{ parent() }}
+    <script src="{{ asset('static/persian-date/dist/0.1.8/persian-date-0.1.8.min.js') }}"></script>
     <script>
-        $('.current_ancestor').removeClass('minus').addClass('open');
-        $('.current_ancestor .menu-items i').attr('class','fa fa-minus-square-o');
+        $(document).ready(function() {
+            $('.current_ancestor').removeClass('minus').addClass('open');
+            $('.current_ancestor .menu-items i').attr('class','fa fa-minus-square-o');
+            $('.date').each(function (index, item) {
+                $(item).text(persianDate.unix($(item).data('time')).format('HH:mm YY/MM/DD'));
+            });
+        });
+
         $('.delete_category').click(function(){
             var id = $(this).attr('data-id');
             var path = Routing.generate('anar_link_backend_category_delete',{ 'id': id });

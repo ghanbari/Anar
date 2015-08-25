@@ -12,7 +12,7 @@ Anar\MenuBundle\Entity\Menu:
                 max: 255
         parent:
             - NotNull: ~
-            - Type: Menu
+            - Type: Anar\MenuBundle\Entity\Menu
         blog:
             - NotNull: ~
             - Type: Anar\EngineBundle\Entity\Blog

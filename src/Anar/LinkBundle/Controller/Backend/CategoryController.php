@@ -55,13 +55,13 @@ class CategoryController extends Controller
      */
     public function createAction(Request $request)
     {
+        $blog = $this->get('anar_engine.manager.blog')->getBlog();
         $category = new Category();
+        $category->setBlog($blog);
         $form = $this->createCreateForm($category);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $blog = $this->get('anar_engine.manager.blog')->getBlog();
-            $category->setBlog($blog);
             $em = $this->getDoctrine()->getManager();
             $em->persist($category);
             $em->flush();

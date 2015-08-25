@@ -64,11 +64,11 @@ class CategoryController extends Controller implements AdminInterface
     {
         $blog = $this->get('anar_engine.manager.blog')->getBlog();
         $category = new Category();
+        $category->setBlog($blog);
         $form = $this->createCreateForm($category);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $category->setBlog($blog);
             $em = $this->getDoctrine()->getManager();
             $em->persist($category);
             $em->flush();
@@ -169,7 +169,7 @@ class CategoryController extends Controller implements AdminInterface
             $em->flush();
 
             $this->addFlash('info', $this->get('translator')->trans('category.was.edited.successfully'));
-            $this->redirectToRoute('anar_content_backend_category_index');
+            return $this->redirectToRoute('anar_content_backend_category_index');
         }
 
         return $this->render('AnarContentBundle:Backend/Category:new.html.twig', array(

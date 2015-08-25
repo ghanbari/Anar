@@ -132,16 +132,6 @@
                             </div>
                         </div>
                         <div class="row margin-top-10">
-                            <div class="form-group">
-                                <label class="col-md-2 col-sm-2 control-label text-left">منقضی شده</label>
-                                <div class="col-md-9 col-sm-9">
-                                    <div class="make-switch">
-                                        {{ form_widget(form.expired,{ 'attr' : {'class':'toggle'} }) }}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row margin-top-10">
                             <div class="col-md-2 col-sm-2"></div>
                             <div class="col-md-9 col-sm-9">
                                 {{ form_widget(form.Search, {'attr': {'class': 'btn btn-submit-blog', 'onclick': 'submit_search_form(event)'}}) }}
@@ -156,36 +146,38 @@
             <div class="row">
                 <p class="text-center">لیست کاربران <span class="user_total_count">({{ users.getTotalItemCount }})</span> </p>
             </div>
-            <table class="records_list">
-                <tr class="text-center">
-                    {# sorting of properties based on query components #}
-                    {#<td>{{ knp_pagination_sortable(users, 'ای دی', 'u.id') }}</td>#}
-                    <td class="{% if users.isSorted('u.username') %}sorted{% endif %} col-md-1 col-sm-1">{{ knp_pagination_sortable(users, 'نام کاربری', 'u.username') }}</td>
-                    <td class="{% if users.isSorted('u.email') %}sorted{% endif %} col-md-2 col-sm-2">{{ knp_pagination_sortable(users, 'ایمیل', 'u.email') }}</td>
-                    <td class="{% if users.isSorted('u.fname') %}sorted{% endif %} col-md-1 col-sm-1">{{ knp_pagination_sortable(users, 'نام', 'u.fname') }}</td>
-                    <td class="{% if users.isSorted('u.lname') %}sorted{% endif %} col-md-2 col-sm-2">{{ knp_pagination_sortable(users, 'نام خانوادگی', 'u.lname') }}</td>
-                    <td class="{% if users.isSorted('u.staffcode') %}sorted{% endif %} col-md-2 col-sm-2">{{ knp_pagination_sortable(users, 'شماره پرسنلی', 'u.staffcode') }}</td>
-                    <td class="col-md-1 col-sm-1">فعال</td>
-                    <td class="col-md-3 col-sm-3"></td>
-                </tr>
-                {% set i = 1 %}
-                {% for user in users %}
-                    <tr data-id="{{ user.id }}" {% if i % 2 == 0 %} class="t2 users_data text-center" {% else %} class="t1 users_data text-center" {% endif %}>
-                        <td class="col-md-1 col-sm-1">{{ user.username }}</td>
-                        <td class="col-md-2 col-sm-2">{{ user.email }}</td>
-                        <td class="col-md-1 col-sm-1">{{ user.fname }}</td>
-                        <td class="col-md-2 col-sm-2">{{ user.lname }}</td>
-                        <td class="col-md-2 col-sm-2">{{ user.staffCode }}</td>
-                        <td class="col-md-1 col-sm-1 {% if user.enabled %}active{% endif %}">{{ user.enabled }}</td>
-                        <td class="col-md-3 col-sm-3">
-                            <span class="R_butt_green" onclick="location.href = '{{ path('anar_super_panel_user_edit', { 'id': user.id }) }}'">ویرایش</span>
-                            <span class="R_butt_red delete_user" data-id="{{ user.id }}">حذف</span>
-                            <span class="R_butt_blue blogs" data-id="{{ user.id }}">وبلاگ ها</span>
-                        </td>
+            <div class="table-responsive">
+                <table class="records_list">
+                    <tr class="text-center">
+                        {# sorting of properties based on query components #}
+                        {#<td>{{ knp_pagination_sortable(users, 'ای دی', 'u.id') }}</td>#}
+                        <td class="{% if users.isSorted('u.username') %}sorted{% endif %} col-md-1 col-sm-1">{{ knp_pagination_sortable(users, 'نام کاربری', 'u.username') }}</td>
+                        <td class="{% if users.isSorted('u.email') %}sorted{% endif %} col-md-2 col-sm-2">{{ knp_pagination_sortable(users, 'ایمیل', 'u.email') }}</td>
+                        <td class="{% if users.isSorted('u.fname') %}sorted{% endif %} col-md-1 col-sm-1">{{ knp_pagination_sortable(users, 'نام', 'u.fname') }}</td>
+                        <td class="{% if users.isSorted('u.lname') %}sorted{% endif %} col-md-2 col-sm-2">{{ knp_pagination_sortable(users, 'نام خانوادگی', 'u.lname') }}</td>
+                        <td class="{% if users.isSorted('u.staffcode') %}sorted{% endif %} col-md-2 col-sm-2">{{ knp_pagination_sortable(users, 'شماره پرسنلی', 'u.staffcode') }}</td>
+                        <td class="col-md-1 col-sm-1">فعال</td>
+                        <td class="col-md-3 col-sm-3"></td>
                     </tr>
-                {% set i = i + 1 %}
-                {% endfor %}
-            </table>
+                    {% set i = 1 %}
+                    {% for user in users %}
+                        <tr data-id="{{ user.id }}" {% if i % 2 == 0 %} class="t2 users_data text-center" {% else %} class="t1 users_data text-center" {% endif %}>
+                            <td class="col-md-1 col-sm-1">{{ user.username }}</td>
+                            <td class="col-md-2 col-sm-2">{{ user.email }}</td>
+                            <td class="col-md-1 col-sm-1">{{ user.fname }}</td>
+                            <td class="col-md-2 col-sm-2">{{ user.lname }}</td>
+                            <td class="col-md-2 col-sm-2">{{ user.staffCode }}</td>
+                            <td class="col-md-1 col-sm-1"><div class="btn btn-default btn-xs enabled" data-enabled="{{ user.enabled }}" data-id="{{ user.id }}" style="width: 100%"></div></td>
+                            <td class="col-md-3 col-sm-3">
+                                <span class="R_butt_green" onclick="location.href = '{{ path('anar_super_panel_user_edit', { 'id': user.id }) }}'">ویرایش</span>
+                                <span class="R_butt_red delete_user" data-id="{{ user.id }}">حذف</span>
+                                <span class="R_butt_blue blogs" data-id="{{ user.id }}">وبلاگ ها</span>
+                            </td>
+                        </tr>
+                        {% set i = i + 1 %}
+                    {% endfor %}
+                </table>
+            </div>
 
         </div>
         <div class="col-md-12 col-sm-12 users_pagination_parent text-center">
@@ -223,10 +215,37 @@
 <script src="{{ asset('bundles/anarsuperpanel/plugins/Alert/alert.js') }}"></script>
 <script>
 
-    {#{% for message in app.session.getFlashBag().get('info') %}#}
-        {#message = '{{ message|trans }}';#}
-    {#{% endfor %}#}
-    {#alert(message);#}
+    $(document).ready(function() {
+        $('.enabled').each(function (index, item) {
+            var icon = $(item).data('enabled') ? 'fa fa-check' : 'fa fa-ban';
+            $(item).html('<i class="' + icon + '"></i>')
+        });
+
+        $('.enabled').on('click', function(e) {
+            var id = $(this).data('id');
+            $.ajax({
+                method: 'post',
+                url: '{{ path('anar_super_panel_user_status_change') }}',
+                data: {token: '{{ token }}', id: id},
+                success: function (response) {
+                    if(response.status['code'] == 200){
+                        var icon = response.response.enabled ? 'fa fa-check' : 'fa fa-ban';
+                        $(e.target).data('enabled', response.response.enabled);
+                        $(e.target).html('<i class="' + icon + '"></i>');
+                    }
+                    else{
+                        Alert.render(response.status['code']);
+                        Alert.render(response.status['message']);
+                    }
+                },
+                error: function(message){
+                    Alert.render("message : " + JSON.parse(message.responseText).status.message);
+                }
+            })
+        });
+
+    })
+
     $(".select").select2({
         placeholder: "انتخاب کنید"
     });
@@ -241,25 +260,30 @@
                 Alert.render("message : " + JSON.parse(message.responseText).status.message);
             },
             success: function(data){
-                var row_id = data.response['users']['id'];
-                var edit_path = Routing.generate('anar_super_panel_user_edit',{ 'id': row_id });
                 if(data.status['code'] == 200){
                     $('.users_data').remove();
                     $('.users_pagination').remove();
-                    var users_find = '' +
-                        '<tr data-id="' + data.response['users']['id'] + '" class="t1 users_data">' +
-                            '<td class="col-md-1 col-sm-1 text-center">' + data.response['users'][0]['username'] + '</td>' +
-                            '<td class="col-md-2 col-sm-2 text-center">' + data.response['users'][0]['email'] + '</td>' +
-                            '<td class="col-md-1 col-sm-1 text-center">' + data.response['users'][0]['fname'] + '</td>' +
-                            '<td class="col-md-2 col-sm-2 text-center">' + data.response['users'][0]['lname'] + '</td>' +
-                            '<td class="col-md-2 col-sm-2 text-center">' + data.response['users'][0]['staffCode'] + '</td>' +
-                            '<td class="col-md-1 col-sm-1 text-center">' + data.response['users'][0]['grade'] + '</td>' +
-                            '<td class="col-md-3 col-sm-3 text-center">' +
-                                '<span class="R_butt_green" onclick="location.href = ' + edit_path + '">ویرایش</span>' +
-                                '<span style="margin-right: 5px" data-id="' + data.response['users'][0]['id'] + '" class="R_butt_red delete_user">حذف</span>' +
-                                '<span style="margin-right: 5px" data-id="' + data.response['users'][0]['id'] + '" class="R_butt_blue blogs">وبلاگ ها</span>' +
-                            '</td>' +
-                        '</tr>';
+                    var users_find = '';
+                    for (var i=0; i < data.response.users.length; i++) {
+                        var row_id = data.response['users'][i]['id'];
+                        var edit_path = Routing.generate('anar_super_panel_user_edit',{ 'id': row_id });
+                        var icon = (data.response['users'][i]['enabled']) ? 'fa fa-check' : 'fa fa-ban';
+                        users_find +=
+                                '<tr data-id="' + data.response['users'][i]['id'] + '" class="t1 users_data">' +
+                                '<td class="col-md-1 col-sm-1 text-center">' + data.response['users'][i]['username'] + '</td>' +
+                                '<td class="col-md-2 col-sm-2 text-center">' + data.response['users'][i]['email'] + '</td>' +
+                                '<td class="col-md-1 col-sm-1 text-center">' + data.response['users'][i]['fname'] + '</td>' +
+                                '<td class="col-md-2 col-sm-2 text-center">' + data.response['users'][i]['lname'] + '</td>' +
+                                '<td class="col-md-2 col-sm-2 text-center">' + data.response['users'][i]['staffCode'] + '</td>' +
+                                '<td class="col-md-1 col-sm-1 text-center"><i class="' + icon + '"></i></td>' +
+                                '<td class="col-md-3 col-sm-3 text-center">' +
+                                '<span class="R_butt_green" onclick="location.href=\'' + edit_path + '\'">ویرایش</span>' +
+                                '<span style="margin-right: 5px" data-id="' + data.response['users'][i]['id'] + '" class="R_butt_red delete_user">حذف</span>' +
+                                '<span style="margin-right: 5px" data-id="' + data.response['users'][i]['id'] + '" class="R_butt_blue blogs">وبلاگ ها</span>' +
+                                '</td>' +
+                                '</tr>';
+                    }
+
                     $('.records_list').append(users_find);
                 }
                 else{

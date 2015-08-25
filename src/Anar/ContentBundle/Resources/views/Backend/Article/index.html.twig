@@ -44,31 +44,30 @@
         <div class="col-md-12 col-sm-12 margin-top-10">
             <table class="records_list">
                 <tr class="text-center">
-                    <td>{{ 'id'|trans }}</td>
-                    <td>{{ 'title'|trans }}</td>
-                    {#<td>{{ 'slug'|trans }}</td>#}
-                    <td>{{ 'visit'|trans }}</td>
-                    <td>{{ 'enabled'|trans }}</td>
-                    <td>{{ 'publication.start.date'|trans }}</td>
-                    <td>{{ 'publication.end.date'|trans }}</td>
+                    <td>{{ knp_pagination_sortable(articles, 'id'|trans , 'a.id') }}</td>
                     <td>{{ 'image'|trans }}</td>
-                    <td>{{ 'created.at'|trans }}</td>
-                    <td>{{ 'updated.at'|trans }}</td>
+                    <td>{{ knp_pagination_sortable(articles, 'title'|trans , 'a.title') }}</td>
+                    <td>{{ knp_pagination_sortable(articles, 'visit'|trans , 'a.visit') }}</td>
+                    <td>{{ knp_pagination_sortable(articles, 'enabled'|trans , 'a.enabled') }}</td>
+                    <td>{{ knp_pagination_sortable(articles, 'publication.start.date'|trans , 'a.publicationStartDate') }}</td>
+                    <td>{{ knp_pagination_sortable(articles, 'publication.end.date'|trans , 'a.publicationEndDate') }}</td>
+                    <td>{{ knp_pagination_sortable(articles, 'created.at'|trans , 'a.createdAt') }}</td>
+                    <td>{{ knp_pagination_sortable(articles, 'updated.at'|trans , 'a.updatedAt') }}</td>
                     <td class="col-md-2 col-sm-2"></td>
                 </tr>
                 {% set i = 0 %}
                 {% for article in articles %}
                     <tr data-id="{{ article.id }}" class="text-center {% if i % 2 == 0 %}t1{% else %}t2{% endif %}">
                         <td>{{ app.request.attributes.get('page') * loop.index }}</td>
-                        <td>{{ article.title[0:20] }}</td>
+                        <td>{% if vich_uploader_asset(article,'imageFile')|length > 0 %}<img style="width: 50px;height: 50px" src="{{ vich_uploader_asset(article,'imageFile') }}">{% endif %}</td>
+                        <td><a href="{{ path('anar_content_frontend_article_show', {'blogName': blog.name, 'slug': article.slug}) }}" target="_blank">{{ article.title[0:20] }}</a></td>
                         {#<td>{{ article.slug }}</td>#}
                         <td>{{ article.visit }}</td>
-                        <td>{{ article.enabled }}</td>
-                        <td>{% if article.publicationStartDate %}{{ article.publicationStartDate|date('m/d') }}{% endif %}</td>
-                        <td>{% if article.publicationEndDate %}{{ article.publicationEndDate|date('m/d') }}{% endif %}</td>
-                        <td>{% if vich_uploader_asset(article,'imageFile')|length > 0 %}<img style="width: 50px;height: 50px" src="{{ vich_uploader_asset(article,'imageFile') }}">{% endif %}</td>
-                        <td>{% if article.createdAt %}{{ article.createdAt|date('m-d H:i') }}{% endif %}</td>
-                        <td>{% if article.updatedAt %}{{ article.updatedAt|date('m-d H:i') }}{% endif %}</td>
+                        <td><i class="{% if article.enabled %}fa fa-check{% else %}fa fa-times{% endif %}"></i></td>
+                        <td class="{% if article.publicationStartDate %}date{% endif %} peDate" data-time="{% if article.publicationStartDate %}{{ article.publicationStartDate|date('U') }}{% endif %}"></td>
+                        <td class="{% if article.publicationEndDate %}date{% endif %} psDate" data-time="{% if article.publicationEndDate %}{{ article.publicationEndDate|date('U') }}{% endif %}"></td>
+                        <td class="date time createdAt" data-time="{% if article.createdAt %}{{ article.createdAt|date('U') }}{% else %}0{% endif %}"></td>
+                        <td class="date time updatedAt" data-time="{% if article.updatedAt %}{{ article.updatedAt|date('U') }}{% else %}0{% endif %}"></td>
                         <td>
                             <button data-id="{{ article.id }}" style="padding: 5px" class="R_butt_green edit_article btn">ویرایش</button>
                             <button data-id="{{ article.id }}" style="padding: 5px" class="R_butt_red delete_article btn">حذف</button>
@@ -83,60 +82,23 @@
         </div>
     </div>
 </div>
-
-    {#<h1>Article list</h1>#}
-
-    {#<table class="records_list">#}
-        {#<thead>#}
-            {#<tr>#}
-                {#<th>Id</th>#}
-                {#<th>Title</th>#}
-                {#<th>Slug</th>#}
-                {#<th>Abstract</th>#}
-                {#<th>Article</th>#}
-                {#<th>Visit</th>#}
-                {#<th>Enabled</th>#}
-                {#<th>Publicationstartdate</th>#}
-                {#<th>Publicationenddate</th>#}
-                {#<th>Image</th>#}
-                {#<th>Createdat</th>#}
-                {#<th>Updatedat</th>#}
-                {#<th>Actions</th>#}
-            {#</tr>#}
-        {#</thead>#}
-        {#<tbody>#}
-        {#{% for article in articles %}#}
-            {#<tr>#}
-                {#<td>{{ article.title }}</td>#}
-                {#<td>{{ article.slug }}</td>#}
-                {#<td>{{ article.abstract }}</td>#}
-                {#<td>{{ article.article }}</td>#}
-                {#<td>{{ article.visit }}</td>#}
-                {#<td>{{ article.enabled }}</td>#}
-                {#<td>{% if article.publicationStartDate %}{{ article.publicationStartDate|date('Y-m-d H:i:s') }}{% endif %}</td>#}
-                {#<td>{% if article.publicationEndDate %}{{ article.publicationEndDate|date('Y-m-d H:i:s') }}{% endif %}</td>#}
-                {#<td>{{ article.image }}</td>#}
-                {#<td>{% if article.createdAt %}{{ article.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>#}
-                {#<td>{% if article.updatedAt %}{{ article.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>#}
-                {#<td>#}
-                {#<ul>#}
-
-                {#</ul>#}
-                {#</td>#}
-            {#</tr>#}
-        {#{% endfor %}#}
-        {#</tbody>#}
-    {#</table>#}
-
-        {#<ul>#}
-        {#<li>#}
-        {#</li>#}
-    {#</ul>#}
 {% endblock %}
 
 {% block scripts %}
     {{ parent() }}
+    <script src="{{ asset('static/persian-date/dist/0.1.8/persian-date-0.1.8.min.js') }}"></script>
     <script>
+        $(document).ready(function() {
+            $('.date').each(function(index, item) {
+                if ($(item).hasClass('time')) {
+                    var format = "HH:mm YY/MM/DD";
+                } else {
+                    var format = "YY/MM/DD";
+                }
+                $(item).text(persianDate.unix($(item).data('time')).format(format));
+            });
+        });
+
         $('.current_ancestor').removeClass('minus').addClass('open');
         $('.current_ancestor .menu-items i').attr('class','fa fa-minus-square-o');
         $('.delete_article').click(function(){

@@ -61,15 +61,14 @@ class PlanController extends Controller implements AdminInterface
     {
         $em = $this->getDoctrine()->getManager();
         $blog = $this->get('anar_engine.manager.blog')->getBlog();
+        $profile = $em->getRepository('AnarProfessorBundle:Profile')->findOneByBlog($blog);
 
         $plan = new Plan();
+        $plan->setProfile($profile);
         $form = $this->createCreateForm($plan);
         $form->handleRequest($request);
 
-        $profile = $em->getRepository('AnarProfessorBundle:Profile')->findOneByBlog($blog);
-
         if ($form->isValid()) {
-            $plan->setProfile($profile);
             $em->persist($plan);
             $em->flush();
 

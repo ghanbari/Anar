@@ -22,7 +22,8 @@ class HomeController extends Controller
         }
 
         $articleRepo = $this->get('doctrine')->getRepository('AnarContentBundle:Article');
-        $articles = $articleRepo->findByBlog($blogId, array('createdAt' => 'DESC'), $limit);
+        $now = new \DateTime();
+        $articles = $articleRepo->getAllFilterByQuery($blogId, null, true, $now, $now, array('a.createdAt' => 'DESC'), $limit);
         return $this->render($blogManager->getTheme('AnarHomeBundle:Home:latestArticle.html.twig'), array('articles' => $articles));
     }
 }

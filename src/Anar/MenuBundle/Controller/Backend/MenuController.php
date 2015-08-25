@@ -68,13 +68,13 @@ class MenuController extends Controller implements AdminInterface
      */
     public function createAction(Request $request)
     {
-        $menu = new Menu();
         $blog = $this->get('anar_engine.manager.blog')->getBlog();
+        $menu = new Menu();
+        $menu->setBlog($blog);
         $form = $this->createCreateForm($menu);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $menu->setBlog($blog);
             $em = $this->getDoctrine()->getManager();
             $em->persist($menu);
             $em->flush();
@@ -151,6 +151,25 @@ class MenuController extends Controller implements AdminInterface
             'method' => 'PUT',
         ));
 
+        $form->remove('parent');
+        $form->add('parent', 'entity', array(
+            'class' => 'AnarMenuBundle:Menu',
+            'property' => 'name',
+            'label' => 'parent',
+            'required' => true,
+            'placeholder' => 'placeholder',
+            'query_builder' => function ($er) use ($entity, $blog) {
+                $qb = $er->createQueryBuilder('m');
+                return $qb->where($qb->expr()->orX(
+                    $qb->expr()->lt('m.lft', '?1'),
+                    $qb->expr()->gt('m.rgt', '?2')
+                ))->andWhere($qb->expr()->eq('m.blog', '?3'))
+                ->setParameter(1, $entity->getLft())
+                ->setParameter(2, $entity->getRgt())
+                ->setParameter(3, $blog->getId());
+            }
+        ));
+
         $form->add('submit', 'submit', array('label' => 'update'));
 
         return $form;
@@ -181,7 +200,7 @@ class MenuController extends Controller implements AdminInterface
             $em->flush();
 
             $this->addFlash('info', $this->get('translator')->trans('menu.was.edited.successfully'));
-            return $this->redirect($this->generateUrl('anar_super_panel_menu_index'));
+            return $this->redirect($this->generateUrl('anar_menu_backend_index'));
         }
 
         return $this->render('AnarMenuBundle:Menu:new.html.twig', array(

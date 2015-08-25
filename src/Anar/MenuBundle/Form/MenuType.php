@@ -45,6 +45,7 @@ class MenuType extends AbstractType
                 'required' => true,
                 'class' => 'Anar\MenuBundle\Entity\Menu',
                 'property' => 'name',
+                'placeholder' => 'placeholder',
                 'query_builder' => function ($er) {
                     $qb = $er->createQueryBuilder('m');
 
@@ -61,7 +62,8 @@ class MenuType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Anar\MenuBundle\Entity\Menu'
+            'data_class' => 'Anar\MenuBundle\Entity\Menu',
+            'translation_domain' => 'forms',
         ));
     }
 

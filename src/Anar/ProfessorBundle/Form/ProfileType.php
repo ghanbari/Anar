@@ -5,6 +5,7 @@ namespace Anar\ProfessorBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Validator\Constraints\Image;
 
 class ProfileType extends AbstractType
@@ -20,7 +21,7 @@ class ProfileType extends AbstractType
                 'required' => false,
                 'label' => 'telephone',
                 'attr' => array(
-                  'pattern' => '\d{0,12}'
+                    'placeholder' => 'number.between.11-15.digit.ex.989303334444',
                 ),
             ))
             ->add('email', 'email', array(
@@ -105,7 +106,7 @@ class ProfileType extends AbstractType
     /**
      * @param OptionsResolver $resolver
      */
-    public function setConfigure(OptionsResolver $resolver)
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'Anar\ProfessorBundle\Entity\Profile',

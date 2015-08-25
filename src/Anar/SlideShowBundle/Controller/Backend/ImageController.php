@@ -3,6 +3,7 @@
 namespace Anar\SlideShowBundle\Controller\Backend;
 
 use Anar\BlogPanelBundle\Interfaces\AdminInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -53,13 +54,13 @@ class ImageController extends Controller implements AdminInterface
      */
     public function createAction(Request $request)
     {
+        $blog = $this->get('anar_engine.manager.blog')->getBlog();
         $image = new Image();
+        $image->setBlog($blog);
         $form = $this->createCreateForm($image);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $blog = $this->get('anar_engine.manager.blog')->getBlog();
-            $image->setBlog($blog);
             $em = $this->getDoctrine()->getManager();
             $em->persist($image);
             $em->flush();

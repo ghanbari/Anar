@@ -69,11 +69,11 @@ class StudentsDissertationController extends Controller implements AdminInterfac
         $em = $this->getDoctrine()->getManager();
         $profile = $em->getRepository('AnarProfessorBundle:Profile')->findOneByBlog($blog);
         $dissertation = new StudentsDissertation();
+        $dissertation->setProfile($profile);
         $form = $this->createCreateForm($dissertation);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $dissertation->setProfile($profile);
             $em->persist($dissertation);
             $em->flush();
 

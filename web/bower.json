@@ -21,7 +21,9 @@
     "jstree": "~3.0.9",
     "ckeditor": "~4.4.7",
     "fontawesome": "~4.3.0",
-    "isotope": "~2.2.0"
+    "isotope": "~2.2.0",
+    "persian-date": "~0.1.8",
+    "persian-datepicker": "~0.4.5"
   },
   "devDependencies": {}
 }

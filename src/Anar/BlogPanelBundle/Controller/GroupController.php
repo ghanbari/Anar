@@ -198,7 +198,7 @@ class GroupController extends Controller implements AdminInterface
             } elseif ($group->isDefault()) {
                 $status = array(
                     'code' => 400,
-                    'messages' => $translator->trans('you.can.not.delete.default.group'),
+                    'message' => $translator->trans('you.can.not.delete.default.group'),
                 );
             } else {
                 $em->remove($group);
@@ -266,7 +266,7 @@ class GroupController extends Controller implements AdminInterface
                     'fname' => $user->getFname(),
                     'lname' => $user->getLname(),
                     'staffCode' => $user->getStaffCode(),
-                    'enabled' => $user->getEnabled(),
+                    'enabled' => $user->isEnabled(),
                 );
             }
 

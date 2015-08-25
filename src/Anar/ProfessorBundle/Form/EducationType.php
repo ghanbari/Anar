@@ -5,6 +5,7 @@ namespace Anar\ProfessorBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class EducationType extends AbstractType
 {
@@ -63,7 +64,7 @@ class EducationType extends AbstractType
     /**
      * @param OptionsResolver $resolver
      */
-    public function setConfigure(OptionsResolver $resolver)
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'Anar\ProfessorBundle\Entity\Education',

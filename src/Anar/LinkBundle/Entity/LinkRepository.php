@@ -34,4 +34,14 @@ class LinkRepository extends EntityRepository
 
         return $qb->getQuery()->getResult();
     }
+
+    public function count($blogId)
+    {
+        $qb = $this->createQueryBuilder('l');
+        return $qb->select('count(l)')
+            ->join('l.category', 'c')
+            ->where($qb->expr()->eq('c.blog', ':blogId'))
+            ->setParameter('blogId', $blogId)
+            ->getQuery()->getSingleScalarResult();
+    }
 }

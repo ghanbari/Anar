@@ -1,20 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2015-06-08T22:16:08Z" source-language="en" target-language="fa" datatype="plaintext" original="not.available">
+  <file date="2015-06-17T07:08:58Z" source-language="en" target-language="fa" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
     </header>
     <body>
+      <trans-unit id="da39a3ee5e6b4b0d3255bfef95601890afd80709" resname="">
+        <jms:reference-file line="77">HomeBundle/Menu/Builder.php</jms:reference-file>
+        <source></source>
+        <target state="new"></target>
+      </trans-unit>
+      <trans-unit id="fbe2f800f0f4a7c6f623967e6fa7235892cbe24d" resname="Bad credentials.">
+        <source>Bad credentials.</source>
+        <target>رمز عبور یا نام کاربری اشتباه است</target>
+      </trans-unit>
       <trans-unit id="9222e622047eb4456ee1b104e4c0e8ed5725b60f" resname="Createdat">
-        <jms:reference-file line="26">Backend/Category/index.html.twig</jms:reference-file>
-        <jms:reference-file line="28">Backend/Image/index.html.twig</jms:reference-file>
+        <jms:reference-file line="50">Backend/Category/index.html.twig</jms:reference-file>
+        <jms:reference-file line="52">Backend/Image/index.html.twig</jms:reference-file>
         <source>Createdat</source>
         <target state="new">ساخته شده در</target>
       </trans-unit>
       <trans-unit id="3ac6ebad98b4286f3e596f0bf1f68d637e8bbba7" resname="Createdby">
-        <jms:reference-file line="28">Backend/Category/index.html.twig</jms:reference-file>
-        <jms:reference-file line="26">Backend/Image/index.html.twig</jms:reference-file>
+        <jms:reference-file line="52">Backend/Category/index.html.twig</jms:reference-file>
+        <jms:reference-file line="50">Backend/Image/index.html.twig</jms:reference-file>
         <source>Createdby</source>
         <target state="new">ساخته شده توسط</target>
       </trans-unit>
@@ -24,9 +33,13 @@
         <target state="new">حذف</target>
       </trans-unit>
       <trans-unit id="55f8ebc805e65b5b71ddafdae390e3be2bcd69af" resname="Description">
-        <jms:reference-file line="25">Backend/Image/index.html.twig</jms:reference-file>
+        <jms:reference-file line="49">Backend/Image/index.html.twig</jms:reference-file>
         <source>Description</source>
         <target state="new">توضیحات</target>
+      </trans-unit>
+      <trans-unit id="2836e4cc300884a3705d91707d7098f49d678a83" resname="Educations">
+        <source>Educations</source>
+        <target>تحصیلات</target>
       </trans-unit>
       <trans-unit id="df174a3f2faa31814e06540acda7af8825403fac" resname="Enabled">
         <jms:reference-file line="27">Backend/Article/index.html.twig</jms:reference-file>
@@ -63,17 +76,17 @@
         <target state="new">ای دی</target>
       </trans-unit>
       <trans-unit id="50e19fda0d5b4b74a4a1a1d584e56578693a4ea4" resname="Image">
-        <jms:reference-file line="24">Backend/Image/index.html.twig</jms:reference-file>
+        <jms:reference-file line="48">Backend/Image/index.html.twig</jms:reference-file>
         <source>Image</source>
         <target state="new">تصویر</target>
       </trans-unit>
       <trans-unit id="709a23220f2c3d64d1e1d6d18c4d5280f8d82fca" resname="Name">
-        <jms:reference-file line="24">Backend/Category/index.html.twig</jms:reference-file>
+        <jms:reference-file line="48">Backend/Category/index.html.twig</jms:reference-file>
         <source>Name</source>
         <target state="new">نام</target>
       </trans-unit>
       <trans-unit id="cf1c85adba548e8d681255278976584a7e4a44de" resname="Position">
-        <jms:reference-file line="25">Backend/Category/index.html.twig</jms:reference-file>
+        <jms:reference-file line="49">Backend/Category/index.html.twig</jms:reference-file>
         <source>Position</source>
         <target state="new">موقعیت</target>
       </trans-unit>
@@ -114,16 +127,19 @@
         <target state="new">بروزرسانی</target>
       </trans-unit>
       <trans-unit id="c699c180134ed220debba5c802d4413a6b7524c1" resname="Updatedat">
-        <jms:reference-file line="27">Backend/Category/index.html.twig</jms:reference-file>
-        <jms:reference-file line="29">Backend/Image/index.html.twig</jms:reference-file>
+        <jms:reference-file line="51">Backend/Category/index.html.twig</jms:reference-file>
+        <jms:reference-file line="53">Backend/Image/index.html.twig</jms:reference-file>
         <source>Updatedat</source>
         <target state="new">بروزرسانی شده در</target>
       </trans-unit>
       <trans-unit id="ba76211858d9c965a7756e3a1cbeae49ead5c17c" resname="Updatedby">
-        <jms:reference-file line="29">Backend/Category/index.html.twig</jms:reference-file>
-        <jms:reference-file line="27">Backend/Image/index.html.twig</jms:reference-file>
+        <jms:reference-file line="53">Backend/Category/index.html.twig</jms:reference-file>
         <source>Updatedby</source>
         <target state="new">بروزرسانی شده توسط</target>
+      </trans-unit>
+      <trans-unit id="760b9d5e97b266c7938352572d50b986493b6aa7" resname="User account is locked.">
+        <source>User account is locked.</source>
+        <target>اکانت شما مسدود شده است، جهت اطلاعات بیشتر با مدیریت سایت تماس بگیرید</target>
       </trans-unit>
       <trans-unit id="7c9a8664b15c7dee7f596b0f90d4f31cc93f1293" resname="Visit">
         <jms:reference-file line="26">Backend/Article/index.html.twig</jms:reference-file>
@@ -173,15 +189,15 @@
         <target>نویسنده</target>
       </trans-unit>
       <trans-unit id="205b29f2fba67510503feb3889e64192f4e8a5f2" resname="blog.is.deleted">
-        <jms:reference-file line="240">SuperPanelBundle/Controller/BlogController.php</jms:reference-file>
+        <jms:reference-file line="239">SuperPanelBundle/Controller/BlogController.php</jms:reference-file>
         <source>blog.is.deleted</source>
         <target state="new">وبلاگ با موفقیت حذف شد</target>
       </trans-unit>
       <trans-unit id="6b521c370aa3a227c71f70b6bd988937a96b8566" resname="blog.is.not.exists">
         <jms:reference-file line="124">SuperPanelBundle/Controller/BlogController.php</jms:reference-file>
-        <jms:reference-file line="188">SuperPanelBundle/Controller/BlogController.php</jms:reference-file>
-        <jms:reference-file line="304">SuperPanelBundle/Controller/BlogController.php</jms:reference-file>
-        <jms:reference-file line="334">SuperPanelBundle/Controller/BlogController.php</jms:reference-file>
+        <jms:reference-file line="187">SuperPanelBundle/Controller/BlogController.php</jms:reference-file>
+        <jms:reference-file line="303">SuperPanelBundle/Controller/BlogController.php</jms:reference-file>
+        <jms:reference-file line="333">SuperPanelBundle/Controller/BlogController.php</jms:reference-file>
         <source>blog.is.not.exists</source>
         <target>وبلاگ مورد نظر وجود ندارد!</target>
       </trans-unit>
@@ -191,7 +207,7 @@
         <target state="new">وبلاگ با موفقیت ساخته شد</target>
       </trans-unit>
       <trans-unit id="92ca1ce4fb50fc00a1aae05237327d19905a6aca" resname="blog.was.edited.successfully">
-        <jms:reference-file line="202">SuperPanelBundle/Controller/BlogController.php</jms:reference-file>
+        <jms:reference-file line="201">SuperPanelBundle/Controller/BlogController.php</jms:reference-file>
         <source>blog.was.edited.successfully</source>
         <target state="new">وبلاگ با موفقیت اپدیت شد</target>
       </trans-unit>
@@ -206,7 +222,7 @@
         <target state="new">تعداد وبلاگ ها</target>
       </trans-unit>
       <trans-unit id="5ccbf9c9c5fc1bc34df8238a97094968f38f5165" resname="category">
-        <jms:reference-file line="26">Backend/Link/index.html.twig</jms:reference-file>
+        <jms:reference-file line="50">Backend/Link/index.html.twig</jms:reference-file>
         <source>category</source>
         <target state="new">دسته بندی</target>
       </trans-unit>
@@ -255,8 +271,13 @@
         <target>شهر</target>
       </trans-unit>
       <trans-unit id="1a73af9e7ae00182733b2292511b814be66f065f" resname="contact">
+        <jms:reference-file line="94">HomeBundle/Menu/Builder.php</jms:reference-file>
         <source>contact</source>
         <target>تماس با ما</target>
+      </trans-unit>
+      <trans-unit id="fef532f2088d5e4b1832bee6120e82b16e5b8b1e" resname="contact.index">
+        <source>contact.index</source>
+        <target>پیام ها</target>
       </trans-unit>
       <trans-unit id="e5d23443a127960efa4d797352535be72410f08d" resname="contact.is.deleted">
         <jms:reference-file line="60">Controller/Backend/ContactController.php</jms:reference-file>
@@ -273,7 +294,7 @@
         <target>محتوا</target>
       </trans-unit>
       <trans-unit id="3df15713435bef4aa0149a5d5cc298c794d7b408" resname="content.category">
-        <jms:reference-file line="53">HomeBundle/Menu/Builder.php</jms:reference-file>
+        <jms:reference-file line="31">HomeBundle/Menu/Builder.php</jms:reference-file>
         <source>content.category</source>
         <target state="new">دسته بندی مطالب</target>
       </trans-unit>
@@ -282,13 +303,13 @@
         <target>کشور</target>
       </trans-unit>
       <trans-unit id="9b7c68a918b17eb053809b198d7c9abfc142f30a" resname="create">
-        <jms:reference-file line="191">SuperPanelBundle/Controller/UserController.php</jms:reference-file>
+        <jms:reference-file line="186">SuperPanelBundle/Controller/UserController.php</jms:reference-file>
         <jms:reference-file line="106">SuperPanelBundle/Controller/BlogController.php</jms:reference-file>
         <jms:reference-file line="99">Controller/Backend/ArticleController.php</jms:reference-file>
         <jms:reference-file line="102">Controller/Backend/CategoryController.php</jms:reference-file>
         <jms:reference-file line="94">Controller/Backend/CategoryController.php</jms:reference-file>
         <jms:reference-file line="101">Controller/Backend/LinkController.php</jms:reference-file>
-        <jms:reference-file line="101">Controller/Backend/PlanController.php</jms:reference-file>
+        <jms:reference-file line="100">Controller/Backend/PlanController.php</jms:reference-file>
         <jms:reference-file line="105">Controller/Backend/StudentsDissertationController.php</jms:reference-file>
         <jms:reference-file line="108">Controller/Backend/MenuController.php</jms:reference-file>
         <jms:reference-file line="54">BlogPanelBundle/Controller/GroupController.php</jms:reference-file>
@@ -296,16 +317,16 @@
         <target state="new">ساخت</target>
       </trans-unit>
       <trans-unit id="9151163c0fc1de04cd6869351355711dfd6096d6" resname="created.at">
-        <jms:reference-file line="31">Backend/Article/index.html.twig</jms:reference-file>
-        <jms:reference-file line="26">Backend/Category/index.html.twig</jms:reference-file>
-        <jms:reference-file line="27">Backend/Plan/index.html.twig</jms:reference-file>
+        <jms:reference-file line="55">Backend/Article/index.html.twig</jms:reference-file>
+        <jms:reference-file line="50">Backend/Category/index.html.twig</jms:reference-file>
+        <jms:reference-file line="51">Backend/Plan/index.html.twig</jms:reference-file>
         <jms:reference-file line="25">views/Log/index.html.twig</jms:reference-file>
         <source>created.at</source>
         <target>ساخته شده در</target>
       </trans-unit>
       <trans-unit id="55bfafdd36ab25c84547ddc2ecfc0fb802565885" resname="created.by">
-        <jms:reference-file line="28">Backend/Category/index.html.twig</jms:reference-file>
-        <jms:reference-file line="29">Backend/Plan/index.html.twig</jms:reference-file>
+        <jms:reference-file line="52">Backend/Category/index.html.twig</jms:reference-file>
+        <jms:reference-file line="53">Backend/Plan/index.html.twig</jms:reference-file>
         <source>created.by</source>
         <target>ساخته شده توسط</target>
       </trans-unit>
@@ -320,9 +341,37 @@
         <target state="new">شاخته شده توسط</target>
       </trans-unit>
       <trans-unit id="828a60a97b8a73032a5bee3bc3d8f99d2445573a" resname="day.number">
-        <jms:reference-file line="26">Backend/Plan/index.html.twig</jms:reference-file>
+        <jms:reference-file line="50">Backend/Plan/index.html.twig</jms:reference-file>
         <source>day.number</source>
-        <target>day.number</target>
+        <target>روز هفته</target>
+      </trans-unit>
+      <trans-unit id="61539b7f39fc9812934244167cd873e0f3699bdb" resname="day_0">
+        <source>day_0</source>
+        <target>شنبه</target>
+      </trans-unit>
+      <trans-unit id="185e843f933446f34e4e3d5e52e87e775043e46f" resname="day_1">
+        <source>day_1</source>
+        <target>یکشنبه</target>
+      </trans-unit>
+      <trans-unit id="7ff33d0f46e49786a2dbf927694f26d818c19688" resname="day_2">
+        <source>day_2</source>
+        <target>دوشنبه</target>
+      </trans-unit>
+      <trans-unit id="4e3b9678f0ec09e21dec1774637be6f7a151491d" resname="day_3">
+        <source>day_3</source>
+        <target>سه شنبه</target>
+      </trans-unit>
+      <trans-unit id="79181737beca080b0a36275ac62e720cda5a4ecf" resname="day_4">
+        <source>day_4</source>
+        <target>چهارشنبه</target>
+      </trans-unit>
+      <trans-unit id="7e7b0d6b79a74202fc73eea1353977275c2ee2a5" resname="day_5">
+        <source>day_5</source>
+        <target>پنجشنبه</target>
+      </trans-unit>
+      <trans-unit id="ec0b52327fc57112244e17fc45ff611505e27aaf" resname="day_6">
+        <source>day_6</source>
+        <target>جمعه</target>
       </trans-unit>
       <trans-unit id="3321136e949d0960ee9700cfc7be5b61e6fdfb3c" resname="daynumber">
         <jms:reference-file line="26">Backend/Plan/index.html.twig</jms:reference-file>
@@ -330,13 +379,13 @@
         <target state="new">روز هفته</target>
       </trans-unit>
       <trans-unit id="7505d64a54e061b7acd54ccd58b49dc43500b635" resname="default">
-        <jms:reference-file line="25">views/Group/index.html.twig</jms:reference-file>
+        <jms:reference-file line="49">views/Group/index.html.twig</jms:reference-file>
         <source>default</source>
         <target state="new">پیش فرض</target>
       </trans-unit>
       <trans-unit id="cb329146a0dd0d566b0628744d67936558741ffa" resname="description">
-        <jms:reference-file line="25">Backend/Category/index.html.twig</jms:reference-file>
-        <jms:reference-file line="24">Backend/Link/index.html.twig</jms:reference-file>
+        <jms:reference-file line="49">Backend/Category/index.html.twig</jms:reference-file>
+        <jms:reference-file line="48">Backend/Link/index.html.twig</jms:reference-file>
         <jms:reference-file line="24">SlideShowBundle/Form/ImageType.php</jms:reference-file>
         <source>description</source>
         <target>توضیحات</target>
@@ -350,31 +399,32 @@
         <target>مدیریت پایان نامه ها</target>
       </trans-unit>
       <trans-unit id="a88b7dcd1a9e3e17770bbaa6d7515b31a2d7e85d" resname="email">
+        <jms:reference-file line="47">views/Backend/index.html.twig</jms:reference-file>
         <jms:reference-file line="23">ContactBundle/Form/ContactType.php</jms:reference-file>
         <jms:reference-file line="137">views/User/index.html.twig</jms:reference-file>
-        <jms:reference-file line="233">views/User/index.html.twig</jms:reference-file>
+        <jms:reference-file line="204">views/User/index.html.twig</jms:reference-file>
         <source>email</source>
         <target state="new">ایمیل</target>
       </trans-unit>
       <trans-unit id="33f885e1f803582b85fb040082988c2986e4152e" resname="email.is.exists">
-        <jms:reference-file line="374">SuperPanelBundle/Controller/UserController.php</jms:reference-file>
+        <jms:reference-file line="369">SuperPanelBundle/Controller/UserController.php</jms:reference-file>
         <source>email.is.exists</source>
         <target state="new">ایمیل وجود دارد</target>
       </trans-unit>
       <trans-unit id="330df0052b6f1f1940464460ecc7d4f68cac61e4" resname="email.is.not.valid">
-        <jms:reference-file line="385">SuperPanelBundle/Controller/UserController.php</jms:reference-file>
+        <jms:reference-file line="380">SuperPanelBundle/Controller/UserController.php</jms:reference-file>
         <source>email.is.not.valid</source>
         <target state="new">ایمیل معتبر نیست</target>
       </trans-unit>
       <trans-unit id="3ea3f9802accf8817bacd6f3df46a73b93ccddec" resname="enabled">
-        <jms:reference-file line="27">Backend/Article/index.html.twig</jms:reference-file>
+        <jms:reference-file line="51">Backend/Article/index.html.twig</jms:reference-file>
         <jms:reference-file line="141">views/User/index.html.twig</jms:reference-file>
-        <jms:reference-file line="237">views/User/index.html.twig</jms:reference-file>
+        <jms:reference-file line="208">views/User/index.html.twig</jms:reference-file>
         <source>enabled</source>
         <target>فعال</target>
       </trans-unit>
       <trans-unit id="fd68aac7ad761521a10b9f367f72da936e78a1c2" resname="end.time">
-        <jms:reference-file line="25">Backend/Plan/index.html.twig</jms:reference-file>
+        <jms:reference-file line="49">Backend/Plan/index.html.twig</jms:reference-file>
         <source>end.time</source>
         <target>تا ساعت</target>
       </trans-unit>
@@ -390,13 +440,13 @@
       </trans-unit>
       <trans-unit id="6dbff8baa2167c52eeb72d407642eb430ca0b271" resname="fname">
         <jms:reference-file line="138">views/User/index.html.twig</jms:reference-file>
-        <jms:reference-file line="234">views/User/index.html.twig</jms:reference-file>
+        <jms:reference-file line="205">views/User/index.html.twig</jms:reference-file>
         <source>fname</source>
         <target state="new">نام</target>
       </trans-unit>
       <trans-unit id="eba2c9cfb8133c315c9bf5f702205a3b9a402372" resname="form.is.invalid">
-        <jms:reference-file line="106">SuperPanelBundle/Controller/UserController.php</jms:reference-file>
-        <jms:reference-file line="282">BlogPanelBundle/Controller/GroupController.php</jms:reference-file>
+        <jms:reference-file line="101">SuperPanelBundle/Controller/UserController.php</jms:reference-file>
+        <jms:reference-file line="286">BlogPanelBundle/Controller/GroupController.php</jms:reference-file>
         <source>form.is.invalid</source>
         <target state="new">فرم نامعتبر است</target>
       </trans-unit>
@@ -411,6 +461,10 @@
       <trans-unit id="39a6bd435eb632f802d806b2b41b9326f1b16b51" resname="grade">
         <source>grade</source>
         <target>مدرک</target>
+      </trans-unit>
+      <trans-unit id="64292b1c2b2e13ead8788fc8a2b8edc8c1db4ecd" resname="group">
+        <source>group</source>
+        <target>گروه</target>
       </trans-unit>
       <trans-unit id="bb147007ba740438ba743fb199125d8d9209034c" resname="group.create">
         <source>group.create</source>
@@ -447,15 +501,15 @@
         <target state="new">گروه با موفقیت آپدیت شد</target>
       </trans-unit>
       <trans-unit id="87ea5dfc8b8e384d848979496e706390b497e547" resname="id">
-        <jms:reference-file line="23">Backend/Article/index.html.twig</jms:reference-file>
-        <jms:reference-file line="23">Backend/Category/index.html.twig</jms:reference-file>
-        <jms:reference-file line="23">Backend/Image/index.html.twig</jms:reference-file>
-        <jms:reference-file line="23">views/Group/index.html.twig</jms:reference-file>
+        <jms:reference-file line="47">Backend/Article/index.html.twig</jms:reference-file>
+        <jms:reference-file line="47">Backend/Category/index.html.twig</jms:reference-file>
+        <jms:reference-file line="47">Backend/Image/index.html.twig</jms:reference-file>
+        <jms:reference-file line="47">views/Group/index.html.twig</jms:reference-file>
         <source>id</source>
         <target>ردیف</target>
       </trans-unit>
       <trans-unit id="0e76292794888d4f1fa75fb3aff4ca27c58f56a6" resname="image">
-        <jms:reference-file line="30">Backend/Article/index.html.twig</jms:reference-file>
+        <jms:reference-file line="54">Backend/Article/index.html.twig</jms:reference-file>
         <jms:reference-file line="20">SlideShowBundle/Form/ImageType.php</jms:reference-file>
         <source>image</source>
         <target>تصویر</target>
@@ -465,17 +519,17 @@
         <target>افزودن تصویر</target>
       </trans-unit>
       <trans-unit id="92094375fe2d786b575e298c523ec524b3d62c51" resname="image.is.deleted">
-        <jms:reference-file line="118">Controller/Backend/ImageController.php</jms:reference-file>
+        <jms:reference-file line="119">Controller/Backend/ImageController.php</jms:reference-file>
         <source>image.is.deleted</source>
         <target state="new">تصویر با موفقیت حذف شد</target>
       </trans-unit>
       <trans-unit id="eeba297acb8332c61369e79532b483c99e8a3779" resname="image.is.not.exists">
-        <jms:reference-file line="111">Controller/Backend/ImageController.php</jms:reference-file>
+        <jms:reference-file line="112">Controller/Backend/ImageController.php</jms:reference-file>
         <source>image.is.not.exists</source>
         <target state="new">تصویر وجود ندارد</target>
       </trans-unit>
       <trans-unit id="5cc10614918a79da75e08eb2617ba48c4d1314cb" resname="image.is.uploaded">
-        <jms:reference-file line="67">Controller/Backend/ImageController.php</jms:reference-file>
+        <jms:reference-file line="68">Controller/Backend/ImageController.php</jms:reference-file>
         <source>image.is.uploaded</source>
         <target state="new">تصویر با موفقیت حذف شد</target>
       </trans-unit>
@@ -498,30 +552,30 @@
         <target state="new">آی پی</target>
       </trans-unit>
       <trans-unit id="33bc22e6d9f49630222839c353155b8d31f5d5a8" resname="item.can.not.delete">
-        <jms:reference-file line="214">Controller/Backend/MenuController.php</jms:reference-file>
+        <jms:reference-file line="233">Controller/Backend/MenuController.php</jms:reference-file>
         <source>item.can.not.delete</source>
         <target state="new">امکان حذف این آیتم وجود ندارد</target>
       </trans-unit>
       <trans-unit id="af50a6a040487c78a4cbd83f1d4e57494bce2c81" resname="item.is.created">
-        <jms:reference-file line="76">Controller/Backend/PlanController.php</jms:reference-file>
+        <jms:reference-file line="75">Controller/Backend/PlanController.php</jms:reference-file>
         <jms:reference-file line="80">Controller/Backend/StudentsDissertationController.php</jms:reference-file>
         <source>item.is.created</source>
         <target state="new">آیتم با موفقیت ساخته شد</target>
       </trans-unit>
       <trans-unit id="0c4f2d40c23cf22ef263963502bdef87ec712f31" resname="item.is.deleted">
-        <jms:reference-file line="210">Controller/Backend/PlanController.php</jms:reference-file>
+        <jms:reference-file line="209">Controller/Backend/PlanController.php</jms:reference-file>
         <jms:reference-file line="216">Controller/Backend/StudentsDissertationController.php</jms:reference-file>
         <source>item.is.deleted</source>
         <target state="new">آیتم با موفقیت حذف شد</target>
       </trans-unit>
       <trans-unit id="1ba1c80a8f99a78c624f80cc10065996abbaa3b6" resname="item.is.not.exists">
-        <jms:reference-file line="310">BlogPanelBundle/Controller/GroupController.php</jms:reference-file>
-        <jms:reference-file line="345">BlogPanelBundle/Controller/GroupController.php</jms:reference-file>
+        <jms:reference-file line="314">BlogPanelBundle/Controller/GroupController.php</jms:reference-file>
+        <jms:reference-file line="349">BlogPanelBundle/Controller/GroupController.php</jms:reference-file>
         <source>item.is.not.exists</source>
         <target state="new">آیتم وجود ندارد</target>
       </trans-unit>
       <trans-unit id="cbc53fc1f3cd7408b47e673050b8d678138f356f" resname="item.is.updated">
-        <jms:reference-file line="171">Controller/Backend/PlanController.php</jms:reference-file>
+        <jms:reference-file line="170">Controller/Backend/PlanController.php</jms:reference-file>
         <jms:reference-file line="177">Controller/Backend/StudentsDissertationController.php</jms:reference-file>
         <source>item.is.updated</source>
         <target state="new">آیتم با موفقیت بروزرسانی شد</target>
@@ -567,7 +621,7 @@
       </trans-unit>
       <trans-unit id="1e94a445606170417df751409060dee8e956d3ce" resname="lname">
         <jms:reference-file line="139">views/User/index.html.twig</jms:reference-file>
-        <jms:reference-file line="235">views/User/index.html.twig</jms:reference-file>
+        <jms:reference-file line="206">views/User/index.html.twig</jms:reference-file>
         <source>lname</source>
         <target state="new">نام خانوادگی</target>
       </trans-unit>
@@ -589,13 +643,13 @@
         <target>ساخت منو</target>
       </trans-unit>
       <trans-unit id="6c00f383e110cfd52b148cd916644e7e2a11fabd" resname="menu.is.deleted">
-        <jms:reference-file line="221">Controller/Backend/MenuController.php</jms:reference-file>
+        <jms:reference-file line="240">Controller/Backend/MenuController.php</jms:reference-file>
         <source>menu.is.deleted</source>
         <target state="new">منو با موفقیت حذف شد</target>
       </trans-unit>
       <trans-unit id="c925e4d4ba7d94f7f5ea001e92ea0fd92067455c" resname="menu.is.not.exists">
         <jms:reference-file line="126">Controller/Backend/MenuController.php</jms:reference-file>
-        <jms:reference-file line="173">Controller/Backend/MenuController.php</jms:reference-file>
+        <jms:reference-file line="192">Controller/Backend/MenuController.php</jms:reference-file>
         <source>menu.is.not.exists</source>
         <target state="new">منو وجود ندارد</target>
       </trans-unit>
@@ -609,7 +663,7 @@
         <target state="new">منو با موفقیت ساخته شد</target>
       </trans-unit>
       <trans-unit id="37f8115e28c82c7c177f86cb4d0911bd5e5c65e0" resname="menu.was.edited.successfully">
-        <jms:reference-file line="183">Controller/Backend/MenuController.php</jms:reference-file>
+        <jms:reference-file line="202">Controller/Backend/MenuController.php</jms:reference-file>
         <source>menu.was.edited.successfully</source>
         <target state="new">منو با موفقیت بروزرسانی شد</target>
       </trans-unit>
@@ -620,7 +674,7 @@
         <target>پیام</target>
       </trans-unit>
       <trans-unit id="fa33a7d8f4695437720d222fc7645c04e9bac7d7" resname="message.was.sended">
-        <jms:reference-file line="50">Controller/Frontend/ContactController.php</jms:reference-file>
+        <jms:reference-file line="51">Controller/Frontend/ContactController.php</jms:reference-file>
         <source>message.was.sended</source>
         <target state="new">پیام با موفقیت ارسال شد</target>
       </trans-unit>
@@ -629,30 +683,30 @@
         <target>دو شنبه</target>
       </trans-unit>
       <trans-unit id="6ae999552a0d2dca14d62e2bc8b764d377b1dd6c" resname="name">
+        <jms:reference-file line="46">views/Backend/index.html.twig</jms:reference-file>
         <jms:reference-file line="19">ContactBundle/Form/ContactType.php</jms:reference-file>
-        <jms:reference-file line="30">MenuBundle/Form/MenuType.php</jms:reference-file>
-        <jms:reference-file line="24">views/Group/index.html.twig</jms:reference-file>
+        <jms:reference-file line="48">views/Group/index.html.twig</jms:reference-file>
         <source>name</source>
         <target state="new">نام</target>
       </trans-unit>
       <trans-unit id="47f0f3d6c11be727527a3c277d1743218d0dc0c6" resname="name.is.exists">
-        <jms:reference-file line="337">SuperPanelBundle/Controller/UserController.php</jms:reference-file>
-        <jms:reference-file line="266">SuperPanelBundle/Controller/BlogController.php</jms:reference-file>
+        <jms:reference-file line="332">SuperPanelBundle/Controller/UserController.php</jms:reference-file>
+        <jms:reference-file line="265">SuperPanelBundle/Controller/BlogController.php</jms:reference-file>
         <source>name.is.exists</source>
         <target>این نام وجود دارد!</target>
       </trans-unit>
       <trans-unit id="4ad386fd3095eb028d72628547c6dd3ee7e588ab" resname="name.not.have.valid.character">
-        <jms:reference-file line="277">SuperPanelBundle/Controller/BlogController.php</jms:reference-file>
+        <jms:reference-file line="276">SuperPanelBundle/Controller/BlogController.php</jms:reference-file>
         <source>name.not.have.valid.character</source>
         <target state="new">نام شامل کاراکتر های نامعتبر است</target>
       </trans-unit>
       <trans-unit id="19ecfdc9d6d652d4e3d96777b16c0a631228d943" resname="not.found">
-        <jms:reference-file line="80">SuperPanelBundle/Controller/UserController.php</jms:reference-file>
-        <jms:reference-file line="228">SuperPanelBundle/Controller/BlogController.php</jms:reference-file>
-        <jms:reference-file line="203">Controller/Backend/PlanController.php</jms:reference-file>
+        <jms:reference-file line="91">SuperPanelBundle/Controller/UserController.php</jms:reference-file>
+        <jms:reference-file line="227">SuperPanelBundle/Controller/BlogController.php</jms:reference-file>
+        <jms:reference-file line="202">Controller/Backend/PlanController.php</jms:reference-file>
         <jms:reference-file line="209">Controller/Backend/StudentsDissertationController.php</jms:reference-file>
-        <jms:reference-file line="209">Controller/Backend/MenuController.php</jms:reference-file>
-        <jms:reference-file line="263">BlogPanelBundle/Controller/GroupController.php</jms:reference-file>
+        <jms:reference-file line="228">Controller/Backend/MenuController.php</jms:reference-file>
+        <jms:reference-file line="276">BlogPanelBundle/Controller/GroupController.php</jms:reference-file>
         <source>not.found</source>
         <target>اطلاعات مورد نظر یافت نشد</target>
       </trans-unit>
@@ -662,7 +716,7 @@
       </trans-unit>
       <trans-unit id="d8fd39d0bbdd2dcf322d8b11390a4c5825b11495" resname="parent">
         <jms:reference-file line="155">SuperPanelBundle/Controller/BlogController.php</jms:reference-file>
-        <jms:reference-file line="44">MenuBundle/Form/MenuType.php</jms:reference-file>
+        <jms:reference-file line="158">Controller/Backend/MenuController.php</jms:reference-file>
         <source>parent</source>
         <target state="new">والد</target>
       </trans-unit>
@@ -696,8 +750,8 @@
         <target>افزودن برنامه هفتگی</target>
       </trans-unit>
       <trans-unit id="c3a89b239a3414610bd77f3b79fc111ed1d6be9c" resname="plan.is.not.exists">
-        <jms:reference-file line="116">Controller/Backend/PlanController.php</jms:reference-file>
-        <jms:reference-file line="161">Controller/Backend/PlanController.php</jms:reference-file>
+        <jms:reference-file line="115">Controller/Backend/PlanController.php</jms:reference-file>
+        <jms:reference-file line="160">Controller/Backend/PlanController.php</jms:reference-file>
         <source>plan.is.not.exists</source>
         <target state="new">برنامه وجود ندارد</target>
       </trans-unit>
@@ -718,6 +772,11 @@
         <source>professor profile</source>
         <target>پروفایل اساتید</target>
       </trans-unit>
+      <trans-unit id="5d45a009b0383b5b3064b9820c18530333c910f9" resname="profile">
+        <jms:reference-file line="78">HomeBundle/Menu/Builder.php</jms:reference-file>
+        <source>profile</source>
+        <target>پروفایل</target>
+      </trans-unit>
       <trans-unit id="87153f6c3b1d3ea0b6d65798ae6676fde5921479" resname="profile.is.updated">
         <jms:reference-file line="92">Controller/Backend/ProfileController.php</jms:reference-file>
         <source>profile.is.updated</source>
@@ -728,7 +787,7 @@
         <target>مدیریت پروفایل</target>
       </trans-unit>
       <trans-unit id="c1ff222c2f179293fcdd559571731c90a288c454" resname="publication.end.date">
-        <jms:reference-file line="29">Backend/Article/index.html.twig</jms:reference-file>
+        <jms:reference-file line="53">Backend/Article/index.html.twig</jms:reference-file>
         <source>publication.end.date</source>
         <target>تاریخ اتمام انتشار</target>
       </trans-unit>
@@ -737,7 +796,7 @@
         <target>تاریخ اتمام انتشار</target>
       </trans-unit>
       <trans-unit id="5a37f614ef88ac44cb4efaf9f6484e0118ec7793" resname="publication.start.date">
-        <jms:reference-file line="28">Backend/Article/index.html.twig</jms:reference-file>
+        <jms:reference-file line="52">Backend/Article/index.html.twig</jms:reference-file>
         <source>publication.start.date</source>
         <target>تاریخ شروع انتشار</target>
       </trans-unit>
@@ -758,13 +817,13 @@
         <target>شنبه</target>
       </trans-unit>
       <trans-unit id="3559d7accf00360971961ca18989adc0614089c0" resname="search">
-        <jms:reference-file line="127">SuperPanelBundle/Controller/UserController.php</jms:reference-file>
+        <jms:reference-file line="122">SuperPanelBundle/Controller/UserController.php</jms:reference-file>
         <jms:reference-file line="246">BlogPanelBundle/Controller/GroupController.php</jms:reference-file>
         <source>search</source>
         <target state="new">جستوجو</target>
       </trans-unit>
       <trans-unit id="37ed539c0cef13959abd980bebf30f4922f606e3" resname="send">
-        <jms:reference-file line="75">Controller/Frontend/ContactController.php</jms:reference-file>
+        <jms:reference-file line="76">Controller/Frontend/ContactController.php</jms:reference-file>
         <source>send</source>
         <target state="new">ارسال</target>
       </trans-unit>
@@ -778,18 +837,18 @@
         <target>اسلایدشو</target>
       </trans-unit>
       <trans-unit id="63007774fdc1d7d24a7dd3e012741189be005a7a" resname="slug">
-        <jms:reference-file line="24">Backend/Category/index.html.twig</jms:reference-file>
+        <jms:reference-file line="48">Backend/Category/index.html.twig</jms:reference-file>
         <source>slug</source>
         <target>شناسه</target>
       </trans-unit>
       <trans-unit id="149218a3c46acd1bed832f3dce1cff0af8d3ada4" resname="staff.code">
         <jms:reference-file line="140">views/User/index.html.twig</jms:reference-file>
-        <jms:reference-file line="236">views/User/index.html.twig</jms:reference-file>
+        <jms:reference-file line="207">views/User/index.html.twig</jms:reference-file>
         <source>staff.code</source>
         <target state="new">کد پرسنلی</target>
       </trans-unit>
       <trans-unit id="57f2cb4423509ba70abdfa50b28715f063d11c0b" resname="start.time">
-        <jms:reference-file line="24">Backend/Plan/index.html.twig</jms:reference-file>
+        <jms:reference-file line="48">Backend/Plan/index.html.twig</jms:reference-file>
         <source>start.time</source>
         <target>از ساعت</target>
       </trans-unit>
@@ -805,7 +864,7 @@
         <target state="new">پایان نامه وجود ندارد</target>
       </trans-unit>
       <trans-unit id="32ee4fbee968ddbff36af8844e10463b8354ccde" resname="subset">
-        <jms:reference-file line="31">HomeBundle/Menu/Builder.php</jms:reference-file>
+        <jms:reference-file line="48">HomeBundle/Menu/Builder.php</jms:reference-file>
         <source>subset</source>
         <target state="new">زیرمجموعه</target>
       </trans-unit>
@@ -819,8 +878,8 @@
         <target state="new">پنل مدیریت کل</target>
       </trans-unit>
       <trans-unit id="dd478077b75ef170b2cc4421dd59836c1de6a34d" resname="system.error">
-        <jms:reference-file line="370">SuperPanelBundle/Controller/BlogController.php</jms:reference-file>
-        <jms:reference-file line="375">SuperPanelBundle/Controller/BlogController.php</jms:reference-file>
+        <jms:reference-file line="369">SuperPanelBundle/Controller/BlogController.php</jms:reference-file>
+        <jms:reference-file line="374">SuperPanelBundle/Controller/BlogController.php</jms:reference-file>
         <source>system.error</source>
         <target>متاسفانه خطایی در سیستم رخ داده است</target>
       </trans-unit>
@@ -829,10 +888,10 @@
         <target>پنج شنبه</target>
       </trans-unit>
       <trans-unit id="3c6de1b7dd91465d437ef415f94f36afc1fbc8a8" resname="title">
-        <jms:reference-file line="24">Backend/Article/index.html.twig</jms:reference-file>
-        <jms:reference-file line="23">Backend/Category/index.html.twig</jms:reference-file>
-        <jms:reference-file line="23">Backend/Link/index.html.twig</jms:reference-file>
-        <jms:reference-file line="23">Backend/Plan/index.html.twig</jms:reference-file>
+        <jms:reference-file line="48">Backend/Article/index.html.twig</jms:reference-file>
+        <jms:reference-file line="47">Backend/Category/index.html.twig</jms:reference-file>
+        <jms:reference-file line="47">Backend/Link/index.html.twig</jms:reference-file>
+        <jms:reference-file line="47">Backend/Plan/index.html.twig</jms:reference-file>
         <source>title</source>
         <target>عنوان</target>
       </trans-unit>
@@ -842,20 +901,20 @@
       </trans-unit>
       <trans-unit id="c5d2f48b3f3fa29c46432ae820738f442eedbf15" resname="token.is.invalid">
         <jms:reference-file line="66">Controller/Backend/ContactController.php</jms:reference-file>
-        <jms:reference-file line="315">SuperPanelBundle/Controller/UserController.php</jms:reference-file>
-        <jms:reference-file line="430">SuperPanelBundle/Controller/UserController.php</jms:reference-file>
-        <jms:reference-file line="246">SuperPanelBundle/Controller/BlogController.php</jms:reference-file>
+        <jms:reference-file line="310">SuperPanelBundle/Controller/UserController.php</jms:reference-file>
+        <jms:reference-file line="425">SuperPanelBundle/Controller/UserController.php</jms:reference-file>
+        <jms:reference-file line="245">SuperPanelBundle/Controller/BlogController.php</jms:reference-file>
         <jms:reference-file line="206">Controller/Backend/ArticleController.php</jms:reference-file>
         <jms:reference-file line="210">Controller/Backend/CategoryController.php</jms:reference-file>
         <jms:reference-file line="202">Controller/Backend/CategoryController.php</jms:reference-file>
         <jms:reference-file line="211">Controller/Backend/LinkController.php</jms:reference-file>
-        <jms:reference-file line="194">Controller/Backend/PlanController.php</jms:reference-file>
+        <jms:reference-file line="193">Controller/Backend/PlanController.php</jms:reference-file>
         <jms:reference-file line="200">Controller/Backend/StudentsDissertationController.php</jms:reference-file>
-        <jms:reference-file line="124">Controller/Backend/ImageController.php</jms:reference-file>
-        <jms:reference-file line="227">Controller/Backend/MenuController.php</jms:reference-file>
+        <jms:reference-file line="125">Controller/Backend/ImageController.php</jms:reference-file>
+        <jms:reference-file line="246">Controller/Backend/MenuController.php</jms:reference-file>
         <jms:reference-file line="214">BlogPanelBundle/Controller/GroupController.php</jms:reference-file>
-        <jms:reference-file line="316">BlogPanelBundle/Controller/GroupController.php</jms:reference-file>
-        <jms:reference-file line="351">BlogPanelBundle/Controller/GroupController.php</jms:reference-file>
+        <jms:reference-file line="320">BlogPanelBundle/Controller/GroupController.php</jms:reference-file>
+        <jms:reference-file line="355">BlogPanelBundle/Controller/GroupController.php</jms:reference-file>
         <source>token.is.invalid</source>
         <target>نشانه امنیتی اشتباه است</target>
       </trans-unit>
@@ -868,31 +927,31 @@
         <target>دانشگاه</target>
       </trans-unit>
       <trans-unit id="0a25ba5991316bdda4a9b3abcee2106016df28a0" resname="update">
-        <jms:reference-file line="237">SuperPanelBundle/Controller/UserController.php</jms:reference-file>
+        <jms:reference-file line="232">SuperPanelBundle/Controller/UserController.php</jms:reference-file>
         <jms:reference-file line="48">SuperPanelBundle/Controller/SettingController.php</jms:reference-file>
-        <jms:reference-file line="169">SuperPanelBundle/Controller/BlogController.php</jms:reference-file>
+        <jms:reference-file line="168">SuperPanelBundle/Controller/BlogController.php</jms:reference-file>
         <jms:reference-file line="141">Controller/Backend/ArticleController.php</jms:reference-file>
         <jms:reference-file line="145">Controller/Backend/CategoryController.php</jms:reference-file>
         <jms:reference-file line="137">Controller/Backend/CategoryController.php</jms:reference-file>
         <jms:reference-file line="147">Controller/Backend/LinkController.php</jms:reference-file>
-        <jms:reference-file line="146">Controller/Backend/PlanController.php</jms:reference-file>
+        <jms:reference-file line="145">Controller/Backend/PlanController.php</jms:reference-file>
         <jms:reference-file line="151">Controller/Backend/StudentsDissertationController.php</jms:reference-file>
         <jms:reference-file line="59">Controller/Backend/ProfileController.php</jms:reference-file>
-        <jms:reference-file line="154">Controller/Backend/MenuController.php</jms:reference-file>
+        <jms:reference-file line="173">Controller/Backend/MenuController.php</jms:reference-file>
         <jms:reference-file line="138">BlogPanelBundle/Controller/GroupController.php</jms:reference-file>
         <source>update</source>
         <target state="new">بروزرسانی</target>
       </trans-unit>
       <trans-unit id="de320693a0b894ce06f08d6230a8365672d95338" resname="updated.at">
-        <jms:reference-file line="32">Backend/Article/index.html.twig</jms:reference-file>
-        <jms:reference-file line="27">Backend/Category/index.html.twig</jms:reference-file>
-        <jms:reference-file line="28">Backend/Plan/index.html.twig</jms:reference-file>
+        <jms:reference-file line="56">Backend/Article/index.html.twig</jms:reference-file>
+        <jms:reference-file line="51">Backend/Category/index.html.twig</jms:reference-file>
+        <jms:reference-file line="52">Backend/Plan/index.html.twig</jms:reference-file>
         <source>updated.at</source>
         <target>آپدیت شده در</target>
       </trans-unit>
       <trans-unit id="9f056b4451b5b2805883da2ab2030c8dc7c1a233" resname="updated.by">
-        <jms:reference-file line="29">Backend/Category/index.html.twig</jms:reference-file>
-        <jms:reference-file line="30">Backend/Plan/index.html.twig</jms:reference-file>
+        <jms:reference-file line="53">Backend/Category/index.html.twig</jms:reference-file>
+        <jms:reference-file line="54">Backend/Plan/index.html.twig</jms:reference-file>
         <source>updated.by</source>
         <target>آپدیت شده توسط</target>
       </trans-unit>
@@ -902,17 +961,17 @@
         <target state="new">بروزشده در</target>
       </trans-unit>
       <trans-unit id="eabf9fe31b6a0367ca07f659c6b1a25f85319548" resname="updatedby">
-        <jms:reference-file line="30">Backend/Plan/index.html.twig</jms:reference-file>
+        <jms:reference-file line="51">Backend/Image/index.html.twig</jms:reference-file>
         <source>updatedby</source>
         <target state="new">بروزرسانی شده توسط</target>
       </trans-unit>
       <trans-unit id="bb73aaafa1596e5425dc514a361ad4ef658f2758" resname="upload">
-        <jms:reference-file line="91">Controller/Backend/ImageController.php</jms:reference-file>
+        <jms:reference-file line="92">Controller/Backend/ImageController.php</jms:reference-file>
         <source>upload</source>
         <target state="new">بروزرسانی</target>
       </trans-unit>
       <trans-unit id="81736358b1645103ae83247b10c5f82af641ddfc" resname="url">
-        <jms:reference-file line="25">Backend/Link/index.html.twig</jms:reference-file>
+        <jms:reference-file line="49">Backend/Link/index.html.twig</jms:reference-file>
         <source>url</source>
         <target state="new">آدرس اینترنتی</target>
       </trans-unit>
@@ -921,47 +980,47 @@
         <target>کاربر</target>
       </trans-unit>
       <trans-unit id="80f47a332e5d71529c1502bc6d2663f32e1f1b37" resname="user.is.not.exists">
-        <jms:reference-file line="210">SuperPanelBundle/Controller/UserController.php</jms:reference-file>
-        <jms:reference-file line="259">SuperPanelBundle/Controller/UserController.php</jms:reference-file>
-        <jms:reference-file line="302">SuperPanelBundle/Controller/UserController.php</jms:reference-file>
-        <jms:reference-file line="448">SuperPanelBundle/Controller/UserController.php</jms:reference-file>
-        <jms:reference-file line="352">SuperPanelBundle/Controller/BlogController.php</jms:reference-file>
+        <jms:reference-file line="205">SuperPanelBundle/Controller/UserController.php</jms:reference-file>
+        <jms:reference-file line="254">SuperPanelBundle/Controller/UserController.php</jms:reference-file>
+        <jms:reference-file line="297">SuperPanelBundle/Controller/UserController.php</jms:reference-file>
+        <jms:reference-file line="443">SuperPanelBundle/Controller/UserController.php</jms:reference-file>
+        <jms:reference-file line="351">SuperPanelBundle/Controller/BlogController.php</jms:reference-file>
         <source>user.is.not.exists</source>
         <target>کاربر مورد نظر وجود ندارد!</target>
       </trans-unit>
       <trans-unit id="93904b4381f7273fae55748998d906a37e34df23" resname="user.was.added.to.group">
-        <jms:reference-file line="305">BlogPanelBundle/Controller/GroupController.php</jms:reference-file>
+        <jms:reference-file line="309">BlogPanelBundle/Controller/GroupController.php</jms:reference-file>
         <source>user.was.added.to.group</source>
         <target state="new">کاربر با موفقیت به گروه اضافه شد</target>
       </trans-unit>
       <trans-unit id="8d65aab0e25f4db8ce3c4346e0f23fd3433a3bfc" resname="user.was.created.successfully">
-        <jms:reference-file line="166">SuperPanelBundle/Controller/UserController.php</jms:reference-file>
+        <jms:reference-file line="161">SuperPanelBundle/Controller/UserController.php</jms:reference-file>
         <source>user.was.created.successfully</source>
         <target state="new">کاربر با موفقیت ساخته شد</target>
       </trans-unit>
       <trans-unit id="8e8c0974f709bc1d6818b892c062ab1b2463518f" resname="user.was.deleted">
-        <jms:reference-file line="309">SuperPanelBundle/Controller/UserController.php</jms:reference-file>
+        <jms:reference-file line="304">SuperPanelBundle/Controller/UserController.php</jms:reference-file>
         <source>user.was.deleted</source>
         <target state="new">کاربر با موفقیت حذف شد</target>
       </trans-unit>
       <trans-unit id="4f484200fa37cb845bd25e2890de59af8c0349e8" resname="user.was.deleted.from.group">
-        <jms:reference-file line="340">BlogPanelBundle/Controller/GroupController.php</jms:reference-file>
+        <jms:reference-file line="344">BlogPanelBundle/Controller/GroupController.php</jms:reference-file>
         <source>user.was.deleted.from.group</source>
         <target state="new">کاربر با موفقیت از گروه حذف شد</target>
       </trans-unit>
       <trans-unit id="5fa0ab98d7a52e8eb4a4639177ed2c6307ce3710" resname="user.was.edited.successfully">
-        <jms:reference-file line="272">SuperPanelBundle/Controller/UserController.php</jms:reference-file>
+        <jms:reference-file line="267">SuperPanelBundle/Controller/UserController.php</jms:reference-file>
         <source>user.was.edited.successfully</source>
         <target state="new">کاربر با موفقیت اپدیت شد</target>
       </trans-unit>
       <trans-unit id="249ba36000029bbe97499c03db5a9001f6b734ec" resname="username">
         <jms:reference-file line="136">views/User/index.html.twig</jms:reference-file>
-        <jms:reference-file line="232">views/User/index.html.twig</jms:reference-file>
+        <jms:reference-file line="203">views/User/index.html.twig</jms:reference-file>
         <source>username</source>
         <target state="new">نام کاربری</target>
       </trans-unit>
       <trans-unit id="fac076ebdb90bb75f361d7c8d19a330177623744" resname="username.not.have.valid.character">
-        <jms:reference-file line="348">SuperPanelBundle/Controller/UserController.php</jms:reference-file>
+        <jms:reference-file line="343">SuperPanelBundle/Controller/UserController.php</jms:reference-file>
         <source>username.not.have.valid.character</source>
         <target>نام کاربری شامل کاراکتر های نامعتبر است</target>
       </trans-unit>
@@ -976,13 +1035,13 @@
         <target state="new">تعداد کاربران</target>
       </trans-unit>
       <trans-unit id="a41f18cb110cde31eb13409541bef035df4b32bf" resname="visit">
-        <jms:reference-file line="26">Backend/Article/index.html.twig</jms:reference-file>
+        <jms:reference-file line="50">Backend/Article/index.html.twig</jms:reference-file>
         <source>visit</source>
         <target>بازدید</target>
       </trans-unit>
       <trans-unit id="3ab3e0b020a6d41f3d259ddd3ed8ff273843839b" resname="website">
+        <jms:reference-file line="48">views/Backend/index.html.twig</jms:reference-file>
         <jms:reference-file line="27">ContactBundle/Form/ContactType.php</jms:reference-file>
-        <jms:reference-file line="37">MenuBundle/Form/MenuType.php</jms:reference-file>
         <source>website</source>
         <target state="new">آدرس سایت</target>
       </trans-unit>
@@ -1000,32 +1059,28 @@
         <target state="new">شما نمی توانید گروه پیش فرض را حذف کنید</target>
       </trans-unit>
       <trans-unit id="3af07a732f19ca33e4fa7352108fb9706262e716" resname="you.can.not.delete.this.item">
-        <jms:reference-file line="233">SuperPanelBundle/Controller/BlogController.php</jms:reference-file>
+        <jms:reference-file line="232">SuperPanelBundle/Controller/BlogController.php</jms:reference-file>
         <source>you.can.not.delete.this.item</source>
         <target state="new">شما قادر به حذف این آیتم نیستید</target>
       </trans-unit>
       <trans-unit id="826bca9e3134203e7fa3b81ca466a08cbb229a45" resname="you.can.use.this.email">
-        <jms:reference-file line="380">SuperPanelBundle/Controller/UserController.php</jms:reference-file>
+        <jms:reference-file line="375">SuperPanelBundle/Controller/UserController.php</jms:reference-file>
         <source>you.can.use.this.email</source>
         <target state="new">شما می توانید این ایمیل را استفاده کنید</target>
       </trans-unit>
       <trans-unit id="865e6abf5e32b6b6b9bd7f363fbf699155a4f0f6" resname="you.can.use.this.name">
-        <jms:reference-file line="272">SuperPanelBundle/Controller/BlogController.php</jms:reference-file>
+        <jms:reference-file line="271">SuperPanelBundle/Controller/BlogController.php</jms:reference-file>
         <source>you.can.use.this.name</source>
         <target>شما می توانید این نام را استفاده کنید!</target>
       </trans-unit>
       <trans-unit id="ced0b52e95e9c331ff9eddf31338732329b5b0f5" resname="you.can.use.this.username">
-        <jms:reference-file line="343">SuperPanelBundle/Controller/UserController.php</jms:reference-file>
+        <jms:reference-file line="338">SuperPanelBundle/Controller/UserController.php</jms:reference-file>
         <source>you.can.use.this.username</source>
         <target state="new">شما می توانید این نام کاربری را استفاده نمایید</target>
       </trans-unit>
         <trans-unit id="1">
-            <source>contact.index</source>
-            <target>پیام ها</target>
-        </trans-unit>
-        <trans-unit id="2">
-            <source>group</source>
-            <target>گروه</target>
+            <source>User account is disabled.</source>
+            <target>حساب شما مسدود شده است، جهت اطلاعات بیشتر با مدیریت سایت تماس بگیرید</target>
         </trans-unit>
     </body>
   </file>

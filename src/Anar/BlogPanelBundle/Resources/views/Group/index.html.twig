@@ -53,9 +53,9 @@
                 {% set i = 0 %}
                 {% for group in groups %}
                     <tr data-id="{{ group.id }}" class="text-center {% if i % 2 == 0 %}t1{% else %}t2{% endif %}">
-                        <td>{{ group.id }}</td>
+                        <td>{{ loop.index }}</td>
                         <td>{{ group.name }}</td>
-                        <td>{{ group.default }}</td>
+                        <td><i class="{% if group.default %}fa fa-check{% else %}fa fa-times{% endif %}"></i></td>
                         <td>
                             <button data-id="{{ group.id }}" style="padding: 5px" class="R_butt_blue add_member_group btn">افزودن عضو</button>
                             <button data-id="{{ group.id }}" style="padding: 5px" class="R_butt_green edit_group btn">ویرایش</button>

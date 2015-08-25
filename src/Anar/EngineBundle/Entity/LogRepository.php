@@ -11,6 +11,7 @@ class LogRepository extends EntityRepository
         $qb = $this->createQueryBuilder('l');
 
         return $qb->where($qb->expr()->eq('l.blog', '?1'))
-            ->setParameter(1, $blogId);
+            ->setParameter(1, $blogId)
+            ->orderBy('l.createdAt', 'DESC');
     }
 }

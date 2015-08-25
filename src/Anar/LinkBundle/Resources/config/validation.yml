@@ -20,7 +20,7 @@ Anar\LinkBundle\Entity\Link:
                 max: 255
         category:
             - NotNull: ~
-            - Type: Category
+            - Type: Anar\LinkBundle\Entity\Category
 
 Anar\LinkBundle\Entity\Category:
     properties:

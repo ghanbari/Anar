@@ -41,6 +41,30 @@
     </div>
     <hr id="cutter">
     <div class="row">
+        {% for message in app.session.getFlashBag().get('info') %}
+            <div class="col-md-12 col-sm-12">
+                <div class="alert alert-success alert-dismissable">
+                    {{ message|trans }}
+                    <i class="glyphicon glyphicon-remove cursor_pointer pull-left" data-dismiss="alert"></i>
+                </div>
+            </div>
+        {% endfor %}
+        {% for message in app.session.getFlashBag().get('errors') %}
+            <div class="col-md-12 col-sm-12">
+                <div class="alert alert-danger alert-dismissable">
+                    {{ message|trans }}
+                    <i class="glyphicon glyphicon-remove cursor_pointer pull-left" data-dismiss="alert"></i>
+                </div>
+            </div>
+        {% endfor %}
+        {% for message in app.session.getFlashBag().get('warning') %}
+            <div class="col-md-12 col-sm-12">
+                <div class="alert alert-warning alert-dismissable">
+                    {{ message|trans }}
+                    <i class="glyphicon glyphicon-remove cursor_pointer pull-left" data-dismiss="alert"></i>
+                </div>
+            </div>
+        {% endfor %}
         {% if form.vars.errors|length > 0 %}
             <div class="col-md-12 col-sm-12">
                 <div class="alert alert-danger alert-dismissable">
@@ -77,17 +101,25 @@
             </div>
             <div class="row margin-top-10">
                 <div class="form-group">
-                    <label class="col-md-2 col-sm-2 pull-right control-label text-left">تاریخ تولد</label>
+                    <label class="col-md-2 col-sm-2 pull-right control-label text-left">وب سایت</label>
                     <div class="col-md-9 col-sm-9">
-                        {{ form_widget(form.birthday,{ 'attr' : {'class':'form-control s_d'} }) }}
+                        {{ form_widget(form.website,{ 'attr' : {'class':'form-control'} }) }}
                     </div>
                 </div>
             </div>
             <div class="row margin-top-10">
                 <div class="form-group">
-                    <label class="col-md-2 col-sm-2 pull-right control-label text-left">وب سایت</label>
+                    <label class="col-md-2 col-sm-2 pull-right control-label text-left">تاریخ تولد</label>
                     <div class="col-md-9 col-sm-9">
-                        {{ form_widget(form.website,{ 'attr' : {'class':'form-control'} }) }}
+                        {{ form_widget(form.birthday,{ 'attr' : {'class':'form-control s_d date', 'data-time': form.birthday.vars.data|date('U')} }) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                <div class="form-group">
+                    <label class="col-md-2 col-sm-2 pull-right control-label text-left">تاریخ شروع کار</label>
+                    <div class="col-md-9 col-sm-9">
+                        {{ form_widget(form.jobStartedAt,{ 'attr' : {'class':'form-control s_d date', 'data-time': form.jobStartedAt.vars.data|date('U')} }) }}
                     </div>
                 </div>
             </div>
@@ -117,14 +149,6 @@
                     <label class="col-md-2 col-sm-2 pull-right control-label text-left">زندگی نامه</label>
                     <div class="col-md-9 col-sm-9">
                         {{ form_widget(form.bio,{ 'attr' : {'class':'form-control'} }) }}
-                    </div>
-                </div>
-            </div>
-            <div class="row margin-top-10">
-                <div class="form-group">
-                    <label class="col-md-2 col-sm-2 pull-right control-label text-left">تاریخ شروع کار</label>
-                    <div class="col-md-9 col-sm-9">
-                        {{ form_widget(form.jobStartedAt,{ 'attr' : {'class':'form-control s_d'} }) }}
                     </div>
                 </div>
             </div>
@@ -160,7 +184,7 @@
 
                         <div class="education-form">
                         {% for education in form.educations %}
-                            <div class="row">
+                            <div class="row margin-top-5">
                                 {{ form_label(education.university, '', { 'label_attr' : {'class':'col-md-3 col-sm-3 text-left pull-right'} }) }}
                                 <div class="col-md-9 col-sm-9">
                                     {{ form_widget(education.university,{ 'attr' : {'class':'form-control'} }) }}
@@ -179,15 +203,15 @@
                                 </div>
                             </div>
                             <div class="row margin-top-5">
-                                {{ form_label(education.startDate, '', { 'label_attr' : {'class':'col-md-3 col-sm-3 text-left pull-right'} }) }}
+                                {{ form_label(education.startDate, 'از تاریخ', { 'label_attr' : {'class':'col-md-3 col-sm-3 text-left pull-right'} }) }}
                                 <div class="col-md-9 col-sm-9">
-                                    {{ form_widget(education.startDate,{ 'attr' : {'class':'form-control s_d'} }) }}
+                                    {{ form_widget(education.startDate,{ 'attr' : {'class':'form-control s_d date', 'data-time': education.startDate.vars.data|date('U')} }) }}
                                 </div>
                             </div>
                             <div class="row margin-top-5">
-                                {{ form_label(education.endDate, '', { 'label_attr' : {'class':'col-md-3 col-sm-3 text-left pull-right'} }) }}
+                                {{ form_label(education.endDate, 'تا تاریخ', { 'label_attr' : {'class':'col-md-3 col-sm-3 text-left pull-right'} }) }}
                                 <div class="col-md-9 col-sm-9">
-                                    {{ form_widget(education.endDate,{ 'attr' : {'class':'form-control s_d'} }) }}
+                                    {{ form_widget(education.endDate,{ 'attr' : {'class':'form-control s_d date', 'data-time': education.endDate.vars.data|date('U')} }) }}
                                 </div>
                             </div>
                             <div class="row margin-top-5">
@@ -196,6 +220,7 @@
                                     {{ form_widget(education.grade,{ 'attr' : {'class':'select'} }) }}
                                 </div>
                             </div>
+                            {% if loop.index < loop.length %}<hr>{% endif %}
                         {% endfor %}
                         </div>
 
@@ -258,7 +283,20 @@
 <script type="text/javascript" src="{{ asset('bundles/anarblogpanel/plugins/DatePicker/pwt-date.js') }}"></script>
 <script type="text/javascript" src="{{ asset('bundles/anarblogpanel/plugins/DatePicker/pwt-datepicker.js') }}"></script>
     <script>
-        $('.s_d').val('').pDatepicker();
+        var convertUnixToDate = function (unix) {
+            var date = new Date(unix);
+            return date.getFullYear() + '/' + String(parseInt(date.getMonth())+1) + '/' + date.getDate();
+        };
+
+        $(document).on('focus', '.s_d', function(e) {
+            $(this).pDatepicker({
+                formatter: convertUnixToDate
+            });
+        });
+
+        $('.date').each(function (index, item) {
+            $(item).val(convertUnixToDate($(item).data('time')*1000));
+        });
 
 
         $(".select").select2({

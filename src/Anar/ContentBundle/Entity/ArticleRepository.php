@@ -74,4 +74,76 @@ class ArticleRepository extends EntityRepository
         return $this->getFilterByBlogQuery($blogId)
             ->getResult();
     }
+
+    public function getAllFilterByQuery($blogId = null, $category = null, $enabled = null, \DateTime $psDate = null, \DateTime $peDate = null, array $order=null, $limit=10, $offset=0)
+    {
+        $qb = $this->createQueryBuilder('a');
+
+        if (!is_null($blogId)) {
+            $qb->join('a.blog', 'b')
+                ->andWhere($qb->expr()->eq('b.id', ':blogId'))
+                ->setParameter('blogId', $blogId);
+        }
+
+        if (!is_null($category)) {
+            $qb->join('a.category', 'c')
+                ->andWhere($qb->expr()->eq('c.id', ':categoryId'))
+                ->setParameter('categoryId', $category->getId());
+        }
+
+        if (!is_null($enabled)) {
+                $qb->andWhere($qb->expr()->eq('a.enabled', ':enable'))
+                ->setParameter('enable', $enabled);
+        }
+
+        if (!is_null($psDate)) {
+            $qb->andWhere(
+                $qb->expr()->orX(
+                    $qb->expr()->lte('a.publicationStartDate', ':psDate'),
+                    $qb->expr()->isNull('a.publicationStartDate')
+                )
+            )->setParameter('psDate', $psDate);
+        }
+
+        if (!is_null($peDate)) {
+            $qb->andWhere(
+                $qb->expr()->orX(
+                    $qb->expr()->gte('a.publicationEndDate', ':peDate'),
+                    $qb->expr()->isNull('a.publicationEndDate')
+                )
+            )->setParameter('peDate', $peDate);
+        }
+
+        if (!is_null($order)) {
+            foreach ($order as $sort => $dir){
+                $qb->addOrderBy($sort, $dir);
+            }
+        }
+
+        return $qb->setFirstResult($offset)
+            ->setMaxResults($limit)
+            ->getQuery()->getResult();
+    }
+
+    public function count($blogId)
+    {
+        $qb = $this->createQueryBuilder('a');
+
+        return $qb->select('count(a)')
+            ->where($qb->expr()->eq('a.blog', ':blogId'))
+            ->setParameter('blogId', $blogId)
+            ->getQuery()->getSingleScalarResult();
+    }
+
+    public function countExpiredArticle($blogId)
+    {
+        $qb = $this->createQueryBuilder('a');
+
+        return $qb->select('count(a)')
+            ->where($qb->expr()->eq('a.blog', ':blogId'))
+            ->andWhere($qb->expr()->lt('a.publicationEndDate', ':now'))
+            ->setParameter('blogId', $blogId)
+            ->setParameter('now', new \DateTime())
+            ->getQuery()->getSingleScalarResult();
+    }
 }

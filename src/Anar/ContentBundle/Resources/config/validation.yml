@@ -40,7 +40,7 @@ Anar\ContentBundle\Entity\Article:
             - NotNull: ~
             - Type: Anar\EngineBundle\Entity\Blog
         category:
-            - Type: Category
+            - Type: Anar\ContentBundle\Entity\Category
 
 Anar\ContentBundle\Entity\Category:
     constraints:
