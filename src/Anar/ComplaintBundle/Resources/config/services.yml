@@ -1,0 +1,4 @@
+services:
+#    anar_complaint.example:
+#        class: Anar\ComplaintBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

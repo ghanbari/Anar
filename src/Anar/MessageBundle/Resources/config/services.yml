@@ -1,0 +1,4 @@
+services:
+#    anar_message.example:
+#        class: Anar\MessageBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
