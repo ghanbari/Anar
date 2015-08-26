@@ -2,6 +2,7 @@
 /web/static/
 /web/images/
 /web/uploads/
+!web/static/responsive_filemanager/filemanager
 !web/static/.gitkeep
 !web/uploads/.gitkeep
 !web/images/.gitkeep
