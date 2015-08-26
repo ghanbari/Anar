@@ -40,6 +40,7 @@ twig:
     globals:
         blogManager: '@anar_engine.manager.blog'
         master_blog: '%master_blog%'
+        address_type: '%address_type%'
     form_themes:
         # other form themes
         - 'VichUploaderBundle:Form:fields.html.twig'

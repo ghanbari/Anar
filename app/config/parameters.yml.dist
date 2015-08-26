@@ -31,3 +31,4 @@ parameters:
     admin_password: admin
     admin_email: ghanbari.daniel@gmail.com
     kernel.web_dir: %kernel.root_dir%/../web
+    address_type: domain #uri

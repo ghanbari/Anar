@@ -9,9 +9,12 @@
                 {% set color = 'red' %}
             {% endif %}
             <em><i class="fa fa-check {{ color }}"></i></em>
-            {#<a href="{{ path('anar_content_article_frontend_show') }}">#}
-                <a href="{{ path('anar_content_frontend_article_show',{'slug': article.slug, 'blogName': blogManager.blog.name}) }}"> {{ article.title[0:25] }} {% if article.title|length > 25 %}...{% endif %}</a>
-            {#</a>#}
+            {% if address_type == 'domain' %}
+                {% set c_path = 'anar_content_frontend_article_show' %}
+            {% else %}
+                {% set c_path = 'anar_content_frontend_article_show_path' %}
+            {% endif %}
+                <a href="{{ path(c_path,{'slug': article.slug, 'blogName': blogManager.blog.name}) }}"> {{ article.title[0:25] }} {% if article.title|length > 25 %}...{% endif %}</a>
         </div>
         <p style="text-align: justify">{{ article.abstract[0:200]|raw }}  {% if article.abstract|length > 200 %}...{% endif %}</p>
     </div>
