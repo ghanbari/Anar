@@ -1,13 +1,13 @@
 <?php
 
-namespace Anar\LinkBundle\DataFixtures\ORM;
+namespace Anar\FileManagerBundle\DataFixtures\ORM;
 
-use Anar\EngineBundle\Entity\App;
+use Anar\EngineBundle\Entity\AppMenu;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
-class LoadAppData extends AbstractFixture implements OrderedFixtureInterface
+class LoadAppMenuData extends AbstractFixture implements OrderedFixtureInterface
 {
     /**
      * Load data fixtures with the passed EntityManager
@@ -16,10 +16,13 @@ class LoadAppData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        $link = new App('AnarLinkBundle', 'link', APP::TYPE_MODULE);
-        $manager->persist($link);
+        $app = $this->getReference('AnarFileManagerBundle');
+        $role = $this->getReference('fileManagerIndex');
+
+        $menu = new AppMenu('filemanager.management', $app, $role, 'anar_file_manager_homepage', 'fa fa-upload');
+
+        $manager->persist($menu);
         $manager->flush();
-        $this->setReference('AnarLinkBundle', $link);
     }
 
     /**
@@ -29,6 +32,6 @@ class LoadAppData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 20;
+        return 72;
     }
 }

@@ -62,10 +62,7 @@ class UserFilterType extends AbstractType
                 'data' => true,
                 'label' => 'enabled',
             ))
-            ->add('expired', 'checkbox', array(
-                'required' => false,
-                'label' => 'expired',
-            ));
+        ;
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

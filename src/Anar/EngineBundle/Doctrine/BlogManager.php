@@ -3,6 +3,7 @@
 namespace Anar\EngineBundle\Doctrine;
 
 use Anar\BlogPanelBundle\Exception\BlogNotSelectedException;
+use Anar\EngineBundle\Exception\BlogNotActiveException;
 use Doctrine\Bundle\DoctrineBundle\Registry;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Doctrine\ORM\QueryBuilder;
@@ -111,6 +112,10 @@ class BlogManager
 
         if (is_null(static::$blog)) {
             throw new BlogNotSelectedException();
+        }
+
+        if (!static::$blog->isActive()) {
+            throw new BlogNotActiveException();
         }
 
         return static::$blog;

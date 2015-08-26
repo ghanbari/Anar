@@ -6,9 +6,5 @@ anar_contact_backend:
 
 anar_contact_frontend:
     resource: "@AnarContactBundle/Resources/config/routing/frontend.yml"
-    host:     "{blogName}.%router.request_context.host%"
-    prefix:   /contact
-
-anar_contact_frontend_path:
-    resource: "@AnarContactBundle/Resources/config/routing/frontend.yml"
-    prefix:   /{blogName}/contact
+    defaults: { blogName: "%master_blog%" }
+    requirements: { blogName: "[a-z]{4,100}" }

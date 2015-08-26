@@ -1,9 +1,21 @@
 anar_contact_frontend_new:
-    path: /
+    path:     /contact
     defaults: { _controller: AnarContactBundle:Frontend/Contact:new }
-    methods: [GET]
+    host:     "{blogName}.%router.request_context.host%"
+    methods:  [GET]
 
 anar_contact_frontend_create:
-    path: /
+    path:     /contact
     defaults: { _controller: AnarContactBundle:Frontend/Contact:create }
-    methods: [POST]
+    host:     "{blogName}.%router.request_context.host%"
+    methods:  [POST]
+
+anar_contact_frontend_new_path:
+    path:     /{blogName}/contact
+    defaults: { _controller: AnarContactBundle:Frontend/Contact:new }
+    methods:  [GET]
+
+anar_contact_frontend_create_path:
+    path:     /{blogName}/contact
+    defaults: { _controller: AnarContactBundle:Frontend/Contact:create }
+    methods:  [POST]

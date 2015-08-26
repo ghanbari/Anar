@@ -211,6 +211,17 @@ class Blog implements NodeInterface
         return $this;
     }
 
+
+    /**
+     * Get onTree
+     *
+     * @return boolean
+     */
+    public function isOnTree()
+    {
+        return $this->onTree;
+    }
+
     /**
      * Get onTree
      *
@@ -594,10 +605,11 @@ class Blog implements NodeInterface
     public function getOptions()
     {
         return array(
+            'display' => ($this->isActive() and $this->isOnTree()) ?: false,
             'route' => 'anar_home_homepage',
             'routeParameters' => array(
                 'blogName' => $this->name,
-            )
+            ),
         );
     }
 }

@@ -60,3 +60,7 @@ anar_super_panel_user_permission_update:
     defaults: { _controller: AnarSuperPanelBundle:User:permissionUpdate }
     methods: [POST]
     requirements: { id: \d+ }
+
+anar_super_panel_user_status_change:
+    path:     /status
+    defaults: { _controller: AnarSuperPanelBundle:User:statusChange }

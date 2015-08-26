@@ -2,9 +2,10 @@
 
 namespace Anar\ContentBundle\Controller\Frontend;
 
+use Anar\EngineBundle\Interfaces\ApplicationInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class ArticleController extends Controller
+class ArticleController extends Controller implements ApplicationInterface
 {
     public function indexAction($page)
     {

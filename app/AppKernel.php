@@ -38,6 +38,7 @@ class AppKernel extends Kernel
 //            new Anar\ComplaintBundle\AnarComplaintBundle(),
             new Anar\ContactBundle\AnarContactBundle(),
 //            new Anar\MessageBundle\AnarMessageBundle(),
+            new Anar\FileManagerBundle\AnarFileManagerBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

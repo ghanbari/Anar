@@ -23,7 +23,8 @@
     "fontawesome": "~4.3.0",
     "isotope": "~2.2.0",
     "persian-date": "~0.1.8",
-    "persian-datepicker": "~0.4.5"
+    "persian-datepicker": "~0.4.5",
+    "responsive-filemanager": "~9.9.6"
   },
   "devDependencies": {}
 }

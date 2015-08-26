@@ -1082,6 +1082,14 @@
             <source>User account is disabled.</source>
             <target>حساب شما مسدود شده است، جهت اطلاعات بیشتر با مدیریت سایت تماس بگیرید</target>
         </trans-unit>
+      <trans-unit id="2">
+        <source>filemanager</source>
+        <target>مدیریت فایل</target>
+      </trans-unit>
+      <trans-unit id="3">
+        <source>filemanager.management</source>
+        <target>لیست فایل ها</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

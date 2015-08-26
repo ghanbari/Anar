@@ -48,7 +48,7 @@
         {% if error is defined and error is not empty%}
         <div class="login_form_errors">
             <img src="{{ asset('bundles/anarsuperpanel/images/superPanelLogoMini.png') }}">
-            <span>{{ error }}!</span>
+            <span style="font-size: 15px; color: #ff6851">{{ error|trans }}</span>
         </div>
         {% endif %}
     </div>

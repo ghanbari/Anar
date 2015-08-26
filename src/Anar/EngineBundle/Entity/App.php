@@ -11,6 +11,16 @@ use Doctrine\ORM\Mapping as ORM;
 class App
 {
     /**
+     * @const string TYPE_COMPONENT Specify application type is component.
+     */
+    const TYPE_COMPONENT = 'component';
+
+    /**
+     * @const string TYPE_MODULE Specify application type is module.
+     */
+    const TYPE_MODULE = 'module';
+
+    /**
      * @var integer
      */
     private $id;

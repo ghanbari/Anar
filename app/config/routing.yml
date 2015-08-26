@@ -1,3 +1,6 @@
+anar_file_manager:
+    resource: "@AnarFileManagerBundle/Resources/config/routing.yml"
+
 logout:
     path: /logout
     options: { i18n: false }

@@ -43,7 +43,6 @@ class UserType extends AbstractType
                 'label' => 'staff.code',
                 'required' => true,
                 'attr' => array(
-                    'pattern' => '\d+',
                     'placeholder' => 'staff.number',
                 ),
             ))
@@ -60,6 +59,10 @@ class UserType extends AbstractType
                     'pattern' => '^[a-z0-9_]{2,255}$',
                     'placeholder' => 'username.consist.of.2-255.character.a-z0-9_',
                 )
+            ))
+            ->add('enabled', 'checkbox', array(
+                'label' => 'is.enabled',
+                'required' => false,
             ))
         ;
     }

@@ -1,0 +1,28 @@
+{% extends "AnarBlogPanelBundle:Desktop:index.html.twig" %}
+
+{% block csses %}
+
+{% endblock %}
+
+{% block Container %}
+<iframe allowtransparency="true" style="border: 0px; width: 100%" src="/static/responsive_filemanager/filemanager/dialog.php?akey={{ accessKey }}"></iframe>
+{% endblock Container %}
+
+{% block scripts %}
+    {{ parent() }}
+<script>
+    $(document).ready(function(){
+        resizeDiv();
+    });
+
+    window.onresize = function(event) {
+        resizeDiv();
+    }
+
+    function resizeDiv() {
+        vpw = $(window).width();
+        vph = $(window).height();
+        $('iframe').css({'height': vph + 'px'});
+    }
+</script>
+{% endblock scripts %}

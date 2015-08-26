@@ -22,7 +22,8 @@ class ArticleController extends Controller implements AdminInterface
     {
         $blog = $this->get('anar_engine.manager.blog')->getBlog();
         $doctrine = $this->getDoctrine();
-        $query = $doctrine->getRepository('AnarContentBundle:Article')->getFilterByBlogQuery($blog->getId());
+        $query = $doctrine->getRepository('AnarContentBundle:Article')->getFilterByBlogQueryBuilder($blog->getId())
+            ->orderBy('a.createdAt', 'DESC');
 
         $articles = $this->get('knp_paginator')->paginate(
             $query,

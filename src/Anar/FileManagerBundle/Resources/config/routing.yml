@@ -1,0 +1,3 @@
+anar_file_manager_homepage:
+    path:     /blogpanel/filemanager
+    defaults: { _controller: AnarFileManagerBundle:Default:index }

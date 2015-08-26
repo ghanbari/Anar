@@ -2,9 +2,10 @@
 
 namespace Anar\ProfessorBundle\Controller\Frontend;
 
+use Anar\EngineBundle\Interfaces\ApplicationInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class ProfileController extends Controller
+class ProfileController extends Controller implements ApplicationInterface
 {
     public function showAction()
     {

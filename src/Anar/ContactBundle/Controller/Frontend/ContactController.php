@@ -2,6 +2,7 @@
 
 namespace Anar\ContactBundle\Controller\Frontend;
 
+use Anar\EngineBundle\Interfaces\ApplicationInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -12,7 +13,7 @@ use Anar\ContactBundle\Form\ContactType;
  * Contact controller.
  *
  */
-class ContactController extends Controller
+class ContactController extends Controller implements ApplicationInterface
 {
     /**
      * Displays a form to create a new Contact entity.

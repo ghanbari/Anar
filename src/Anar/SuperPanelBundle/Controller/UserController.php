@@ -80,7 +80,7 @@ class UserController extends Controller
                     'fname' => $user->getFname(),
                     'lname' => $user->getLname(),
                     'staffCode' => $user->getStaffCode(),
-                    'grade' => $user->getGrade()->getName(),
+                    'enabled' => $user->isEnabled(),
                     'image' => '',
                 );
             }
@@ -464,5 +464,40 @@ class UserController extends Controller
             'status' => $status,
             'response' => array()
         )))->setStatusCode($status['code']);
+    }
+
+    public function statusChangeAction(Request $request)
+    {
+        $id = $request->request->get('id');
+        $token = $request->request->get('token');
+        $translator = $this->get('translator');
+
+        if ($this->isCsrfTokenValid('user_delete', $token)) {
+            $user = $this->getDoctrine()->getRepository('AnarEngineBundle:User')->find($id);
+
+            if (!$user) {
+                $status = array(
+                    'code' => 404,
+                    'message' => $translator->trans('user.is.not.exists'),
+                );
+            } else {
+                $user->setEnabled(!$user->isEnabled());
+                $this->getDoctrine()->getManager()->flush();
+                $status = array(
+                    'code' => 200,
+                    'message' => $translator->trans('user.is.'. $user->isEnabled() ? 'enabled' : 'disabled'),
+                );
+            }
+        } else {
+            $status = array(
+                'code' => 400,
+                'message' => $translator->trans('token.is.invalid'),
+            );
+        }
+
+        return new JsonResponse(array(
+            'status' => $status,
+            'response' => array('enabled' => $user->isEnabled())
+        ), $status['code']);
     }
 }

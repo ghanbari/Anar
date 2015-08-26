@@ -1,9 +1,12 @@
 anar_super_panel_login:
     path:     /login
     defaults: { _controller: AnarEngineBundle:Security:loginForm }
+    host:     "%router.request_context.host%"
 
 anar_super_panel_login_check:
     path: /login_check
+    host: "%router.request_context.host%"
 
 anar_super_panel_logout:
     path: /logout
+    host: "%router.request_context.host%"

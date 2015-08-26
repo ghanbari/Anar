@@ -23,10 +23,13 @@ class UserRepository extends EntityRepository
         $qb = $this->createQueryBuilder('u')->select(array('u', 'g'));
         $qb->innerJoin('u.grade', 'g');
         $qb->where($qb->expr()->eq('u.enabled', ':enabled'));
-        $qb->andWhere($qb->expr()->eq('u.expired', ':expired'));
 
         $qb->setParameter('enabled', $filters['enabled']);
-        $qb->setParameter('expired', $filters['expired']);
+
+        if (array_key_exists('expired', $filters)) {
+            $qb->andWhere($qb->expr()->eq('u.expired', ':expired'));
+            $qb->setParameter('expired', $filters['expired']);
+        }
 
         if (!empty($filters['username']) or !empty($filters['email'])) {
             $qb->andWhere($qb->expr()->orX(
