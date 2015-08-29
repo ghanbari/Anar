@@ -565,6 +565,7 @@ class Category implements NodeInterface
      * Get the options for the factory to create the item for this node
      *
      * @return array
+     * @todo route can change basis address_type parameter
      */
     public function getOptions()
     {

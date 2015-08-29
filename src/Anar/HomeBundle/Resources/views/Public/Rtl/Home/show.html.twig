@@ -61,7 +61,12 @@
             </button>
             <!-- END RESPONSIVE MENU TOGGLER -->
             <!-- BEGIN LOGO (you can use logo image instead of text)-->
-            <a class="navbar-brand logo-v1" href="{{ path('anar_home_homepage', {'blogName': master_blog}) }}">
+            {% if address_type == 'domain' %}
+                {% set c_path = 'anar_home_homepage' %}
+            {% else %}
+                {% set c_path = 'anar_home_homepage_path' %}
+            {% endif %}
+            <a class="navbar-brand logo-v1" href="{{ path(c_path, {'blogName': master_blog}) }}">
                 <img src="{{ asset('bundles/anarhome/images/Azad_logo.png') }}" style="width: 45px" id="logoimg" alt="">
             </a>
             <!-- END LOGO -->

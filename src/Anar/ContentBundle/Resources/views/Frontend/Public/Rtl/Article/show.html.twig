@@ -39,8 +39,13 @@
                     {% if article.image is not null %}
                     <!-- Put post thumbnail (if any) -->
                     <div class="post-thumbnail listing-preview">
+                        {% if address_type == 'domain' %}
+                            {% set c_path = 'anar_content_frontend_article_show' %}
+                        {% else %}
+                            {% set c_path = 'anar_content_frontend_article_show_path' %}
+                        {% endif %}
                         <a class="sm-small-wrapper"
-                           href="{{ path('anar_content_frontend_article_show',{'slug': article.slug }) }}"><img width="370"
+                           href="{{ path(c_path,{'slug': article.slug }) }}"><img width="370"
                                                                                                                 height="245"
                                                                                                                 src="{{ vich_uploader_asset(article, 'imageFile') }}"
                                                                                                                 class="attachment-sm-pe-normal wp-post-image"
@@ -57,7 +62,12 @@
                                         {#href="" rel="author" class="fn">{{ article.author.fname }} {{ article.author.lname }}</a></span>#}
                             {#</p>#}
                         {#</div>#}
-                        <h2 class="post-title"><a href="{{ path('anar_content_frontend_article_show',{'slug': article.slug }) }}"
+                        {% if address_type == 'domain' %}
+                            {% set c_path = 'anar_content_frontend_article_show' %}
+                        {% else %}
+                            {% set c_path = 'anar_content_frontend_article_show_path' %}
+                        {% endif %}
+                        <h2 class="post-title"><a href="{{ path(c_path,{'slug': article.slug }) }}"
                                                   rel="bookmark" title="Exploring the New Blog Theme">{{ article.title }}</a></h2>
 
                         <div class="post-content">

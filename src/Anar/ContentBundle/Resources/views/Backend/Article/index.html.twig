@@ -60,7 +60,12 @@
                     <tr data-id="{{ article.id }}" class="text-center {% if i % 2 == 0 %}t1{% else %}t2{% endif %}">
                         <td>{{ app.request.attributes.get('page') * loop.index }}</td>
                         <td>{% if vich_uploader_asset(article,'imageFile')|length > 0 %}<img style="width: 50px;height: 50px" src="{{ vich_uploader_asset(article,'imageFile') }}">{% endif %}</td>
-                        <td><a href="{{ path('anar_content_frontend_article_show', {'blogName': blog.name, 'slug': article.slug}) }}" target="_blank">{{ article.title[0:20] }}</a></td>
+                        {% if address_type == 'domain' %}
+                            {% set c_path = 'anar_content_frontend_article_show' %}
+                        {% else %}
+                            {% set c_path = 'anar_content_frontend_article_show_path' %}
+                        {% endif %}
+                        <td><a href="{{ path(c_path, {'blogName': blog.name, 'slug': article.slug}) }}" target="_blank">{{ article.title[0:20] }}</a></td>
                         {#<td>{{ article.slug }}</td>#}
                         <td>{{ article.visit }}</td>
                         <td><i class="{% if article.enabled %}fa fa-check{% else %}fa fa-times{% endif %}"></i></td>

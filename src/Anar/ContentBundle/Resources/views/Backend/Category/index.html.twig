@@ -56,7 +56,12 @@
                 {% set i = 0 %}
                 {% for category in categories %}
                     <tr data-id="{{ category.id }}" class="text-center {% if i % 2 == 0 %}t1{% else %}t2{% endif %}">
-                        <td><a href="{{ path('anar_content_frontend_category_index', {'blogName': blog.name, 'slug': category.slug}) }}" target="_blank">{{ category.title }}</a></td>
+                        {% if address_type == 'domain' %}
+                            {% set c_path = 'anar_content_frontend_category_index' %}
+                        {% else %}
+                            {% set c_path = 'anar_content_frontend_category_index_path' %}
+                        {% endif %}
+                        <td><a href="{{ path(c_path, {'blogName': blog.name, 'slug': category.slug}) }}" target="_blank">{{ category.title }}</a></td>
                         <td>{{ category.slug }}</td>
                         <td>{% if category.description|length > 15 %} {{ category.description[0:15] }}... {% else %} {{ category.description }} {% endif %}</td>
                         <td class="date time createdAt" data-time="{% if category.createdAt %}{{ category.createdAt|date('U') }}{% endif %}"></td>

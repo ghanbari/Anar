@@ -75,7 +75,12 @@
 
 {% block Sidebar %}
 <div id="rp-menuWrap">
-    <div id="rp-nowRoleShowerWrap"><i class="fa fa-bars"></i><i class="fa fa-desktop"></i>&nbsp;<a href="{{ path('anar_home_homepage', {'blogName': blog.name}) }}">{{ blog.getTitle() }}</a>
+    {% if address_type == 'domain' %}
+        {% set c_path = 'anar_home_homepage' %}
+    {% else %}
+        {% set c_path = 'anar_home_homepage_path' %}
+    {% endif %}
+    <div id="rp-nowRoleShowerWrap"><i class="fa fa-bars"></i><i class="fa fa-desktop"></i>&nbsp;<a href="{{ path(c_path, {'blogName': blog.name}) }}">{{ blog.getTitle() }}</a>
     </div>
         {% set options = {'leaf_class': 'leaf', 'branch_class': 'branch', 'template': 'AnarBlogPanelBundle:Menu:BlogMenu.html.twig'} %}
         {{ knp_menu_render('AnarBlogPanelBundle:Builder:adminMenu', options) }}

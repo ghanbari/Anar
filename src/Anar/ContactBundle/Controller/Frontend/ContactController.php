@@ -50,7 +50,12 @@ class ContactController extends Controller implements ApplicationInterface
             $em->flush();
 
             $this->addFlash('info', $this->get('translator')->trans('message.was.sended'));
-            return $this->redirect($this->generateUrl('anar_contact_frontend_create', array('blogName' => $blogManager->getBlog()->getName())));
+            return $this->redirect(
+                $this->generateUrl(
+                    $this->getParameter('address_type') == 'domain' ? 'anar_contact_frontend_create' : 'anar_contact_frontend_create_path',
+                    array('blogName' => $blogManager->getBlog()->getName())
+                )
+            );
         }
 
         return $this->render($blogManager->getTheme('AnarContactBundle:Contact:new.html.twig', 'Frontend'), array(
@@ -69,8 +74,9 @@ class ContactController extends Controller implements ApplicationInterface
     private function createCreateForm(Contact $entity)
     {
         $blog = $this->get('anar_engine.manager.blog')->getBlog();
+        $routerName = $this->getParameter('address_type') == 'domain' ? 'anar_contact_frontend_create' : 'anar_contact_frontend_create_path';
         $form = $this->createForm(new ContactType(), $entity, array(
-            'action' => $this->generateUrl('anar_contact_frontend_create', array('blogName' => $blog->getName())),
+            'action' => $this->generateUrl($routerName, array('blogName' => $blog->getName())),
             'method' => 'POST',
         ));
 

@@ -83,7 +83,7 @@ class Builder extends ContainerAware
         $menu = $factory->createItem('profile', array(
             /** @Ignore */
             'label' => $translator->trans('profile'),
-            'route' => 'anar_professor_frontend_profile_show',
+            'route' => $this->container->getParameter('address_type') == 'domain' ? 'anar_professor_frontend_profile_show' : 'anar_professor_frontend_profile_show_path',
             'routeParameters' => array(
                 'blogName' => $blog->getName(),
             )
@@ -99,7 +99,7 @@ class Builder extends ContainerAware
         $menu = $factory->createItem('contact', array(
             /** @Ignore */
             'label' => $translator->trans('contact'),
-            'route' => 'anar_contact_frontend_new',
+            'route' => $this->container->getParameter('address_type') == 'domain' ? 'anar_contact_frontend_new' : 'anar_contact_frontend_new_path',
             'routeParameters' => array(
                 'blogName' => $blog->getName(),
             )
@@ -115,7 +115,7 @@ class Builder extends ContainerAware
         $menu = $factory->createItem('content', array(
             /** @Ignore */
             'label' => $translator->trans('content'),
-            'route' => 'anar_content_frontend_article_index',
+            'route' => $this->container->getParameter('address_type') == 'domain' ? 'anar_content_frontend_article_index' : 'anar_content_frontend_article_index_path',
             'routeParameters' => array(
                 'blogName' => $blog->getName(),
             )

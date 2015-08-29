@@ -16,7 +16,12 @@
             <a href="#1" data-action="1" class="profile_tab_element active" id="1">مشخصات فردی</a>
             {#<a href="#2" class="profile_tab_element" data-action="2" id="2">بیوگرافی</a>#}
             <a href="#3" class="profile_tab_element" data-action="3" id="3">برنامه هفتگی</a>
-            <a href="{{ path('anar_professor_frontend_dissertation_show',{'blogName': blog.name}) }}" class="profile_tab_element" data-action="4" id="4">پایان نامه ها</a>
+            {% if address_type == 'domain' %}
+                {% set c_path = 'anar_professor_frontend_dissertation_show' %}
+            {% else %}
+                {% set c_path = 'anar_professor_frontend_dissertation_show_path' %}
+            {% endif %}
+            <a href="{{ path(c_path,{'blogName': blog.name}) }}" class="profile_tab_element" data-action="4" id="4">پایان نامه ها</a>
         </div>
         <div class="col-md-12 col-sm-12 profile_tab_content margin-left-25 margin-top-25 display-block" data-action="1">
             <div class="row">
