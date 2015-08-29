@@ -22,6 +22,8 @@ class ArticleController extends Controller implements ApplicationInterface
         $blogManager = $this->get('anar_engine.manager.blog');
         $articleRepo = $this->getDoctrine()->getRepository('AnarContentBundle:Article');
         $article = $articleRepo->findOneBy(array('slug' => $slug, 'blog' => $blogManager->getBlog()));
+        $article->increaseVisit();
+        $this->getDoctrine()->getManager()->flush();
 
         return $this->render($blogManager->getTheme('AnarContentBundle:Article:show.html.twig', 'Frontend'), array('article' => $article));
     }

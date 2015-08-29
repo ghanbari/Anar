@@ -240,6 +240,18 @@ class Article
     }
 
     /**
+     * increase Visit visit
+     *
+     * @return Article
+     */
+    public function increaseVisit()
+    {
+        $this->visit += 1;
+
+        return $this;
+    }
+
+    /**
      * Get visit
      *
      * @return integer
