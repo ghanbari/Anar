@@ -392,6 +392,18 @@
             <source>is.enabled</source>
             <target>فعال؟</target>
         </trans-unit>
+      <trans-unit id="2">
+        <source>drive.size</source>
+        <target>حجم ذخیره سازی</target>
+      </trans-unit>
+      <trans-unit id="3">
+        <source>drive.size.in.mb</source>
+        <target>میزان فضای قابل استفاده بر اساس مگابایت</target>
+      </trans-unit>
+      <trans-unit id="4">
+        <source>attachment</source>
+        <target>فایل ضمیمه</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -40,7 +40,6 @@ class LoadSettingData implements FixtureInterface, OrderedFixtureInterface, Cont
         $setting->create('superpanel.item_per_page', 10, 'int');
         $setting->create('blogpanel.item_per_page', 10, 'int');
         $setting->create('blogpanel.filemanager.maxUploadSize', 5, 'int');
-        $setting->create('blogpanel.filemanager.maxDriveSize', 100, 'int');
     }
 
     /**

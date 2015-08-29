@@ -110,11 +110,6 @@ class Article
     protected $attach;
 
     /**
-     * @var File
-     */
-    protected $attachFile;
-
-    /**
      * Constructor
      */
     public function __construct()
@@ -585,24 +580,5 @@ class Article
     public function getAttach()
     {
         return $this->attach;
-    }
-
-    /**
-     * @return File
-     */
-    public function getAttachFile()
-    {
-        return $this->attachFile;
-    }
-
-    /**
-     * @param File $attachFile
-     */
-    public function setAttachFile($attachFile)
-    {
-        if ($attachFile) {
-            $this->attachFile = $attachFile;
-            $this->updatedAt = new \DateTime();
-        }
     }
 }

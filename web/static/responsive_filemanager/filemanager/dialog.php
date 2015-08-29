@@ -8,9 +8,12 @@ if (USE_ACCESS_KEYS == TRUE){
 		die('Access Denied!');
 	}
 
-	$_GET['akey'] = strip_tags(preg_replace( "/[^a-zA-Z0-9\._-]/", '', $_GET['akey']));
+    $privateKey = hash('sha512', $session->get('blogName'));
 
-	if (!in_array($_GET['akey'], $access_keys)){
+	$_GET['akey'] = strip_tags(preg_replace( "/[^a-zA-Z0-9\._-]/", '', $_GET['akey']));
+    $accessKey = $_GET['akey'] . '{' . $privateKey . '}';
+
+	if (!in_array($accessKey, $access_keys)){
 		die('Access Denied!');
 	}
 }

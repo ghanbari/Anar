@@ -15,6 +15,10 @@ date_default_timezone_set('Asia/Tehran');
 
 function directorySize($path)
 {
+    if (!file_exists($path)) {
+        @mkdir($path, 0755, true);
+    }
+
     $total_size = 0;
     $files = scandir($path);
     $cleanPath = rtrim($path, '/') . '/';
@@ -165,7 +169,7 @@ $config = array(
     | default language file name
     |--------------------------------------------------------------------------
     */
-    'default_language' => "fa_IR",
+    'default_language' => "fa",
 
     /*
     |--------------------------------------------------------------------------

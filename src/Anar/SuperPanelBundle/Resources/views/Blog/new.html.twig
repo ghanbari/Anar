@@ -2,22 +2,25 @@
 
 {% block csses %}
     <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/css/super_panel.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/css/bootstrap-switch-metro-rtl.css') }}">
+    <link rel="stylesheet" type="text/css"
+          href="{{ asset('bundles/anarsuperpanel/css/bootstrap-switch-metro-rtl.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/css/select2_metro_rtl.css') }}">
-    <link rel="stylesheet" href="{{ asset('static/jQuery-Multiple-Select/css/bootstrap-multiselect.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('static/jQuery-Multiple-Select/css/bootstrap-multiselect.css') }}"
+          type="text/css">
     <style>
-        .select{
+        .select {
             width: 100%;
         }
 
-        .select2-arrow b{
+        .select2-arrow b {
             background-position: 5px 4px !important;
         }
 
-        #anar_enginebundle_blog_submit{
+        #anar_enginebundle_blog_submit {
             display: none;
         }
-        .required:after{
+
+        .required:after {
             content: '*';
         }
     </style>
@@ -25,31 +28,33 @@
 
 {% block container %}
 
-<div class="col-md-10 col-sm-10 col-md-offset-1 col-sm-offset-1 tab_content_box margin-top-25 margin-bottom-25">
-    <div class="row">
-        <div class="col-md-6 col-sm-6 tittle_tab_content">
-            <i class="fa fa-sitemap"></i>
-            <span>افزودن وبلاگ</span>
-        </div>
-        <div class="col-md-1 col-sm-1 pull-left text-left">
-            <i onclick="location.href = '{{ path("anar_super_panel_home") }}'" class="glyphicon glyphicon-remove cursor_pointer" style="cursor: pointer"></i>
-        </div>
-    </div>
-    <hr id="cutter">
-    <div class="row">
-        {% if form.vars.errors|length > 0 %}
-            <div class="col-md-12 col-sm-12">
-                <div class="alert alert-danger alert-dismissable">
-                    {{ form_errors(form) }}
-                    <i class="glyphicon glyphicon-remove cursor_pointer pull-left" data-dismiss="alert"></i>
-                </div>
+    <div class="col-md-10 col-sm-10 col-md-offset-1 col-sm-offset-1 tab_content_box margin-top-25 margin-bottom-25">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 tittle_tab_content">
+                <i class="fa fa-sitemap"></i>
+                <span>{% if action == 'create' %}افزودن{% else %}ویرایش{% endif %} وبلاگ</span>
             </div>
-        {% endif %}
-        <div class="col-md-8 col-sm-8" style="padding-right: 0">
-            {{ form_start(form) }}
+            <div class="col-md-1 col-sm-1 pull-left text-left">
+                <i onclick="location.href = '{{ path("anar_super_panel_home") }}'"
+                   class="glyphicon glyphicon-remove cursor_pointer" style="cursor: pointer"></i>
+            </div>
+        </div>
+        <hr id="cutter">
+        <div class="row">
+            {% if form.vars.errors|length > 0 %}
+                <div class="col-md-12 col-sm-12">
+                    <div class="alert alert-danger alert-dismissable">
+                        {{ form_errors(form) }}
+                        <i class="glyphicon glyphicon-remove cursor_pointer pull-left" data-dismiss="alert"></i>
+                    </div>
+                </div>
+            {% endif %}
+            <div class="col-md-8 col-sm-8" style="padding-right: 0">
+                {{ form_start(form) }}
                 <div class="row">
                     <div class="form-group">
                         <label class="col-md-3 col-sm-3 control-label text-left">عنوان</label>
+
                         <div class="col-md-9 col-sm-9">
                             {{ form_widget(form.title,{ 'attr' : {'class':'form-control'} }) }}
                         </div>
@@ -58,21 +63,31 @@
                 <div class="row margin-top-10">
                     <div class="form-group">
                         <label class="col-md-3 col-sm-3 control-label text-left">توضیحات</label>
+
                         <div class="col-md-9 col-sm-9">
                             {{ form_widget(form.description,{ 'attr' : {'class':'form-control'} }) }}
                         </div>
                     </div>
                 </div>
-            {% if action == 'create' %}
+                {% if action == 'create' %}
+                    <div class="row margin-top-10">
+                        <div class="form-group">
+                            <label class="col-md-3 col-sm-3 control-label text-left">نام</label>
+
+                            <div class="col-md-9 col-sm-9">
+                                {{ form_widget(form.name, { 'attr' : {'class':'form-control name_input','onblur':'check_name()'} }) }}
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
                 <div class="row margin-top-10">
                     <div class="form-group">
-                        <label class="col-md-3 col-sm-3 control-label text-left">نام</label>
+                        <label class="col-md-3 col-sm-3 control-label text-left">حجم ذخیره سازی</label>
                         <div class="col-md-9 col-sm-9">
-                            {{ form_widget(form.name, { 'attr' : {'class':'form-control name_input','onblur':'check_name()'} }) }}
+                            {{ form_widget(form.driveSize,{ 'attr' : {'class':'form-control'} }) }}
                         </div>
                     </div>
                 </div>
-            {% endif %}
                 <div class="row margin-top-10">
                     <div class="form-group">
                         {{ form_label(form.theme, null, {'label_attr': {'class': 'col-md-3 col-sm-3 control-label text-left'}}) }}
@@ -84,6 +99,7 @@
                 <div class="row margin-top-10">
                     <div class="form-group">
                         <label class="col-md-3 col-sm-3 control-label text-left">نمایش در منو</label>
+
                         <div class="col-md-9 col-sm-9">
                             <div class="make-switch">
                                 {{ form_widget(form.onTree,{ 'attr' : {'class':'toggle'} }) }}
@@ -94,6 +110,7 @@
                 <div class="row margin-top-10">
                     <div class="form-group">
                         <label class="col-md-3 col-sm-3 control-label text-left">فعال</label>
+
                         <div class="col-md-9 col-sm-9">
                             <div class="make-switch">
                                 {{ form_widget(form.active,{ 'attr' : {'class':'toggle'} }) }}
@@ -101,17 +118,21 @@
                         </div>
                     </div>
                 </div>
-                <div class="row margin-top-10">
-                    <div class="form-group">
-                        <label class="col-md-3 col-sm-3 control-label text-left">والد</label>
-                        <div class="col-md-9 col-sm-9">
-                            {{ form_widget(form.parent,{ 'attr' : {'class':'select'} }) }}
+                {% if 'parent' in form.children|keys %}
+                    <div class="row margin-top-10">
+                        <div class="form-group">
+                            <label class="col-md-3 col-sm-3 control-label text-left">والد</label>
+
+                            <div class="col-md-9 col-sm-9">
+                                {{ form_widget(form.parent,{ 'attr' : {'class':'select'} }) }}
+                            </div>
                         </div>
                     </div>
-                </div>
+                {% endif %}
                 <div class="row margin-top-10">
                     <div class="form-group">
                         <label class="col-md-3 col-sm-3 control-label text-left">امکانات</label>
+
                         <div class="col-md-9 col-sm-9">
                             {{ form_widget(form.apps,{ 'attr' : {'class':'form-control'} }) }}
                         </div>
@@ -123,76 +144,79 @@
                         <button type="submit" class="btn btn-submit-blog">ذخیره</button>
                     </div>
                 </div>
-            {{ form_end(form) }}
-        </div>
-        <div class="col-md-4 col-sm-4">
-            <div class="row" style="min-height: 38px">
-                <span class="">{{ form_errors(form.title) }}</span>
+                {{ form_end(form) }}
             </div>
-            <div class="row margin-top-10" style="min-height: 38px">
-                <span class="">{{ form_errors(form.description) }}</span>
-            </div>
-            <div class="row margin-top-10 form_fields_message" style="min-height: 38px">
-                <span class="">{% if action == 'create' %}{{ form_errors(form.name) }}{% endif %}</span>
-            </div>
-            <div class="row margin-top-10" style="min-height: 38px">
-                <span class="">{{ form_errors(form.theme) }}</span>
-            </div>
-            <div class="row margin-top-10" style="min-height: 38px">
-                <span class="">{{ form_errors(form.onTree) }}</span>
-            </div>
-            <div class="row margin-top-10" style="min-height: 38px">
-                <span class="">{{ form_errors(form.active) }}</span>
-            </div>
-            <div class="row margin-top-10" style="min-height: 38px">
-                <span class="">{{ form_errors(form.parent) }}</span>
-            </div>
-            <div class="row margin-top-10" style="min-height: 38px">
-                <span class="">{{ form_errors(form.apps) }}</span>
+            <div class="col-md-4 col-sm-4">
+                <div class="row" style="min-height: 38px">
+                    <span class="">{{ form_errors(form.title) }}</span>
+                </div>
+                <div class="row margin-top-10" style="min-height: 38px">
+                    <span class="">{{ form_errors(form.description) }}</span>
+                </div>
+                <div class="row margin-top-10 form_fields_message" style="min-height: 38px">
+                    <span class="">{% if action == 'create' %}{{ form_errors(form.name) }}{% endif %}</span>
+                </div>
+                <div class="row margin-top-10" style="min-height: 38px">
+                    <span class="">{{ form_errors(form.theme) }}</span>
+                </div>
+                <div class="row margin-top-10" style="min-height: 38px">
+                    <span class="">{{ form_errors(form.onTree) }}</span>
+                </div>
+                <div class="row margin-top-10" style="min-height: 38px">
+                    <span class="">{{ form_errors(form.active) }}</span>
+                </div>
+                {% if 'parent' in form.children %}
+                    <div class="row margin-top-10" style="min-height: 38px">
+                        <span class="">{{ form_errors(form.parent) }}</span>
+                    </div>
+                {% endif %}
+                <div class="row margin-top-10" style="min-height: 38px">
+                    <span class="">{{ form_errors(form.apps) }}</span>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 
 
 {% endblock %}
 
 {% block scripts %}
-<script src="{{ asset('bundles/anarsuperpanel/js/bootstrap-switch.min.js') }}"></script>
-<script src="{{ asset('bundles/anarsuperpanel/js/select2.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('static/jQuery-Multiple-Select/js/bootstrap-multiselect.js') }}"></script>
-<script>
-    $(".select").select2({
-        placeholder: "انتخاب کنید"
-    });
-
-    $('.close_error').click(function(){
-        $(this).parent().remove();
-    });
-
-    function check_name(){
-        var name_val = $('.name_input').val();
-        var checkPath = Routing.generate('anar_super_panel_blog_check_name',{'name': name_val});
-        $.ajax({
-            url: checkPath,
-            error: function(jqXHR, textStatus, errorThrown){
-                $('.form_fields_message span').removeClass('_success').addClass('_error');
-                $('.form_fields_message span').html(JSON.parse(jqXHR['responseText']).status.message);
-            },
-            success: function(data){
-                $('.form_fields_message span').removeClass('_error').addClass('_success');
-                $('.form_fields_message span').html(data.status['message']);
-            }
-        })
-    }
-    $(document).ready(function() {
-        $('#anar_enginebundle_blog_apps').multiselect({
-            buttonWidth: '500px',
-            numberDisplayed: 10
+    <script src="{{ asset('bundles/anarsuperpanel/js/bootstrap-switch.min.js') }}"></script>
+    <script src="{{ asset('bundles/anarsuperpanel/js/select2.min.js') }}"></script>
+    <script type="text/javascript"
+            src="{{ asset('static/jQuery-Multiple-Select/js/bootstrap-multiselect.js') }}"></script>
+    <script>
+        $(".select").select2({
+            placeholder: "انتخاب کنید"
         });
-    });
+
+        $('.close_error').click(function () {
+            $(this).parent().remove();
+        });
+
+        function check_name() {
+            var name_val = $('.name_input').val();
+            var checkPath = Routing.generate('anar_super_panel_blog_check_name', {'name': name_val});
+            $.ajax({
+                url: checkPath,
+                error: function (jqXHR, textStatus, errorThrown) {
+                    $('.form_fields_message span').removeClass('_success').addClass('_error');
+                    $('.form_fields_message span').html(JSON.parse(jqXHR['responseText']).status.message);
+                },
+                success: function (data) {
+                    $('.form_fields_message span').removeClass('_error').addClass('_success');
+                    $('.form_fields_message span').html(data.status['message']);
+                }
+            })
+        }
+        $(document).ready(function () {
+            $('#anar_enginebundle_blog_apps').multiselect({
+                buttonWidth: '500px',
+                numberDisplayed: 10
+            });
+        });
 
 
-</script>
+    </script>
 {% endblock %}

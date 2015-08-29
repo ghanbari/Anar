@@ -175,7 +175,7 @@
                             <span class="post-meta-author vcard"> توسط <a
                                         href="" rel="author" class="fn">{{ article.author.fname }} {{ article.author.lname }}</a></span>
                             {% if article.attach is not empty %}
-                                <a href="{{ vich_uploader_asset(article, 'attachFile') }}"><span class="fa fa-paperclip pull-right"></span></a>
+                                <a href="{{ article.attach }}"><span class="fa fa-paperclip pull-right"></span></a>
                             {% endif %}
                             </p>
                         </div>

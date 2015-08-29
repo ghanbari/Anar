@@ -4,6 +4,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarsuperpanel/css/bootstrap-switch-metro-rtl.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarblogpanel/plugins/DatePicker/pwt-datepicker.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarblogpanel/plugins/bootstrap-fileupload/bootstrap-fileupload.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('static/fancybox/source/jquery.fancybox.css') }}" media="screen" />
+
     <style>
         .select{
             width: 100%;
@@ -153,12 +155,13 @@
             </div>
             <div class="row margin-top-10">
                 <div class="form-group">
-                    {{ form_label(form.attachFile, '', {'label_attr': {'class': 'col-md-2 col-sm-2 pull-right control-label text-left'} }) }}
+                    {{ form_label(form.attach, '', {'label_attr': {'class': 'col-md-2 col-sm-2 pull-right control-label text-left'} }) }}
                     <div class="col-md-5 col-sm-5 pull-right">
-                        {{ form_widget(form.attachFile,{ 'attr' : {'class':'form-control'} }) }}
+                        {{ form_widget(form.attach,{ 'attr' : {'class':'form-control'} }) }}
+                        <a href="/static/responsive_filemanager/filemanager/dialog.php?type=2&akey={{ accessKey }}&field_id=article_attach" class="btn iframe-btn" type="button">{{ 'filemanager.open'|trans }}</a>
                     </div>
                     <div class="col-md-5 col-sm-5">
-                        <span class="_error">{{ form_errors(form.attachFile) }}</span>
+                        <span class="_error">{{ form_errors(form.attach) }}</span>
                     </div>
                 </div>
             </div>
@@ -198,6 +201,7 @@
     <script type="text/javascript" src="{{ asset('static/persian-date/dist/0.1.8/persian-date-0.1.8.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('static/ckeditor/ckeditor.js') }}"></script>
     <script src="{{ asset('bundles/anarblogpanel/plugins/bootstrap-fileupload/bootstrap-fileupload.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('static/fancybox/source/jquery.fancybox.js') }}"></script>
     <script>
         $(document).ready(function () {
 
@@ -232,17 +236,29 @@
         });
 
         CKEDITOR.replace('article_abstract',{
-            language: 'fa',
-            uiColor: '#F7F7F7'
+            language: 'en',
+            uiColor: '#F7F7F7',
+            filebrowserBrowseUrl : '/static/responsive_filemanager/filemanager/dialog.php?type=2&editor=ckeditor&fldr=&akey={{ accessKey }}',
+            filebrowserUploadUrl : '/static/responsive_filemanager/filemanager/dialog.php?type=2&editor=ckeditor&fldr=&akey={{ accessKey }}',
+            filebrowserImageBrowseUrl : '/static/responsive_filemanager/filemanager/dialog.php?type=1&editor=ckeditor&fldr=&akey={{ accessKey }}'
         });
         CKEDITOR.replace('article_article',{
-            language: 'fa',
-            uiColor: '#F7F7F7'
+            language: 'en',
+            uiColor: '#F7F7F7',
+            filebrowserBrowseUrl : '/static/responsive_filemanager/filemanager/dialog.php?type=2&editor=ckeditor&fldr=&akey={{ accessKey }}',
+            filebrowserUploadUrl : '/static/responsive_filemanager/filemanager/dialog.php?type=2&editor=ckeditor&fldr=&akey={{ accessKey }}',
+            filebrowserImageBrowseUrl : '/static/responsive_filemanager/filemanager/dialog.php?type=1&editor=ckeditor&fldr=&akey={{ accessKey }}'
         });
 
         $('.current_ancestor').removeClass('minus').addClass('open');
         $('.current_ancestor .menu-items i').attr('class','fa fa-minus-square-o');
 
+        $('.iframe-btn').fancybox({
+            'width'		: 900,
+            'height'	: 600,
+            'type'		: 'iframe',
+            'autoScale'    	: false
+        });
 
         $(".select").select2({
             placeholder: "انتخاب کنید"

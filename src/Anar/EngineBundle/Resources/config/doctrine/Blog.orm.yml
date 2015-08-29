@@ -66,6 +66,11 @@ Anar\EngineBundle\Entity\Blog:
             gedmo:
                 timestampable:
                     on: update
+        driveSize:
+            type: integer
+            column: drive_size
+            options:
+                default: 100
     manyToOne:
         parent:
             targetEntity: Blog

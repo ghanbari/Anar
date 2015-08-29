@@ -72,6 +72,14 @@ class BlogType extends AbstractType
                     return $qb->where($qb->expr()->neq('a.type', "'system'"));
                 }
             ))
+            ->add('driveSize', 'number', array(
+                'label' => 'drive.size',
+                'required' => true,
+                'grouping' => true,
+                'attr' => array(
+                    'placeholder' => 'drive.size.in.mb',
+                ),
+            ))
         ;
     }
     

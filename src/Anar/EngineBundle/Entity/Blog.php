@@ -107,6 +107,11 @@ class Blog implements NodeInterface
     private $theme;
 
     /**
+     * @var int $drivesize
+     */
+    private $driveSize;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -117,6 +122,7 @@ class Blog implements NodeInterface
         $this->groups = new ArrayCollection();
         $this->active = True;
         $this->onTree = True;
+        $this->driveSize = 100;
     }
 
     /**
@@ -611,5 +617,21 @@ class Blog implements NodeInterface
                 'blogName' => $this->name,
             ),
         );
+    }
+
+    /**
+     * @return int
+     */
+    public function getDriveSize()
+    {
+        return $this->driveSize;
+    }
+
+    /**
+     * @param int $driveSize
+     */
+    public function setDriveSize($driveSize)
+    {
+        $this->driveSize = $driveSize;
     }
 }

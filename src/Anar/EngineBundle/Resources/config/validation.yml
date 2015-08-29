@@ -24,7 +24,8 @@ Anar\EngineBundle\Entity\Blog:
                 pattern: '/^[a-z]{4,100}$/'
                 message: string.betwwen.4_100.character.with.lower.english.character
         parent:
-            - NotNull: ~
+            - Expression:
+                expression: "this.getLvl() == 0 or value !== null"
             - Type:
                 type: 'Anar\EngineBundle\Entity\Blog'
                 message: 'select.a.item'
@@ -48,6 +49,8 @@ Anar\EngineBundle\Entity\Blog:
                     - Type:
                         type: 'Anar\EngineBundle\Entity\App'
                         message: 'select.a.item'
+        driveSize:
+            - Type: numeric
 
 Anar\EngineBundle\Entity\User:
     constraints:

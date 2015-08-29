@@ -88,22 +88,9 @@ class ArticleType extends AbstractType
                 'label' => 'image',
                 'constraints' => new Image(),
             ))
-            ->add('attachFile', 'file', array(
+            ->add('attach', 'text', array(
                 'required' => false,
                 'label' => 'attachment',
-                'constraints' => new File(array(
-                    'maxSize' => '100M',
-                    'mimeTypes' => array(
-                        'application/zip',
-                        'application/x-rar-compressed',
-                        'application/pdf',
-                        'application/x-pdf',
-                        'application/msword',
-                        'application/vnd.ms-excel',
-                        'vnd.ms-powerpoint',
-                        'application/gzip',
-                    ),
-                )),
             ))
             ->add('category', 'entity', array(
                 'label' => 'category',

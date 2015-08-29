@@ -52,6 +52,7 @@ class ArticleController extends Controller implements AdminInterface
             'article' => $article,
             'form'   => $form->createView(),
             'action' => 'create',
+            'accessKey' => $this->get('anar_file_manager')->getAccessKey(),
         ));
     }
 
@@ -80,6 +81,7 @@ class ArticleController extends Controller implements AdminInterface
             'article' => $article,
             'form'   => $form->createView(),
             'action' => 'create',
+            'accessKey' => $this->get('anar_file_manager')->getAccessKey(),
         ));
     }
 
@@ -122,6 +124,7 @@ class ArticleController extends Controller implements AdminInterface
             'article' => $article,
             'form'    => $form->createView(),
             'action'  => 'update',
+            'accessKey' => $this->get('anar_file_manager')->getAccessKey(),
         ));
     }
 
@@ -173,6 +176,7 @@ class ArticleController extends Controller implements AdminInterface
             'article' => $article,
             'form'    => $form->createView(),
             'action'  => 'update',
+            'accessKey' => $this->get('anar_file_manager')->getAccessKey(),
         ));
     }
 

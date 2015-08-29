@@ -149,21 +149,23 @@ class BlogController extends Controller
         ));
 
         $form->remove('name')->remove('parent');
-        $form->add('parent', 'entity', array(
-            'class' => 'AnarEngineBundle:Blog',
-            'property' => 'title',
-            'label' => 'parent',
-            'required' => true,
-            'placeholder' => 'placeholder',
-            'query_builder' => function ($er) use ($blog) {
-                $qb = $er->createQueryBuilder('b');
-                return $qb->where($qb->expr()->orX(
-                    $qb->expr()->lt('b.lft', '?1'),
-                    $qb->expr()->gt('b.rgt', '?2')
-                ))->setParameter(1, $blog->getLft())
-                    ->setParameter(2, $blog->getRgt());
-            }
-        ));
+        if ($blog->getName() != $this->container->getParameter('master_blog')) {
+            $form->add('parent', 'entity', array(
+                'class' => 'AnarEngineBundle:Blog',
+                'property' => 'title',
+                'label' => 'parent',
+                'required' => true,
+                'placeholder' => 'placeholder',
+                'query_builder' => function ($er) use ($blog) {
+                    $qb = $er->createQueryBuilder('b');
+                    return $qb->where($qb->expr()->orX(
+                        $qb->expr()->lt('b.lft', '?1'),
+                        $qb->expr()->gt('b.rgt', '?2')
+                    ))->setParameter(1, $blog->getLft())
+                        ->setParameter(2, $blog->getRgt());
+                }
+            ));
+        }
 
         $form->add('submit', 'submit', array('label' => 'update'));
 

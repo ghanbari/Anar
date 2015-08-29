@@ -2,6 +2,3 @@ Anar\ContentBundle\Entity\Article:
     imageFile:
         mapping:           anar_professor_profile_avatar
         filename_property: image
-    attachFile:
-        mapping:           anar_professor_profile_avatar
-        filename_property: attach
