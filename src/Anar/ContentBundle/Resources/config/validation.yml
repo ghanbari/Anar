@@ -62,7 +62,7 @@ Anar\ContentBundle\Entity\Category:
                 min: 4
                 max: 255
         parent:
-            - Type: Category
+            - Type: Anar\ContentBundle\Entity\Category
         blog:
             - NotNull: ~
             - Type: Anar\EngineBundle\Entity\Blog
