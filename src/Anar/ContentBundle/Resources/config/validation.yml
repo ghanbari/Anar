@@ -59,6 +59,7 @@ Anar\ContentBundle\Entity\Category:
             - NotBlank: ~
             - Type: string
             - Length:
+                min: 4
                 max: 255
         parent:
             - Type: Category

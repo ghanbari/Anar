@@ -44,7 +44,8 @@ class CategoryType extends AbstractType
                 'label' => 'slug',
                 'required' => true,
                 'attr' => array(
-                    'pattern' => '[a-zA-Z0-9_]{0,255}',
+                    'pattern' => '[a-zA-Z0-9_]{4,255}',
+                    'placeholder' => 'consist.of.4-255.character.a-z0-9_',
                 ),
             ))
             ->add('parent', 'entity', array(

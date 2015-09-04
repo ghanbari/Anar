@@ -404,6 +404,10 @@
         <source>attachment</source>
         <target>فایل ضمیمه</target>
       </trans-unit>
+      <trans-unit id="5">
+        <source>consist.of.4-255.character.a-z0-9_</source>
+        <target>کلمه ای به طول 4-255، شامل حروف a-z، 0-9 و _</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
