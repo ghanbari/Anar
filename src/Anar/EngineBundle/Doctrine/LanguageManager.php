@@ -24,13 +24,20 @@ class LanguageManager
     private $requestStack;
 
     /**
+     * @var string $locale default locale
+     */
+    private $locale;
+
+    /**
      * @param Registry $doctrine
      * @param RequestStack $requestStack
+     * @param string $locale default locale
      */
-    public function __construct(Registry $doctrine, RequestStack $requestStack)
+    public function __construct(Registry $doctrine, RequestStack $requestStack, $locale)
     {
         $this->doctrine = $doctrine;
         $this->requestStack = $requestStack;
+        $this->locale = $locale;
     }
 
     public function getLanguage()
@@ -38,11 +45,12 @@ class LanguageManager
         if (is_null(static::$language)) {
             $request = $this->requestStack->getMasterRequest();
 
-            if (is_null($request)) {
-                return;
+            if (!is_null($request)) {
+                $locale = $request->getLocale();
+            } else {
+                $locale = $this->locale;
             }
 
-            $locale = $request->getLocale();
             static::$language = $this->doctrine->getRepository('AnarEngineBundle:Language')->findOneByCode($locale);
         }
 

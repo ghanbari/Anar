@@ -5,4 +5,4 @@ services:
 
     anar_engine.manager.language:
         class: Anar\EngineBundle\Doctrine\LanguageManager
-        arguments: ['@doctrine', '@request_stack']
+        arguments: ['@doctrine', '@request_stack', "%locale%"]
