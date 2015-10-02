@@ -8,7 +8,7 @@ class BlogNotSelectedException extends \RuntimeException implements HttpExceptio
 {
     public function __construct($message = 'Access Denied', \Exception $previous = null)
     {
-        parent::__construct($message, 403, $previous);
+        parent::__construct($message, 404, $previous);
     }
 
     /**
