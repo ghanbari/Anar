@@ -4,7 +4,7 @@
             {% for image in images %}
                 <li data-transition="fade" data-slotamount="7" data-masterspeed="300" data-delay="9400" data-thumb="assets/img/sliders/revolution/thumbs/thumb2.jpg">
                     {% set imagePath = vich_uploader_asset(image, 'imageFile') %}
-                    <img class="slider_img" src="{{ imagePath }}" alt="{{ image.description }}">
+                    <img class="slider_img" src="{{ imagePath }}" alt="">
                     <div class="caption lfl slide_title slide_item_left"
                          data-x="0"
                          data-y="125"
