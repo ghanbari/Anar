@@ -33,6 +33,7 @@ class ArticleRepository extends EntityRepository
             ->leftJoin('a.author', 'author')
             ->leftJoin('a.editor', 'editor')
             ->leftJoin('a.category', 'c')
+            ->orderBy('a.createdAt', 'DESC')
             ->getQuery();
     }
 
