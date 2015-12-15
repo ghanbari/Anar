@@ -24,7 +24,8 @@ class ImageController extends Controller implements AdminInterface
     {
         $em = $this->getDoctrine()->getManager();
 
-        $images = $em->getRepository('AnarSlideShowBundle:Image')->findAll();
+        $blog = $this->get('anar_engine.manager.blog')->getBlog();
+        $images = $em->getRepository('AnarSlideShowBundle:Image')->findByBlog($blog);
         $token = $this->get('security.csrf.token_manager')->refreshToken('slide_show_delete');
 
         return $this->render('AnarSlideShowBundle:Backend/Image:index.html.twig', array(
