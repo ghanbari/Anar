@@ -8,6 +8,7 @@ imports:
     - { resource: jms.yml }
     - { resource: stof.yml }
     - { resource: vich.yml }
+    - { resource: purifier.yml }
 
 framework:
     #esi:        ~

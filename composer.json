@@ -34,7 +34,8 @@
         "jms/command-bundle": "dev-master",
         "jms/aop-bundle": "1.1.x-dev",
         "vich/uploader-bundle": "1.0.x-dev",
-        "stof/doctrine-extensions-bundle": "dev-master"
+        "stof/doctrine-extensions-bundle": "dev-master",
+        "exercise/htmlpurifier-bundle": "^0.2.2"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
