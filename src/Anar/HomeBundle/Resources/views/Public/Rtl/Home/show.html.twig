@@ -97,14 +97,22 @@
         <!-- BEGIN SERVICE BOX -->
         <div class="row service-box">
             {{ render(controller('AnarHomeBundle:Home:latestArticle', {'blogId': blog.id, 'limit': 3})) }}
+        </div>
+
+        <div class="row service-box">
             {% if blog.parent is not null and blog.parent.parent is not null %}
                 {{ render(controller('AnarHomeBundle:Home:latestArticle', {'blogId': blog.parent.id, 'limit': 3})) }}
+            {% else %}
+                {{ render(controller('AnarHomeBundle:Home:latestArticle', {'blogId': blog.id, 'limit': 3, 'offset': 3})) }}
             {% endif %}
+        </div>
+
+        <div class="row service-box">
             {% if blog.parent is not null %}
                 {{ render(controller('AnarHomeBundle:Home:latestArticle', {'limit': 3})) }}
+            {% else %}
+                {{ render(controller('AnarHomeBundle:Home:latestArticle', {'blogId': blog.id, 'limit': 3, 'offset': 6})) }}
             {% endif %}
-
-
         </div>
         <!-- END SERVICE BOX -->
 

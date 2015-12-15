@@ -13,7 +13,7 @@ class HomeController extends Controller
         return $this->render($blogManager->getTheme('AnarHomeBundle:Home:show.html.twig'));
     }
 
-    public function latestArticleAction($blogId = null, $limit = 10)
+    public function latestArticleAction($blogId = null, $limit = 10, $offset=0)
     {
         $blogManager = $this->get('anar_engine.manager.blog');
 
@@ -23,7 +23,7 @@ class HomeController extends Controller
 
         $articleRepo = $this->get('doctrine')->getRepository('AnarContentBundle:Article');
         $now = new \DateTime();
-        $articles = $articleRepo->getAllFilterByQuery($blogId, null, true, $now, $now, array('a.createdAt' => 'DESC'), $limit);
+        $articles = $articleRepo->getAllFilterByQuery($blogId, null, true, $now, $now, array('a.createdAt' => 'DESC'), $limit, $offset);
         return $this->render($blogManager->getTheme('AnarHomeBundle:Home:latestArticle.html.twig'), array('articles' => $articles));
     }
 }
