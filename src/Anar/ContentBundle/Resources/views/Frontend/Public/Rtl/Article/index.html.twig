@@ -120,25 +120,9 @@
 <div class="row margin-top-25">
     <div id="content" class="col-md-12 isotope" role="main">
         <div id="index-content" class="row">
-            {% set size = 8 %}
-            {% set imageCount = 0 %}
             {% for article in articles %}
-                {% if article.image is not null %}
-                    {% set imageCount = imageCount + 1 %}
-                {% endif %}
-            {% endfor %}
-            {% for article in articles %}
-                {% if article.image is not null %}
-                    {% if imageCount > (articles|length / 2) %}
-                        {% if loop.index % 2 == 0 %}
-                            {% set imageCount = imageCount - 1 %}
-                            {% set size = 8 %}
-                        {% else %}
-                            {% set size = 4 %}
-                        {% endif %}
-                    {% else %}
-                        {% set size = 8 %}
-                    {% endif %}
+                {% if loop.index % 5 == 0 %}
+                    {% set size = 8 %}
                 {% else %}
                     {% set size = 4 %}
                 {% endif %}
