@@ -14,7 +14,7 @@
             {% else %}
                 {% set c_path = 'anar_content_frontend_article_show_path' %}
             {% endif %}
-                <a href="{{ path(c_path,{'slug': article.slug, 'blogName': blogManager.blog.name}) }}"> {{ article.title[0:25] }} {% if article.title|length > 25 %}...{% endif %}</a>
+                <a href="{{ path(c_path,{'slug': article.slug, 'blogName': article.blog.name}) }}"> {{ article.title[0:25] }} {% if article.title|length > 25 %}...{% endif %}</a>
         </div>
         <p style="text-align: justify">{{ article.abstract[0:200]|purify('default') }}  {% if article.abstract|length > 200 %}...{% endif %}</p>
     </div>
