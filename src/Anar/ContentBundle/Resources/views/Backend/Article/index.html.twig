@@ -109,7 +109,6 @@
         $('.delete_article').click(function(){
             var id = $(this).attr('data-id');
             var path = Routing.generate('anar_content_backend_article_delete',{ 'id': id });
-            alert(path);
             $.ajax({
                 url: path,
                 type: "post",
