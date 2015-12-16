@@ -155,7 +155,8 @@ class BlogManager
             if (in_array($this->languageManager->getLanguage()->getDirection(), $directions)) {
                 static::$themes[$path] .= $theme->getName().'/'.ucfirst($this->languageManager->getLanguage()->getDirection()).'/'.array_shift($paths);
             } else {
-                static::$themes[$path] .= $theme->getName().'/'. ucfirst(array_pop($theme->getDirection())).'/'.array_shift($paths);
+                $directions = $theme->getDirection();
+                static::$themes[$path] .= $theme->getName().'/'. ucfirst(array_pop($directions)).'/'.array_shift($paths);
             }
 
             static::$themes[$path] .= ':'.array_shift($paths);

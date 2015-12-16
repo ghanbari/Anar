@@ -29,15 +29,22 @@ class LanguageManager
     private $locale;
 
     /**
+     * @var string $locales supported locales
+     */
+    private $locales;
+
+    /**
      * @param Registry $doctrine
      * @param RequestStack $requestStack
      * @param string $locale default locale
+     * @param array $locales supported locales
      */
-    public function __construct(Registry $doctrine, RequestStack $requestStack, $locale)
+    public function __construct(Registry $doctrine, RequestStack $requestStack, $locale, array $locales)
     {
         $this->doctrine = $doctrine;
         $this->requestStack = $requestStack;
         $this->locale = $locale;
+        $this->locales = $locales;
     }
 
     public function getLanguage()
@@ -45,7 +52,7 @@ class LanguageManager
         if (is_null(static::$language)) {
             $request = $this->requestStack->getMasterRequest();
 
-            if (!is_null($request)) {
+            if (!is_null($request) and in_array($request->getLocale(), $this->locales)) {
                 $locale = $request->getLocale();
             } else {
                 $locale = $this->locale;

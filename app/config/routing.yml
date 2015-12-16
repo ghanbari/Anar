@@ -1,5 +1,6 @@
 anar_file_manager:
     resource: "@AnarFileManagerBundle/Resources/config/routing.yml"
+    options: { i18n: false }
 
 logout:
     path: /logout
@@ -49,4 +50,3 @@ anar_blog_panel:
 
 anar_home:
     resource: "@AnarHomeBundle/Resources/config/routing.yml"
-    options: { i18n: false }
