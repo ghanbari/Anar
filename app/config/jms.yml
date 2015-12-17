@@ -12,4 +12,4 @@ jms_translation:
 jms_i18n_routing:
     default_locale: "%locale%"
     locales: "%languages%"
-    strategy: prefix_except_default #TODO: must use 'prefix' jms strategy instead of 'prefix_except_default'
+    strategy: prefix #TODO: must use 'prefix' jms strategy instead of 'prefix_except_default'
