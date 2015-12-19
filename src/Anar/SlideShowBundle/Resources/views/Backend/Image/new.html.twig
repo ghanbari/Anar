@@ -39,6 +39,7 @@
                         </div>
                     </div>
                     <div class="col-md-9 col-sm-9">
+                        {{ form_errors(form.imageFile) }}
                         {{ form_widget(form.imageFile,{ 'attr' : {'class':'form-control'} }) }}
                     </div>
                 </div>
