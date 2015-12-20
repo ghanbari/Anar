@@ -3,8 +3,9 @@
 namespace Anar\HomeBundle\Menu;
 
 use Knp\Menu\Loader\NodeLoader;
-use Anar\EngineBundle\Menu\Loader\NodeLoader as BlogNodeLoader;
+use Anar\EngineBundle\Menu\Loader\ArrayLoader as BlogArrayLoader;
 use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\VarDumper\VarDumper;
 
 class Builder extends ContainerAware
 {
@@ -39,11 +40,24 @@ class Builder extends ContainerAware
     public function organizationStructureMenu()
     {
         $blog = $this->container->get('anar_engine.manager.blog')->getBlog();
-        $factory = $this->container->get('knp_menu.factory');
+//        $factory = $this->container->get('knp_menu.factory');
         $translator = $this->container->get('translator');
-        $loader = new BlogNodeLoader($factory, 'title');
+//        $loader = new BlogNodeLoader($factory, 'title');
+//        $menu = $factory->createItem($translator->trans('subset'));
+//        $menu->addChild($loader->load($blog));
+
+
+        $factory = $this->container->get('knp_menu.factory');
+        $loader = new BlogArrayLoader($factory, $this->container->getParameter('address_type'));
+        $doctrine = $this->container->get('doctrine');
+        $repo = $doctrine->getRepository('AnarEngineBundle:Blog');
+        $repo->setChildrenIndex('children');
+        $data = $repo->childrenHierarchy();
+        VarDumper::dump($data);
         $menu = $factory->createItem($translator->trans('subset'));
-        $menu->addChild($loader->load($blog));
+        $menu->addChild($loader->load($data[0]));
+
+
 
         $apps = array();
         foreach ($blog->getApps() as $app) {
