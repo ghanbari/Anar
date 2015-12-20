@@ -1,2 +1,2 @@
 1.0.0-alpha: before install for university.
-1.0.0: demo server
+1.0.0: demo server.
