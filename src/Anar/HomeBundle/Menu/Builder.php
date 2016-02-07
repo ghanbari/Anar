@@ -5,7 +5,6 @@ namespace Anar\HomeBundle\Menu;
 use Knp\Menu\Loader\NodeLoader;
 use Anar\EngineBundle\Menu\Loader\ArrayLoader as BlogArrayLoader;
 use Symfony\Component\DependencyInjection\ContainerAware;
-use Symfony\Component\VarDumper\VarDumper;
 
 class Builder extends ContainerAware
 {
@@ -53,7 +52,6 @@ class Builder extends ContainerAware
         $repo = $doctrine->getRepository('AnarEngineBundle:Blog');
         $repo->setChildrenIndex('children');
         $data = $repo->childrenHierarchy();
-        VarDumper::dump($data);
         $menu = $factory->createItem($translator->trans('subset'));
         $menu->addChild($loader->load($data[0]));
 
