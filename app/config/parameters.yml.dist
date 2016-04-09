@@ -11,7 +11,7 @@ parameters:
 
     router.request_context.host: localhost
     router.request_context.scheme: http
-    router.request_context.base_url: /
+    router.request_context.base_url: '' # "" or "/google/test"
 
     mailer_transport:  smtp
     mailer_host:       127.0.0.1
