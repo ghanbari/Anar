@@ -1,21 +1,18 @@
-<div class="fullwidthbanner-container slider-main">
-    <div class="fullwidthabnner" id="slider">
-        <ul id="revolutionul" style="display:none;">
-            {% for image in images %}
-                <li data-transition="fade" data-slotamount="7" data-masterspeed="300" data-delay="9400" data-thumb="assets/img/sliders/revolution/thumbs/thumb2.jpg">
+<div class="row">
+    <div class="slider">
+        <div class="flexslider">
+            <ul class="slides">
+                {% for image in images %}
+                <li>
                     {% set imagePath = vich_uploader_asset(image, 'imageFile') %}
-                    <img class="slider_img" src="{{ imagePath|imagine_filter('slideshow') }}" alt="">
-                    <div class="caption lfl slide_title slide_item_left"
-                         data-x="0"
-                         data-y="125"
-                         data-speed="400"
-                         data-start="3500"
-                         data-easing="easeOutExpo">
-                        {{ image.description }}
+                    <img src="{{ imagePath|imagine_filter('slideshow') }}" />
+                    <div class="flex-caption hidden-xs">
+                        <p class="flex-title">{{ image.title }}</p>
+                        <p class="flex-text">{{ image.description }}</p>
                     </div>
                 </li>
-            {% endfor %}
-        </ul>
-        <div class="tp-bannertimer tp-bottom"></div>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
 </div>

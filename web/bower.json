@@ -25,7 +25,11 @@
     "persian-date": "~0.1.8",
     "persian-datepicker": "~0.4.5",
     "responsive-filemanager": "~9.9.6",
-    "fancybox": "~2.1.5"
+    "fancybox": "~2.1.5",
+
+    "flexslider": "^2.6.3",
+    "bootstrap-rtl": "^3.4.0",
+    "bootstrap-submenu": "^2.0.4"
   },
   "devDependencies": {}
 }

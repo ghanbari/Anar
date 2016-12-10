@@ -14,4 +14,4 @@ liip_imagine:
         cache: ~
         slideshow:
             filters:
-                thumbnail: { size: [1375, 450], mode: outbound }
+                thumbnail: { size: [1343, 890], mode: outbound }

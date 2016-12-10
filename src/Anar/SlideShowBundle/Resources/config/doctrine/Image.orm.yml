@@ -9,8 +9,8 @@ Anar\SlideShowBundle\Entity\Image:
                 strategy: AUTO
     fields:
         image: ~
-        description:
-            nullable: true
+        title: ~
+        description: ~
         createdBy:
             column: created_by
             gedmo:

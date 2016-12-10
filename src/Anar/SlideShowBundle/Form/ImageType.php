@@ -21,8 +21,15 @@ class ImageType extends AbstractType
                 'label' => 'image',
                 'constraints' => new Image(),
             ))
+            ->add('title', 'text', array(
+                'required' => true,
+                'label' => 'title',
+                'attr' => array(
+                    'maxlength' => 255,
+                ),
+            ))
             ->add('description', 'textarea', array(
-                'required' => false,
+                'required' => true,
                 'label' => 'description',
                 'attr' => array(
                     'maxlength' => 255,

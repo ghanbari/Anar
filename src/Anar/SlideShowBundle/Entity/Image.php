@@ -20,6 +20,11 @@ class Image
     /**
      * @var string
      */
+    private $title;
+
+    /**
+     * @var string
+     */
     private $description;
 
     /**
@@ -84,6 +89,25 @@ class Image
     public function getImage()
     {
         return $this->image;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param string $title
+     *
+     * @return $this
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+        return $this;
     }
 
     /**

@@ -46,7 +46,7 @@
                 <tr class="text-center">
                     <td class="col-md-1 col-sm-1">{{ 'id'|trans }}</td>
                     <td class="col-md-1 col-sm-1">{{ 'Image'|trans }}</td>
-                    <td class="col-md-2 col-sm-2">{{ 'Description'|trans }}</td>
+                    <td class="col-md-2 col-sm-2">{{ 'Title'|trans }}</td>
                     <td class="col-md-2 col-sm-2">{{ 'Createdby'|trans }}</td>
                     <td class="col-md-1 col-sm-1">{{ 'updatedby'|trans }}</td>
                     <td class="col-md-2 col-sm-2">{{ 'Createdat'|trans }}</td>
@@ -58,7 +58,7 @@
                     <tr data-id="{{ image.id }}" class="text-center {% if i % 2 == 0 %}t1{% else %}t2{% endif %}">
                         <td>{{ image.id }}</td>
                         <td><img style="width: 80px;height: 80px;" src="{{ vich_uploader_asset(image, 'imageFile') }}" /></td>
-                        <td>{{ image.description }}</td>
+                        <td>{{ image.title }}</td>
                         <td>{{ image.createdBy }}</td>
                         <td>{{ image.updatedBy }}</td>
                         <td class="date time createdAt" data-time="{% if image.createdAt %}{{ image.createdAt|date('U') }}{% endif %}"></td>

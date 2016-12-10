@@ -4,7 +4,12 @@ Anar\SlideShowBundle\Entity\Image:
             - Type: string
             - Length:
                 max: 255
+        title:
+            - NotNull: ~
+            - Length:
+                max: 255
         description:
+            - NotNull: ~
             - Type: string
             - Length:
                 max: 255
