@@ -2,6 +2,7 @@
 
 namespace Anar\HomeBundle\Menu;
 
+use Knp\Menu\FactoryInterface;
 use Knp\Menu\Loader\NodeLoader;
 use Anar\EngineBundle\Menu\Loader\ArrayLoader as BlogArrayLoader;
 use Symfony\Component\DependencyInjection\ContainerAware;
@@ -17,6 +18,23 @@ class Builder extends ContainerAware
 
         $loader = new NodeLoader($factory);
         return $loader->load($root);
+    }
+
+    public function mainMenu(FactoryInterface $factory, array $options)
+    {
+        $menu = $factory->createItem('root');
+        $menu->setChildrenAttribute('class', 'nav pull-right');
+        $menu->addChild('User')
+            ->setAttribute('dropdown', true);
+        $menu['User']->addChild('Profile', array('uri' => '#'))
+            ->setAttribute('divider_append', true);
+        $menu['User']->addChild('Logout', array('uri' => '#'));
+        $menu->addChild('Language')
+            ->setAttribute('dropdown', true)
+            ->setAttribute('divider_prepend', true);
+        $menu['Language']->addChild('Deutsch', array('uri' => '#'));
+        $menu['Language']->addChild('English', array('uri' => '#'));
+        return $menu;
     }
 
     public function contentCategoryMenu()

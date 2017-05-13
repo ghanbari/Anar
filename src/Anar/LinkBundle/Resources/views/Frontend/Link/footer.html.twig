@@ -1,26 +1,24 @@
+{% set archive = [] %}
 {% if links|length > 0 %}
-    <div class="footer">
-        <div class="container">
-            <div class="row">
-                {% for position in links|keys %}
-                    <div class="col-md-3 col-sm-3 text-left link_columns space-mobile">
-                        {% if links[position] is defined %}
-                            {% for category in links[position]|keys %}
-                                <div class="category_title">
-                                    {{ category }}
-                                </div>
-                                <div class="links">
-                                    {% for link in links[position][category] %}
-                                        <a href="{{ link.url }}">
-                                            <i class="fa fa-angle-left"></i>{{ link.title }}
-                                        </a>
-                                    {% endfor %}
-                                </div>
-                            {% endfor %}
-                        {% endif %}
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
+    {% for position in links|keys %}
+        {% if links[position] is defined %}
+            {% for category in links[position]|keys %}
+                {% set archive = archive|merge(links[position][category]) %}
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
 {% endif %}
+
+{% for index in archive|keys %}
+    {% if index == 0 %}
+        <div class="col-md-4 col-sm-6">
+    {% endif %}
+    {% if index % 10 == 9 %}
+        </div>
+        <div class="col-md-4 col-sm-6">
+    {% endif %}
+            <div class="link"><a target="_blank" href="{{ archive[index].url }}">{{ archive[index].title }}</a></div>
+    {% if index == archive|length - 1 %}
+        </div>
+    {% endif %}
+{% endfor %}

@@ -1,168 +1,484 @@
 {% set blog = blogManager.getBlog() %}
-
 <!DOCTYPE html>
-<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
-<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
-<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
-<!-- BEGIN HEAD -->
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    {% block title %}<title>{{ blog.title }}</title>{% endblock %}
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <meta content="" name="description" />
-    <meta content="" name="author" />
+    <meta charset="UTF-8" content="text/html">
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="pragma" content="no-cache" />
 
-    <!-- BEGIN GLOBAL MANDATORY STYLES -->
-    <link href="{{ asset('static/fontawesome/css/font-awesome.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ asset('bundles/anarhome/css/bootstrap-rtl.min.css') }}" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" href="{{ asset('bundles/anarcontent/css/bootstrap-custom.css') }}">
-    <link href="{{ asset('bundles/anarsuperpanel/css/addFonts.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('bundles/anarhome/css/site_template.css') }}" rel="stylesheet" type="text/css"/>
-    <!-- END GLOBAL MANDATORY STYLES -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{{ asset('static/bootstrap/dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('static/bootstrap/dist/css/bootstrap-theme.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('static/bootstrap-submenu/dist/css/bootstrap-submenu.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('static/bootstrap-rtl/dist/css/bootstrap-rtl.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarhome/css/main.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarhome/css/topmenu.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarhome/css/mainmenu.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarhome/css/slider.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/anarhome/css/anim.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('static/flexslider/flexslider.css') }}">
 
-    <!-- BEGIN PAGE LEVEL PLUGIN STYLES -->
-    <link href="{{ asset('bundles/anarhome/plugins/fancybox/jquery.fancybox.css') }}" rel="stylesheet" />
-    <link href="{{ asset('bundles/anarhome/plugins/rs/rs-style.css') }}" rel="stylesheet" />
-    <link href="{{ asset('bundles/anarhome/plugins/rs/settings.css') }}" rel="stylesheet" />
-    <link href="{{ asset('bundles/anarhome/plugins/bxslider/jquery.bxslider-rtl.css') }}" rel="stylesheet" />
-    <!-- END PAGE LEVEL PLUGIN STYLES -->
-
-    <!-- BEGIN THEME STYLES -->
-    <link href="{{ asset('bundles/anarhome/plugins/metronic/style-metronic-rtl.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ asset('bundles/anarhome/plugins/metronic/style-rtl.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ asset('bundles/anarhome/plugins/metronic/blue-rtl.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ asset('bundles/anarhome/plugins/metronic/style-responsive-rtl.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ asset('bundles/anarhome/plugins/metronic/custom-rtl.css') }}" rel="stylesheet" type="text/css"/>
-    <!-- END THEME STYLES -->
-
-    <link rel="shortcut icon" href="favicon.ico" />
-    <style>
-        nav{
-            margin: 0 0 -20px;
-        }
-    </style>
-    {% block other_css %}
-
-    {% endblock other_css %}
+    <title>Title</title>
 </head>
-<!-- END HEAD -->
-
-<!-- BEGIN BODY -->
-<body style="font-family: roya !important;">
-<!-- BEGIN HEADER -->
-<div class="header navbar navbar-default navbar-static-top">
-    <div class="container">
+<body>
+<nav class="navbar navbar-default topmenu navbar-fixed-top">
+    <div class="container-fluid">
         <div class="navbar-header">
-            <!-- BEGIN RESPONSIVE MENU TOGGLER -->
-            <button class="navbar-toggle btn navbar-btn" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topmenu">
                 <span class="icon-bar"></span>
             </button>
-            <!-- END RESPONSIVE MENU TOGGLER -->
-            <!-- BEGIN LOGO (you can use logo image instead of text)-->
-            <a class="navbar-brand logo-v1" href="{{ path('anar_home_homepage_default') }}">
-                <img src="{{ asset('bundles/anarhome/images/Azad_logo.png') }}" style="width: 45px" id="logoimg" alt="">
-            </a>
-            <!-- END LOGO -->
+            <span class="navbar-brand">دانشگاه آزاد اسلامی بیرجند</span>
         </div>
+        <div class="collapse navbar-collapse" id="topmenu">
+            <ul class="nav navbar-nav">
+                <li><a href="http://portal.iaubir.ac.ir/st/">پرتال دانشجویی</a></li>
+                <li><a href="http://mechanizeh.iaubir.ac.ir/st">سیستم خدمات دانشجو</a></li>
+                <li><a href="http://portal.iaubir.ac.ir/pr/">پرتال اساتید</a></li>
+                <li><a href="http://mechanizeh.iaubir.ac.ir/pr">سیستم خدمات اساتید</a></li>
+                <li><a href="http://lib.iaubir.ac.ir/simwebclt/WebAccess/SimwebPortal.dll">کتابخانه</a></li>
 
-        <!-- BEGIN TOP NAVIGATION MENU -->
-        <div class="navbar-collapse collapse">
-            <nav>
-                {{ knp_menu_render('AnarHomeBundle:Builder:organizationStructureMenu', {'branch_class': 'have_sub', 'leaf_class': 'leaf'}) }}
-            </nav>
+                <li class="dropdown">
+                    <a tabindex="0" data-toggle="dropdown" data-submenu>
+                        معاونت پژوهشی<span class="caret"></span>
+                    </a>
+
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li class="dropdown-submenu">
+                            <a tabindex="0">Action</a>
+
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li><a tabindex="0">Sub action</a></li>
+                                <li class="dropdown-submenu">
+                                    <a tabindex="0">Another sub action</a>
+
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li><a tabindex="0">Sub action</a></li>
+                                        <li><a tabindex="0">Another sub action</a></li>
+                                        <li><a tabindex="0">Something else here</a></li>
+                                    </ul>
+                                </li>
+                                <li><a tabindex="0">Something else here</a></li>
+                                <li class="disabled"><a tabindex="-1">Disabled action</a></li>
+                                <li class="dropdown-submenu">
+                                    <a tabindex="0">Another action</a>
+
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li><a tabindex="0">Sub action</a></li>
+                                        <li><a tabindex="0">Another sub action</a></li>
+                                        <li><a tabindex="0">Something else here</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown-header">Dropdown header</li>
+                        <li class="dropdown-submenu">
+                            <a tabindex="0">Another action</a>
+
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li><a tabindex="0">Sub action</a></li>
+                                <li><a tabindex="0">Another sub action</a></li>
+                                <li><a tabindex="0">Something else here</a></li>
+                            </ul>
+                        </li>
+                        <li><a tabindex="0">Something else here</a></li>
+                        <li class="divider"></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
-        <!-- BEGIN TOP NAVIGATION MENU -->
     </div>
-</div>
-<!-- END HEADER -->
+</nav>
 
-<!-- BEGIN PAGE CONTAINER -->
-<div class="page-container">
-    {% block slider %}
-<!-- BEGIN REVOLUTION SLIDER -->
-{{ render(controller('AnarSlideShowBundle:Frontend/Image:show')) }}
-<!-- END REVOLUTION SLIDER -->
-    {% endblock slider %}
+<div class="container-fluid top">
+    {{ render(controller('AnarSlideShowBundle:Frontend/Image:show')) }}
+    <div class="row">
+        <div class="col-xs-12 slider-menu">
+            <div class="row hidden-xs">
+                <div class="logo col-md-12">
+                    <img class="logo" src="{{ asset('bundles/anarhome/images/logo3.png') }}"/>
+                    <img class="flag hidden-sm" src="{{ asset('bundles/anarhome/images/flag3.png') }}"/>
+                </div>
+            </div>
+            <div class="row">
+                <nav class="navbar navbar-default mainmenu">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#mainmenu">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
 
-<!-- BEGIN CONTAINER -->
-<div class="container">
-    {% block container %}
-        <!-- BEGIN SERVICE BOX -->
-        <div class="row service-box">
-            {{ render(controller('AnarHomeBundle:Home:latestArticle', {'blogId': blog.id, 'limit': 3})) }}
+                        <div class="collapse navbar-collapse" id="mainmenu">
+                            <ul class="nav navbar-nav">
+                                <li class="dropdown">
+                                    <a tabindex="0" data-toggle="dropdown" data-submenu>
+                                        نمونه<span class="caret"></span>
+                                    </a>
+
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li class="dropdown-submenu">
+                                            <a tabindex="0">Action</a>
+
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><a tabindex="0">Sub action</a></li>
+                                                <li class="dropdown-submenu">
+                                                    <a tabindex="0">Another sub action</a>
+
+                                                    <ul class="dropdown-menu dropdown-menu-right">
+                                                        <li><a tabindex="0">Sub action</a></li>
+                                                        <li><a tabindex="0">Another sub action</a></li>
+                                                        <li><a tabindex="0">Something else here</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li><a tabindex="0">Something else here</a></li>
+                                                <li class="disabled"><a tabindex="-1">Disabled action</a></li>
+                                                <li class="dropdown-submenu">
+                                                    <a tabindex="0">Another action</a>
+
+                                                    <ul class="dropdown-menu dropdown-menu-right">
+                                                        <li><a tabindex="0">Sub action</a></li>
+                                                        <li><a tabindex="0">Another sub action</a></li>
+                                                        <li><a tabindex="0">Something else here</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown-header">Dropdown header</li>
+                                        <li class="dropdown-submenu">
+                                            <a tabindex="0">Another action</a>
+
+                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                <li><a tabindex="0">Sub action</a></li>
+                                                <li><a tabindex="0">Another sub action</a></li>
+                                                <li><a tabindex="0">Something else here</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a tabindex="0">Something else here</a></li>
+                                        <li class="divider"></li>
+                                    </ul>
+                                </li>
+
+                                <li><a href="default.asp">گالری</a></li>
+                                <li><a href="news.asp">تورمجازی</a></li>
+                                <li><a href="contact.asp">ورود</a></li>
+                                <li><a href="about.asp">نقشه سایت</a></li>
+                                <li><a href="about.asp">تماس با ما</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
         </div>
-
-        <div class="row service-box">
-            {% if blog.parent is not null and blog.parent.parent is not null %}
-                {{ render(controller('AnarHomeBundle:Home:latestArticle', {'blogId': blog.parent.id, 'limit': 3})) }}
-            {% else %}
-                {{ render(controller('AnarHomeBundle:Home:latestArticle', {'blogId': blog.id, 'limit': 3, 'offset': 3})) }}
-            {% endif %}
-        </div>
-
-        <div class="row service-box">
-            {% if blog.parent is not null %}
-                {{ render(controller('AnarHomeBundle:Home:latestArticle', {'limit': 3})) }}
-            {% else %}
-                {{ render(controller('AnarHomeBundle:Home:latestArticle', {'blogId': blog.id, 'limit': 3, 'offset': 6})) }}
-            {% endif %}
-        </div>
-        <!-- END SERVICE BOX -->
-
-    {% endblock container %}
-<!-- END CONTAINER -->
-</div>
-</div>
-<!-- END PAGE CONTAINER -->
-
-<!-- BEGIN FOOTER -->
-{{ render(controller('AnarLinkBundle:Frontend/Link:render', {'positions':['FOOTER_I', 'FOOTER_II', 'FOOTER_III', 'FOOTER_IV']})) }}
-<!-- END FOOTER -->
-
-<!-- BEGIN COPYRIGHT -->
-<div class="copyright">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-sm-8">
-                <p>
-                    <span class="margin-right-10">تمامی حقوق مادی و معنوی برای تیم انار محفوظ است!</span>
-                </p>
+    </div>
+    <div class="row hidden-xs hidden-sm">
+        <div class="col-md-12">
+            <div class="slider-info">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="slider-info-box blue">
+                            <div class="number"><span>۱۰</span></div>
+                            <div class="text"><span>دانشکده</span></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="slider-info-box yellow">
+                            <div class="number"><span>۱۲</span></div>
+                            <div class="text"><span>رشته</span></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="slider-info-box gray">
+                            <div class="number"><span>۱۵</span></div>
+                            <div class="text"><span>گرایش</span></div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="slider-info-box blue">
+                            <div class="number"><span>۲۲</span></div>
+                            <div class="text"><span>سال سابقه</span></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
-<!-- END COPYRIGHT -->
 
-<!-- Load javascripts at bottom, this will reduce page load time -->
-<!-- BEGIN CORE PLUGINS(REQUIRED FOR ALL PAGES) -->
-<!--[if lt IE 9]>
-<![endif]-->
-<script src="{{ asset('static/jquery/dist/jquery.min.js') }}" type="text/javascript"></script>
-<script src="{{ asset('static/bootstrap/dist/js/bootstrap.min.js') }}" type="text/javascript"></script>
-<script type="text/javascript" src="{{ asset('bundles/anarhome/plugins/metronic/hover-dropdown.js') }}"></script>
-{#<script type="text/javascript" src="assets/plugins/back-to-top.js"></script>#}
-<!-- END CORE PLUGINS -->
+<div class="container">
+</div>
+<div class="container-fluid">
+<div class="row gray-container">
+    <div class="gray-container-title">
+        <div class="title"><span>اخبار دانشگاه</span></div>
+    </div>
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+        </ol>
 
-<!-- BEGIN PAGE LEVEL JAVASCRIPTS(REQUIRED ONLY FOR CURRENT PAGE) -->
-<script type="text/javascript" src="{{ asset('bundles/anarhome/plugins/rs/jquery.themepunch.plugins.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('bundles/anarhome/plugins/rs/jquery.themepunch.revolution.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('bundles/anarhome/plugins/bxslider/jquery.bxslider.min.js') }}"></script>
-<script src="{{ asset('bundles/anarhome/plugins/metronic/app.js') }}"></script>
-<script src="{{ asset('bundles/anarhome/plugins/metronic/index.js') }}"></script>
-<script type="text/javascript">
-    jQuery(document).ready(function() {
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <div class="gray-container-content">
+                    <div class="col-sm-4">
+                        <img src="http://new.khuisf.ac.ir//Dorsapax//Data/Sub_1/File/Resize/636165403246913022.jpg" class="img-responsive img-thumbnail img-rounded news-img">
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="news-content">
+                            <div class="title">
+                                <p>اميري در اولين نشست صميمانه با دانشجويان خوابگاه خواهران واحد اصفهان:زندگي خوابگاهي از فرصت‌هاي طلايي و تكرار نشدني دانشجويان است</p>
+                            </div>
+                            <div class="content">
+                                <p>رييس دانشگاه آزاد اسلامي استان اصفهان گفت: با توجه به اينكه دانشجويان خوابگاهي بيشتر زمان خود را در خوابگاه مي‌گذرانند، آسايش، آرامش و رفاه آنان دغدغه هميشگي من بوده است.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="gray-container-content">
+                    <div class="col-sm-4">
+                        <img src="http://new.khuisf.ac.ir//Dorsapax//Data/Sub_1/File/Resize/636165403246913022.jpg" class="img-responsive img-thumbnail img-rounded news-img">
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="news-content">
+                            <div class="title">
+                                <p>اميري در اولين نشست صميمانه با دانشجويان خوابگاه خواهران واحد اصفهان:زندگي خوابگاهي از فرصت‌هاي طلايي و تكرار نشدني دانشجويان است</p>
+                            </div>
+                            <div class="content">
+                                <p>رييس دانشگاه آزاد اسلامي استان اصفهان گفت: با توجه به اينكه دانشجويان خوابگاهي بيشتر زمان خود را در خوابگاه مي‌گذرانند، آسايش، آرامش و رفاه آنان دغدغه هميشگي من بوده است.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="gray-container-content">
+                    <div class="col-sm-4">
+                        <img src="http://new.khuisf.ac.ir//Dorsapax//Data/Sub_1/File/Resize/636165403246913022.jpg" class="img-responsive img-thumbnail img-rounded news-img">
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="news-content">
+                            <div class="title">
+                                <p>اميري در اولين نشست صميمانه با دانشجويان خوابگاه خواهران واحد اصفهان:زندگي خوابگاهي از فرصت‌هاي طلايي و تكرار نشدني دانشجويان است</p>
+                            </div>
+                            <div class="content">
+                                <p>رييس دانشگاه آزاد اسلامي استان اصفهان گفت: با توجه به اينكه دانشجويان خوابگاهي بيشتر زمان خود را در خوابگاه مي‌گذرانند، آسايش، آرامش و رفاه آنان دغدغه هميشگي من بوده است.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row gray-container">
+    <div class="gray-container-title">
+        <div class="title"><span>دسترسی</span></div>
+    </div>
+    <div class="gray-container-content">
+        <div class="col-md-2 col-sm-3 col-xs-6 col-md-offset-2">
+            <div class="access-box">
+                <div class="img"><img src="{{ asset('bundles/anarhome/images/khadamatpic.jpg') }}" class="img-responsive"></div>
+                <div class="title">خدمات الکترونیک</div>
+                <div class="desc" data-toggle="tab" data-target="#FOOTER_I">
+                    <span>جهت دسترسي به خدمات الكترونيك ويژه دانشجويان، اساتيد و كاركنان كليك كنيد .</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-3 col-xs-6">
+            <div class="access-box">
+                <div class="img"><img src="{{ asset('bundles/anarhome/images/khadamatpic.jpg') }}" class="img-responsive"></div>
+                <div class="title">خدمات الکترونیک</div>
+                <div class="desc" data-toggle="tab" data-target="#FOOTER_II">
+                    <span>جهت دسترسي به خدمات الكترونيك ويژه دانشجويان، اساتيد و كاركنان كليك كنيد .</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-3 col-xs-6">
+            <div class="access-box">
+                <div class="img"><img src="{{ asset('bundles/anarhome/images/khadamatpic.jpg') }}" class="img-responsive"></div>
+                <div class="title">خدمات الکترونیک</div>
+                <div class="desc" data-toggle="tab" data-target="#FOOTER_III">
+                    <span>جهت دسترسي به خدمات الكترونيك ويژه دانشجويان، اساتيد و كاركنان كليك كنيد .</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-3 col-xs-6">
+            <div class="access-box">
+                <div class="img"><img src="{{ asset('bundles/anarhome/images/khadamatpic.jpg') }}" class="img-responsive"></div>
+                <div class="title">خدمات الکترونیک</div>
+                <div class="desc" data-toggle="tab" data-target="#FOOTER_IV">
+                    <span>جهت دسترسي به خدمات الكترونيك ويژه دانشجويان، اساتيد و كاركنان كليك كنيد .</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-        App.init();
-        App.initBxSlider();
-        Index.initRevolutionSlider();
+<div class="row gray-container links">
+    <div class="gray-container-title" style="padding: 10px">
+        <div class="title"><span class="glyphicon glyphicon-chevron-down"></span></div>
+    </div>
+    <div class="tab-content link-content">
+        <div class="tab-pane fade" id="FOOTER_I">
+            <div class="row box">
+                {{ render(controller('AnarLinkBundle:Frontend/Link:render', {'positions':['FOOTER_I']})) }}
+            </div>
+        </div>
+        <div class="tab-pane fade" id="FOOTER_II">
+            <div class="row box">
+                {{ render(controller('AnarLinkBundle:Frontend/Link:render', {'positions':['FOOTER_II']})) }}
+            </div>
+        </div>
+        <div class="tab-pane fade" id="FOOTER_III">
+            <div class="row box">
+                {{ render(controller('AnarLinkBundle:Frontend/Link:render', {'positions':['FOOTER_III']})) }}
+            </div>
+        </div>
+        <div class="tab-pane fade" id="FOOTER_IV">
+            <div class="row box">
+                {{ render(controller('AnarLinkBundle:Frontend/Link:render', {'positions':['FOOTER_IV']})) }}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row footer">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="row">
+                    <div class="col-md-5 col-xs-6">
+                        <a href="http://iaubir.ac.ir" target="_self">
+                            <img src="{{ asset('bundles/anarhome/images/footer_iau.png') }}" class="img-responsive">
+                        </a>
+                    </div>
+                    <div class="col-md-7 col-xs-6 info">
+                        <div class="row">
+                            <div class="col-xs-2 item"><span style="color: #ffcb0b;">آدرس:</span></div>
+                            <div class="col-xs-10 item">خراسان جنوبي ، بيرجند ، انتهاي بلوار آيت الله غفاري </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2 col-xs-5 item"><span style="color: #ffcb0b;">کد پستی:</span></div>
+                            <div class="col-md-3 col-xs-7 item">۳۹۹۹۸-۸۱۵۵۱</div>
+                            <div class="col-md-3 col-xs-5 item"><span style="color: #ffcb0b;">صندوق پستي:</span></div>
+                            <div class="col-md-3 col-xs-7 item">۳۹۹۹۸-۸۱۵۵۱</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2 col-xs-5 item"><span style="color: #ffcb0b;">تلفن:</span></div>
+                            <div class="col-md-3 col-xs-7 item">۳۲۴۴۹۱۵۲-۶۱</div>
+                            <div class="col-md-3 col-xs-5 item"><span style="color: #ffcb0b;">فکس:</span></div>
+                            <div class="col-md-3 col-xs-7 item">۳۲۴۴۳۱۰۱</div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 col-xs-12 item"><span style="color: #ffcb0b;">پست الکترونیکی:</span></div>
+                            <div class="col-md-8 col-xs-12 item" style="text-align: left">info@iaubir.ac.ir</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="socialnetworks">
+                            <a href="http://www.aparat.com/birjand.ac.ir" class="aparat wow fadeInRight animated"></a>
+                            <a href="https://www.youtube.com/" class="yt wow fadeInRight animated"></a>
+                            <a href="#" class="instagram wow fadeInRight animated"></a>
+                            <a href="https://www.linkedin.com/company/islamic-azad-uniersity" class="linkedIn wow fadeInRight animated"></a>
+                            <a href="#" class="gp wow fadeInRight animated"></a>
+                            <a href="#" class="fb wow fadeInRight animated"></a>
+                            <a href="http://www.cloob.com" class="cloob wow fadeInRight animated"></a>
+                            <a href="https://fa.wikipedia.org/" class="wikipedia wow fadeInRight animated"></a>
+                            <a href="https://telegram.me" class="telegram wow fadeInRight animated"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7" style="border-right: 1px solid #dddddd">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="link"><a href="http://iaubir.ac.ir/Files/Amoozeshi/Students/Etela/7.pdf">مدارک ثبت نام</a></div>
+                            <div class="link"><a href="http://iaubir.ac.ir/Files/Amoozeshi/RshCode.pdf">لیست و کد رشته ها</a></div>
+                            <div class="link"><a href="http://plsweb.iaubir.ac.ir/eOffice/login.aspx">اتوماسیون اداری</a></div>
+                            <div class="link"><a href="http://iaubir.ac.ir/Files/Etela/doctori.pdf">مشخصات رشته های مقطع دکترا</a></div>
+                            <div class="link"><a href="http://iaubir.ac.ir/Files/Etela/arshad.pdf">مشخصات رشته های مقطع کارشناسی</a></div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="link"><a href="http://farsi.khamenei.ir/">دفتر حفظ و نشر آثار رهبر انقلاب</a></div>
+                            <div class="link"><a href="http://www.farabiaward.ir/">جشنواره بين المللي فارابي</a></div>
+                            <div class="link"><a href="http://jcr.isc.gov.ir/Login.aspx?Lan=fa">گزارش هاي استنادي نشريات
+                                    فارسي</a></div>
+                            <div class="link"><a href="http://sci.isc.gov.ir/Authenticate.aspx?la=0">نمايه استنادي علوم
+                                    ايران</a></div>
+                            <div class="link"><a href="http://www.isc.gov.ir/">پايگاه استنادي علوم جهان اسلام </a></div>
+                            <div class="link"><a href="http://swf.ir/">صندوق رفاه دانشجويان - وزارت علوم، تحقيقات و فناوري</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="link"><a href="http://www.ict.iau.ir">دفتر فناوري اطلاعات و ارتباطات دانشگاه آزاد
+                                    اسلامي</a></div>
+                            <div class="link"><a href="http://edu.iau-tnb.ac.ir/login.aspx">سامانه ثبت نام آزمونهاي دانشگاه
+                                    آزاد اسلامي</a></div>
+                            <div class="link"><a href="http://www.azmoon.org">سامانه اعلام نتايج آزمون هاي دانشگاه آزاد
+                                    اسلامي</a></div>
+                            <div class="link"><a href="http://www.ana.ir/">خبرگزاري دانشگاه آزاد اسلامي آنا</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="linkarm">Powered by <a href="http://anar-blog.ir/" target="_blank"><span class="textarm">Anar Blog</span></a>. &copy; 2015 Funpro team</div>
+    </div>
+</div>
+</div>
+<script src="{{ asset('static/jquery/dist/jquery.js') }}"></script>
+<script src="{{ asset('static/flexslider/jquery.flexslider.js') }}"></script>
+<script src="{{ asset('static/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('static/bootstrap-submenu/js/bootstrap-submenu.js') }}"></script>
+<script>
+    $(window).on('load', function() {
+        $('[data-submenu]').submenupicker();
+
+        var slide = function () {
+            $('.flex-title').css({'opacity': 0, marginRight: '400px'});
+            $('.flex-text').css({'opacity': 0, marginTop: '100px'});
+
+
+            $('li.flex-active-slide').find('.flex-title').animate({
+                opacity: 1,
+                marginRight: '0px'
+            }, 1000);
+
+            $('li.flex-active-slide').find('.flex-text').animate({
+                opacity: 1,
+                marginTop: '0px'
+            }, 1000);
+        };
+
+        $('.flexslider').flexslider({
+            animation: "fade",
+            start: slide,
+            after: slide,
+            controlNav: false
+        });
+
+        $(".access-box .desc").click(function() {
+            $('html, body').animate({
+                scrollTop: $(".links .link-content").offset().top + 100
+            }, 500);
+        });
     });
 </script>
-<!-- END PAGE LEVEL JAVASCRIPTS -->
-{% block other_scripts %}
-{% endblock other_scripts %}
-
 </body>
-<!-- END BODY -->
 </html>

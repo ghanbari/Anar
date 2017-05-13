@@ -3,14 +3,14 @@
         <div class="flexslider">
             <ul class="slides">
                 {% for image in images %}
-                <li>
-                    {% set imagePath = vich_uploader_asset(image, 'imageFile') %}
-                    <img src="{{ imagePath|imagine_filter('slideshow') }}" />
-                    <div class="flex-caption hidden-xs">
-                        <p class="flex-title">{{ image.title }}</p>
-                        <p class="flex-text">{{ image.description }}</p>
-                    </div>
-                </li>
+                    <li>
+                        {% set imagePath = vich_uploader_asset(image, 'imageFile') %}
+                        <img src="{{ imagePath|imagine_filter('slideshow') }}" />
+                        <div class="flex-caption hidden-xs">
+                            <p class="flex-title">{{ image.title }}</p>
+                            <p class="flex-text">{{ image.description }}</p>
+                        </div>
+                    </li>
                 {% endfor %}
             </ul>
         </div>
