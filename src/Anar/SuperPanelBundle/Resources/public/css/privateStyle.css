@@ -38,18 +38,12 @@ div#sp-topBar a{
 	position:absolute;
 	left:40px;
 	top:8px;
-        color: #fff;
-        outline: none;
-        border-top-left-radius: 0;
-        -webkit-border-top-left-radius: 0;
-        -moz-border-radius-topleft: 0;
-        
+    color: #fff;
+    outline: none;
+    border-top-left-radius: 0;
+    -webkit-border-top-left-radius: 0;
+    -moz-border-radius-topleft: 0;
 }
-
-
-
-
-
 
 div#sp-headerWrap{
 	width:100%;

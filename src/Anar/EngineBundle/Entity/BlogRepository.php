@@ -21,7 +21,9 @@ class BlogRepository extends NestedTreeRepository
      */
     public function getTreeForJstree($parent = null, $active=null, $onTree=null, $locale='fa', array $selected=array())
     {
-        $blogs = $this->getTreeQuery($parent, $active, $onTree, $locale)->getArrayResult();
+        $blogs = $this->getTreeQuery($parent, $active, $onTree, $locale)
+            ->setHint(\Gedmo\Translatable\TranslatableListener::HINT_FALLBACK, 1)
+            ->getArrayResult();
 
         $tree = array();
         foreach ($blogs as $blog) {

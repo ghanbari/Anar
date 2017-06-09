@@ -38,7 +38,7 @@ class BlogController extends Controller
         return $this->render(
             'AnarSuperPanelBundle:Blog:index.' . $request->getRequestFormat() . '.twig',
             array(
-                'tree' => json_encode($repo->getTreeForJstree()),
+                'tree' => json_encode($repo->getTreeForJstree(null, null, null, $request->getLocale())),
                 'token' => $this->get('security.csrf.token_manager')->refreshToken('blog_delete'),
             )
         );

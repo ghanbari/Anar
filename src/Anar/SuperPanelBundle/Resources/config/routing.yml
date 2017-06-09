@@ -18,5 +18,7 @@ anar_super_panel_status:
     defaults: { _controller: AnarSuperPanelBundle:Desktop:status }
 
 anar_super_panel_home:
-    path:     /
-    defaults: { _controller: AnarSuperPanelBundle:Desktop:home }
+    path:     /{_locale}
+    defaults:
+        _controller: AnarSuperPanelBundle:Desktop:home
+        _locale: fa

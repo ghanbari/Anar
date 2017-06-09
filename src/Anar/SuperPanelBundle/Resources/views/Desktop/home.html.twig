@@ -26,7 +26,9 @@
 {% block top_fixed_superpanel_box %}
 <div id="sp-topBar">
     {#<span>{{ 'last login:' }}<time dir="ltr"></time></span>#}
-    <a class="btn btn-xs btn-danger" href="{{ path('anar_super_panel_logout') }}">{{ 'logout'|trans }}</a>
+    <a class="btn btn-sm btn-danger" href="{{ path('anar_super_panel_logout') }}">{{ 'logout'|trans }}</a>
+    <a style="left: 100px" class="btn btn-sm btn-success" href="{{ path('anar_super_panel_home', {'_locale': 'fa'}) }}">fa</a>
+    <a style="left: 140px" class="btn btn-sm btn-info" href="{{ path('anar_super_panel_home', {'_locale': 'en'}) }}">en</a>
 </div>
 <div id="sp-headerWrap">
     <div id="sp-logo"></div>
