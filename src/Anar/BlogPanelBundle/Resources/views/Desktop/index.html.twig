@@ -67,6 +67,8 @@
         </li>
         <li data-URL="ajaxUrlComments" role="appLinke"><i class="fa fa-comment"></i> <span class="badge">12</span></li>
         <li data-URL="ajaxUrlPlea" role="appLinke"><i class="fa fa-envelope"></i> <span class="badge">9</span></li>
+        <li {% if app.request.locale == 'fa' %}style="background-color: #dddddd"{% endif %}><a href="{{ path('anar_blog_panel_home', {'blogName': blog.name, '_locale': 'fa'}) }}">FA</a></li>
+        <li {% if app.request.locale == 'en' %}style="background-color: #dddddd"{% endif %}><a href="{{ path('anar_blog_panel_home_blog', {'blogName': blog.name, '_locale': 'en'}) }}">EN</a></li>
     </ul>
 
 

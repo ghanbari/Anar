@@ -5,10 +5,10 @@ Anar\EngineBundle\Entity\Group:
     uniqueConstraints:
         groups_name_unique_idx:
             columns: [blog_id, name]
-    gedmo:
-        translation:
-            locale: currentLocale
-            entity: GroupTranslation
+#    gedmo:
+#        translation:
+#            locale: currentLocale
+#            entity: GroupTranslation
     id:
         id:
             type: integer
@@ -22,8 +22,8 @@ Anar\EngineBundle\Entity\Group:
                 default: false
         name:
             type: string
-            gedmo:
-                - translatable
+#            gedmo:
+#                - translatable
         locked:
             type: boolean
         createdAt:

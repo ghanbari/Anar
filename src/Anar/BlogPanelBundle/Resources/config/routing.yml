@@ -21,11 +21,15 @@ anar_blog_panel_log:
     requirements: { page: \d+ }
 
 anar_blog_panel_home_blog:
-    path:     /{blogName}
-    defaults: { _controller: anar_blog_panel.controller.desktop:homeAction }
+    path:     /{_locale}/{blogName}
+    defaults:
+        _controller: AnarBlogPanelBundle:Desktop:home
+        _locale: fa
     requirements:
         blogName: "[a-z]{4,100}"
 
 anar_blog_panel_home:
-    path:     /
-    defaults: { _controller: anar_blog_panel.controller.desktop:homeAction }
+    path: /{_locale}
+    defaults:
+        _controller: AnarBlogPanelBundle:Desktop:home
+        _locale: fa

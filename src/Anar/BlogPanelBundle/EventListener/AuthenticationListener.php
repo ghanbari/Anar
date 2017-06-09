@@ -39,6 +39,8 @@ class AuthenticationListener
             return;
         }
 
+        #Set fallback for content in panels
+        $this->container->get('stof_doctrine_extensions.listener.translatable')->setTranslationFallback(true);
 
         $bundleName = str_replace('\\', '', strstr(get_class($controller[0]), 'Bundle', true)) . 'Bundle';
 
@@ -52,7 +54,7 @@ class AuthenticationListener
                'bundleName' => $bundleName,
                 'apps' => $apps,
             ));
-            $event->setController(array($this->container->get('anar_blog_panel.controller.desktop'), 'homeAction'));
+            $event->setController('AnarBlogPanelBundle:Desktop:home');
             return;
         }
 
