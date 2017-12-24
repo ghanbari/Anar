@@ -1,0 +1,138 @@
+{% extends "AnarHomeBundle:Public/Rtl/Home:show.html.twig" %}
+
+{% block other_css %}
+<style>
+    .R_butt_blue{
+        background: #00a0dc;
+        padding: 5px 15px;
+        color: #ffffff;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .R_butt_blue:hover{
+        background: #0079A6;
+        color: white;
+    }
+
+    .cursor_pointer{
+        cursor: pointer;
+    }
+
+    textarea{
+        resize: none;
+        min-height: 150px;
+    }
+
+    .form-control{
+        background: white !important;
+        height: 34px !important;
+    }
+
+    .form-control:focus{
+        border: 1px solid #999 !important;
+    }
+</style>
+{% endblock other_css %}
+
+
+{% block slider %}
+{% endblock slider %}
+
+{% block container %}
+<div class="col-md-6 col-sm-6 col-md-offset-3 col-sm-offset-3 login-signup-page margin-top-25 margin-bottom-30">
+    {{ form_start(form, { 'attr': {'class': 'contact_us'}}) }}
+    {% for message in app.session.getFlashBag().get('info') %}
+        <div class="col-md-12 col-sm-12">
+            <div class="alert alert-success alert-dismissable">
+                {{ message|trans }}
+                <i class="glyphicon glyphicon-remove-circle cursor_pointer pull-right" data-dismiss="alert"></i>
+            </div>
+        </div>
+    {% endfor %}
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <h3 class="text-center">تماس با ما</h3>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <div class="row">
+                <div class="form-group">
+                    {{ form_label(form.name, '', {'label_attr': {'class': 'col-md-3 col-sm-3 control-label text-right'} }) }}
+                    <div class="col-md-9 col-sm-9">
+                        {{ form_widget(form.name,{ 'attr' : {'class':'form-control'} }) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 col-sm-3"></div>
+                <div class="col-md-9 col-sm-9" style="padding-right: 0">
+                    <span class="_error">
+                        {{ form_errors(form.name) }}
+                    </span>
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                <div class="form-group">
+                    {{ form_label(form.email, '', {'label_attr': {'class': 'col-md-3 col-sm-3 control-label text-right'} }) }}
+                    <div class="col-md-9 col-sm-9">
+                        {{ form_widget(form.email,{ 'attr' : {'class':'form-control'} }) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 col-sm-3"></div>
+                <div class="col-md-9 col-sm-9" style="padding-right: 0">
+                    <span class="_error">
+                        {{ form_errors(form.email) }}
+                    </span>
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                <div class="form-group">
+                    {{ form_label(form.website, '', {'label_attr': {'class': 'col-md-3 col-sm-3 control-label text-right'} }) }}
+                    <div class="col-md-9 col-sm-9">
+                        {{ form_widget(form.website,{ 'attr' : {'class':'form-control'} }) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 col-sm-3"></div>
+                <div class="col-md-9 col-sm-9" style="padding-right: 0">
+                    <span class="_error">
+                        {{ form_errors(form.website) }}
+                    </span>
+                </div>
+            </div>
+            <div class="row margin-top-10">
+                <div class="form-group">
+                    {{ form_label(form.message, '', {'label_attr': {'class': 'col-md-3 col-sm-3 control-label text-right'} }) }}
+                    <div class="col-md-9 col-sm-9">
+                        {{ form_widget(form.message,{ 'attr' : {'class':'form-control'} }) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 col-sm-3"></div>
+                <div class="col-md-9 col-sm-9" style="padding-right: 0">
+                    <span class="_error">
+                        {{ form_errors(form.message) }}
+                    </span>
+                </div>
+            </div>
+            <div class="row margin-top-10 margin-bottom-30">
+                <div class="form-group">
+                    <label class="col-md-3 col-sm-3 control-label"></label>
+                    <div class="col-md-9 col-sm-9">
+                        {{ form_widget(form.submit, {'attr': {'class': 'btn R_butt_blue'}}) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ form_end(form) }}
+</div>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "AnarHomeBundle:Public/Rtl/Home:show.html.twig" %}
+
+{% block other_css %}
+
+{% endblock other_css %}
+
+
+{% block slider %}
+{% endblock slider %}
+
+{% block container %}
+
+    <div class="row margin-top-25">
+        <div class="show_profile_white">
+            <div class="col-md-12 col-sm-12 profile_nav1">
+                {% if address_type == 'domain' %}
+                    {% set c_path = 'anar_professor_frontend_profile_show' %}
+                {% else %}
+                    {% set c_path = 'anar_professor_frontend_profile_show_path' %}
+                {% endif %}
+                <a href="{{ path(c_path, {'blogName': blog.name}) }}#1" data-action="1" class="profile_tab_element" id="1">مشخصات فردی</a>
+                {#<a href="http://localhost/anar/web/app_dev.php/tests/professor/profile#2" class="profile_tab_element" data-action="2" id="2">بیوگرافی</a>#}
+                <a href="{{ path(c_path, {'blogName': blog.name}) }}#3" class="profile_tab_element" data-action="3" id="3">برنامه هفتگی</a>
+
+                {% if address_type == 'domain' %}
+                    {% set c_path = 'anar_professor_frontend_dissertation_show' %}
+                {% else %}
+                    {% set c_path = 'anar_professor_frontend_dissertation_show_path' %}
+                {% endif %}
+                <a href="{{ path(c_path, {'blogName': blog.name}) }}" class="profile_tab_element active" data-action="4" id="4">پایان نامه ها</a>
+            </div>
+            <div class="col-md-12 col-sm-12 profile_tab_content margin-left-25" style="display: block" data-action="1">
+                {% for dissertation in dissertations %}
+                    <div class="row margin-top-25">
+                        <div class="col-md-12">
+                            <div class="bio_header">
+                                <span>{{ dissertation.title }}</span>
+                                <span class="pull-right">{{ dissertation.author }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="bio_content">{{ dissertation.abstract }}</div>
+                        </div>
+                    </div>
+                {% endfor %}
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        {{ knp_pagination_render(dissertations) }}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock container %}
+
+{% block other_scripts %}
+
+{% endblock other_scripts %}

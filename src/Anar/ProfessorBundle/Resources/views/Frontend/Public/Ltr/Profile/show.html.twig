@@ -1,0 +1,145 @@
+{% extends "AnarHomeBundle:Public/Ltr/Home:show.html.twig" %}
+
+{% block other_css %}
+
+{% endblock other_css %}
+
+
+{% block slider %}
+{% endblock slider %}
+
+{% block container %}
+
+<div class="row margin-top-25">
+    <div class="show_profile_white">
+        <div class="col-md-12 col-sm-12 profile_nav1">
+            <a href="#1" data-action="1" class="profile_tab_element active">Personal information</a>
+            <a href="#3" class="profile_tab_element" data-action="3">Weekly schedule</a>
+            {% if address_type == 'domain' %}
+                {% set c_path = 'anar_professor_frontend_dissertation_show' %}
+            {% else %}
+                {% set c_path = 'anar_professor_frontend_dissertation_show_path' %}
+            {% endif %}
+            <a href="{{ path(c_path,{'blogName': blog.name}) }}" class="profile_tab_element" data-action="4" id="4">Thesis</a>
+        </div>
+        <div class="col-md-12 col-sm-12 profile_tab_content margin-left-25 margin-top-25 display-block active" data-action="1">
+            <div class="row">
+                <div class="col-md-4 col-sm-4">
+                    <img src="{{ vich_uploader_asset(profile, 'avatarFile') }}" style="width: 100%">
+                </div>
+                <div class="col-md-8 col-sm-8">
+                    {#<div>#}
+                        {#<h3 style="display: inline-block">نام و نام خانوادگی: </h3>#}
+                        {#<h3 style="display: inline-block">{{ blog. }}</h3>#}
+                    {#</div>#}
+                    <div>
+                        <h4 style="display: inline-block; margin-top: 0.5em">Phone: </h4>
+                        <h4 style="display: inline-block; margin-top: 0.5em">{{ profile.telephone }}</h4>
+                    </div>
+                    <div>
+                        <h4 style="display: inline-block; margin-top: 0.5em">Email: </h4>
+                        <h4 style="display: inline-block; margin-top: 0.5em">{{ profile.email }}</h4>
+                    </div>
+                    <div>
+                        <h4 style="display: inline-block; margin-top: 0.5em">Birthday: </h4>
+                        <h4 style="display: inline-block; margin-top: 0.5em">{{ profile.birthday|date('Y/m/d') }}</h4>
+                    </div>
+                    <div>
+                        <h4 style="display: inline-block; margin-top: 0.5em">Website: </h4>
+                        <h4 style="display: inline-block; margin-top: 0.5em">{{ profile.website }}</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-top-25">
+                <div class="col-md-12">
+                    <div class="bio_header">Biography</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="bio_content">{{ profile.bio }}</div>
+                </div>
+            </div>
+            <div class="row margin-top-25">
+                <div class="col-md-12">
+                    <div class="bio_header">Skills</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="bio_content">{{ profile.skill }}</div>
+                </div>
+            </div>
+            <div class="row margin-top-25">
+                <div class="col-md-12">
+                    <div class="bio_header">Favorites</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="bio_content">{{ profile.favorite }}</div>
+                </div>
+            </div>
+            <div class="row margin-top-25">
+                <div class="col-md-12">
+                    <div class="bio_header">Articles</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="bio_content">{{ profile.article }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-sm-12 profile_tab_content" data-action="3">
+            <div class="row">
+                {#<script>#}
+                    {#{% if plans[0] is defined %}#}
+                        {#var saturday = [];#}
+                        {#{% for item in plans[0] %}#}
+                            {#saturday.append({'title', '{{ item.title}}');#}
+                        {#{% endfor %}#}
+                    {#{% endif %}#}
+                {#</script>#}
+                {% for weekday in plans|keys %}
+                <div class="col-md-6 col-sm-6 margin-top-20">
+                    <div class="row">
+                        <div class="col-md-2 col-sm-2 text-right">{% if weekday == 0 %}Saturday{% elseif weekday == 1 %}Sunday{% elseif weekday == 2 %}Monday{% elseif weekday == 3 %}tuesday{% elseif weekday == 4 %}Wednesday{% elseif weekday == 5 %}Thursday{% elseif weekday == 6 %}Friday{% endif %}</div>
+                        <div class="col-md-10 col-sm-10">
+                            <table class="table table-hover table-striped">
+                                {% for plan in plans[weekday] %}
+                                <tr>
+                                    <td>{{ plan.title }}</td>
+                                    <td><span>{{ plan.startTime|date('H:i') }}</span>الی<span>{{ plan.endTime|date('H:i') }}</span></td>
+                                </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock container %}
+
+{% block other_scripts %}
+    <script>
+        var active = $('a:target, a.active').attr('data-action');
+        $('.profile_tab_element.active').removeClass('active');
+        $('a:target').addClass('active');
+        $('.profile_tab_content').css('display','none');
+        $('.profile_tab_content[data-action = '+ active +']').css('display','block');
+
+        $('.profile_tab_element').click(function(){
+            var data_action = $(this).attr('data-action');
+            $('.profile_tab_content').css('display','none');
+            $('.profile_tab_content[data-action = '+ data_action +']').css('display','block');
+            $('.profile_tab_element.active').removeClass('active');
+            $(this).addClass('active');
+        });
+    </script>
+{% endblock other_scripts %}
+

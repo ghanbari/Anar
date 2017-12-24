@@ -1,0 +1,140 @@
+{% extends "AnarHomeBundle:Public/Ltr/Home:show.html.twig" %}
+
+{% block other_css %}
+    <link rel="stylesheet" href="{{ asset('bundles/anarcontent/css/bootstrap-custom.css') }}">
+    <link rel="stylesheet"
+          href="{{ asset('bundles/anarcontent/css/fp_1.css') }}">
+    <link rel="stylesheet"
+          href="{{ asset('bundles/anarcontent/css/bootstrap-shortcodes.css') }}">
+    <link rel="stylesheet"
+          href="{{ asset('bundles/anarcontent/css/media-queries.css') }}">
+    <link rel="stylesheet"
+          href="{{ asset('bundles/anarcontent/css/bluish-grey.css') }}">
+    <style>
+        nav{
+            margin: 0 0 -20px;
+        }
+
+        .entry-content{
+            min-height: 650px;
+            box-shadow: 0 0 5px #aaa !important;
+            padding: 3% 10% !important;
+        }
+    </style>
+{% endblock other_css %}
+
+
+{% block slider %}
+{% endblock slider %}
+
+{% block container %}
+<div class="row margin-top-25">
+    <div id="content" class="col-md-12 isotope" role="main">
+        <div id="index-content" class="row">
+            <div class="col-md-12 p-normal col-sm-12 blog-listing anim fadeInUp">
+                <article id="post-132"
+                         class="post-132 post type-post status-publish format-standard hentry category-thoughts tag-blogging tag-writing">
+
+                    <!-- Post thumbnail / Featured image (if any) -->
+                    {% if article.image is not null %}
+                    <!-- Put post thumbnail (if any) -->
+                    <div class="post-thumbnail listing-preview">
+                        {% if address_type == 'domain' %}
+                            {% set c_path = 'anar_content_frontend_article_show' %}
+                        {% else %}
+                            {% set c_path = 'anar_content_frontend_article_show_path' %}
+                        {% endif %}
+                        <a class="sm-small-wrapper"
+                           href="{{ path(c_path,{'slug': article.slug }) }}"><img width="370"
+                                                                                                                height="245"
+                                                                                                                src="{{ vich_uploader_asset(article, 'imageFile') }}"
+                                                                                                                class="attachment-sm-pe-normal wp-post-image"
+                                                                                                                alt=""/></a>
+                    </div>
+                    {% endif %}
+
+                    <div class="entry-content" {% if article.image is null %} style="padding: 15px 10%; box-shadow: 0 0 5px #aaa" {% endif %}>
+
+                        {#<div class="post-meta">#}
+                            {#<p>#}
+                                {#<time class="post-meta-time updated" datetime="{{ article.createdAt|date }}"></time>#}
+                            {#<span class="post-meta-author vcard"> توسط <a#}
+                                        {#href="" rel="author" class="fn">{{ article.author.fname }} {{ article.author.lname }}</a></span>#}
+                            {#</p>#}
+                        {#</div>#}
+                        {% if address_type == 'domain' %}
+                            {% set c_path = 'anar_content_frontend_article_show' %}
+                        {% else %}
+                            {% set c_path = 'anar_content_frontend_article_show_path' %}
+                        {% endif %}
+                        <h2 class="post-title"><a href="{{ path(c_path,{'slug': article.slug }) }}"
+                                                  rel="bookmark" title="Exploring the New Blog Theme">{{ article.title }}</a></h2>
+
+                        <div class="post-content">
+                            <p style="text-align: justify">{{ article.abstract|raw }}</p>
+                            <p style="text-align: justify">{{ article.article|raw }}</p>
+
+                        </div>
+
+                        <div class="entry-info">
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4">
+                                    <div>
+                                        <i style="padding-left: 10px" class="fa fa-clock-o"></i>
+                                        <time class="post-meta-time">{{ article.createdAt|date('M j Y') }}</time>
+                                    </div>
+                                    <div style="margin-top: 10px">
+                                        <i style="padding-left: 10px" class="fa fa-user"></i>
+                                        <span class="post-meta-author vcard">By <a
+                                                    href="" rel="author" class="fn">{{ article.author.fname }} {{ article.author.lname }}</a></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4 text-center">
+                                    <div>
+                                        <i style="padding-left: 10px;" class="fa fa-clock-o"></i>
+                                        <time class="post-meta-time">{{ article.createdAt|date('M j Y') }}</time>
+                                    </div>
+                                    <div style="margin-top: 10px">
+                                        <i style="padding-left: 10px" class="fa fa-pencil"></i>
+                                        <span class="post-meta-author vcard">By <a
+                                                    href="" rel="author" class="fn">{{ article.author.fname }} {{ article.author.lname }}</a></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4 text-right">
+                                    <div>
+                                        <i style="padding-left: 10px" class="fa fa-eye"></i>
+                                        <span>Visit count: </span>
+                                        <span>{{ article.visit }}</span>
+                                    </div>
+                                    {% if article.category %}
+                                    <div style="margin-top: 10px">
+                                        <i style="padding-left: 10px" class="fa fa-list-ul"></i>
+                                        <span>دسته بندی: </span>
+                                        <span>{{ article.category.slug }}</span>
+                                    </div>
+                                    {% endif %}
+                                    {#<span class="post-meta-author vcard"> توسط <a#}
+                                                {#href="" rel="author" class="fn"></a></span>#}
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock container %}
+
+{% block other_scripts %}
+    <script type='text/javascript'
+            src='{{ asset('bundles/anarcontent/js/t_ago.js') }}'></script>
+{% endblock other_scripts %}
+
+{#{{ article.article|raw }}#}
+    {#{% if article.category %}#}
+        {#{{ article.category.slug }}#}
+    {#{% endif %}#}

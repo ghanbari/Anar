@@ -1,0 +1,26 @@
+{% if links|length > 0 %}
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                {% for position in links|keys %}
+                    <div class="col-md-3 col-sm-3 text-left link_columns space-mobile">
+                        {% if links[position] is defined %}
+                            {% for category in links[position]|keys %}
+                                <div class="category_title">
+                                    {{ category }}
+                                </div>
+                                <div class="links">
+                                    {% for link in links[position][category] %}
+                                        <a href="{{ link.url }}">
+                                            <i class="fa fa-angle-left"></i>{{ link.title }}
+                                        </a>
+                                    {% endfor %}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endif %}

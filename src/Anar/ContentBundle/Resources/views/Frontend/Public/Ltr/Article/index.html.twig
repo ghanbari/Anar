@@ -1,0 +1,273 @@
+{% extends "AnarHomeBundle:Public/Ltr/Home:show.html.twig" %}
+
+{% block other_css %}
+    {#<link rel="stylesheet"#}
+          {#href="bootstrap.min.css">#}
+    <link rel="stylesheet"
+          href="{{ asset('bundles/anarcontent/css/bootstrap-custom.css') }}">
+    <link rel="stylesheet"
+          href="{{ asset('bundles/anarcontent/css/fp_1.css') }}">
+    <link rel="stylesheet"
+          href="{{ asset('bundles/anarcontent/css/bootstrap-shortcodes.css') }}">
+    {#<link href="{{ asset('bundles/anarcontent/css/font-awesome.min.css') }}" rel="stylesheet">#}
+    {#<link rel="stylesheet" href="{{ asset('bundles/anarcontent/css/style.css') }}">#}
+    <link rel="stylesheet"
+          href="{{ asset('bundles/anarcontent/css/media-queries.css') }}">
+    <link rel="stylesheet"
+          href="{{ asset('bundles/anarcontent/css/bluish-grey.css') }}">
+    <style type="text/css">
+        img.wp-smiley,
+        img.emoji {
+            display: inline !important;
+            border: none !important;
+            box-shadow: none !important;
+            height: 1em !important;
+            width: 1em !important;
+            margin: 0 .07em !important;
+            vertical-align: -0.1em !important;
+            background: none !important;
+            padding: 0 !important;
+        }
+    </style>
+    <link rel='stylesheet' id='mediaelement-css'
+          href='{{ asset('bundles/anarcontent/css/mediaelementplayer.min.css') }}'
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='wp-mediaelement-css'
+          href='{{ asset('bundles/anarcontent/css/wp-mediaelement.css') }}'
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='swipeBox-css-css'
+          href='{{ asset('bundles/anarcontent/css/swipebox.css') }}'
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='ot-dynamic-dynamic_user_css-css'
+          href='{{ asset('bundles/anarcontent/css/dynamic.css') }}'
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='jetpack_css-css'
+          href='{{ asset('bundles/anarcontent/css/jetpack.css') }}'
+          type='text/css' media='all'/>
+    <style>
+        nav{
+            margin: 0 0 -20px;
+        }
+        .themeskin_option {
+            display: inline-block;
+            margin-right: 8px;
+            width: 60px;
+            text-align: center;
+            font-size: 11px;
+            height: 40px;
+            padding: 8px 5px;
+            float: left;
+            margin-top: 5px;
+            line-height: 1;
+            border-radius: 2px;
+            cursor: pointer;
+        }
+
+        .themeskin_option.active {
+            box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.30) inset;
+        }
+
+        .themeskin_bg {
+            background: #343A40;
+            color: #ECEFF3
+        }
+
+        .themeskin_cw {
+            background: #F0F0F0;
+            color: #666666
+        }
+
+        .themeskin_cb {
+            background: #F1ECDE;
+            color: #987B49
+        }
+
+        select.fontpairing {
+            font-size: 12px;
+            margin-top: 5px
+        }
+
+        .themepattern_option {
+            display: inline-block;
+            margin-right: 10px;
+            width: 42px;
+            height: 32px;
+            padding: 0;
+            float: left;
+            margin-top: 5px;
+            line-height: 1;
+            border-radius: 1px;
+            cursor: pointer;
+            overflow: hidden;
+            border: 1px solid #c5c5c5;
+            margin-bottom: 5px
+        }
+
+        .themepattern_option.active {
+            border: 1px solid #222222
+        }
+
+        .themepattern_option img {
+        }
+    </style>
+{% endblock other_css %}
+
+
+{% block slider %}
+{% endblock slider %}
+
+{% block container %}
+<div class="row margin-top-25">
+    <div id="content" class="col-md-12 isotope" role="main">
+        <div id="index-content" class="row">
+            {% set haveImage = [] %}
+            {% set notHaveImage = [] %}
+
+            {% for article in articles %}
+                {% if article.image is not null %}
+                    {% set haveImage = haveImage|merge([article]) %}
+                {% else %}
+                    {% set notHaveImage = notHaveImage|merge([article]) %}
+                {% endif %}
+            {% endfor %}
+
+            {% set output = [] %}
+            {% set haveImageCounter = 0 %}
+            {% set notHaveImageCounter = 0 %}
+
+            {% if haveImage|length >= notHaveImage|length %}
+                {% for i in range(1, articles|length) %}
+                    {% if i is odd %}
+                        {% set output = output|merge([haveImage[haveImageCounter]]) %}
+                        {% set haveImageCounter = haveImageCounter + 1 %}
+                    {% else %}
+                        {% if notHaveImageCounter < notHaveImage|length %}
+                            {% set output = output|merge([notHaveImage[notHaveImageCounter]]) %}
+                            {% set notHaveImageCounter = notHaveImageCounter + 1 %}
+                        {% else %}
+                            {% set output = output|merge([haveImage[haveImageCounter]]) %}
+                            {% set haveImageCounter = haveImageCounter + 1 %}
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                {% for i in range(1, articles|length) %}
+                    {% if i is odd %}
+                        {% set output = output|merge([notHaveImage[notHaveImageCounter]]) %}
+                        {% set notHaveImageCounter = notHaveImageCounter + 1 %}
+                    {% else %}
+                        {% if haveImageCounter < haveImage|length %}
+                            {% set output = output|merge([haveImage[haveImageCounter]]) %}
+                            {% set haveImageCounter = haveImageCounter + 1 %}
+                        {% else %}
+                            {% set output = output|merge([notHaveImage[notHaveImageCounter]]) %}
+                            {% set notHaveImageCounter = notHaveImageCounter + 1 %}
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+
+            {% for article in output %}
+                {% if loop.index % 5 == 0 %}
+                    {% set size = 8 %}
+                {% else %}
+                    {% set size = 4 %}
+                {% endif %}
+            <div class="col-md-{{ size }} p-normal col-sm-12 blog-listing anim fadeInUp">
+                <article id="post-132"
+                         class="post-132 post type-post status-publish format-standard hentry category-thoughts tag-blogging tag-writing">
+
+                    <!-- Post thumbnail / Featured image (if any) -->
+                    {% if article.image is not null %}
+                    <!-- Put post thumbnail (if any) -->
+                    <div class="post-thumbnail listing-preview">
+                        {% if address_type == 'domain' %}
+                            {% set c_path = 'anar_content_frontend_article_show' %}
+                        {% else %}
+                            {% set c_path = 'anar_content_frontend_article_show_path' %}
+                        {% endif %}
+                        <a class="sm-small-wrapper"
+                           href="{{ path(c_path,{'slug': article.slug }) }}"><img width="370"
+                                                                                                             height="245"
+                                                                                                             src="{{ vich_uploader_asset(article, 'imageFile') }}"
+                                                                                                             class="attachment-sm-pe-normal wp-post-image"
+                                                                                                             alt=""/></a>
+                    </div>
+                    {% endif %}
+
+                    <!-- Put audio player (if audio post-format) -->
+
+
+                    <!-- Quotes format (if quote post-format) -->
+
+                    <!-- Video player -->
+
+                    <!-- Actual content -->
+                    <div class="entry-content">
+
+                        <div class="post-meta">
+                            <p>
+                                <time class="post-meta-time">{{ article.createdAt|date('M j Y') }}</time>
+                            <span class="post-meta-author vcard">By <a
+                                        href="" rel="author" class="fn">{{ article.author.fname }} {{ article.author.lname }}</a></span>
+                            {% if article.attach is not empty %}
+                                <a href="{{ article.attach }}"><span class="fa fa-paperclip pull-right"></span></a>
+                            {% endif %}
+                            </p>
+                        </div>
+                        {% if address_type == 'domain' %}
+                            {% set c_path = 'anar_content_frontend_article_show' %}
+                        {% else %}
+                            {% set c_path = 'anar_content_frontend_article_show_path' %}
+                        {% endif %}
+                        <h2 class="post-title"><a href="{{ path(c_path,{'slug': article.slug }) }}"
+                                                  rel="bookmark" title="Exploring the New Blog Theme">{{ article.title }}</a></h2>
+
+                        <div class="post-content">
+                            <p>{{ article.abstract|raw }}</p>
+                            <p class="read-more"><a href="{{ path(c_path,{'slug': article.slug }) }}">More</a></p>
+                        </div>
+
+
+                    </div>
+                </article>
+            </div>
+                {#{% if article.category %}#}
+                    {#{{ article.category.slug }}#}
+                {#{% endif %}#}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 col-sm-12 text-center" style="padding: 10px 0">
+        {{ knp_pagination_render(articles) }}
+    </div>
+</div>
+{% endblock container %}
+
+{% block other_scripts %}
+    {#<script type='text/javascript'#}
+            {#src='jquery.js'></script>#}
+    <script type='text/javascript'
+            src='{{ asset('bundles/anarcontent/js/jquery-migrate.min.js') }}'></script>
+    <script type='text/javascript'
+            src='{{ asset('bundles/anarcontent/js/tiled-gallery.js') }}'></script>
+    <script type='text/javascript'
+            src='{{ asset('bundles/anarcontent/js/mediaelement-and-player.min.js') }}'></script>
+    <script type='text/javascript'
+            src='{{ asset('bundles/anarcontent/js/wp-mediaelement.js') }}'></script>
+    <script type='text/javascript'
+            src='{{ asset('bundles/anarcontent/js/jquery.easing.min.js') }}'></script>
+    <script type='text/javascript'
+            src='{{ asset('bundles/anarcontent/js/isotope.js') }}'></script>
+    <script type='text/javascript'
+            src='{{ asset('bundles/anarcontent/js/wow.min.js') }}'></script>
+    <script type='text/javascript'
+            src='{{ asset('bundles/anarcontent/js/t_ago.js') }}'></script>
+    <script type='text/javascript'
+            src='{{ asset('bundles/anarcontent/js/jquery.swipebox.min.js') }}'></script>
+    <script type='text/javascript'
+            src='{{ asset('bundles/anarcontent/js/scripts.js') }}'></script>
+    <script type='text/javascript' src='{{ asset('bundles/anarcontent/js/devicepx-jetpack.js') }}'></script>
+{% endblock other_scripts %}

@@ -1,0 +1,21 @@
+{% for article in articles %}
+    <div class="col-md-4 col-sm-4">
+        <div class="service-box-heading">
+            {% if article.blog.id == blogManager.getBlog().id %}
+                {% set color = 'green' %}
+            {% elseif article.blog.id == blogManager.getBlog().parent.id %}
+                {% set color = 'blue' %}
+            {% else %}
+                {% set color = 'red' %}
+            {% endif %}
+            <i class="fa fa-check {{ color }}"></i>
+            {% if address_type == 'domain' %}
+                {% set c_path = 'anar_content_frontend_article_show' %}
+            {% else %}
+                {% set c_path = 'anar_content_frontend_article_show_path' %}
+            {% endif %}
+                <a href="{{ path(c_path,{'slug': article.slug, 'blogName': article.blog.name}) }}"> {{ article.title[0:25] }} {% if article.title|length > 25 %}...{% endif %}</a>
+        </div>
+        <p style="text-align: justify">{{ article.abstract[0:200]|purify('default') }}  {% if article.abstract|length > 200 %}...{% endif %}</p>
+    </div>
+{% endfor %}

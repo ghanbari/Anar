@@ -19,7 +19,7 @@ class LoadThemeData extends AbstractFixture implements OrderedFixtureInterface
     {
         $theme = new Theme();
         $theme->setName('Public');
-        $theme->setDirection(array('rtl'));
+        $theme->setDirection(array('rtl', 'ltr'));
         $manager->persist($theme);
         $manager->flush();
         $this->setReference('theme.public', $theme);

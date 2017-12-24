@@ -24,6 +24,9 @@ class LinkController extends Controller implements ApplicationInterface
 
         ksort($groupedLinks, SORT_STRING);
 
-        return $this->render($template?:'AnarLinkBundle:Frontend/Link:footer.html.twig', array('links' => $groupedLinks));
+        $blogManager = $this->get('anar_engine.manager.blog');
+        $template = $blogManager->getTheme($template ?: 'AnarLinkBundle:Link:footer.html.twig', 'Frontend');
+
+        return $this->render($template, array('links' => $groupedLinks));
     }
 }

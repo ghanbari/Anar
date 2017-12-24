@@ -2,10 +2,10 @@
 
 namespace Anar\HomeBundle\Menu;
 
-use Knp\Menu\FactoryInterface;
 use Knp\Menu\Loader\NodeLoader;
 use Anar\EngineBundle\Menu\Loader\ArrayLoader as BlogArrayLoader;
 use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\VarDumper\VarDumper;
 
 class Builder extends ContainerAware
 {
@@ -18,23 +18,6 @@ class Builder extends ContainerAware
 
         $loader = new NodeLoader($factory);
         return $loader->load($root);
-    }
-
-    public function mainMenu(FactoryInterface $factory, array $options)
-    {
-        $menu = $factory->createItem('root');
-        $menu->setChildrenAttribute('class', 'nav pull-right');
-        $menu->addChild('User')
-            ->setAttribute('dropdown', true);
-        $menu['User']->addChild('Profile', array('uri' => '#'))
-            ->setAttribute('divider_append', true);
-        $menu['User']->addChild('Logout', array('uri' => '#'));
-        $menu->addChild('Language')
-            ->setAttribute('dropdown', true)
-            ->setAttribute('divider_prepend', true);
-        $menu['Language']->addChild('Deutsch', array('uri' => '#'));
-        $menu['Language']->addChild('English', array('uri' => '#'));
-        return $menu;
     }
 
     public function contentCategoryMenu()
@@ -57,23 +40,30 @@ class Builder extends ContainerAware
     public function organizationStructureMenu()
     {
         $blog = $this->container->get('anar_engine.manager.blog')->getBlog();
-//        $factory = $this->container->get('knp_menu.factory');
-        $translator = $this->container->get('translator');
-//        $loader = new BlogNodeLoader($factory, 'title');
-//        $menu = $factory->createItem($translator->trans('subset'));
-//        $menu->addChild($loader->load($blog));
-
 
         $factory = $this->container->get('knp_menu.factory');
         $loader = new BlogArrayLoader($factory, $this->container->getParameter('address_type'));
         $doctrine = $this->container->get('doctrine');
         $repo = $doctrine->getRepository('AnarEngineBundle:Blog');
         $repo->setChildrenIndex('children');
-        $data = $repo->childrenHierarchy();
-        $menu = $factory->createItem($translator->trans('subset'));
+
+        $query = $doctrine->getEntityManager()
+            ->createQueryBuilder()
+            ->select('node')
+            ->from('AnarEngineBundle:Blog', 'node')
+            ->orderBy('node.root, node.lft', 'ASC')
+            ->where('node.root = 1')
+            ->getQuery();
+
+        $query->setHint(
+            \Doctrine\ORM\Query::HINT_CUSTOM_OUTPUT_WALKER,
+            'Gedmo\\Translatable\\Query\\TreeWalker\\TranslationWalker'
+        );
+
+        $data = $repo->buildTree($query->getArrayResult());
+
+        $menu = $factory->createItem('root');
         $menu->addChild($loader->load($data[0]));
-
-
 
         $apps = array();
         foreach ($blog->getApps() as $app) {

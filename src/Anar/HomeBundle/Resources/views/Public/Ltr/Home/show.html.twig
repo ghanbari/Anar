@@ -14,10 +14,10 @@
 
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <link href="{{ asset('static/fontawesome/css/font-awesome.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ asset('bundles/anarhome/css/bootstrap-rtl.min.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('static/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="{{ asset('bundles/anarcontent/css/bootstrap-custom.css') }}">
     <link href="{{ asset('bundles/anarsuperpanel/css/addFonts.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('bundles/anarhome/css/site_template.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('bundles/anarhome/css/site_template_ltr.css') }}" rel="stylesheet" type="text/css"/>
     <!-- END GLOBAL MANDATORY STYLES -->
 
     <!-- BEGIN PAGE LEVEL PLUGIN STYLES -->
@@ -29,7 +29,7 @@
 
     <!-- BEGIN THEME STYLES -->
     <link href="{{ asset('bundles/anarhome/plugins/metronic/style-metronic-rtl.css') }}" rel="stylesheet" type="text/css"/>
-    <link href="{{ asset('bundles/anarhome/plugins/metronic/style-rtl.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('bundles/anarhome/plugins/metronic/style-ltr.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('bundles/anarhome/plugins/metronic/blue-rtl.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('bundles/anarhome/plugins/metronic/style-responsive-rtl.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('bundles/anarhome/plugins/metronic/custom-rtl.css') }}" rel="stylesheet" type="text/css"/>
@@ -61,7 +61,7 @@
             </button>
             <!-- END RESPONSIVE MENU TOGGLER -->
             <!-- BEGIN LOGO (you can use logo image instead of text)-->
-            <a class="navbar-brand logo-v1" href="{{ path('anar_home_homepage_default') }}">
+            <a class="navbar-brand" href="{{ path('anar_home_homepage_default') }}">
                 <img src="{{ asset('bundles/anarhome/images/Azad_logo.png') }}" style="width: 45px" id="logoimg" alt="">
             </a>
             <!-- END LOGO -->
@@ -127,7 +127,7 @@
         <div class="row">
             <div class="col-md-8 col-sm-8">
                 <p>
-                    <span class="margin-right-10">تمامی حقوق مادی و معنوی برای تیم Funpro محفوض است</span>
+                    <span class="margin-right-10">All rights reserved &copy;Funpro team!</span>
                 </p>
             </div>
         </div>
